@@ -1,0 +1,72 @@
+export const SITE_CONFIG = {
+  name: "XSPACEWEB",
+  legalName: "XSPACEWEB PRIVATE LIMITED",
+  tagline: "Building digital experiences beyond boundaries.",
+  description: "XSPACEWEB is an Indian technology company focused on building innovative SaaS products and delivering end-to-end digital solutions.",
+  contacts: {
+    email: "support@xspaceweb.com",
+    phones: ["+91 8292526386", "+91 7979099017"],
+    operatingHours: "Mon - Sat, 9:00 AM - 7:00 PM",
+    responseTime: "We usually respond within 24 hours",
+    registeredOffice: {
+      title: "Registered Office",
+      company: "XSPACEWEB PRIVATE LIMITED",
+      address: "Muraidih, Dhanbad, Jharkhand, India 828306",
+      cin: "U62012JH2024PTC022737",
+    },
+    corporateOffice: {
+      title: "Corporate Office",
+      company: "XSPACEWEB PRIVATE LIMITED",
+      address: "Airport Gate, Holding number 131 (95), 131, 03, Jangalpur Rd, International Airport, Kolkata, West Bengal 700081",
+    },
+  },
+  navLinks: [
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Services", href: "/services" },
+    { label: "Studio", href: "/#studio" },
+    { label: "Industries", href: "/#industries" },
+    { label: "About", href: "/#about" },
+    { label: "Insights", href: "/#insights" },
+  ],
+  footerLinks: {
+    company: [
+      { label: "About Us", href: "/#about" },
+      { label: "Careers", href: "/#careers" },
+      { label: "Our Process", href: "/#process" },
+      { label: "Contact", href: "/contact" },
+    ],
+    products: [
+      { label: "MakeGSTBill", href: "/products#makegstbill" },
+      { label: "GoldenGST", href: "/products#goldengst" },
+      { label: "FreeDeskPro", href: "/products#freedeskpro" },
+      { label: "Upcoming Products", href: "/products#upcoming" },
+    ],
+    services: [
+      { label: "Digital Marketing", href: "/services#digital-marketing" },
+      { label: "Website Development", href: "/services#website-development" },
+      { label: "App Development", href: "/services#app-development" },
+      { label: "SEO", href: "/services#seo" },
+      { label: "UI/UX Design", href: "/services#ui-ux-design" },
+      { label: "Graphic Design", href: "/services#graphic-design" },
+    ],
+    resources: [
+      { label: "Blog", href: "/#blog" },
+      { label: "Case Studies", href: "/#case-studies" },
+      { label: "Help Center", href: "/contact#help" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
+    ],
+    legal: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms & Conditions", href: "/terms-conditions" },
+      { label: "Cookie Policy", href: "/cookie-policy" },
+      { label: "Refund Policy", href: "/refund-policy" },
+    ],
+  },
+  socials: [
+    { name: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
+    { name: "Instagram", href: "https://instagram.com", icon: "instagram" },
+    { name: "X", href: "https://x.com", icon: "x" },
+    { name: "YouTube", href: "https://youtube.com", icon: "youtube" },
+  ],
+};
