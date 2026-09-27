@@ -192,7 +192,7 @@ const services: ServiceItem[] = [
 
 export const ServicesSection: React.FC = () => {
   return (
-    <section className="w-full pt-10 sm:pt-14 pb-4 sm:pb-6 bg-white relative">
+    <section id="services" className="w-full pt-10 sm:pt-14 pb-4 sm:pb-6 bg-white relative">
       <Container size="wide">
         {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-9">

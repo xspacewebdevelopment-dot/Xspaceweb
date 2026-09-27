@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, Menu, X, ArrowRight } from "lucide-react";
@@ -11,24 +11,103 @@ import { cn } from "@/lib/utils";
 interface NavItem {
   label: string;
   href: string;
+  id: string;
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Products", href: "/products" },
-  { label: "Services", href: "/services" },
-  { label: "Studio", href: "/studio" },
-  { label: "Industries", href: "/industries" },
-  { label: "About", href: "/about" },
-  { label: "Insights", href: "/insights" },
+  { label: "Home", href: "/", id: "home" },
+  { label: "Services", href: "/#services", id: "services" },
+  { label: "About", href: "/#about", id: "about" },
+  { label: "Products", href: "/#products", id: "products" },
+  { label: "Studio", href: "/#studio", id: "studio" },
+  { label: "Industries", href: "/industries", id: "industries" },
+  { label: "News & Events", href: "/news-and-events", id: "news-and-events" },
 ];
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY < 250) {
+        setActiveSection("home");
+        return;
+      }
+
+      // Check sections bottom-to-top so the deepest visible section wins
+      const sectionIds = ["studio", "products", "about", "services"];
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // Section is "active" when its top has scrolled above 320px from viewport top
+          if (rect.top <= 320) {
+            setActiveSection(id);
+            return;
+          }
+        }
+      }
+
+      setActiveSection("home");
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    if (item.href.startsWith("/#")) {
+      const targetId = item.href.replace("/#", "");
+      if (pathname === "/") {
+        const el = document.getElementById(targetId);
+        if (el) {
+          e.preventDefault();
+          setActiveSection(item.id);
+          el.scrollIntoView({ behavior: "smooth" });
+          if (mobileMenuOpen) setMobileMenuOpen(false);
+        }
+      }
+    } else if (item.href === "/") {
+      if (pathname === "/") {
+        e.preventDefault();
+        setActiveSection("home");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+      }
+    }
+  };
+
+  const checkIsActive = (item: NavItem) => {
+    // Exact page matching for non-home pages
+    if (pathname === "/industries") return item.id === "industries";
+    if (pathname === "/news-and-events" || pathname === "/insights") return item.id === "news-and-events";
+    if (pathname === "/about") return item.id === "about";
+    if (pathname === "/services") return item.id === "services";
+    if (pathname === "/products") return item.id === "products";
+
+    // Section scrollspy matching on homepage ("/")
+    if (pathname === "/") {
+      if (item.id === "services") return activeSection === "services";
+      if (item.id === "about") return activeSection === "about";
+      if (item.id === "products") return activeSection === "products";
+      if (item.id === "studio") return activeSection === "studio";
+      if (item.id === "home") return activeSection === "home";
+      return false;
+    }
+
+    return pathname.startsWith(item.href);
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 border-b border-slate-100/90 transition-colors">
+    <header className="sticky top-0 z-50 w-full bg-white/95 border-b border-slate-100/90 transition-colors backdrop-blur-md">
       <Container size="wide">
         <div className="flex items-center justify-between h-[72px]">
           {/* Brand Logo on Left */}
@@ -37,17 +116,15 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Centered Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7 xl:gap-8" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-7" aria-label="Main Navigation">
             {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              const isActive = checkIsActive(item);
 
               return (
                 <Link
                   key={item.label}
                   href={item.href}
+                  onClick={(e) => handleNavClick(e, item)}
                   className={cn(
                     "relative py-1 text-[14px] tracking-tight transition-colors duration-200",
                     isActive
@@ -113,16 +190,16 @@ export const Navbar: React.FC = () => {
         <div className="lg:hidden border-t border-slate-100 bg-white px-6 py-5 space-y-4 shadow-lg animate-in fade-in duration-200">
           <nav className="flex flex-col space-y-2">
             {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              const isActive = checkIsActive(item);
 
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    handleNavClick(e, item);
+                    setMobileMenuOpen(false);
+                  }}
                   className={cn(
                     "text-sm font-medium py-2 px-3 rounded-lg transition-colors",
                     isActive

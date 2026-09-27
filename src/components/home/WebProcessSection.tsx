@@ -126,7 +126,7 @@ const steps: ProcessStep[] = [
 
 export const WebProcessSection: React.FC = () => {
   return (
-    <section className="w-full pt-4 sm:pt-6 pb-16 sm:pb-20 bg-white relative">
+    <section id="process" className="w-full pt-4 sm:pt-6 pb-16 sm:pb-20 bg-white relative">
       <Container size="wide">
         {/* Section Header */}
         <div className="space-y-2 max-w-3xl mb-7 sm:mb-8">

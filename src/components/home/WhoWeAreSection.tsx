@@ -98,7 +98,7 @@ const pillars: FeaturePillar[] = [
 
 export const WhoWeAreSection: React.FC = () => {
   return (
-    <section className="w-full pt-4 sm:pt-6 pb-16 sm:pb-24 bg-white relative">
+    <section id="about" className="w-full pt-4 sm:pt-6 pb-16 sm:pb-24 bg-white relative">
       <Container size="wide">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           

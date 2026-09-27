@@ -4,7 +4,7 @@ import { Container } from "@/components/shared/ui/Container";
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full pt-10 sm:pt-14 md:pt-16 pb-0 overflow-visible bg-white">
+    <section id="home" className="relative w-full pt-10 sm:pt-14 md:pt-16 pb-0 overflow-visible bg-white">
       {/* Soft atmospheric blue glow behind hero visual */}
       <div className="absolute top-1/4 right-0 sm:right-10 w-[550px] h-[420px] bg-gradient-to-bl from-blue-50/70 via-indigo-50/25 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
