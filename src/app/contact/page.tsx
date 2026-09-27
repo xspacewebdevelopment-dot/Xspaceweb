@@ -27,6 +27,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import { OtherWaysToReachSection } from "@/components/contact/OtherWaysToReachSection";
 
 const projectTypes = [
   { id: "web-dev", label: "Website Development", icon: Globe },
@@ -906,6 +907,11 @@ export default function ContactPage() {
           </div>
         </Container>
       </section>
+
+      {/* ========================================================= */}
+      {/* SECTION 4: OTHER WAYS TO REACH US (EMAIL DIRECTORY) */}
+      {/* ========================================================= */}
+      <OtherWaysToReachSection />
 
     </div>
   );
