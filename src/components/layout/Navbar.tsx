@@ -20,7 +20,7 @@ const navItems: NavItem[] = [
   { label: "Studio", href: "/studio" },
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },
-  { label: "Insights", href: "/insights" },
+  { label: "News & Updates", href: "/news-and-updates" },
 ];
 
 export const Navbar: React.FC = () => {
