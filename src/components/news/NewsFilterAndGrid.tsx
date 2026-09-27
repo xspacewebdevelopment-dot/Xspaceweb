@@ -247,7 +247,7 @@ export const NewsFilterAndGrid: React.FC = () => {
             <div className="bg-white rounded-2xl max-w-xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
               <button
                 onClick={() => setActiveArticle(null)}
-                className="absolute top-4 right-4 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
+                className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

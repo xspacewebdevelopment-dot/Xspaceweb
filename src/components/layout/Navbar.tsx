@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
 import { cn } from "@/lib/utils";
@@ -41,8 +41,23 @@ export const Navbar: React.FC = () => {
       }
 
       // Check sections bottom-to-top so the deepest visible section wins
-      const sectionIds = ["studio", "products", "about", "services"];
+      // "industries" activates for the bottom portion of the page (after studio)
+      const sectionIds = ["industries", "studio", "products", "about", "services"];
       for (const id of sectionIds) {
+        // For "industries", check if we've scrolled past the technologies section
+        // (which comes right after the studio section)
+        if (id === "industries") {
+          const techEl = document.getElementById("technologies");
+          if (techEl) {
+            const rect = techEl.getBoundingClientRect();
+            if (rect.top <= 320) {
+              setActiveSection("industries");
+              return;
+            }
+          }
+          continue;
+        }
+
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -99,6 +114,7 @@ export const Navbar: React.FC = () => {
       if (item.id === "about") return activeSection === "about";
       if (item.id === "products") return activeSection === "products";
       if (item.id === "studio") return activeSection === "studio";
+      if (item.id === "industries") return activeSection === "industries";
       if (item.id === "home") return activeSection === "home";
       return false;
     }
@@ -143,13 +159,6 @@ export const Navbar: React.FC = () => {
 
           {/* Right Actions: Small Search Icon + Dark Navy Pill CTA */}
           <div className="hidden lg:flex items-center gap-5">
-            <button
-              type="button"
-              aria-label="Search"
-              className="p-1.5 text-[#07152B] hover:text-[#1668E8] transition-colors rounded-full hover:bg-slate-50 cursor-pointer"
-            >
-              <Search className="w-4 h-4 stroke-[2.2]" />
-            </button>
 
             <Link
               href="/contact"
@@ -162,13 +171,6 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile Menu Action */}
           <div className="flex items-center gap-2 lg:hidden">
-            <button
-              type="button"
-              aria-label="Search"
-              className="p-2 text-[#07152B] hover:text-[#1668E8] transition-colors rounded-full"
-            >
-              <Search className="w-4 h-4" />
-            </button>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
