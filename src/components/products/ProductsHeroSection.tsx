@@ -545,8 +545,8 @@ export const ProductsHeroSection: React.FC<ProductsHeroSectionProps> = ({ onOpen
       */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
         <Image
-          src="/images/products/sky_hero_bg.jpg"
-          alt="XSPACEWEB Sky Background with Sunlight and Clouds"
+          src="/SAAS.png"
+          alt="XSPACEWEB SaaS Products Sky Background with Sunlight and Clouds"
           fill
           className="object-cover object-top"
           priority
