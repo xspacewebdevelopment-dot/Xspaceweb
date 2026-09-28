@@ -43,11 +43,9 @@ export const Navbar: React.FC = () => {
       // Check sections bottom-to-top so the deepest visible section wins
       const sectionIds = ["products", "about", "services"];
       for (const id of sectionIds) {
-
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          // Section is "active" when its top has scrolled above 320px from viewport top
           if (rect.top <= 320) {
             setActiveSection(id);
             return;
@@ -95,7 +93,6 @@ export const Navbar: React.FC = () => {
     if (pathname === "/services") return item.id === "services";
     if (pathname === "/products") return item.id === "products";
 
-    // Section scrollspy matching on homepage ("/")
     if (pathname === "/") {
       if (item.id === "products") return activeSection === "products";
       if (item.id === "about") return activeSection === "about";
@@ -142,9 +139,8 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Actions: Small Search Icon + Dark Navy Pill CTA */}
+          {/* Right Actions: Dark Navy Pill CTA */}
           <div className="hidden lg:flex items-center gap-5">
-
             <Link
               href="/contact"
               className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-[13px] font-semibold hover:bg-[#0D2344] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98]"
