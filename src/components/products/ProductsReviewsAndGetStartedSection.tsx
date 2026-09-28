@@ -218,83 +218,16 @@ export const ProductsReviewsAndGetStartedSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Dotted World Map Graphic with Pinned Product Badges (6.5 cols) */}
+          {/* Right Column: Ecosystem Image & 20+ Countries Banner */}
           <div className="lg:col-span-7 relative flex items-center justify-center">
-            <div className="relative w-full h-[320px] sm:h-[380px] rounded-3xl bg-white/60 border border-slate-100 p-4 flex items-center justify-center overflow-hidden">
-              
-              {/* Dotted Global Continents SVG Matrix */}
-              <svg className="w-full h-full opacity-70" viewBox="0 0 760 380" fill="none">
-                <defs>
-                  <pattern id="worldDotGrid" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1.5" fill="#BFDBFE" />
-                  </pattern>
-                </defs>
-
-                {/* Continents approximated with dotted arrays matching screenshot */}
-                <g fill="#93C5FD" opacity="0.6">
-                  {/* North America */}
-                  <ellipse cx="180" cy="110" rx="90" ry="50" fill="url(#worldDotGrid)" />
-                  <ellipse cx="130" cy="150" rx="50" ry="30" fill="url(#worldDotGrid)" />
-                  
-                  {/* South America */}
-                  <ellipse cx="230" cy="240" rx="45" ry="70" fill="url(#worldDotGrid)" />
-                  
-                  {/* Europe */}
-                  <ellipse cx="380" cy="90" rx="60" ry="35" fill="url(#worldDotGrid)" />
-                  
-                  {/* Africa */}
-                  <ellipse cx="390" cy="200" rx="60" ry="65" fill="url(#worldDotGrid)" />
-                  
-                  {/* Asia / India */}
-                  <ellipse cx="530" cy="120" rx="100" ry="55" fill="url(#worldDotGrid)" />
-                  <circle cx="500" cy="170" r="30" fill="url(#worldDotGrid)" />
-                  
-                  {/* Australia */}
-                  <ellipse cx="620" cy="260" rx="45" ry="35" fill="url(#worldDotGrid)" />
-                </g>
-
-                {/* Curved connecting data transmission rays */}
-                <path d="M190,140 Q350,60 480,110" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.4" fill="none" />
-                <path d="M480,110 Q560,180 620,200" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.4" fill="none" />
-                <path d="M380,110 Q420,230 460,260" stroke="#3B82F6" strokeWidth="1.5" strokeDasharray="4 4" opacity="0.4" fill="none" />
-              </svg>
-
-              {/* Pinned Product Badge 1: SimpleKaam (S) in North America */}
-              <div className="absolute top-[38%] left-[22%] -translate-x-1/2 -translate-y-1/2 z-20 group">
-                <div className="w-10 h-10 rounded-xl bg-[#1668E8] text-white font-black text-lg flex items-center justify-center shadow-lg shadow-blue-500/30 ring-4 ring-white animate-bounce duration-1000">
-                  S
-                </div>
-              </div>
-
-              {/* Pinned Product Badge 2: Gurukul in Europe */}
-              <div className="absolute top-[26%] left-[47%] -translate-x-1/2 -translate-y-1/2 z-20 group">
-                <div className="w-10 h-10 rounded-xl bg-[#7C3AED] text-white flex items-center justify-center shadow-lg shadow-purple-500/30 ring-4 ring-white">
-                  <GraduationCap className="w-5 h-5" />
-                </div>
-              </div>
-
-              {/* Pinned Product Badge 3: MakeGSTBill in Asia */}
-              <div className="absolute top-[28%] left-[70%] -translate-x-1/2 -translate-y-1/2 z-20 group">
-                <div className="px-2 py-1.5 rounded-xl bg-white border border-slate-200 shadow-lg ring-4 ring-white flex items-center gap-0.5">
-                  <span className="font-black text-[#EA4335] text-xs">M</span>
-                  <span className="font-black text-[#FBBC05] text-xs">G</span>
-                  <span className="font-black text-[#4285F4] text-xs">B</span>
-                </div>
-              </div>
-
-              {/* Pinned Product Badge 4: GoldenGST (G) in Africa */}
-              <div className="absolute top-[64%] left-[49%] -translate-x-1/2 -translate-y-1/2 z-20 group">
-                <div className="w-9 h-9 rounded-xl bg-[#601414] text-amber-300 font-extrabold text-base flex items-center justify-center shadow-lg border border-amber-400/40 ring-4 ring-white">
-                  G
-                </div>
-              </div>
-
-              {/* Pinned Product Badge 5: FreeDeskPro (P) in East Asia */}
-              <div className="absolute top-[52%] left-[88%] -translate-x-1/2 -translate-y-1/2 z-20 group">
-                <div className="w-10 h-10 rounded-xl bg-[#06B6D4] text-white font-black text-lg flex items-center justify-center shadow-lg shadow-cyan-500/30 ring-4 ring-white">
-                  P
-                </div>
-              </div>
+            <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-blue-900/5 overflow-hidden flex items-center justify-center p-2 sm:p-4">
+              <Image
+                src="/ecosystem.png"
+                alt="XSPACEWEB Global Ecosystem"
+                fill
+                className="object-contain object-center"
+                priority
+              />
 
               {/* Floating Global Proof Pill Badge */}
               <div className="absolute bottom-4 right-4 z-30 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-200/90 shadow-xl flex items-center gap-2.5">
@@ -310,7 +243,6 @@ export const ProductsReviewsAndGetStartedSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
 
