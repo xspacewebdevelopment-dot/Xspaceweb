@@ -218,19 +218,19 @@ export const ProductsReviewsAndGetStartedSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Ecosystem Image & 20+ Countries Banner */}
+          {/* Right Column: Ecosystem World Map Image & 20+ Countries Banner */}
           <div className="lg:col-span-7 relative flex items-center justify-center">
-            <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] rounded-3xl bg-white border border-slate-200/80 shadow-lg shadow-blue-900/5 overflow-hidden flex items-center justify-center p-2 sm:p-4">
+            <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[440px] flex items-center justify-center">
               <Image
-                src="/ecosystem.png"
+                src="/images/products/products_world_map.png"
                 alt="XSPACEWEB Global Ecosystem"
                 fill
-                className="object-contain object-center"
+                className="object-contain object-center select-none"
                 priority
               />
 
               {/* Floating Global Proof Pill Badge */}
-              <div className="absolute bottom-4 right-4 z-30 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-200/90 shadow-xl flex items-center gap-2.5">
+              <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 z-30 bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-slate-200/90 shadow-xl shadow-blue-900/10 flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-blue-100 text-[#1668E8] flex items-center justify-center flex-shrink-0">
                   <Globe2 className="w-4.5 h-4.5" />
                 </div>
