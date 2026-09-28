@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
+import BlurText from "@/components/ui/BlurText";
 import { MechanicalKeycap } from "@/components/ui/MechanicalKeycap";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -178,9 +179,26 @@ export const TechnologiesSection: React.FC = () => {
           </div>
 
           {/* Heading */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight">
-            Powerful Technologies <span className="text-[#1668E8]">We Work With</span>
-          </h2>
+          <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight flex flex-wrap items-center justify-center gap-x-[0.3em]">
+            <BlurText
+              text="Powerful Technologies"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-[#07152B] justify-center"
+              as="h2"
+            />
+            <BlurText
+              text="We Work With"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-[#1668E8] justify-center"
+              as="span"
+            />
+          </div>
 
           {/* Subtitle */}
           <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-2xl mx-auto">

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 import { ProjectModal } from "@/components/shared/ProjectModal";
+import BlurText from "@/components/ui/BlurText";
 
 export const BrighterTomorrowSection: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -21,17 +21,18 @@ export const BrighterTomorrowSection: React.FC = () => {
 
   return (
     <>
-      <section className="relative w-full min-h-[640px] sm:min-h-[700px] md:min-h-[760px] flex flex-col justify-between py-8 sm:py-12 overflow-hidden select-none">
-        {/* Full-width Background Image using /select/Paper Dunes at Sunrise.png */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/select/Paper Dunes at Sunrise.png"
-            alt="Paper Dunes at Sunrise Background"
-            fill
-            className="object-cover object-center"
-            priority
-            unoptimized
-          />
+      <section id="brighter-tomorrow" className="relative w-full min-h-[640px] sm:min-h-[700px] md:min-h-[760px] flex flex-col justify-between py-8 sm:py-12 overflow-hidden select-none">
+        {/* Full-width Background Video using /digital_Tommorow.mp4 */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover object-center"
+          >
+            <source src="/digital_Tommorow.mp4" type="video/mp4" />
+          </video>
           {/* Top light blue gradient blend to flow seamlessly with section above */}
           <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-[#EBF3FE] via-[#EBF3FE]/70 to-transparent z-1" />
           {/* Subtle light vignette for maximum readability */}
@@ -46,9 +47,36 @@ export const BrighterTomorrowSection: React.FC = () => {
           </span>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold text-[#07152B] tracking-tight leading-[1.12] max-w-3xl mx-auto">
-            Digital Experiences <br className="hidden sm:inline" />
-            for a Brighter <span className="text-[#1668E8]">Tomorrow.</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.12] max-w-3xl mx-auto flex flex-col items-center justify-center">
+            <BlurText
+              text="Digital Experiences"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-[#07152B] justify-center"
+              as="span"
+            />
+            <div className="flex flex-wrap items-center justify-center gap-x-[0.3em]">
+              <BlurText
+                text="for a Brighter"
+                delay={120}
+                animateBy="words"
+                direction="top"
+                stepDuration={0.4}
+                className="text-[#07152B] justify-center"
+                as="span"
+              />
+              <BlurText
+                text="Tomorrow."
+                delay={140}
+                animateBy="words"
+                direction="top"
+                stepDuration={0.4}
+                className="text-[#1668E8] justify-center"
+                as="span"
+              />
+            </div>
           </h2>
 
           {/* Subtitle */}

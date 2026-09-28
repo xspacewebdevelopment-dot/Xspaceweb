@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/shared/ui/Container";
+import BlurText from "@/components/ui/BlurText";
 
 interface ProcessStep {
   number: string;
@@ -136,10 +139,15 @@ export const WebProcessSection: React.FC = () => {
           </span>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#07152B] tracking-tight leading-[1.15]">
-            From Idea to a{" "}
-            <span className="text-[#1668E8]">Powerful Website</span>
-          </h2>
+          <BlurText
+            text="From Idea to a Powerful Website"
+            delay={100}
+            animateBy="words"
+            direction="top"
+            stepDuration={0.4}
+            className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#07152B] tracking-tight leading-[1.15]"
+            as="h2"
+          />
 
           {/* Description Subtitle */}
           <p className="text-sm sm:text-base md:text-[17px] text-[#556987] leading-relaxed pt-1">

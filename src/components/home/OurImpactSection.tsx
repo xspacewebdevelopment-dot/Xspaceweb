@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Container } from "@/components/shared/ui/Container";
+import BlurText from "@/components/ui/BlurText";
 
 interface StatItem {
   number: string;
@@ -38,9 +39,15 @@ export const OurImpactSection: React.FC = () => {
           <span className="text-xs sm:text-sm font-bold tracking-[0.24em] text-slate-300 uppercase select-none">
             — OUR IMPACT —
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Trusted by Businesses Across Industries
-          </h2>
+          <BlurText
+            text="Trusted by Businesses Across Industries"
+            delay={100}
+            animateBy="words"
+            direction="top"
+            stepDuration={0.4}
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight"
+            as="h2"
+          />
         </div>
 
         {/* 4 Columns Stats Grid with crisp dividing lines */}

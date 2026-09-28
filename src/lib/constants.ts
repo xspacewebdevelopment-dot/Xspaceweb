@@ -46,7 +46,7 @@ export const SITE_CONFIG = {
       { label: "Digital Marketing", href: "/services#digital-marketing" },
       { label: "Website Development", href: "/services#website-development" },
       { label: "App Development", href: "/services#app-development" },
-      { label: "SEO", href: "/services#seo" },
+      { label: "Studio XSW", href: "/#studio-xsw" },
       { label: "UI/UX Design", href: "/services#ui-ux-design" },
       { label: "Graphic Design", href: "/services#graphic-design" },
     ],

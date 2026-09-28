@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import BlurText from "@/components/ui/BlurText";
 import {
   ChevronLeft,
   ChevronRight,
@@ -287,12 +288,26 @@ export const ProductShowcaseSection: React.FC = () => {
           </div>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#07152B] leading-[1.14]">
-            Powering Ideas for a{" "}
-            <span className="bg-gradient-to-r from-[#2563EB] to-[#7C3AED] bg-clip-text text-transparent">
-              Smarter Tomorrow
-            </span>
-          </h2>
+          <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.14] flex flex-wrap items-center justify-center gap-x-[0.3em]">
+            <BlurText
+              text="Powering Ideas for a"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-[#07152B] justify-center"
+              as="h2"
+            />
+            <BlurText
+              text="Smarter Tomorrow"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-[#1668E8] justify-center"
+              as="span"
+            />
+          </div>
 
           {/* Subtitle */}
           <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl font-normal leading-relaxed pt-1">

@@ -18,10 +18,10 @@ const navItems: NavItem[] = [
   { label: "Home", href: "/", id: "home" },
   { label: "Services", href: "/#services", id: "services" },
   { label: "About", href: "/#about", id: "about" },
-  { label: "Products", href: "/#products", id: "products" },
-  { label: "Studio", href: "/#studio", id: "studio" },
-  { label: "Industries", href: "/industries", id: "industries" },
-  { label: "News & Events", href: "/news-and-updates", id: "news-and-events" },
+  { label: "Product", href: "/#products", id: "products" },
+  { label: "News & Event", href: "/news-and-updates", id: "news-and-events" },
+  { label: "Careers", href: "/careers", id: "careers" },
+  { label: "Contact", href: "/contact", id: "contact" },
 ];
 
 export const Navbar: React.FC = () => {
@@ -41,22 +41,8 @@ export const Navbar: React.FC = () => {
       }
 
       // Check sections bottom-to-top so the deepest visible section wins
-      // "industries" activates for the bottom portion of the page (after studio)
-      const sectionIds = ["industries", "studio", "products", "about", "services"];
+      const sectionIds = ["products", "about", "services"];
       for (const id of sectionIds) {
-        // For "industries", check if we've scrolled past the technologies section
-        // (which comes right after the studio section)
-        if (id === "industries") {
-          const techEl = document.getElementById("technologies");
-          if (techEl) {
-            const rect = techEl.getBoundingClientRect();
-            if (rect.top <= 320) {
-              setActiveSection("industries");
-              return;
-            }
-          }
-          continue;
-        }
 
         const el = document.getElementById(id);
         if (el) {
@@ -101,20 +87,19 @@ export const Navbar: React.FC = () => {
   };
 
   const checkIsActive = (item: NavItem) => {
-    // Exact page matching for non-home pages
-    if (pathname === "/industries") return item.id === "industries";
-    if (pathname === "/news-and-events" || pathname === "/insights") return item.id === "news-and-events";
+    // Exact page matching for dedicated route pages
+    if (pathname === "/careers") return item.id === "careers";
+    if (pathname === "/contact") return item.id === "contact";
+    if (pathname === "/news-and-updates" || pathname === "/news-and-events" || pathname === "/insights") return item.id === "news-and-events";
     if (pathname === "/about") return item.id === "about";
     if (pathname === "/services") return item.id === "services";
     if (pathname === "/products") return item.id === "products";
 
     // Section scrollspy matching on homepage ("/")
     if (pathname === "/") {
-      if (item.id === "services") return activeSection === "services";
-      if (item.id === "about") return activeSection === "about";
       if (item.id === "products") return activeSection === "products";
-      if (item.id === "studio") return activeSection === "studio";
-      if (item.id === "industries") return activeSection === "industries";
+      if (item.id === "about") return activeSection === "about";
+      if (item.id === "services") return activeSection === "services";
       if (item.id === "home") return activeSection === "home";
       return false;
     }

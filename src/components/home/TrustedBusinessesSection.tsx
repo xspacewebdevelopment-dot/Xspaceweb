@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
+import BlurText from "@/components/ui/BlurText";
 import { MechanicalKeycap } from "@/components/ui/MechanicalKeycap";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import {
@@ -501,9 +502,15 @@ export const TrustedBusinessesSection: React.FC = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight">
-              Building Success <span className="text-[#1668E8]">Together</span>
-            </h2>
+            <BlurText
+              text="Building Success Together"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight"
+              as="h2"
+            />
 
             {/* Subtitle */}
             <p className="text-slate-600 text-sm sm:text-base md:text-lg leading-relaxed">

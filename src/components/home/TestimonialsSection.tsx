@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
-import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
+import BlurText from "@/components/ui/BlurText";
 import {
   User,
   Mail,
@@ -17,6 +18,8 @@ import {
   Star,
   ArrowRight,
   CheckCircle2,
+  MapPin,
+  Quote,
 } from "lucide-react";
 
 interface TestimonialSpotlight {
@@ -76,8 +79,116 @@ const SPOTLIGHT_TESTIMONIALS: TestimonialSpotlight[] = [
   },
 ];
 
+/* ── Carousel testimonials (for the bottom simple grid carousel) ── */
+interface CarouselTestimonial {
+  id: number;
+  name: string;
+  role: string;
+  company: string;
+  location: string;
+  avatar: string;
+  quote: string;
+  rating: number;
+}
+
+const CAROUSEL_TESTIMONIALS: CarouselTestimonial[] = [
+  {
+    id: 1,
+    name: "Anil Sharma",
+    role: "Founder & CEO",
+    company: "PixelTech Technologies",
+    location: "Ranchi, Jharkhand",
+    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "XSPACEWEB built our website and mobile app with great professionalism. The team understood our requirements perfectly and delivered a smooth, user-friendly experience. Their digital marketing support has also helped us reach more customers and grow faster.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Priya Nair",
+    role: "Marketing Manager",
+    company: "WebSky Solutions",
+    location: "Bengaluru, Karnataka",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "We partnered with XSPACEWEB for our website development and SEO services. The communication was clear, execution was on time, and the results have been impressive. Our organic traffic has grown significantly in just 3 months!",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Rohit Verma",
+    role: "Director",
+    company: "NextGen Solutions",
+    location: "Noida, Uttar Pradesh",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "The XSPACEWEB team developed our custom mobile app and also handled the UI/UX design. The app is functional, clean and exactly what we envisioned. Their creative team also delivered excellent graphic designs for our brand.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Neha Kapoor",
+    role: "Business Head",
+    company: "BrightPath Media",
+    location: "Mumbai, Maharashtra",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "Their digital marketing and content strategy brought real visibility to our brand. We saw a noticeable increase in engagement and leads within a few weeks. Highly recommend them for anyone looking for reliable digital solutions.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Vikram Desai",
+    role: "Co-Founder",
+    company: "InnoTech Labs",
+    location: "Pune, Maharashtra",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "XSPACEWEB delivered an outstanding SaaS product for our startup. Their technical expertise and dedication to quality are truly commendable. The platform runs flawlessly and our users love the interface.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Sanya Gupta",
+    role: "Product Manager",
+    company: "CloudNine Digital",
+    location: "Hyderabad, Telangana",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "From concept to deployment, the XSPACEWEB team delivered a polished product that exceeded our expectations. Their attention to detail in both design and functionality is remarkable. A truly professional team.",
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: "Arjun Patel",
+    role: "CTO",
+    company: "DataFlow Systems",
+    location: "Ahmedabad, Gujarat",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "The backend architecture XSPACEWEB built for us handles thousands of concurrent users without breaking a sweat. Scalable, secure, and brilliantly engineered. Their DevOps support has been invaluable.",
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: "Meera Joshi",
+    role: "Creative Director",
+    company: "DesignSpark Studio",
+    location: "Jaipur, Rajasthan",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
+    quote:
+      "As a design-focused agency ourselves, we have high standards. XSPACEWEB impressed us with their pixel-perfect UI implementation and smooth animations. They truly understand modern web aesthetics.",
+    rating: 5,
+  },
+];
+
+const CARDS_PER_PAGE = 4;
+const TOTAL_PAGES = Math.ceil(CAROUSEL_TESTIMONIALS.length / CARDS_PER_PAGE);
+
 export const TestimonialsSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [carouselPage, setCarouselPage] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -98,10 +209,25 @@ export const TestimonialsSection: React.FC = () => {
     setActiveIndex((prev) => (prev + 1) % SPOTLIGHT_TESTIMONIALS.length);
   };
 
+  const handleCarouselPrev = () => {
+    setSlideDirection(-1);
+    setCarouselPage((prev) => (prev - 1 + TOTAL_PAGES) % TOTAL_PAGES);
+  };
+
+  const handleCarouselNext = () => {
+    setSlideDirection(1);
+    setCarouselPage((prev) => (prev + 1) % TOTAL_PAGES);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
+
+  const visibleCards = CAROUSEL_TESTIMONIALS.slice(
+    carouselPage * CARDS_PER_PAGE,
+    carouselPage * CARDS_PER_PAGE + CARDS_PER_PAGE
+  );
 
   return (
     <section id="testimonials" className="w-full bg-[#F6F9FD] py-16 sm:py-24 relative overflow-hidden">
@@ -126,9 +252,25 @@ export const TestimonialsSection: React.FC = () => {
               </div>
 
               {/* Heading */}
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#07152B] tracking-tight leading-[1.1] mb-5">
-                What Our <br />
-                <span className="text-[#1668E8]">Clients Say</span>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] mb-5 flex flex-col items-start">
+                <BlurText
+                  text="What Our"
+                  delay={100}
+                  animateBy="words"
+                  direction="top"
+                  stepDuration={0.4}
+                  className="text-[#07152B]"
+                  as="span"
+                />
+                <BlurText
+                  text="Clients Say"
+                  delay={140}
+                  animateBy="words"
+                  direction="top"
+                  stepDuration={0.4}
+                  className="text-[#1668E8]"
+                  as="span"
+                />
               </h2>
 
               {/* Subtitle */}
@@ -250,11 +392,44 @@ export const TestimonialsSection: React.FC = () => {
           <div className="lg:col-span-6">
             <div className="relative bg-white rounded-3xl sm:rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-2xl shadow-blue-900/10 border border-slate-100/90 overflow-hidden">
               
-              {/* Decorative Hand-drawn Arrow SVG in top-right */}
-              <div className="absolute top-6 right-6 text-[#1668E8] opacity-80 pointer-events-none hidden sm:block">
-                <svg width="48" height="48" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 18C20 8 38 8 42 22C44 30 35 38 28 32C22 26 28 14 38 18" stroke="#1668E8" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="3 3"/>
-                  <path d="M30 34L26 31L29 27" stroke="#1668E8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              {/* Decorative Hand-drawn Loopy Arrow SVG */}
+              <div className="absolute top-4 sm:top-5 right-4 sm:right-6 text-[#1668E8] pointer-events-none hidden sm:block">
+                <svg width="64" height="64" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Loopy arrow shaft */}
+                  <path
+                    d="M44 20 C42 12, 48 6, 54 8 C60 10, 62 18, 56 24 C50 30, 42 24, 46 16 C48 10, 56 8, 60 16 C63 24, 58 36, 48 44 C40 50, 28 52, 14 50"
+                    stroke="#1668E8"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Arrow Head */}
+                  <path
+                    d="M26 44 L14 50 L20 60"
+                    stroke="#1668E8"
+                    strokeWidth="2.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* 3 Accent Burst Lines */}
+                  <path
+                    d="M27 56 L34 54"
+                    stroke="#1668E8"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M28 62 L36 64"
+                    stroke="#1668E8"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d="M22 66 L25 73"
+                    stroke="#1668E8"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                  />
                 </svg>
               </div>
 
@@ -414,20 +589,122 @@ export const TestimonialsSection: React.FC = () => {
 
         </div>
 
-        {/* Section Divider & Title for Interactive 3D Staggered Testimonials */}
+        {/* ──────────────────────────────────────────────────────────────── */}
+        {/* SIMPLE TESTIMONIAL CARDS CAROUSEL (replaces StaggerTestimonials) */}
+        {/* ──────────────────────────────────────────────────────────────── */}
         <div className="pt-8 border-t border-slate-200/80">
-          <div className="text-center max-w-2xl mx-auto mb-8">
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">
-              Explore All <span className="text-[#1668E8]">Client Reviews</span>
-            </h3>
-            <p className="text-slate-500 text-sm mt-1">
-              Click any card below to cycle through 15+ verified reviews from industry leaders.
-            </p>
+          {/* Section title */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">
+                Client Reviews
+              </h3>
+              <p className="text-slate-500 text-sm mt-1">
+                Trusted by businesses across industries. Here&apos;s what they have to say.
+              </p>
+            </div>
+
+            {/* Navigation Arrows */}
+            <div className="flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={handleCarouselPrev}
+                aria-label="Previous reviews"
+                className="w-11 h-11 rounded-full border border-slate-200 bg-white shadow-sm flex items-center justify-center text-slate-600 hover:border-blue-300 hover:text-[#1668E8] hover:shadow-md active:scale-95 transition-all"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleCarouselNext}
+                aria-label="Next reviews"
+                className="w-11 h-11 rounded-full bg-[#1668E8] text-white shadow-md shadow-blue-500/25 flex items-center justify-center hover:bg-blue-700 active:scale-95 transition-all"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
-          {/* Staggered Animated Testimonials Carousel */}
-          <div className="relative w-full max-w-6xl mx-auto rounded-3xl bg-white border border-slate-200/90 shadow-xl overflow-hidden p-2 sm:p-4">
-            <StaggerTestimonials />
+          {/* Cards Grid with Slide Animation */}
+          <div className="overflow-hidden">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={carouselPage}
+                initial={{ opacity: 0, x: slideDirection * 80 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: slideDirection * -80 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+              >
+                {visibleCards.map((testimonial) => (
+                  <div
+                    key={testimonial.id}
+                    className="bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-6 flex flex-col justify-between shadow-[0_4px_20px_-4px_rgba(7,21,43,0.06)] hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+                  >
+                    {/* Top: Stars */}
+                    <div className="flex items-center gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="w-4 h-4 fill-amber-400 text-amber-400"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Avatar + Name + Role + Location */}
+                    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-100">
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-11 h-11 rounded-full object-cover ring-2 ring-white shadow-sm flex-shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <h4 className="font-bold text-[#07152B] text-sm truncate">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-[11px] text-slate-500 font-medium truncate">
+                          {testimonial.role}
+                        </p>
+                        <p className="text-[10px] text-slate-400 flex items-center gap-1 mt-0.5">
+                          <MapPin className="w-3 h-3 flex-shrink-0" />
+                          <span className="truncate">{testimonial.location}</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Blue Quote Icon */}
+                    <div className="mb-2">
+                      <Quote className="w-6 h-6 text-[#1668E8]/40" />
+                    </div>
+
+                    {/* Quote Text */}
+                    <p className="text-slate-600 text-[13px] leading-relaxed flex-1">
+                      {testimonial.quote}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Dot Pagination */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {Array.from({ length: TOTAL_PAGES }).map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                aria-label={`Go to page ${idx + 1}`}
+                onClick={() => {
+                  setSlideDirection(idx > carouselPage ? 1 : -1);
+                  setCarouselPage(idx);
+                }}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === carouselPage
+                    ? "w-8 bg-[#1668E8]"
+                    : "w-5 bg-slate-200 hover:bg-slate-300"
+                }`}
+              />
+            ))}
           </div>
         </div>
 
@@ -435,4 +712,3 @@ export const TestimonialsSection: React.FC = () => {
     </section>
   );
 };
-

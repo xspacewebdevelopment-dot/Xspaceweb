@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import BlurText from "@/components/ui/BlurText";
 
 interface ServiceItem {
   id: string;
@@ -104,12 +107,11 @@ const services: ServiceItem[] = [
     ),
   },
   {
-    id: "seo",
+    id: "studio-xsw",
     number: "04",
-    title: ["SEO"],
-    subTitle: "(Search Engine Optimization)",
-    description: "Higher rankings, more traffic and better conversions.",
-    href: "/services",
+    title: ["Studio XSW"],
+    description: "Creative digital experiences, 3D art and visual production.",
+    href: "/#studio-xsw",
     iconGlowColor: "rgba(16, 185, 129, 0.15)",
     iconBorderColor: "rgba(16, 185, 129, 0.2)",
     iconBgColor: "bg-emerald-50/70",
@@ -123,13 +125,8 @@ const services: ServiceItem[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Bar chart & Trending Arrow */}
-        <path d="M3 3v18h18" />
-        <rect x="6" y="13" width="3" height="5" rx="0.5" fill="currentColor" fillOpacity="0.2" />
-        <rect x="11" y="9" width="3" height="9" rx="0.5" fill="currentColor" fillOpacity="0.2" />
-        <rect x="16" y="5" width="3" height="13" rx="0.5" fill="currentColor" fillOpacity="0.2" />
-        <path d="m6 13 5-4 5-4 4-2" />
-        <path d="M17 3h4v4" />
+        <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.934a.5.5 0 0 0-.777-.416L16 11" />
+        <rect x="2" y="6" width="14" height="12" rx="2" />
       </svg>
     ),
   },
@@ -203,10 +200,15 @@ export const ServicesSection: React.FC = () => {
             </span>
 
             {/* Main Title */}
-            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#07152B] tracking-tight leading-[1.15]">
-              Your Complete{" "}
-              <span className="text-[#1668E8]">Digital Growth Partner</span>
-            </h2>
+            <BlurText
+              text="Your Complete Digital Growth Partner"
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#07152B] tracking-tight leading-[1.15]"
+              as="h2"
+            />
 
             {/* Description Subtitle */}
             <p className="text-sm sm:text-base md:text-[17px] text-[#556987] leading-relaxed pt-1">

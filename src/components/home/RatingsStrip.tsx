@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import { Container } from "@/components/shared/ui/Container";
 import { Star } from "lucide-react";
+import BlurText from "@/components/ui/BlurText";
 
 interface ReviewPlatform {
   id: string;
@@ -102,9 +105,15 @@ export const RatingsStrip: React.FC = () => {
             
             {/* Column 1: Title & Subtitle */}
             <div className="lg:col-span-3 pr-0 lg:pr-4 lg:border-r border-slate-200/80">
-              <h2 className="text-xl sm:text-2xl font-extrabold text-[#07152B] tracking-tight leading-snug">
-                Loved by businesses worldwide.
-              </h2>
+              <BlurText
+                text="Loved by businesses worldwide."
+                delay={100}
+                animateBy="words"
+                direction="top"
+                stepDuration={0.4}
+                className="text-xl sm:text-2xl font-extrabold text-[#07152B] tracking-tight leading-snug"
+                as="h2"
+              />
               <p className="text-sm text-[#556987] mt-1.5 font-normal">
                 Real feedback. Real impact.
               </p>

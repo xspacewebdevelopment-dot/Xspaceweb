@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import BlurText from "@/components/ui/BlurText";
 
 export interface WorkCardItem {
   id: string;
@@ -41,7 +42,7 @@ const recentWorks: WorkCardItem[] = [
     title: "Dravanta Nexus",
     tags: "Branding · E-commerce · Creative Direction",
     description: "Building a modern identity for an Indian natural & organic products brand.",
-    imageSrc: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+    imageSrc: "/nexus.png",
     href: "/products/dravanta-nexus",
   },
   {
@@ -83,9 +84,15 @@ export const RecentWorkSection: React.FC = () => {
             <span className="text-xs sm:text-[13px] font-bold tracking-[0.22em] text-[#64748B] uppercase select-none block">
               RECENT WORK
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight">
-              A few things we&apos;ve been building <span className="text-[#1668E8]">lately.</span>
-            </h2>
+            <BlurText
+              text="A few things we've been building lately."
+              delay={100}
+              animateBy="words"
+              direction="top"
+              stepDuration={0.4}
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight"
+              as="h2"
+            />
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between md:justify-end gap-4 max-w-md">
