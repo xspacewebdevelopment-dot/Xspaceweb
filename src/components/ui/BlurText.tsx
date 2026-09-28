@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState, useMemo } from 'react';
 
 type AnimationValue = Record<string, string | number>;
@@ -8,9 +8,9 @@ type AnimationValue = Record<string, string | number>;
 const buildKeyframes = (from: AnimationValue, steps: AnimationValue[]) => {
   const keys = new Set([...Object.keys(from), ...steps.flatMap(s => Object.keys(s))]);
 
-  const keyframes: Record<string, (string | number | undefined)[]> = {};
+  const keyframes: Record<string, (string | number)[]> = {};
   keys.forEach(k => {
-    keyframes[k] = [from[k], ...steps.map(s => s[k])];
+    keyframes[k] = [from[k], ...steps.map(s => s[k])].filter((v): v is string | number => v !== undefined);
   });
   return keyframes;
 };
@@ -115,8 +115,8 @@ const BlurText: React.FC<BlurTextProps> = ({
           <motion.span
             className="inline-block will-change-[transform,filter,opacity]"
             key={index}
-            initial={fromSnapshot}
-            animate={inView ? animateKeyframes : fromSnapshot}
+            initial={fromSnapshot as any}
+            animate={(inView ? animateKeyframes : fromSnapshot) as any}
             transition={spanTransition}
             onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
           >

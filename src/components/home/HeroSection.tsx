@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
 import BlurText from "@/components/ui/BlurText";
 
