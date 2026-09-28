@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
+import { ProjectModal } from "@/components/shared/ProjectModal";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -27,6 +28,7 @@ const navItems: NavItem[] = [
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
 
   useEffect(() => {
@@ -105,7 +107,8 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 border-b border-slate-100/90 transition-colors backdrop-blur-md">
+    <>
+      <header className="sticky top-0 z-50 w-full bg-white/95 border-b border-slate-100/90 transition-colors backdrop-blur-md">
       <Container size="wide">
         <div className="flex items-center justify-between h-[72px]">
           {/* Brand Logo on Left */}
@@ -141,13 +144,14 @@ export const Navbar: React.FC = () => {
 
           {/* Right Actions: Dark Navy Pill CTA */}
           <div className="hidden lg:flex items-center gap-5">
-            <Link
-              href="/contact"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-[13px] font-semibold hover:bg-[#0D2344] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98]"
+            <button
+              type="button"
+              onClick={() => setProjectModalOpen(true)}
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-[13px] font-semibold hover:bg-[#0D2344] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98] cursor-pointer"
             >
               <span>Let&apos;s Talk</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Action */}
@@ -196,17 +200,27 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
           <div className="pt-3 border-t border-slate-100">
-            <Link
-              href="/contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-sm font-semibold hover:bg-[#0D2344] transition-all"
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setProjectModalOpen(true);
+              }}
+              className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-sm font-semibold hover:bg-[#0D2344] transition-all cursor-pointer"
             >
               <span>Let&apos;s Talk</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </div>
       )}
     </header>
-  );
+
+    {/* Project Form Modal */}
+    <ProjectModal
+      isOpen={projectModalOpen}
+      onClose={() => setProjectModalOpen(false)}
+    />
+  </>
+);
 };

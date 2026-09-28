@@ -26,6 +26,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import { CustomSelect } from "@/components/shared/ui/CustomSelect";
 import { ALL_CAREERS } from "@/lib/careersData";
 
 interface PageProps {
@@ -252,23 +253,19 @@ export default function CareerApplyPage({ params }: PageProps) {
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Current Location <span className="text-red-500">*</span>
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        defaultValue="Kolkata, West Bengal"
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1668E8] appearance-none cursor-pointer"
-                      >
-                        <option value="Kolkata, West Bengal">📍 Kolkata, West Bengal</option>
-                        <option value="Dhanbad, Jharkhand">📍 Dhanbad, Jharkhand</option>
-                        <option value="Bengaluru, Karnataka">📍 Bengaluru, Karnataka</option>
-                        <option value="Delhi NCR">📍 Delhi NCR</option>
-                        <option value="Mumbai, Maharashtra">📍 Mumbai, Maharashtra</option>
-                        <option value="Remote / Other India">📍 Remote / Other India</option>
-                      </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
-                        ▼
-                      </div>
-                    </div>
+                    <CustomSelect
+                      required
+                      defaultValue="Kolkata, West Bengal"
+                      triggerClassName="px-4 py-2.5 bg-slate-50 border-slate-200 text-xs sm:text-sm text-slate-800"
+                      options={[
+                        "📍 Kolkata, West Bengal",
+                        "📍 Dhanbad, Jharkhand",
+                        "📍 Bengaluru, Karnataka",
+                        "📍 Delhi NCR",
+                        "📍 Mumbai, Maharashtra",
+                        "📍 Remote / Other India",
+                      ]}
+                    />
                   </div>
                 </div>
               </div>
@@ -307,21 +304,16 @@ export default function CareerApplyPage({ params }: PageProps) {
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Availability <span className="text-red-500">*</span>
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        defaultValue=""
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1668E8] appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled>Select availability</option>
-                        <option value="fulltime">Full-time (40 hrs/week)</option>
-                        <option value="parttime">Part-time (20 hrs/week)</option>
-                        <option value="flexible">Flexible / University Schedule</option>
-                      </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
-                        ▼
-                      </div>
-                    </div>
+                    <CustomSelect
+                      required
+                      placeholder="Select availability"
+                      triggerClassName="px-4 py-2.5 bg-slate-50 border-slate-200 text-xs sm:text-sm text-slate-800"
+                      options={[
+                        { value: "fulltime", label: "Full-time (40 hrs/week)" },
+                        { value: "parttime", label: "Part-time (20 hrs/week)" },
+                        { value: "flexible", label: "Flexible / University Schedule" },
+                      ]}
+                    />
                   </div>
                 </div>
 
@@ -330,20 +322,16 @@ export default function CareerApplyPage({ params }: PageProps) {
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Preferred Work Mode <span className="text-red-500">*</span>
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        defaultValue="Kolkata / Remote"
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1668E8] appearance-none cursor-pointer"
-                      >
-                        <option value="Kolkata / Remote">Kolkata / Remote</option>
-                        <option value="Full Remote">Full Remote</option>
-                        <option value="In-Office (Kolkata)">In-Office (Kolkata)</option>
-                      </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
-                        ▼
-                      </div>
-                    </div>
+                    <CustomSelect
+                      required
+                      defaultValue="Kolkata / Remote"
+                      triggerClassName="px-4 py-2.5 bg-slate-50 border-slate-200 text-xs sm:text-sm text-slate-800"
+                      options={[
+                        "Kolkata / Remote",
+                        "Full Remote",
+                        "In-Office (Kolkata)",
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
@@ -384,24 +372,19 @@ export default function CareerApplyPage({ params }: PageProps) {
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Highest Qualification <span className="text-red-500">*</span>
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        defaultValue=""
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1668E8] appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled>Select qualification</option>
-                        <option value="btech">B.Tech / B.E.</option>
-                        <option value="bdes">B.Des / M.Des (Design)</option>
-                        <option value="bca">BCA / B.Sc Computer Science</option>
-                        <option value="mtech">M.Tech / MCA</option>
-                        <option value="bba">BBA / MBA</option>
-                        <option value="other">Other Degree / Diploma</option>
-                      </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
-                        ▼
-                      </div>
-                    </div>
+                    <CustomSelect
+                      required
+                      placeholder="Select qualification"
+                      triggerClassName="px-4 py-2.5 bg-slate-50 border-slate-200 text-xs sm:text-sm text-slate-800"
+                      options={[
+                        { value: "btech", label: "B.Tech / B.E." },
+                        { value: "bdes", label: "B.Des / M.Des (Design)" },
+                        { value: "bca", label: "BCA / B.Sc Computer Science" },
+                        { value: "mtech", label: "M.Tech / MCA" },
+                        { value: "bba", label: "BBA / MBA" },
+                        { value: "other", label: "Other Degree / Diploma" },
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
@@ -421,45 +404,35 @@ export default function CareerApplyPage({ params }: PageProps) {
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Year of Study <span className="text-red-500">*</span>
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        defaultValue=""
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1668E8] appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled>Select year</option>
-                        <option value="1st">1st Year</option>
-                        <option value="2nd">2nd Year</option>
-                        <option value="3rd">3rd Year</option>
-                        <option value="4th">4th Year (Final Year)</option>
-                        <option value="graduated">Graduated / Recent Passout</option>
-                      </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
-                        ▼
-                      </div>
-                    </div>
+                    <CustomSelect
+                      required
+                      placeholder="Select year"
+                      triggerClassName="px-4 py-2.5 bg-slate-50 border-slate-200 text-xs sm:text-sm text-slate-800"
+                      options={[
+                        { value: "1st", label: "1st Year" },
+                        { value: "2nd", label: "2nd Year" },
+                        { value: "3rd", label: "3rd Year" },
+                        { value: "4th", label: "4th Year (Final Year)" },
+                        { value: "graduated", label: "Graduated / Recent Passout" },
+                      ]}
+                    />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1.5">
                       Field of Study <span className="text-red-500">*</span>
                     </label>
-                    <div className="relative">
-                      <select
-                        required
-                        defaultValue=""
-                        className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-[#1668E8] appearance-none cursor-pointer"
-                      >
-                        <option value="" disabled>Select field</option>
-                        <option value="design">UI/UX & Product Design</option>
-                        <option value="cs">Computer Science & Engineering</option>
-                        <option value="it">Information Technology</option>
-                        <option value="multimedia">Animation & Graphic Design</option>
-                        <option value="other">Other Related Field</option>
-                      </select>
-                      <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-xs">
-                        ▼
-                      </div>
-                    </div>
+                    <CustomSelect
+                      required
+                      placeholder="Select field"
+                      triggerClassName="px-4 py-2.5 bg-slate-50 border-slate-200 text-xs sm:text-sm text-slate-800"
+                      options={[
+                        { value: "design", label: "UI/UX & Product Design" },
+                        { value: "cs", label: "Computer Science & Engineering" },
+                        { value: "it", label: "Information Technology" },
+                        { value: "multimedia", label: "Animation & Graphic Design" },
+                        { value: "other", label: "Other Related Field" },
+                      ]}
+                    />
                   </div>
                 </div>
               </div>

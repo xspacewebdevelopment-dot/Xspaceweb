@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Send, CheckCircle2, X } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import { CustomSelect } from "@/components/shared/ui/CustomSelect";
 
 export const CareerCtaSection: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [selectedDomain, setSelectedDomain] = useState("");
 
   return (
     <section className="w-full bg-[#F8FAFC] pb-16 sm:pb-24">
@@ -152,18 +154,20 @@ export const CareerCtaSection: React.FC = () => {
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Area of Expertise / Preferred Role *
                     </label>
-                    <select
+                    <CustomSelect
+                      value={selectedDomain}
+                      onChange={setSelectedDomain}
+                      placeholder="Select Domain..."
                       required
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#1668E8]"
-                    >
-                      <option value="">Select Domain...</option>
-                      <option value="engineering">Software & Web Engineering</option>
-                      <option value="design">UI/UX & Product Design</option>
-                      <option value="marketing">Digital & Growth Marketing</option>
-                      <option value="sales">Sales & Business Development</option>
-                      <option value="internship">Student / Graduate Internship</option>
-                      <option value="other">Other</option>
-                    </select>
+                      options={[
+                        { value: "engineering", label: "Software & Web Engineering" },
+                        { value: "design", label: "UI/UX & Product Design" },
+                        { value: "marketing", label: "Digital & Growth Marketing" },
+                        { value: "sales", label: "Sales & Business Development" },
+                        { value: "internship", label: "Student / Graduate Internship" },
+                        { value: "other", label: "Other" },
+                      ]}
+                    />
                   </div>
 
                   <div>

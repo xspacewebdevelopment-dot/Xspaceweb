@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
+import { CustomSelect } from "@/components/shared/ui/CustomSelect";
 import BlurText from "@/components/ui/BlurText";
 import {
   User,
@@ -535,28 +536,20 @@ export const TestimonialsSection: React.FC = () => {
                   </div>
 
                   {/* Select a Service */}
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                      <ListFilter className="w-4 h-4" />
-                    </div>
-                    <select
-                      value={formData.service}
-                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full pl-10 pr-10 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all appearance-none cursor-pointer"
-                    >
-                      <option value="" disabled className="text-slate-400">
-                        Select a Service
-                      </option>
-                      <option value="web-development">Web Application Development</option>
-                      <option value="mobile-app">Mobile App Development</option>
-                      <option value="ui-ux-design">UI/UX &amp; Digital Design</option>
-                      <option value="cloud-devops">Cloud &amp; DevOps Engineering</option>
-                      <option value="custom-saas">Custom Software &amp; SaaS</option>
-                    </select>
-                    <div className="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-slate-400">
-                      <ChevronDown className="w-4 h-4" />
-                    </div>
-                  </div>
+                  <CustomSelect
+                    value={formData.service}
+                    onChange={(val) => setFormData({ ...formData, service: val })}
+                    placeholder="Select a Service"
+                    leadingIcon={<ListFilter className="w-4 h-4" />}
+                    triggerClassName="py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border-slate-200/80 rounded-xl text-slate-900 text-sm"
+                    options={[
+                      { value: "web-development", label: "Web Application Development" },
+                      { value: "mobile-app", label: "Mobile App Development" },
+                      { value: "ui-ux-design", label: "UI/UX & Digital Design" },
+                      { value: "cloud-devops", label: "Cloud & DevOps Engineering" },
+                      { value: "custom-saas", label: "Custom Software & SaaS" },
+                    ]}
+                  />
 
                   {/* Message Textarea */}
                   <div className="relative">

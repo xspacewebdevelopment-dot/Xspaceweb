@@ -27,6 +27,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import { CustomSelect } from "@/components/shared/ui/CustomSelect";
 import { OtherWaysToReachSection } from "@/components/contact/OtherWaysToReachSection";
 
 const projectTypes = [
@@ -557,23 +558,21 @@ export default function ContactPage() {
                   <label className="text-[11.5px] font-semibold text-[#07152B] flex items-center gap-0.5">
                     Subject <span className="text-red-500">*</span>
                   </label>
-                  <div className="relative">
-                    <select
-                      required
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full bg-white border border-slate-200 rounded-xl py-1.5 pl-3 pr-8 text-xs text-[#07152B] focus:outline-none focus:border-[#1668E8] transition-all appearance-none cursor-pointer h-[36px]"
-                    >
-                      <option value="">Select a subject</option>
-                      <option value="web-dev">Web Development Project</option>
-                      <option value="app-dev">Application Development</option>
-                      <option value="saas">SaaS Product Solutions</option>
-                      <option value="ui-ux">UI/UX Design & Branding</option>
-                      <option value="marketing">Digital Marketing & SEO</option>
-                      <option value="general">General Inquiry & Discussion</option>
-                    </select>
-                    <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  </div>
+                  <CustomSelect
+                    required
+                    value={formData.subject}
+                    onChange={(val) => setFormData({ ...formData, subject: val })}
+                    placeholder="Select a subject"
+                    triggerClassName="bg-white border-slate-200 rounded-xl py-1.5 px-3 text-xs text-[#07152B] h-[36px]"
+                    options={[
+                      { value: "web-dev", label: "Web Development Project" },
+                      { value: "app-dev", label: "Application Development" },
+                      { value: "saas", label: "SaaS Product Solutions" },
+                      { value: "ui-ux", label: "UI/UX Design & Branding" },
+                      { value: "marketing", label: "Digital Marketing & SEO" },
+                      { value: "general", label: "General Inquiry & Discussion" },
+                    ]}
+                  />
                 </div>
 
                 {/* Row 4: What can we help you with? Textarea */}

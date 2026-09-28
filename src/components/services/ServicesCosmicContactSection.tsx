@@ -12,6 +12,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
+import { CustomSelect } from "@/components/shared/ui/CustomSelect";
 
 interface ServicesCosmicContactSectionProps {
   onExploreServicesClick?: () => void;
@@ -171,43 +172,23 @@ export const ServicesCosmicContactSection: React.FC<ServicesCosmicContactSection
                   </div>
 
                   {/* Select Service Dropdown */}
-                  <div className="relative flex items-center">
-                    <LayoutGrid className="absolute left-3 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
-                    <select
-                      value={selectedService}
-                      onChange={(e) => setSelectedService(e.target.value)}
-                      className="w-full bg-[#0D2344] border border-white/20 rounded-xl pl-9 pr-7 py-2 text-xs text-white focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all appearance-none cursor-pointer"
-                    >
-                      <option value="" className="bg-[#07152B] text-slate-400">
-                        Select Service
-                      </option>
-                      <option value="Google My Business" className="bg-[#07152B] text-white">
-                        Google My Business
-                      </option>
-                      <option value="Web Development" className="bg-[#07152B] text-white">
-                        Web Development
-                      </option>
-                      <option value="Mobile App Development" className="bg-[#07152B] text-white">
-                        Mobile App Development
-                      </option>
-                      <option value="Digital Marketing" className="bg-[#07152B] text-white">
-                        Digital Marketing
-                      </option>
-                      <option value="Branding" className="bg-[#07152B] text-white">
-                        Branding
-                      </option>
-                      <option value="UI/UX Design" className="bg-[#07152B] text-white">
-                        UI/UX Design
-                      </option>
-                      <option value="Animation VFX" className="bg-[#07152B] text-white">
-                        Animation VFX
-                      </option>
-                      <option value="Cloud & Enterprise Solutions" className="bg-[#07152B] text-white">
-                        Cloud & Enterprise Solutions
-                      </option>
-                    </select>
-                    <ChevronDown className="absolute right-3 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
-                  </div>
+                  <CustomSelect
+                    value={selectedService}
+                    onChange={setSelectedService}
+                    placeholder="Select Service"
+                    leadingIcon={<LayoutGrid className="w-3.5 h-3.5 text-slate-400" />}
+                    triggerClassName="bg-white/10 hover:bg-white/15 focus:bg-white/20 border-white/20 text-white rounded-xl py-2 px-3 text-xs h-[36px]"
+                    options={[
+                      "Google My Business",
+                      "Web Development",
+                      "Mobile App Development",
+                      "Digital Marketing",
+                      "Branding",
+                      "UI/UX Design",
+                      "Animation VFX",
+                      "Cloud & Enterprise Solutions",
+                    ]}
+                  />
                 </div>
 
                 {/* Row 2: Message Input + Send Message Button */}
