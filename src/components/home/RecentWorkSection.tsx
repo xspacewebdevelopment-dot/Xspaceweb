@@ -42,7 +42,7 @@ const recentWorks: WorkCardItem[] = [
     title: "Dravanta Nexus",
     tags: "Branding · E-commerce · Creative Direction",
     description: "Building a modern identity for an Indian natural & organic products brand.",
-    imageSrc: "/nexus.png",
+    imageSrc: "/Nexus.png",
     href: "/products/dravanta-nexus",
   },
   {
