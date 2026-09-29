@@ -252,7 +252,7 @@ export const TechnologiesSection: React.FC = () => {
           </button>
 
           {/* Keycaps Grid with Animated Slicing Slide */}
-          <div className="overflow-hidden py-4 sm:py-6 px-8 sm:px-12">
+          <div className="overflow-hidden py-4 sm:py-6 px-4 sm:px-8 lg:px-10">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={currentDivision.id}
@@ -260,7 +260,7 @@ export const TechnologiesSection: React.FC = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: slideDirection * -60 }}
                 transition={{ duration: 0.35, ease: "easeInOut" }}
-                className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-y-6 gap-x-2 sm:gap-x-3 items-end justify-items-center"
+                className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-y-6 gap-x-2.5 sm:gap-x-3.5 lg:gap-x-4 items-end justify-items-center"
               >
                 {currentDivision.techs.map((tech) => (
                   <MechanicalKeycap

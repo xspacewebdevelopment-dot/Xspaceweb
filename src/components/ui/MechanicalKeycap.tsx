@@ -99,28 +99,28 @@ export const MechanicalKeycap: React.FC<MechanicalKeycapProps> = ({
 
   const sizeStyles = {
     sm: {
-      cap: "w-14 h-14 sm:w-16 sm:h-16",
-      iconSize: "w-full h-full text-xl",
-      textSize: "text-[11px] sm:text-xs",
-      dishPadding: "p-1",
-      borderBottom: isPressed ? "border-b-[2px]" : "border-b-[4px] sm:border-b-[5px]",
-      travelY: 3,
+      cap: "w-12 h-12 sm:w-14 sm:h-14",
+      iconSize: "w-full h-full text-base sm:text-lg flex items-center justify-center",
+      textSize: "text-[10px] sm:text-[11px]",
+      dishPadding: "p-0.5 sm:p-1",
+      borderBottom: isPressed ? "border-b-[2px]" : "border-b-[3px] sm:border-b-[4px]",
+      travelY: 2,
     },
     md: {
-      cap: "w-18 h-18 sm:w-22 sm:h-22 md:w-[96px] md:h-[96px]",
-      iconSize: "w-full h-full flex items-center justify-center px-1 text-2xl sm:text-3xl md:text-4xl",
-      textSize: "text-xs sm:text-[13px] md:text-sm font-semibold",
-      dishPadding: "p-1 sm:p-1.5",
-      borderBottom: isPressed ? "border-b-[2px]" : "border-b-[5px] sm:border-b-[7px]",
-      travelY: 5,
+      cap: "w-14 h-14 sm:w-16 sm:h-16 md:w-[68px] md:h-[68px] lg:w-[72px] lg:h-[72px]",
+      iconSize: "w-full h-full flex items-center justify-center px-1 text-xl sm:text-2xl md:text-[25px]",
+      textSize: "text-[11px] sm:text-xs font-semibold max-w-[76px] truncate",
+      dishPadding: "p-1",
+      borderBottom: isPressed ? "border-b-[2px]" : "border-b-[4px] sm:border-b-[5px]",
+      travelY: 3.5,
     },
     lg: {
-      cap: "w-22 h-22 sm:w-26 sm:h-26 md:w-30 md:h-30",
-      iconSize: "w-full h-full text-3xl sm:text-4xl",
-      textSize: "text-sm sm:text-base font-bold",
-      dishPadding: "p-2 sm:p-3",
-      borderBottom: isPressed ? "border-b-[3px]" : "border-b-[7px] sm:border-b-[9px]",
-      travelY: 6,
+      cap: "w-18 h-18 sm:w-20 sm:h-20 md:w-22 md:h-22",
+      iconSize: "w-full h-full text-2xl sm:text-3xl flex items-center justify-center",
+      textSize: "text-xs sm:text-sm font-bold",
+      dishPadding: "p-1.5 sm:p-2",
+      borderBottom: isPressed ? "border-b-[3px]" : "border-b-[5px] sm:border-b-[7px]",
+      travelY: 5,
     },
   }[size];
 
@@ -174,7 +174,7 @@ export const MechanicalKeycap: React.FC<MechanicalKeycapProps> = ({
                 : { type: "spring", stiffness: 450, damping: 20 }
           }
           className={cn(
-            "relative flex items-center justify-center rounded-[16px] sm:rounded-[20px] transition-all outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
+            "relative flex items-center justify-center rounded-[14px] sm:rounded-[18px] transition-all outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
             sizeStyles.cap,
             sizeStyles.borderBottom,
             isDark
@@ -199,7 +199,7 @@ export const MechanicalKeycap: React.FC<MechanicalKeycapProps> = ({
           {/* Subtle Top-Face Curved Dish Surface */}
           <div
             className={cn(
-              "w-[90%] h-[88%] rounded-[12px] sm:rounded-[15px] flex items-center justify-center relative overflow-hidden transition-all",
+              "w-[88%] h-[86%] rounded-[10px] sm:rounded-[14px] flex items-center justify-center relative overflow-hidden transition-all",
               sizeStyles.dishPadding,
               isDark
                 ? "bg-gradient-to-b from-[#1A2637] to-[#0E1624] shadow-[inset_0_1px_1.5px_rgba(255,255,255,0.18),inset_0_-2px_3px_rgba(0,0,0,0.4)]"

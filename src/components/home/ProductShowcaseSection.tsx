@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import BlurText from "@/components/ui/BlurText";
 import {
   ChevronLeft,
@@ -11,9 +10,7 @@ import {
   ArrowRight,
   Sparkles,
   Monitor,
-  CheckCircle2,
   Heart,
-  Leaf,
   TrendingUp,
   Users,
   ShieldCheck,
@@ -24,6 +21,7 @@ import {
   Pause,
   Receipt,
   Zap,
+  Send,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 
@@ -45,82 +43,86 @@ export interface ProductItem {
 
 const products: ProductItem[] = [
   {
-    id: "goldengst",
-    number: "02 / 05",
-    name: "GoldenGST",
-    tagline: "Advanced GST Billing & Business Management.",
-    href: "/products/goldengst",
-    accentColor: "#D97706",
-    cardBgClass: "bg-gradient-to-b from-[#FFFDF5] via-[#FFFBEB] to-[#FFF9E6] shadow-xl",
-    borderColor: "border-amber-200/90",
-    glowColor: "shadow-amber-500/15",
-    renderTopIcon: () => (
-      <div className="flex items-center gap-2">
-        <div className="w-12 h-12 rounded-2xl bg-[#601414] flex items-center justify-center text-amber-300 font-extrabold text-2xl shadow-md border border-amber-400/40">
-          G
-        </div>
-        <Crown className="w-5 h-5 text-amber-500 fill-amber-400 -mt-5 -ml-3" />
-      </div>
-    ),
-    renderPreviewGraphics: () => (
-      <div className="w-full rounded-2xl bg-[#FFFDEE] border border-amber-200/60 p-3.5 flex flex-col justify-between relative space-y-3">
-        {/* Top pill right-aligned */}
-        <div className="flex justify-end">
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-100/90 text-emerald-800 text-[11px] font-bold border border-emerald-200/60">
-            <span>Business Growth</span>
-            <TrendingUp className="w-3 h-3 text-emerald-700" />
-          </span>
-        </div>
-        {/* White metric box matching input_file_0.png */}
-        <div className="bg-white rounded-xl p-3 shadow-sm border border-amber-100/80 flex items-center justify-between">
-          <div>
-            <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Monthly Revenue</div>
-            <div className="text-sm font-extrabold text-slate-900">₹ 4,82,500</div>
-          </div>
-          <div className="px-2.5 py-1 rounded-lg bg-amber-100/90 text-amber-900 text-xs font-black">
-            +34%
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
     id: "makegstbill",
-    number: "01 / 05",
+    number: "01 / 04",
     name: "MakeGSTBill",
     tagline: "Simple GST Billing for Every Business.",
     href: "/products/makegstbill",
     badge: "Featured",
     featured: true,
     accentColor: "#EA4335",
-    cardBgClass: "bg-white/98 shadow-[0_30px_70px_rgba(37,99,235,0.25)]",
-    borderColor: "border-blue-200/90",
+    cardBgClass: "bg-white/98 backdrop-blur-md shadow-2xl",
+    borderColor: "border-white",
     glowColor: "shadow-blue-500/20",
     renderTopIcon: () => (
-      <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[#EA4335] via-[#4285F4] to-[#34A853] p-0.5 shadow-md">
-        <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-          <span className="text-2xl font-black text-[#EA4335] tracking-tighter">M</span>
-        </div>
+      <div className="w-13 h-13 rounded-2xl bg-white shadow-md border border-slate-100 flex items-center justify-center p-2">
+        <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+          <path d="M4 19V7.5L12 13.5L20 7.5V19" stroke="#4285F4" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4 7.5L12 13.5L20 7.5" stroke="#EA4335" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M4 19V10" stroke="#34A853" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M20 19V10" stroke="#FBBC05" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </div>
     ),
     renderPreviewGraphics: () => (
-      <div className="w-full rounded-2xl bg-gradient-to-br from-blue-50/80 via-indigo-50/50 to-white border border-blue-100 p-3.5 flex flex-col justify-between relative space-y-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5 text-blue-700 font-bold text-xs">
-            <Receipt className="w-4 h-4 text-blue-600" />
-            <span>Instant Invoicing</span>
-          </div>
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-700 text-[10px] font-bold border border-blue-200">
-            <span>GST Ready</span>
-          </span>
+      <div className="w-full h-[115px] rounded-2xl bg-gradient-to-br from-blue-50/70 via-sky-50/40 to-white/90 border border-blue-100/80 p-3 flex items-center justify-between relative shadow-inner">
+        {/* 3D Frosted Document Card with M logo */}
+        <div className="w-13 h-13 rounded-2xl bg-white shadow-lg border border-slate-100 flex items-center justify-center p-2 flex-shrink-0">
+          <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
+            <path d="M4 19V7.5L12 13.5L20 7.5V19" stroke="#4285F4" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 7.5L12 13.5L20 7.5" stroke="#EA4335" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M4 19V10" stroke="#34A853" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M20 19V10" stroke="#FBBC05" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
         </div>
-        <div className="bg-white rounded-xl p-3 shadow-sm border border-blue-100 flex items-center justify-between">
-          <div>
-            <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Active Invoices</div>
-            <div className="text-sm font-extrabold text-slate-900">1,240+ Created</div>
+
+        {/* Floating 3D Badge "GST Invoice Sent!" with Paper Plane */}
+        <div className="px-2.5 py-1.5 rounded-xl bg-white shadow-xl border border-slate-100 flex items-center gap-2">
+          <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white shadow-sm">
+            <Send className="w-3.5 h-3.5" />
           </div>
-          <div className="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-bold">
-            100% Valid
+          <div className="text-left">
+            <div className="text-[10px] font-extrabold text-slate-800 leading-tight">GST Invoice</div>
+            <div className="text-[9px] font-bold text-blue-600 leading-tight">Sent!</div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: "goldengst",
+    number: "02 / 04",
+    name: "GoldenGST",
+    tagline: "Advanced GST Billing & Business Management.",
+    href: "/products/goldengst",
+    accentColor: "#D97706",
+    cardBgClass: "bg-white/95 backdrop-blur-md shadow-xl",
+    borderColor: "border-white/80",
+    glowColor: "shadow-amber-500/15",
+    renderTopIcon: () => (
+      <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#731818] to-[#450A0A] flex items-center justify-center text-amber-300 font-black text-2xl shadow-lg border border-amber-400/40">
+        G
+      </div>
+    ),
+    renderPreviewGraphics: () => (
+      <div className="w-full h-[115px] rounded-2xl bg-gradient-to-br from-amber-50/70 via-orange-50/40 to-white/90 border border-amber-100/80 p-3 flex items-center justify-between relative shadow-inner">
+        {/* Dark Red/Gold "G" Tile */}
+        <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-[#731818] to-[#450A0A] flex items-center justify-center text-amber-300 font-black text-2xl shadow-lg border border-amber-400/40 flex-shrink-0">
+          G
+        </div>
+
+        {/* 3D Bar Chart Card "Business Growth" */}
+        <div className="px-3 py-2 rounded-xl bg-white shadow-xl border border-slate-100 flex flex-col justify-between h-13 w-28">
+          <div className="flex items-center justify-between text-[9px] font-bold text-slate-500">
+            <span>Business Growth</span>
+            <span className="text-emerald-500 font-extrabold">↗</span>
+          </div>
+          {/* 4 Growing Orange Bars */}
+          <div className="flex items-end gap-1.5 justify-between px-1 h-4">
+            <div className="w-2 h-1.5 rounded-t-sm bg-orange-300" />
+            <div className="w-2 h-2.5 rounded-t-sm bg-orange-400" />
+            <div className="w-2 h-3.5 rounded-t-sm bg-orange-500" />
+            <div className="w-2 h-4.5 rounded-t-sm bg-orange-600" />
           </div>
         </div>
       </div>
@@ -128,97 +130,74 @@ const products: ProductItem[] = [
   },
   {
     id: "freedeskpro",
-    number: "03 / 05",
+    number: "03 / 04",
     name: "FreeDeskPro",
     tagline: "Remote Access, Support & Device Management.",
     href: "/products/freedeskpro",
     accentColor: "#2563EB",
-    cardBgClass: "bg-gradient-to-b from-blue-50/95 via-sky-50/80 to-white/95 shadow-xl",
-    borderColor: "border-blue-200/90",
+    cardBgClass: "bg-white/95 backdrop-blur-md shadow-xl",
+    borderColor: "border-white/80",
     glowColor: "shadow-blue-500/15",
     renderTopIcon: () => (
-      <div className="w-12 h-12 rounded-2xl bg-blue-600 flex items-center justify-center text-white shadow-md">
-        <Monitor className="w-6 h-6 stroke-[2]" />
+      <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/25">
+        <Monitor className="w-6 h-6 stroke-[2.2]" />
       </div>
     ),
     renderPreviewGraphics: () => (
-      <div className="w-full rounded-2xl bg-blue-50/60 border border-blue-100 p-3.5 flex flex-col justify-between relative space-y-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
-          </div>
-          <span className="text-[10px] font-mono text-slate-500 font-bold">Session #842</span>
+      <div className="w-full h-[115px] rounded-2xl bg-gradient-to-br from-blue-50/70 via-sky-50/40 to-white/90 border border-blue-100/80 p-3 flex items-center justify-between relative shadow-inner">
+        {/* Vibrant Blue Monitor Tile */}
+        <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-500/25 flex-shrink-0">
+          <Monitor className="w-6 h-6 stroke-[2.2]" />
         </div>
-        <div className="bg-white rounded-xl p-3 shadow-sm border border-blue-100 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold text-slate-800">Desktop Connected</span>
+
+        {/* 3D Window Preview Mockup */}
+        <div className="px-3 py-2 rounded-xl bg-white shadow-xl border border-slate-100 flex flex-col justify-between h-13 w-28">
+          <div className="flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-red-400" />
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
           </div>
-          <span className="text-[11px] font-extrabold text-blue-600">60 FPS</span>
+          <div className="flex items-center justify-between">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[10px] font-mono font-bold text-blue-600">60 FPS</span>
+          </div>
         </div>
       </div>
     ),
   },
   {
     id: "modhuralap",
-    number: "04 / 05",
+    number: "04 / 04",
     name: "Modhuralap",
     tagline: "Connect. Meet. Create Memories.",
     href: "/products/modhuralap",
     accentColor: "#E11D48",
-    cardBgClass: "bg-gradient-to-b from-rose-50/95 via-pink-50/80 to-white/95 shadow-xl",
-    borderColor: "border-rose-200/90",
+    cardBgClass: "bg-white/95 backdrop-blur-md shadow-xl",
+    borderColor: "border-white/80",
     glowColor: "shadow-rose-500/15",
     renderTopIcon: () => (
-      <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 flex items-center justify-center text-white shadow-md">
+      <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-rose-500/25">
         <Heart className="w-6 h-6 fill-current" />
       </div>
     ),
     renderPreviewGraphics: () => (
-      <div className="w-full rounded-2xl bg-rose-50/60 border border-rose-100 p-3.5 flex flex-col justify-between relative space-y-3">
-        <div className="flex justify-end">
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-rose-500/10 text-rose-700 text-[11px] font-bold border border-rose-200">
-            <span>Find Your People</span>
+      <div className="w-full h-[115px] rounded-2xl bg-gradient-to-br from-rose-50/70 via-pink-50/40 to-white/90 border border-rose-100/80 p-3 flex items-center justify-between relative shadow-inner">
+        {/* Pink/Rose Heart Tile */}
+        <div className="w-13 h-13 rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 flex items-center justify-center text-white shadow-lg shadow-rose-500/25 flex-shrink-0">
+          <Heart className="w-6 h-6 fill-white" />
+        </div>
+
+        {/* "Find Your People" card with avatars */}
+        <div className="px-2.5 py-1.5 rounded-xl bg-white shadow-xl border border-slate-100 flex flex-col justify-between h-13 w-28">
+          <span className="text-[8.5px] font-bold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded-full text-center">
+            Find Your People
           </span>
-        </div>
-        <div className="bg-white rounded-xl p-3 shadow-sm border border-rose-100 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center font-bold text-xs">
-              <Users className="w-3.5 h-3.5" />
-            </div>
-            <span className="text-xs font-bold text-slate-800">Community Circles</span>
+          <div className="flex items-center justify-center -space-x-1.5">
+            <div className="w-4 h-4 rounded-full bg-amber-400 border border-white" />
+            <div className="w-4 h-4 rounded-full bg-blue-400 border border-white" />
+            <div className="w-4 h-4 rounded-full bg-emerald-400 border border-white" />
+            <span className="text-[8px] font-bold text-slate-500 pl-1">12k+</span>
           </div>
-          <span className="text-xs font-extrabold text-rose-600">12k+ Active</span>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: "dravanta-nexus",
-    number: "05 / 05",
-    name: "Dravanta Nexus",
-    tagline: "Natural Products for a Healthier Tomorrow.",
-    href: "/products/dravanta-nexus",
-    accentColor: "#059669",
-    cardBgClass: "bg-gradient-to-b from-emerald-50/95 via-teal-50/80 to-white/95 shadow-xl",
-    borderColor: "border-emerald-200/90",
-    glowColor: "shadow-emerald-500/15",
-    renderTopIcon: () => (
-      <div className="w-12 h-12 rounded-2xl bg-emerald-700 flex items-center justify-center text-white shadow-md">
-        <Leaf className="w-6 h-6" />
-      </div>
-    ),
-    renderPreviewGraphics: () => (
-      <div className="w-full rounded-2xl bg-emerald-50/60 border border-emerald-100 p-3.5 flex flex-col justify-between relative space-y-3">
-        <div className="flex items-center gap-1 text-emerald-800 text-[11px] font-bold">
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-          <span>100% Organic & Certified</span>
-        </div>
-        <div className="bg-white rounded-xl p-3 shadow-sm border border-emerald-100 flex items-center justify-between">
-          <span className="text-xs font-bold text-slate-800">Health & Purity Score</span>
-          <span className="text-xs font-extrabold text-emerald-600">98 / 100</span>
         </div>
       </div>
     ),
@@ -226,31 +205,42 @@ const products: ProductItem[] = [
 ];
 
 export const ProductShowcaseSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(0); // GoldenGST default focus
+  const [activeIndex, setActiveIndex] = useState<number>(0); // MakeGSTBill (01 / 04) default active
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = React.useRef<HTMLDivElement>(null);
+  const cardRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+
+  const scrollToCard = (index: number) => {
+    if (window.innerWidth < 1024 && cardRefs.current[index]) {
+      cardRefs.current[index]?.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  };
+
+  const goToNext = () => {
+    const nextIndex = (activeIndex + 1) % products.length;
+    setActiveIndex(nextIndex);
+    scrollToCard(nextIndex);
+  };
+
+  const goToPrev = () => {
+    const prevIndex = (activeIndex - 1 + products.length) % products.length;
+    setActiveIndex(prevIndex);
+    scrollToCard(prevIndex);
+  };
 
   // Auto-play timer
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % products.length);
+      goToNext();
     }, 4500);
     return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMousePos({ x, y });
-  };
-
-  const goToNext = () => setActiveIndex((prev) => (prev + 1) % products.length);
-  const goToPrev = () => setActiveIndex((prev) => (prev - 1 + products.length) % products.length);
+  }, [isAutoPlaying, activeIndex]);
 
   return (
     <section id="products" className="relative w-full overflow-hidden bg-white text-slate-900 pt-0 pb-20">
@@ -315,22 +305,16 @@ export const ProductShowcaseSection: React.FC = () => {
           </p>
         </div>
 
-        {/* 3D Framer Motion Parallax Card Showcase Container (NO HOVER BLUR) */}
-        <div
-          ref={containerRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={() => setMousePos({ x: 0, y: 0 })}
-          className="relative min-h-[460px] sm:min-h-[500px] flex items-center justify-center my-2"
-          style={{ perspective: "1200px" }}
-        >
+        {/* 4 Products Showcase Track */}
+        <div className="relative w-full my-4">
           {/* Floating Left Arrow Navigation */}
           <button
             type="button"
             onClick={goToPrev}
             aria-label="Previous Product"
-            className="absolute left-2 sm:left-4 lg:left-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/90"
+            className="hidden sm:flex absolute -left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/90"
           >
-            <ChevronLeft className="w-6 h-6 stroke-[2.5]" />
+            <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
           </button>
 
           {/* Floating Right Arrow Navigation */}
@@ -338,61 +322,48 @@ export const ProductShowcaseSection: React.FC = () => {
             type="button"
             onClick={goToNext}
             aria-label="Next Product"
-            className="absolute right-2 sm:right-4 lg:right-8 top-1/2 -translate-y-1/2 z-40 w-12 h-12 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/90"
+            className="hidden sm:flex absolute -right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-40 w-11 h-11 rounded-full bg-white/95 hover:bg-white text-slate-900 shadow-xl items-center justify-center transition-all hover:scale-110 active:scale-95 cursor-pointer border border-white/90"
           >
-            <ChevronRight className="w-6 h-6 stroke-[2.5]" />
+            <ChevronRight className="w-5 h-5 stroke-[2.5]" />
           </button>
 
-          {/* Cards Track with 3D Perspective Transforms */}
-          <div className="w-full flex items-center justify-center gap-4 sm:gap-6 px-8 sm:px-12 py-6 overflow-hidden">
+          {/* All 4 Cards in One Row (Grid on Desktop, Smooth Snap Scroll on Mobile) */}
+          <div
+            ref={scrollRef}
+            className="flex lg:grid lg:grid-cols-4 gap-4 sm:gap-5 overflow-x-auto lg:overflow-visible snap-x snap-mandatory scrollbar-none py-6 px-2 sm:px-4"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
             {products.map((item, idx) => {
               const isActive = idx === activeIndex;
-              const offset = (idx - activeIndex + products.length) % products.length;
-              let adjustedOffset = offset;
-              if (offset > products.length / 2) adjustedOffset = offset - products.length;
-
-              // Compute 3D rotations and positions (NO BLUR FILTER)
-              const xPos = adjustedOffset * 290;
-              const scale = isActive ? 1.05 : 0.88 - Math.abs(adjustedOffset) * 0.04;
-              const zIndex = 30 - Math.abs(adjustedOffset) * 5;
-              const opacity = isActive ? 1 : 0.82 - Math.abs(adjustedOffset) * 0.12;
-
-              const rotateY = isActive ? -mousePos.x * 16 : adjustedOffset * -12;
-              const rotateX = isActive ? mousePos.y * 12 : 0;
-              const translateZ = isActive ? 40 : -50;
 
               return (
-                <motion.div
+                <div
                   key={item.id}
-                  onClick={() => setActiveIndex(idx)}
-                  animate={{
-                    x: xPos,
-                    scale,
-                    opacity,
-                    rotateY,
-                    rotateX,
-                    translateZ,
+                  ref={(el) => {
+                    cardRefs.current[idx] = el;
                   }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 26,
+                  onClick={() => {
+                    setActiveIndex(idx);
+                    scrollToCard(idx);
                   }}
-                  style={{
-                    zIndex,
-                    transformStyle: "preserve-3d",
-                  }}
-                  className={`absolute w-[270px] sm:w-[290px] md:w-[310px] rounded-[32px] ${item.cardBgClass} ${item.borderColor} p-6 flex flex-col justify-between cursor-pointer select-none border transition-shadow duration-300 ${
-                    isActive ? "shadow-2xl ring-2 ring-blue-500/30" : "shadow-lg"
+                  className={`relative w-[280px] sm:w-[310px] lg:w-full flex-shrink-0 snap-center rounded-[32px] p-6 flex flex-col justify-between cursor-pointer select-none border transition-all duration-300 ${
+                    isActive
+                      ? "bg-white shadow-[0_22px_50px_-10px_rgba(22,104,232,0.22)] ring-2 ring-[#1668E8] -translate-y-2 z-20"
+                      : "bg-white/92 backdrop-blur-md shadow-lg border-white/80 hover:shadow-xl hover:-translate-y-1 hover:bg-white z-10 opacity-90 hover:opacity-100"
                   }`}
                 >
                   <div className="relative z-10">
-                    {/* Top Row: Badge & Number */}
-                    <div className="flex items-center justify-between mb-4">
+                    {/* Top Row: Badge / Crown & Number */}
+                    <div className="flex items-center justify-between mb-4 h-6">
                       {item.badge ? (
-                        <span className="px-3 py-1 rounded-full bg-blue-600 text-white text-[11px] font-bold uppercase tracking-wider shadow-md">
+                        <span className="px-3 py-0.5 rounded-full bg-[#EBF3FE] text-[#1668E8] text-[11px] font-bold tracking-tight border border-blue-200/60 shadow-sm">
                           {item.badge}
                         </span>
+                      ) : item.id === "goldengst" ? (
+                        <Crown className="w-5 h-5 text-amber-500 fill-amber-400" />
                       ) : (
                         <div />
                       )}
@@ -401,36 +372,38 @@ export const ProductShowcaseSection: React.FC = () => {
                       </span>
                     </div>
 
-                    {/* Icon & Name */}
-                    <div className="space-y-4 mb-4">
-                      <div className="flex items-center gap-3">
-                        {item.renderTopIcon()}
-                        <div>
-                          <h3 className="text-xl font-extrabold text-slate-900 leading-tight">
-                            {item.name}
-                          </h3>
-                        </div>
-                      </div>
+                    {/* 3D Preview Graphics Area (Upper Card) */}
+                    <div className="mb-5 flex items-center justify-center">
                       {item.renderPreviewGraphics()}
                     </div>
 
+                    {/* Product Name */}
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 leading-tight tracking-tight mb-1.5">
+                      {item.name}
+                    </h3>
+
                     {/* Tagline */}
-                    <p className="text-[13.5px] text-slate-600 leading-relaxed font-medium mb-4">
+                    <p className="text-[13px] text-slate-500 font-medium leading-relaxed mb-4">
                       {item.tagline}
                     </p>
                   </div>
 
-                  {/* Bottom Action Row matching input_file_0.png */}
-                  <div className="relative z-10 pt-3 border-t border-slate-200/70 flex items-center justify-between">
+                  {/* Bottom Action Row matching Reference Design */}
+                  <div className="relative z-10 pt-2 flex items-center justify-between">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedProduct(item);
                       }}
-                      className="text-sm font-bold text-[#1668E8] hover:text-blue-800 transition-colors flex items-center gap-1 group/btn"
+                      className="text-left group/btn focus:outline-none"
                     >
-                      <span>Learn More</span>
+                      <span className="text-sm font-bold text-slate-800 group-hover/btn:text-[#1668E8] transition-colors">
+                        Learn More
+                      </span>
+                      {isActive && (
+                        <div className="w-12 h-[2.5px] bg-[#1668E8] mt-1 rounded-full" />
+                      )}
                     </button>
 
                     <button
@@ -441,31 +414,34 @@ export const ProductShowcaseSection: React.FC = () => {
                       }}
                       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all shadow-md active:scale-95 ${
                         isActive
-                          ? "bg-[#07152B] text-white hover:bg-blue-600"
-                          : "bg-white text-slate-700 hover:bg-blue-600 hover:text-white"
+                          ? "bg-[#07152B] text-white hover:bg-[#1668E8] shadow-slate-900/20"
+                          : "bg-white text-slate-700 hover:bg-[#1668E8] hover:text-white border border-slate-100"
                       }`}
                     >
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
         </div>
 
         {/* Controls Bar: Pagination Track & Autoplay Toggle */}
-        <div className="flex items-center justify-center gap-4 mt-6 mb-8 relative z-30">
+        <div className="flex items-center justify-center gap-4 mt-4 mb-8 relative z-30">
           <div className="flex items-center gap-2">
             {products.map((_, idx) => (
               <button
                 key={idx}
                 type="button"
-                onClick={() => setActiveIndex(idx)}
+                onClick={() => {
+                  setActiveIndex(idx);
+                  scrollToCard(idx);
+                }}
                 aria-label={`Go to product slide ${idx + 1}`}
                 className={`transition-all duration-300 rounded-full ${
                   idx === activeIndex
-                    ? "w-8 h-2.5 bg-blue-600 shadow-md"
+                    ? "w-8 h-2.5 bg-[#1668E8] shadow-md"
                     : "w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400"
                 }`}
               />
@@ -481,6 +457,7 @@ export const ProductShowcaseSection: React.FC = () => {
             {isAutoPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 ml-0.5" />}
           </button>
         </div>
+
 
         {/* Center Pill Button: Explore All Products */}
         <div className="flex justify-center mb-12 relative z-30">

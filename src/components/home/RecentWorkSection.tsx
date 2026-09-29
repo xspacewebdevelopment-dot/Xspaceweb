@@ -24,7 +24,7 @@ const recentWorks: WorkCardItem[] = [
     title: "MakeGSTBill",
     tags: "Fintech SaaS · Product Design · Branding",
     description: "Simplifying GST billing and business management for Indian businesses.",
-    imageSrc: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+    imageSrc: "/images/recent-work/3.png",
     href: "/products/makegstbill",
   },
   {
@@ -51,7 +51,7 @@ const recentWorks: WorkCardItem[] = [
     title: "FreeDeskPro",
     tags: "SaaS · UI/UX · Product Design",
     description: "A next-generation remote support and device management platform.",
-    imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    imageSrc: "/images/recent-work/6.png",
     href: "/products/freedeskpro",
   },
   {
@@ -60,17 +60,17 @@ const recentWorks: WorkCardItem[] = [
     title: "Modhuralap",
     tags: "App Design · Brand Identity · Social Platform",
     description: "A modern social companion platform built around meaningful connections.",
-    imageSrc: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
+    imageSrc: "/images/recent-work/7.png",
     href: "/products/modhuralap",
   },
   {
-    id: "xspaceweb",
+    id: "simplekaam",
     number: "06",
-    title: "XSPACEWEB",
-    tags: "Digital Experience · Website · Creative Direction",
-    description: "The digital home for technology, products and creative experiences.",
-    imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-    href: "/about",
+    title: "SimpleKaam",
+    tags: "Work OS · Employment Platform · Team SaaS",
+    description: "A unified platform for all kinds of employment works, team workflows, and project management.",
+    imageSrc: "/images/recent-work/8.png",
+    href: "/products#simplekaam",
   },
 ];
 

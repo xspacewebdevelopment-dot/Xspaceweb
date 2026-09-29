@@ -87,7 +87,7 @@ export const MastheadHeader: React.FC = () => {
         <div className="mt-2.5 sm:mt-3">
           <div className="relative w-full aspect-[16/9] max-h-[520px] rounded-none overflow-hidden shadow-sm border border-slate-200/80 bg-slate-100">
             <Image
-              src="/images/news/news_hero_centered.jpg"
+              src="/images/news/news_hero_1.png"
               alt="XSPACEWEB News and Events Newspaper"
               fill
               priority

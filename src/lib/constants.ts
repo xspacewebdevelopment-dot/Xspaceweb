@@ -64,9 +64,8 @@ export const SITE_CONFIG = {
     ],
   },
   socials: [
-    { name: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-    { name: "Instagram", href: "https://instagram.com", icon: "instagram" },
-    { name: "X", href: "https://x.com", icon: "x" },
-    { name: "YouTube", href: "https://youtube.com", icon: "youtube" },
+    { name: "LinkedIn", href: "https://in.linkedin.com/company/xspaceweb", icon: "linkedin" },
+    { name: "Instagram", href: "https://www.instagram.com/xspaceweb/", icon: "instagram" },
+    { name: "Facebook", href: "https://www.facebook.com/Xspace.web", icon: "facebook" },
   ],
 };

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight, Search } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
 import { ProjectModal } from "@/components/shared/ProjectModal";
@@ -142,8 +142,15 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Actions: Dark Navy Pill CTA */}
-          <div className="hidden lg:flex items-center gap-5">
+          {/* Right Actions: Search & Dark Navy Pill CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Search"
+              className="p-2 text-slate-700 hover:text-[#1668E8] hover:bg-slate-100/70 rounded-full transition-colors cursor-pointer"
+            >
+              <Search className="w-4 h-4" />
+            </button>
             <button
               type="button"
               onClick={() => setProjectModalOpen(true)}
