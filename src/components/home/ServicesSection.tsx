@@ -111,7 +111,7 @@ const services: ServiceItem[] = [
     number: "04",
     title: ["Studio XSW"],
     description: "Creative digital experiences, 3D art and visual production.",
-    href: "/#studio-xsw",
+    href: "/services",
     iconGlowColor: "rgba(16, 185, 129, 0.15)",
     iconBorderColor: "rgba(16, 185, 129, 0.2)",
     iconBgColor: "bg-emerald-50/70",

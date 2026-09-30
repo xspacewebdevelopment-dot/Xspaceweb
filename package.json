@@ -11,6 +11,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^13.4.4",
+    "indiamap": "^1.0.2",
     "lucide-react": "^1.48.0",
     "motion": "^13.4.4",
     "next": "16.3.6",
