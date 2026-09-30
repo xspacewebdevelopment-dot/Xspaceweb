@@ -27,13 +27,6 @@ import {
   Play,
   Layers,
 } from "lucide-react";
-import {
-  SiRazorpay,
-  SiGoogle,
-  SiAirtel,
-  SiPhonepe,
-} from "react-icons/si";
-
 interface ProductsFeatureCardsSectionProps {
   onOpenProductDemo?: (productId: string) => void;
 }
@@ -45,78 +38,6 @@ export const ProductsFeatureCardsSection: React.FC<ProductsFeatureCardsSectionPr
   return (
     <section className="w-full bg-[#F8FAFC] py-10 sm:py-14 text-slate-900 overflow-hidden">
       <Container size="wide">
-        
-        {/* ========================================================= */}
-        {/* TOP ENTERPRISE / PARTNER LOGOS STRIP */}
-        {/* ========================================================= */}
-        <div className="w-full bg-white rounded-2xl border border-slate-200/80 shadow-[0_2px_12px_rgba(7,21,43,0.03)] py-4 px-6 mb-8 sm:mb-12">
-          <div className="flex items-center justify-between flex-wrap gap-4 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-200">
-            
-            {/* 1. AWS */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex items-center gap-1.5 text-slate-700 hover:text-slate-950 transition-colors">
-                <span className="font-extrabold text-lg tracking-tighter text-slate-800">aws</span>
-                <div className="w-4 h-1 bg-[#FF9900] rounded-full -mt-0.5" />
-              </div>
-            </div>
-
-            {/* 2. Razorpay */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex items-center gap-1 text-[#0C2340] font-extrabold text-sm sm:text-base tracking-tight">
-                <span className="text-[#0C2340]">Razor</span>
-                <span className="text-[#00BAF2]">pay</span>
-              </div>
-            </div>
-
-            {/* 3. Google */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex items-center gap-1 text-slate-700 font-bold text-base tracking-tight">
-                <span className="text-slate-800 font-bold">Google</span>
-              </div>
-            </div>
-
-            {/* 4. Microsoft */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex items-center gap-1.5 text-slate-700 font-semibold text-sm sm:text-base">
-                <div className="grid grid-cols-2 gap-0.5 w-3.5 h-3.5 flex-shrink-0">
-                  <div className="bg-[#F25022]" />
-                  <div className="bg-[#7FBA00]" />
-                  <div className="bg-[#00A4EF]" />
-                  <div className="bg-[#FFB900]" />
-                </div>
-                <span className="font-semibold text-slate-800 text-sm">Microsoft</span>
-              </div>
-            </div>
-
-            {/* 5. TATA */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex flex-col items-center select-none">
-                <span className="font-black text-[#004F9F] text-xs sm:text-sm tracking-widest uppercase">
-                  TATA
-                </span>
-              </div>
-            </div>
-
-            {/* 6. Airtel */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex items-center gap-1 text-[#E40000] font-bold text-sm sm:text-base">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#E40000]" />
-                <span className="font-extrabold text-[#E40000]">airtel</span>
-              </div>
-            </div>
-
-            {/* 7. PhonePe */}
-            <div className="flex-1 flex items-center justify-center px-4 py-2 min-w-[110px]">
-              <div className="flex items-center gap-1 text-[#5F259F] font-bold text-sm">
-                <div className="w-4 h-4 rounded-full bg-[#5F259F] text-white flex items-center justify-center font-bold text-[9px]">
-                  पे
-                </div>
-                <span className="font-bold text-[#5F259F]">PhonePe</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
 
         {/* ========================================================= */}
         {/* 2X2 PRODUCTS SHOWCASE GRID */}

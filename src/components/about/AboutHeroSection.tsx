@@ -2,26 +2,19 @@
 
 import React from "react";
 import Image from "next/image";
-import { Container } from "@/components/shared/ui/Container";
-
 export const AboutHeroSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-white pt-6 pb-12 sm:pt-8 sm:pb-16 overflow-hidden select-none">
-      <Container size="wide">
-        {/* Main Hero Card Container */}
-        <div className="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.06)] border border-slate-100 bg-[#FFFDF7]">
-          {/* Ratio wrapper matching the 1672x941 About.png photo */}
-          <div className="relative w-full aspect-[16/9] min-h-[460px] sm:min-h-[560px] md:min-h-[640px] lg:min-h-[720px]">
-            {/* 1. Original Clean Background Image (About.png) */}
-            <Image
-              src="/images/about/About.png"
-              alt="It All Started Here - One person. One computer. Just a vision."
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, (max-width: 1400px) 95vw, 1400px"
-              className="object-cover object-center"
-              unoptimized
-            />
+    <section className="relative w-full h-[calc(100vh-72px)] min-h-[580px] overflow-hidden select-none bg-[#FFFDF7]">
+      {/* 1. Original Clean Background Image (About.png) */}
+      <Image
+        src="/images/about/About.png"
+        alt="It All Started Here - One person. One computer. Just a vision."
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+        unoptimized
+      />
 
             {/* 2. Top-Center Branding (HTML / CSS) */}
             <div className="absolute top-4 sm:top-6 md:top-8 inset-x-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none z-10">
@@ -35,7 +28,7 @@ export const AboutHeroSection: React.FC = () => {
             </div>
 
             {/* 3. Main Hero Typography on Left (HTML / CSS) */}
-            <div className="absolute top-[16%] sm:top-[18%] md:top-[20%] left-6 sm:left-10 md:left-14 lg:left-16 max-w-sm sm:max-w-md md:max-w-lg z-10 pointer-events-none">
+            <div className="absolute top-[16%] sm:top-[18%] md:top-[20%] left-6 sm:left-10 md:left-14 lg:left-20 xl:left-28 max-w-sm sm:max-w-md md:max-w-lg z-10 pointer-events-none">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] font-extrabold tracking-tight leading-[1.05] text-[#07152B]">
                 It All Started <br />
                 <span className="text-[#1668E8]">Here.</span>
@@ -197,9 +190,6 @@ export const AboutHeroSection: React.FC = () => {
                 </g>
               </g>
             </svg>
-          </div>
-        </div>
-      </Container>
     </section>
   );
 };
