@@ -29,16 +29,18 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
   return (
     <>
       <section className="relative w-full min-h-[640px] sm:min-h-[720px] lg:min-h-[780px] xl:min-h-[820px] flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-24 overflow-hidden select-none">
-        {/* Full-bleed Photo Background: Windows XP Bliss Landscape with Retro CRT Monitor & Wildflowers */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/images/services/services_hero_hills.jpg"
-            alt="Digital Solutions Landscape with Retro Computer"
-            fill
-            priority
-            unoptimized
-            className="object-cover object-[center_35%] lg:object-[center_30%]"
-          />
+        {/* Full-bleed Video Background: service.mp4 */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover object-center"
+          >
+            <source src="/service.mp4" type="video/mp4" />
+          </video>
 
           {/* Gentle Sky Sunlight Glow Overlay for Readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/10 to-black/30" />

@@ -540,17 +540,20 @@ export const ProductsHeroSection: React.FC<ProductsHeroSectionProps> = ({ onOpen
   return (
     <section className="relative w-full overflow-hidden text-slate-900 pt-6 sm:pt-10 pb-16 sm:pb-24">
       {/* 
-        HERO VIBRANT SKY BACKGROUND:
-        Faithful recreation of reference image with bright sunny sky, fluffy clouds, sun glow, and tree leaves.
+        HERO VIBRANT SKY BACKGROUND VIDEO:
+        Replaced static image with product.mp4 video loop.
       */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-        <Image
-          src="/SAAS.png"
-          alt="XSPACEWEB SaaS Products Sky Background with Sunlight and Clouds"
-          fill
-          className="object-cover object-top"
-          priority
-        />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover object-top"
+        >
+          <source src="/product.mp4" type="video/mp4" />
+        </video>
         {/* Soft atmospheric radial sun glow at top center */}
         <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-amber-200/30 rounded-full blur-3xl" />
         
