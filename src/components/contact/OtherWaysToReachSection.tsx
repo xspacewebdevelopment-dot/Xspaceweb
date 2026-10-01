@@ -105,7 +105,7 @@ const channels: ChannelItem[] = [
     id: "careers",
     title: "Internship & Careers",
     description: "For internship opportunities, hiring related queries and HR support.",
-    email: "sosintern@xspaceweb.com",
+    email: "careers@xspaceweb.com",
     icon: Users,
     iconBg: "bg-[#DBEDFE]",
     iconColor: "text-[#0284C7]",
