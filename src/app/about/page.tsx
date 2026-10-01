@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import {
   AboutHeroSection,
   OurStoryTimelineSection,
-  WhatWeDoSection,
   OurApproachSection,
   InnovationCoreSection,
   OurVisionGoalsSection,
@@ -27,10 +26,7 @@ export default function AboutPage() {
       {/* 2. Our Story: From Freelancing to Private Limited (Timeline) */}
       <OurStoryTimelineSection />
 
-      {/* 3. Our Services: What We Do Today */}
-      <WhatWeDoSection />
-
-      {/* 4. Our Approach: Built Around You */}
+      {/* 3. Our Approach: Built Around You */}
       <OurApproachSection />
 
       {/* 5. Innovation: Innovation Is Our Core */}
