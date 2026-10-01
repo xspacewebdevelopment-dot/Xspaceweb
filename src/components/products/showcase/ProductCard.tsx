@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useCallback } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Sparkles, Crown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Sparkles, Crown } from "lucide-react";
 import { ProductItem } from "./product-data";
 import { ProductMiniPreview } from "./ProductMiniPreview";
 
@@ -182,39 +182,51 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       {/* Bottom Action Row */}
       <div className="relative z-10 pt-2.5 border-t border-slate-100/80">
         {active ? (
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onLearnMore();
-            }}
-            className="w-full group/btn py-2.5 px-4 rounded-xl flex items-center justify-between text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:shadow-lg active:scale-[0.98] cursor-pointer"
-            style={{
-              backgroundColor: "#07152B",
-            }}
-          >
-            <span className="tracking-tight">{product.ctaText}</span>
-            <div
-              className="w-6.5 h-6.5 rounded-lg flex items-center justify-center transition-transform duration-200 group-hover/btn:translate-x-1"
-              style={{ backgroundColor: product.accent }}
+          <div className="flex items-center gap-2">
+            <a
+              href={product.liveUrl || product.href}
+              target={(product.liveUrl || product.href).startsWith("http") ? "_blank" : undefined}
+              rel={(product.liveUrl || product.href).startsWith("http") ? "noopener noreferrer" : undefined}
+              onClick={(e) => e.stopPropagation()}
+              className="flex-1 group/btn py-2.5 px-4 rounded-xl flex items-center justify-between text-white font-bold text-xs sm:text-sm shadow-md transition-all duration-200 hover:shadow-lg active:scale-[0.98] cursor-pointer"
+              style={{
+                backgroundColor: "#07152B",
+              }}
             >
-              <ArrowRight className="w-3.5 h-3.5 text-white stroke-[2.5]" />
-            </div>
-          </button>
-        ) : (
-          <div className="flex items-center justify-between py-0.5">
+              <span className="tracking-tight">{product.ctaText}</span>
+              <div
+                className="w-6.5 h-6.5 rounded-lg flex items-center justify-center transition-transform duration-200 group-hover/btn:translate-x-1"
+                style={{ backgroundColor: product.accent }}
+              >
+                <ArrowUpRight className="w-3.5 h-3.5 text-white stroke-[2.5]" />
+              </div>
+            </a>
             <button
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
                 onLearnMore();
               }}
+              title="Overview details"
+              className="py-2.5 px-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-colors flex items-center justify-center flex-shrink-0 cursor-pointer"
+            >
+              Overview
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between py-0.5">
+            <a
+              href={product.liveUrl || product.href}
+              target={(product.liveUrl || product.href).startsWith("http") ? "_blank" : undefined}
+              rel={(product.liveUrl || product.href).startsWith("http") ? "noopener noreferrer" : undefined}
+              onClick={(e) => e.stopPropagation()}
               className="group/btn text-left focus:outline-none cursor-pointer"
             >
-              <span className="text-xs sm:text-sm font-bold text-slate-700 group-hover/btn:text-[#1668E8] transition-colors">
+              <span className="text-xs sm:text-sm font-bold text-slate-700 group-hover/btn:text-[#1668E8] transition-colors inline-flex items-center gap-1">
                 Learn More
+                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover/btn:text-[#1668E8]" />
               </span>
-            </button>
+            </a>
 
             <button
               type="button"

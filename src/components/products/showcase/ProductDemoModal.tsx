@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { X, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import { X, Sparkles, ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { ProductItem } from "./product-data";
 
 interface ProductDemoModalProps {
@@ -102,7 +102,7 @@ export const ProductDemoModal: React.FC<ProductDemoModalProps> = ({
         </div>
 
         {/* Action Buttons */}
-        <div className="pt-2 flex items-center justify-end gap-3">
+        <div className="pt-2 flex flex-wrap items-center justify-end gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -110,11 +110,22 @@ export const ProductDemoModal: React.FC<ProductDemoModalProps> = ({
           >
             Close
           </button>
+          {(product.liveUrl || product.href.startsWith("http")) && (
+            <a
+              href={product.liveUrl || product.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-2.5 rounded-full text-white text-sm font-semibold transition-all hover:opacity-95 active:scale-95 inline-flex items-center gap-1.5 shadow-md cursor-pointer"
+              style={{ backgroundColor: product.accent }}
+            >
+              <span>Visit Live Website</span>
+              <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
+            </a>
+          )}
           <Link
             href="/contact"
             onClick={onClose}
-            className="px-6 py-2.5 rounded-full text-white text-sm font-semibold transition-all hover:opacity-95 active:scale-95 inline-flex items-center gap-2 shadow-md cursor-pointer"
-            style={{ backgroundColor: product.accent }}
+            className="px-5 py-2.5 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 text-sm font-semibold transition-all active:scale-95 inline-flex items-center gap-1.5 cursor-pointer"
           >
             <span>Request Demo Access</span>
             <ArrowRight className="w-4 h-4" />

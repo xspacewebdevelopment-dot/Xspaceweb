@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
 
@@ -29,10 +29,11 @@ const companyLinks: FooterColumn = {
 const productLinks: FooterColumn = {
   title: "PRODUCTS",
   links: [
-    { label: "MakeGSTBill", href: "/products#makegstbill" },
-    { label: "GoldenGST", href: "/products#goldengst" },
-    { label: "FreeDeskPro", href: "/products#feedeskpro" },
-    { label: "Upcoming Products", href: "/products#upcoming" },
+    { label: "MakeGSTBill", href: "https://makegstbill.com/" },
+    { label: "GoldenGST", href: "https://www.goldengst.com/" },
+    { label: "FreeDeskPro", href: "https://freedeskpro.com/" },
+    { label: "SimpleKaam", href: "http://simplekaam.com/" },
+    { label: "All Products", href: "/products" },
   ],
 };
 
@@ -152,9 +153,14 @@ export const Footer: React.FC = () => {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-300 hover:text-white transition-colors"
+                    target={link.href.startsWith("http") ? "_blank" : undefined}
+                    rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="text-sm text-slate-300 hover:text-white transition-colors inline-flex items-center gap-1 group/link"
                   >
-                    {link.label}
+                    <span>{link.label}</span>
+                    {link.href.startsWith("http") && (
+                      <ArrowUpRight className="w-3 h-3 text-slate-400 group-hover/link:text-white transition-colors" />
+                    )}
                   </Link>
                 </li>
               ))}

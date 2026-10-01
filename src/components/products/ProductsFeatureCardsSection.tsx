@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
 import {
   ArrowRight,
+  ArrowUpRight,
   TrendingUp,
   Users,
   CheckCircle2,
@@ -84,14 +85,23 @@ export const ProductsFeatureCardsSection: React.FC<ProductsFeatureCardsSectionPr
                 Unified Work OS and platform for managing employment workflows, team collaboration, and daily operations.
               </p>
 
-              {/* Arrow Action Button */}
-              <div className="pt-2">
+              {/* Action Buttons */}
+              <div className="pt-2 flex items-center gap-2.5">
+                <a
+                  href="http://simplekaam.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl bg-[#07152B] hover:bg-[#1668E8] text-white text-xs font-bold transition-all shadow-md active:scale-95 inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>Visit Website</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
                 <button
                   type="button"
                   onClick={() => onOpenProductDemo?.("simplekaam")}
-                  className="w-10 h-10 rounded-xl bg-[#07152B] hover:bg-[#1668E8] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-white/80 hover:bg-white text-slate-700 text-xs font-semibold border border-slate-200/80 transition-all active:scale-95 cursor-pointer"
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  Learn More
                 </button>
               </div>
             </div>
@@ -187,14 +197,23 @@ export const ProductsFeatureCardsSection: React.FC<ProductsFeatureCardsSectionPr
                 Simple and powerful GST billing &amp; accounting software for Indian businesses.
               </p>
 
-              {/* Arrow Action Button */}
-              <div className="pt-2">
+              {/* Action Buttons */}
+              <div className="pt-2 flex items-center gap-2.5">
+                <a
+                  href="https://makegstbill.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl bg-[#07152B] hover:bg-[#EA4335] text-white text-xs font-bold transition-all shadow-md active:scale-95 inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>Visit Website</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
                 <button
                   type="button"
                   onClick={() => onOpenProductDemo?.("makegstbill")}
-                  className="w-10 h-10 rounded-xl bg-[#07152B] hover:bg-[#EA4335] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-white/80 hover:bg-white text-slate-700 text-xs font-semibold border border-slate-200/80 transition-all active:scale-95 cursor-pointer"
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  Learn More
                 </button>
               </div>
             </div>
@@ -235,14 +254,23 @@ export const ProductsFeatureCardsSection: React.FC<ProductsFeatureCardsSectionPr
                 A complete business suite with advanced accounting, multi-branch management and powerful analytics.
               </p>
 
-              {/* Arrow Action Button */}
-              <div className="pt-2">
+              {/* Action Buttons */}
+              <div className="pt-2 flex items-center gap-2.5">
+                <a
+                  href="https://www.goldengst.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl bg-[#07152B] hover:bg-[#D97706] text-white text-xs font-bold transition-all shadow-md active:scale-95 inline-flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>Visit Website</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
                 <button
                   type="button"
                   onClick={() => onOpenProductDemo?.("goldengst")}
-                  className="w-10 h-10 rounded-xl bg-[#07152B] hover:bg-[#D97706] text-white flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-white/80 hover:bg-white text-slate-700 text-xs font-semibold border border-slate-200/80 transition-all active:scale-95 cursor-pointer"
                 >
-                  <ArrowRight className="w-4 h-4" />
+                  Learn More
                 </button>
               </div>
             </div>
@@ -291,18 +319,25 @@ export const ProductsFeatureCardsSection: React.FC<ProductsFeatureCardsSectionPr
               A powerful remote desktop platform for individuals and teams with sub-30ms latency, multi-monitor switching, and bank-grade security.
             </p>
 
-            {/* Action Button */}
-            <div className="pt-2 flex items-center gap-4">
+            {/* Action Buttons */}
+            <div className="pt-2 flex flex-wrap items-center gap-3">
+              <a
+                href="https://freedeskpro.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-xl bg-[#07152B] hover:bg-[#06B6D4] text-white font-bold text-xs sm:text-sm transition-all shadow-xl active:scale-95 cursor-pointer inline-flex items-center gap-2 border border-slate-700/20"
+              >
+                <span>Visit FreeDeskPro</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
               <button
                 type="button"
                 onClick={() => onOpenProductDemo?.("freedeskpro")}
-                className="w-12 h-12 rounded-2xl bg-[#07152B] hover:bg-[#06B6D4] text-white flex items-center justify-center transition-all shadow-xl active:scale-95 cursor-pointer border border-slate-700/20"
+                className="px-4 py-2.5 rounded-xl bg-white/85 hover:bg-white text-slate-800 font-semibold text-xs sm:text-sm transition-all border border-blue-200/80 shadow-xs cursor-pointer inline-flex items-center gap-2"
               >
-                <ArrowRight className="w-5 h-5" />
+                <span>Test Live Connection</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
-              <span className="text-xs text-slate-700 font-bold">
-                Click to test live 60 FPS remote connection
-              </span>
             </div>
           </div>
 

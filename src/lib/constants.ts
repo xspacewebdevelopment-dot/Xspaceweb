@@ -37,10 +37,11 @@ export const SITE_CONFIG = {
       { label: "Contact", href: "/contact" },
     ],
     products: [
-      { label: "MakeGSTBill", href: "/products#makegstbill" },
-      { label: "GoldenGST", href: "/products#goldengst" },
-      { label: "FreeDeskPro", href: "/products#freedeskpro" },
-      { label: "Upcoming Products", href: "/products#upcoming" },
+      { label: "MakeGSTBill", href: "https://makegstbill.com/" },
+      { label: "GoldenGST", href: "https://www.goldengst.com/" },
+      { label: "FreeDeskPro", href: "https://freedeskpro.com/" },
+      { label: "SimpleKaam", href: "http://simplekaam.com/" },
+      { label: "All Products", href: "/products" },
     ],
     services: [
       { label: "Digital Marketing", href: "/services#digital-marketing" },

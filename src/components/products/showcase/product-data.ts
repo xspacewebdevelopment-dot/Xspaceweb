@@ -11,6 +11,7 @@ export interface ProductItem {
   badge?: string;
   featured?: boolean;
   href: string;
+  liveUrl?: string;
   category: string;
   launchStatus: string;
   metrics: { label: string; value: string };
@@ -31,7 +32,8 @@ export const productsData: ProductItem[] = [
     accentGlow: "rgba(37, 99, 235, 0.28)",
     badge: "Most Popular",
     featured: true,
-    href: "/products/makegstbill",
+    href: "https://makegstbill.com/",
+    liveUrl: "https://makegstbill.com/",
     category: "FinTech & Billing",
     launchStatus: "Live & Active",
     metrics: { label: "Active Businesses", value: "10,000+" },
@@ -54,7 +56,8 @@ export const productsData: ProductItem[] = [
     accent: "#F59E0B",
     accentGlow: "rgba(245, 158, 11, 0.28)",
     badge: "Enterprise Flagship",
-    href: "/products/goldengst",
+    href: "https://www.goldengst.com/",
+    liveUrl: "https://www.goldengst.com/",
     category: "FinTech & ERP",
     launchStatus: "Live & Active",
     metrics: { label: "Invoices Processed", value: "₹150Cr+" },
@@ -77,7 +80,8 @@ export const productsData: ProductItem[] = [
     accent: "#3B82F6",
     accentGlow: "rgba(59, 130, 246, 0.28)",
     badge: "Ultra Low Latency",
-    href: "/products/freedeskpro",
+    href: "https://freedeskpro.com/",
+    liveUrl: "https://freedeskpro.com/",
     category: "Remote & IT Tools",
     launchStatus: "Live & Active",
     metrics: { label: "Daily Sessions", value: "250K+" },

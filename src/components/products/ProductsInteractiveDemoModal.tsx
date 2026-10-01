@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   Sparkles,
   ArrowRight,
+  ArrowUpRight,
   Crown,
   Receipt,
   Monitor,
@@ -48,6 +49,13 @@ interface ProductsInteractiveDemoModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
+
+const productLiveUrls: Record<string, string> = {
+  makegstbill: "https://makegstbill.com/",
+  goldengst: "https://www.goldengst.com/",
+  freedeskpro: "https://freedeskpro.com/",
+  simplekaam: "http://simplekaam.com/",
+};
 
 export const ProductsInteractiveDemoModal: React.FC<ProductsInteractiveDemoModalProps> = ({
   product,
@@ -363,7 +371,7 @@ export const ProductsInteractiveDemoModal: React.FC<ProductsInteractiveDemoModal
         </div>
 
         {/* Modal Footer Controls */}
-        <div className="p-5 sm:p-6 border-t border-slate-100 bg-slate-50/80 flex items-center justify-between">
+        <div className="p-5 sm:p-6 border-t border-slate-100 bg-slate-50/80 flex flex-wrap items-center justify-between gap-3">
           <button
             type="button"
             onClick={onClose}
@@ -372,13 +380,27 @@ export const ProductsInteractiveDemoModal: React.FC<ProductsInteractiveDemoModal
             Close Preview
           </button>
 
-          <Link
-            href="/contact"
-            className="px-6 py-2.5 rounded-full bg-[#07152B] text-white text-xs sm:text-sm font-bold hover:bg-blue-600 transition-all flex items-center gap-2 shadow-md active:scale-95"
-          >
-            <span>Request Enterprise Access</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex items-center gap-2.5">
+            {product && productLiveUrls[product.id] && (
+              <a
+                href={productLiveUrls[product.id]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2.5 rounded-full bg-[#1668E8] text-white text-xs sm:text-sm font-bold hover:bg-blue-700 transition-all flex items-center gap-1.5 shadow-md active:scale-95 cursor-pointer"
+              >
+                <span>Visit Live Website</span>
+                <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
+              </a>
+            )}
+
+            <Link
+              href="/contact"
+              className="px-5 py-2.5 rounded-full bg-[#07152B] text-white text-xs sm:text-sm font-bold hover:bg-slate-800 transition-all flex items-center gap-1.5 shadow-md active:scale-95"
+            >
+              <span>Request Enterprise Access</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
 
       </div>

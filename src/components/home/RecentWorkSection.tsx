@@ -33,7 +33,7 @@ const recentWorks: WorkCardItem[] = [
     displayTags: "Fintech SaaS · Product Design · Branding",
     description: "Simplifying GST billing and business management for Indian businesses.",
     imageSrc: "/images/recent-work/3.png",
-    href: "/products/makegstbill",
+    href: "https://makegstbill.com/",
     objectPosition: "center 48%",
     featured: true,
   },
@@ -47,7 +47,7 @@ const recentWorks: WorkCardItem[] = [
     displayTags: "SaaS · Brand Identity · UI/UX",
     description: "A premium GST and business management experience built for growing businesses.",
     imageSrc: "/new.png",
-    href: "/products/goldengst",
+    href: "https://www.goldengst.com/",
     objectPosition: "center center",
   },
   {
@@ -73,7 +73,7 @@ const recentWorks: WorkCardItem[] = [
     displayTags: "SaaS · UI/UX · Product Design",
     description: "A next-generation remote support and device management platform.",
     imageSrc: "/images/recent-work/6.png",
-    href: "/products/freedeskpro",
+    href: "https://freedeskpro.com/",
     objectPosition: "center center",
   },
   {
@@ -99,7 +99,7 @@ const recentWorks: WorkCardItem[] = [
     displayTags: "Work OS · Employment Platform · Team SaaS",
     description: "A unified platform for all kinds of employment works, team workflows, and project management.",
     imageSrc: "/images/recent-work/8.png",
-    href: "/products#simplekaam",
+    href: "http://simplekaam.com/",
     objectPosition: "center 48%",
   },
 ];
@@ -229,6 +229,8 @@ export const RecentWorkSection: React.FC = () => {
             >
               <Link
                 href={featured.href}
+                target={featured.href.startsWith("http") ? "_blank" : undefined}
+                rel={featured.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="block h-full focus:outline-none select-none group/featured"
               >
                 <div className="relative w-full aspect-[1.48/1] rounded-[22px] sm:rounded-[24px] lg:rounded-[26px] overflow-hidden bg-slate-100 border border-slate-200/70 shadow-[0_4px_20px_-4px_rgba(7,21,43,0.06)] group-hover/featured:shadow-[0_16px_36px_-6px_rgba(7,21,43,0.12)] transition-shadow duration-300">
@@ -297,6 +299,8 @@ export const RecentWorkSection: React.FC = () => {
                 >
                   <Link
                     href={work.href}
+                    target={work.href.startsWith("http") ? "_blank" : undefined}
+                    rel={work.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="block focus:outline-none select-none group/card"
                   >
                     {/* Supporting Image Container */}
@@ -365,6 +369,8 @@ export const RecentWorkSection: React.FC = () => {
               >
                 <Link
                   href={work.href}
+                  target={work.href.startsWith("http") ? "_blank" : undefined}
+                  rel={work.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="block focus:outline-none select-none group/card"
                 >
                   {/* Compact Image Container */}
