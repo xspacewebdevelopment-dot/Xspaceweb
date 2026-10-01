@@ -4,6 +4,8 @@ import React from "react";
 import Image from "next/image";
 import { Container } from "@/components/shared/ui/Container";
 
+import { PresenceHubCard } from "./PresenceHubCard";
+
 export const OurPresenceSection: React.FC = () => {
   return (
     <section className="relative w-full bg-white py-12 sm:py-16">
@@ -27,19 +29,11 @@ export const OurPresenceSection: React.FC = () => {
             </p>
           </div>
 
-          {/* RIGHT: Map & Merchants Growth Card */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-12 gap-8 items-center">
-            {/* Crisp Recognizable India Map */}
-            <div className="sm:col-span-6 relative flex items-center justify-center">
-              <div className="relative w-full aspect-square max-w-[340px] rounded-2xl overflow-hidden bg-white p-2">
-                <Image
-                  src="/images/about/india_presence_map_clean.jpg"
-                  alt="XSPACEWEB operations in Jharkhand and Kolkata, connecting across India"
-                  fill
-                  className="object-contain p-2 hover:scale-105 transition-transform duration-500"
-                  unoptimized
-                />
-              </div>
+          {/* RIGHT: Presence Hub Card & Merchants Growth Card */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-12 gap-6 sm:gap-8 items-center">
+            {/* Interactive Operational Presence Hub Card (21st.dev inspired) */}
+            <div className="sm:col-span-6">
+              <PresenceHubCard />
             </div>
 
             {/* Merchant Growth Card with Pristine Vector Logos */}
