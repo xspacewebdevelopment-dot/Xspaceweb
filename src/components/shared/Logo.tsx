@@ -45,7 +45,7 @@ export const Logo: React.FC<LogoProps> = ({
               isDark ? "text-[#07152B]" : "text-white"
             )}
           >
-            XSPACEWEB
+            SPACEWEB
           </span>
         )}
       </div>
