@@ -39,7 +39,7 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
             preload="auto"
             className="w-full h-full object-cover object-center"
           >
-            <source src="/service.mp4" type="video/mp4" />
+            <source src="/videos/service.mp4" type="video/mp4" />
           </video>
 
           {/* Gentle Sky Sunlight Glow Overlay for Readability */}

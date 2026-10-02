@@ -23,7 +23,7 @@ export const OurImpactSection: React.FC = () => {
       {/* Background Blue Dotted World Map Image matching uploaded reference image */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
         <Image
-          src="/assets/world_map.png"
+          src="/images/home/world_map.png"
           alt="XSPACEWEB Global Reach World Map Background"
           fill
           className="object-cover object-center opacity-90"

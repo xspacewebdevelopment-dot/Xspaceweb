@@ -12,13 +12,13 @@ export interface ImageGalleryProps {
 }
 
 const defaultImages = [
-  "/select/select1.png",
-  "/select/select2.png",
-  "/select/select3.png",
-  "/select/select4.png",
-  "/select/select5.png",
-  "/select/select6.png",
-  "/select/Paper Dunes at Sunrise.png",
+  "/images/selected-work/select1.png",
+  "/images/selected-work/select2.png",
+  "/images/selected-work/select3.png",
+  "/images/selected-work/select4.png",
+  "/images/selected-work/select5.png",
+  "/images/selected-work/select6.png",
+  "/images/selected-work/paper_dunes_sunrise.png",
 ];
 
 /* Zigzag vertical offsets — even indices shift down, odd indices shift up */

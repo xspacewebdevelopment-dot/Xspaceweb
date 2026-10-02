@@ -14,7 +14,7 @@ export const ProductBackground: React.FC<ProductBackgroundProps> = ({ activeProd
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
       {/* 1. Scenic Mountain Background Image */}
       <Image
-        src="/images/assets/background.png"
+        src="/images/products/background.png"
         alt="XSPACEWEB SaaS Ecosystem Sunset Mountain Background"
         fill
         className="object-cover object-center"

@@ -222,7 +222,7 @@ export const ProductsReviewsAndGetStartedSection: React.FC = () => {
           <div className="lg:col-span-7 relative flex items-center justify-center">
             <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[440px] flex items-center justify-center">
               <Image
-                src="/glob.png"
+                src="/images/products/glob.png"
                 alt="XSPACEWEB Global Ecosystem"
                 fill
                 className="object-contain object-center select-none"

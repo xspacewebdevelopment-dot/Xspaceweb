@@ -457,7 +457,7 @@ export const HeroSection: React.FC = () => {
         aria-hidden="true"
       >
         <Image
-          src="/plant1.png"
+          src="/images/hero/plant1.png"
           alt=""
           width={600}
           height={600}
@@ -476,7 +476,7 @@ export const HeroSection: React.FC = () => {
         aria-hidden="true"
       >
         <Image
-          src="/plant2.png"
+          src="/images/hero/plant2.png"
           alt=""
           width={600}
           height={600}

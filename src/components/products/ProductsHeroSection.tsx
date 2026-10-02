@@ -552,7 +552,7 @@ export const ProductsHeroSection: React.FC<ProductsHeroSectionProps> = ({ onOpen
           preload="auto"
           className="w-full h-full object-cover object-top"
         >
-          <source src="/product.mp4" type="video/mp4" />
+          <source src="/videos/product.mp4" type="video/mp4" />
         </video>
         {/* Soft atmospheric radial sun glow at top center */}
         <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-amber-200/30 rounded-full blur-3xl" />

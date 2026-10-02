@@ -32,7 +32,7 @@ export const BrighterTomorrowSection: React.FC = () => {
             playsInline
             className="w-full h-full object-cover object-center"
           >
-            <source src="/Assest%20Folder%20XSW/Home%20Page/Footer%20upper%20video.mp4" type="video/mp4" />
+            <source src="/videos/brighter_tomorrow.mp4" type="video/mp4" />
           </video>
           {/* Top light blue gradient blend to flow seamlessly with section above */}
           <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-[#EBF3FE] via-[#EBF3FE]/70 to-transparent z-1" />
