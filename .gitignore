@@ -44,3 +44,15 @@ next-env.d.ts
 # scratch
 scratch/
 
+# uploads
+/public/uploads/
+
+# raw design mockup exports (large binary PDFs)
+/*_UI.pdf
+*.pdf
+
+# unreferenced raw asset dumps & heavy recordings
+/public/Assest Folder XSW/
+/public/images/extracted/
+*.mp4
+!public/service.mp4

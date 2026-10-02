@@ -8,8 +8,11 @@ import {
   events,
   mediaMentions,
   newsletterSubscribers,
+  careerOpenings,
+  careerApplications,
 } from "@/lib/db/schema";
 import { desc, count, eq, and, isNull, gte, asc } from "drizzle-orm";
+import { formatSource } from "@/lib/constants";
 import {
   Inbox,
   ArrowRight,
@@ -25,6 +28,9 @@ import {
   Sparkles,
   Tv,
   Plus,
+  Briefcase,
+  FileText,
+  Layers,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -33,18 +39,38 @@ export default async function CrmDashboardPage() {
   const now = new Date();
   const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  // Fetch total inquiries count
-  const [totalRes] = await db.select({ value: count() }).from(projectInquiries);
-  const totalCount = totalRes?.value ?? 0;
+  // Inquiries counts
+  const [projectCountRes] = await db
+    .select({ value: count() })
+    .from(projectInquiries)
+    .where(eq(projectInquiries.inquiryType, "project"));
+  const projectCount = projectCountRes?.value ?? 0;
 
-  // Fetch status breakdown counts
+  const [serviceCountRes] = await db
+    .select({ value: count() })
+    .from(projectInquiries)
+    .where(eq(projectInquiries.inquiryType, "service"));
+  const serviceCount = serviceCountRes?.value ?? 0;
+
   const [newCountRes] = await db
     .select({ value: count() })
     .from(projectInquiries)
     .where(eq(projectInquiries.status, "new"));
   const newCount = newCountRes?.value ?? 0;
 
-  // Fetch published news count
+  // Career counts
+  const [openingsCountRes] = await db
+    .select({ value: count() })
+    .from(careerOpenings)
+    .where(eq(careerOpenings.status, "published"));
+  const openingsCount = openingsCountRes?.value ?? 0;
+
+  const [applicationsCountRes] = await db
+    .select({ value: count() })
+    .from(careerApplications);
+  const applicationsCount = applicationsCountRes?.value ?? 0;
+
+  // News count
   const [publishedNewsRes] = await db
     .select({ value: count() })
     .from(newsArticles)
@@ -56,7 +82,7 @@ export default async function CrmDashboardPage() {
     );
   const publishedNewsCount = publishedNewsRes?.value ?? 0;
 
-  // Fetch upcoming events count
+  // Upcoming events count
   const [upcomingEventsRes] = await db
     .select({ value: count() })
     .from(events)
@@ -69,7 +95,7 @@ export default async function CrmDashboardPage() {
     );
   const upcomingEventsCount = upcomingEventsRes?.value ?? 0;
 
-  // Fetch published media mentions count
+  // Media mentions count
   const [mediaMentionsRes] = await db
     .select({ value: count() })
     .from(mediaMentions)
@@ -81,14 +107,14 @@ export default async function CrmDashboardPage() {
     );
   const mediaMentionsCount = mediaMentionsRes?.value ?? 0;
 
-  // Fetch active newsletter subscribers count
+  // Newsletter subscribers count
   const [subscribersRes] = await db
     .select({ value: count() })
     .from(newsletterSubscribers)
     .where(eq(newsletterSubscribers.status, "subscribed"));
   const subscribersCount = subscribersRes?.value ?? 0;
 
-  // Next upcoming event for top spotlight banner
+  // Spotlight upcoming event
   const [nextUpcomingEvent] = await db
     .select()
     .from(events)
@@ -106,6 +132,7 @@ export default async function CrmDashboardPage() {
   const recentInquiries = await db
     .select()
     .from(projectInquiries)
+    .where(isNull(projectInquiries.archivedAt))
     .orderBy(desc(projectInquiries.createdAt))
     .limit(4);
 
@@ -162,7 +189,7 @@ export default async function CrmDashboardPage() {
             Dashboard
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Welcome to XSPACEWEB CRM. Overview of inquiries, news, events, and media.
+            Welcome to XSPACEWEB CRM. Overview of inquiries, careers, news, events, and media.
           </p>
         </div>
 
@@ -182,6 +209,13 @@ export default async function CrmDashboardPage() {
             <span>Add Event</span>
           </Link>
           <Link
+            href="/crm/careers/openings/new"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-2xs"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>New Opening</span>
+          </Link>
+          <Link
             href="/crm/media/new"
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs font-bold transition-colors shadow-2xs"
           >
@@ -191,73 +225,111 @@ export default async function CrmDashboardPage() {
         </div>
       </div>
 
-      {/* Summary KPI Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {/* Total Inquiries */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
-          <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block truncate">
-            Inquiries
-          </span>
-          <div className="text-2xl sm:text-3xl font-black text-slate-900 mt-2">
-            {totalCount}
+      {/* Summary KPI Metric Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+        {/* Project Inquiries */}
+        <Link
+          href="/crm/inquiries"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-blue-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block truncate">
+              Projects
+            </span>
+            <Inbox className="w-3.5 h-3.5 text-blue-600" />
           </div>
-          <p className="text-[11px] text-slate-400 mt-1 truncate">Total received</p>
-        </div>
+          <div className="text-2xl font-black text-slate-900 mt-1">
+            {projectCount}
+          </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">
+            {newCount} new pending
+          </p>
+        </Link>
 
-        {/* New Inquiries */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider block truncate">
-            New Leads
-          </span>
-          <div className="text-2xl sm:text-3xl font-black text-blue-600 mt-2">
-            {newCount}
+        {/* Service Requests */}
+        <Link
+          href="/crm/inquiries/services"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-purple-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-purple-600 uppercase tracking-wider block truncate">
+              Services
+            </span>
+            <Layers className="w-3.5 h-3.5 text-purple-600" />
           </div>
-          <p className="text-[11px] text-slate-400 mt-1 truncate">Action required</p>
-        </div>
+          <div className="text-2xl font-black text-purple-600 mt-1">
+            {serviceCount}
+          </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">Direct requests</p>
+        </Link>
+
+        {/* Careers Openings */}
+        <Link
+          href="/crm/careers/openings"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-indigo-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-wider block truncate">
+              Openings
+            </span>
+            <Briefcase className="w-3.5 h-3.5 text-indigo-600" />
+          </div>
+          <div className="text-2xl font-black text-indigo-600 mt-1">
+            {openingsCount}
+          </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">{applicationsCount} applications</p>
+        </Link>
 
         {/* Published News */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
-          <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider block truncate">
-            Live News
-          </span>
-          <div className="text-2xl sm:text-3xl font-black text-emerald-600 mt-2">
+        <Link
+          href="/crm/news"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-emerald-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-wider block truncate">
+              News
+            </span>
+            <Newspaper className="w-3.5 h-3.5 text-emerald-600" />
+          </div>
+          <div className="text-2xl font-black text-emerald-600 mt-1">
             {publishedNewsCount}
           </div>
-          <p className="text-[11px] text-slate-400 mt-1 truncate">Articles</p>
-        </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">Live articles</p>
+        </Link>
 
         {/* Upcoming Events */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
-          <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider block truncate">
-            Events
-          </span>
-          <div className="text-2xl sm:text-3xl font-black text-indigo-600 mt-2">
+        <Link
+          href="/crm/events"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-amber-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-amber-600 uppercase tracking-wider block truncate">
+              Events
+            </span>
+            <Calendar className="w-3.5 h-3.5 text-amber-600" />
+          </div>
+          <div className="text-2xl font-black text-amber-600 mt-1">
             {upcomingEventsCount}
           </div>
-          <p className="text-[11px] text-slate-400 mt-1 truncate">Upcoming</p>
-        </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">Upcoming</p>
+        </Link>
 
-        {/* Media Mentions */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
-          <span className="text-xs font-bold text-purple-600 uppercase tracking-wider block truncate">
-            Media
-          </span>
-          <div className="text-2xl sm:text-3xl font-black text-purple-600 mt-2">
+        {/* Media & Subscribers */}
+        <Link
+          href="/crm/media"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-teal-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-teal-600 uppercase tracking-wider block truncate">
+              Media & Press
+            </span>
+            <Tv className="w-3.5 h-3.5 text-teal-600" />
+          </div>
+          <div className="text-2xl font-black text-teal-600 mt-1">
             {mediaMentionsCount}
           </div>
-          <p className="text-[11px] text-slate-400 mt-1 truncate">Press coverage</p>
-        </div>
-
-        {/* Newsletter Subscribers */}
-        <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-2xs">
-          <span className="text-xs font-bold text-teal-600 uppercase tracking-wider block truncate">
-            Audience
-          </span>
-          <div className="text-2xl sm:text-3xl font-black text-teal-600 mt-2">
-            {subscribersCount}
-          </div>
-          <p className="text-[11px] text-slate-400 mt-1 truncate">Subscribers</p>
-        </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">{subscribersCount} subscribers</p>
+        </Link>
       </div>
 
       {/* Next Upcoming Event Spotlight Banner (if available) */}
@@ -332,19 +404,27 @@ export default async function CrmDashboardPage() {
                 <Inbox className="w-4 h-4" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-slate-900">Recent Inquiries</h2>
-                <p className="text-xs text-slate-400">Latest website submissions</p>
+                <h2 className="text-base font-bold text-slate-900">Recent Inquiries & Requests</h2>
+                <p className="text-xs text-slate-400">Latest submissions across forms</p>
               </div>
             </div>
-            {recentInquiries.length > 0 && (
+            <div className="flex items-center gap-2">
               <Link
                 href="/crm/inquiries"
                 className="inline-flex items-center gap-1 text-xs font-bold text-[#1668E8] hover:text-blue-700 transition-colors"
               >
-                <span>View All</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>Projects</span>
+                <ArrowRight className="w-3 h-3" />
               </Link>
-            )}
+              <span className="text-slate-300">|</span>
+              <Link
+                href="/crm/inquiries/services"
+                className="inline-flex items-center gap-1 text-xs font-bold text-purple-600 hover:text-purple-700 transition-colors"
+              >
+                <span>Services</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+            </div>
           </div>
 
           <div className="flex-1 divide-y divide-slate-100">
@@ -355,49 +435,66 @@ export default async function CrmDashboardPage() {
                 <p className="text-[11px] text-slate-400">Submissions from contact forms will appear here.</p>
               </div>
             ) : (
-              recentInquiries.map((inquiry) => (
-                <div
-                  key={inquiry.id}
-                  className="p-3.5 sm:p-4 hover:bg-slate-50/70 transition-colors flex items-center justify-between gap-3"
-                >
-                  <div className="space-y-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="font-bold text-xs sm:text-sm text-slate-900 truncate">
-                        {inquiry.name}
-                      </span>
-                      <span
-                        className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${getStatusBadge(
-                          inquiry.status
-                        )}`}
-                      >
-                        {inquiry.status}
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[11px] text-slate-500">
-                      <span className="truncate max-w-[180px]">{inquiry.email}</span>
-                      {inquiry.service && (
-                        <span className="text-slate-400 font-medium truncate">• {inquiry.service}</span>
-                      )}
-                    </div>
-                  </div>
+              recentInquiries.map((inquiry) => {
+                const targetUrl =
+                  inquiry.inquiryType === "service"
+                    ? "/crm/inquiries/services"
+                    : "/crm/inquiries";
 
-                  <div className="flex items-center gap-2 text-right shrink-0">
-                    <span className="text-[11px] text-slate-400 whitespace-nowrap">
-                      {new Date(inquiry.createdAt).toLocaleDateString("en-IN", {
-                        day: "numeric",
-                        month: "short",
-                      })}
-                    </span>
-                    <Link
-                      href="/crm/inquiries"
-                      className="p-1 rounded-md text-slate-400 hover:text-[#1668E8] hover:bg-blue-50 transition-colors"
-                      title="View inquiry details"
-                    >
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                return (
+                  <div
+                    key={inquiry.id}
+                    className="p-3.5 sm:p-4 hover:bg-slate-50/70 transition-colors flex items-center justify-between gap-3"
+                  >
+                    <div className="space-y-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="font-bold text-xs sm:text-sm text-slate-900 truncate">
+                          {inquiry.name}
+                        </span>
+                        <span
+                          className={`text-[9px] font-bold px-1.5 py-0.5 rounded capitalize ${
+                            inquiry.inquiryType === "service"
+                              ? "bg-purple-100 text-purple-800"
+                              : "bg-blue-100 text-blue-800"
+                          }`}
+                        >
+                          {inquiry.inquiryType === "service" ? "Service" : "Project"}
+                        </span>
+                        <span
+                          className={`text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full border ${getStatusBadge(
+                            inquiry.status
+                          )}`}
+                        >
+                          {inquiry.status}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-[11px] text-slate-500">
+                        <span className="truncate max-w-[180px]">{inquiry.email}</span>
+                        {inquiry.service && (
+                          <span className="text-slate-400 font-medium truncate">• {inquiry.service}</span>
+                        )}
+                        <span className="text-slate-400">via {formatSource(inquiry.source)}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-right shrink-0">
+                      <span className="text-[11px] text-slate-400 whitespace-nowrap">
+                        {new Date(inquiry.createdAt).toLocaleDateString("en-IN", {
+                          day: "numeric",
+                          month: "short",
+                        })}
+                      </span>
+                      <Link
+                        href={targetUrl}
+                        className="p-1 rounded-md text-slate-400 hover:text-[#1668E8] hover:bg-blue-50 transition-colors"
+                        title="View inquiry details"
+                      >
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
         </div>

@@ -70,3 +70,22 @@ export const SITE_CONFIG = {
     { name: "Facebook", href: "https://www.facebook.com/Xspace.web", icon: "facebook" },
   ],
 };
+
+export const SOURCE_LABELS: Record<string, string> = {
+  "homepage-digital-solutions": "Homepage – Get Started",
+  "homepage-project": "Homepage – Project Form",
+  "homepage": "Homepage – Project Form",
+  "services-page": "Services Page",
+  "about-page": "About – Let's Build Together",
+  "contact-page": "Contact Page",
+  "contact": "Contact Page",
+  "navbar": "Navbar – Let's Talk",
+};
+
+export function formatSource(source?: string | null): string {
+  if (!source) return "Website";
+  if (SOURCE_LABELS[source]) return SOURCE_LABELS[source];
+  return source
+    .replace(/[_-]/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}

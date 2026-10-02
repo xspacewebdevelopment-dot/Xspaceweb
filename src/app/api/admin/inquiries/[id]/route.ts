@@ -8,7 +8,8 @@ import { z } from "zod";
 export const dynamic = "force-dynamic";
 
 const patchSchema = z.object({
-  status: z.enum(inquiryStatusEnum),
+  status: z.enum(inquiryStatusEnum).optional(),
+  archived: z.boolean().optional(),
 });
 
 interface RouteContext {
@@ -47,7 +48,7 @@ export async function GET(req: NextRequest, { params }: RouteContext) {
 
 /**
  * PATCH /api/admin/inquiries/[id]
- * Update status of an inquiry. Strictly protected.
+ * Update status or archive/restore an inquiry. Strictly protected.
  */
 export async function PATCH(req: NextRequest, { params }: RouteContext) {
   const session = await verifyAdminSession();
@@ -68,14 +69,23 @@ export async function PATCH(req: NextRequest, { params }: RouteContext) {
       );
     }
 
-    const { status } = parsed.data;
+    const { status, archived } = parsed.data;
+
+    const updateFields: Record<string, unknown> = {
+      updatedAt: new Date(),
+    };
+
+    if (status !== undefined) {
+      updateFields.status = status;
+    }
+
+    if (archived !== undefined) {
+      updateFields.archivedAt = archived ? new Date() : null;
+    }
 
     const [updated] = await db
       .update(projectInquiries)
-      .set({
-        status,
-        updatedAt: new Date(),
-      })
+      .set(updateFields)
       .where(eq(projectInquiries.id, id))
       .returning();
 
@@ -85,7 +95,40 @@ export async function PATCH(req: NextRequest, { params }: RouteContext) {
 
     return NextResponse.json({ success: true, inquiry: updated }, { status: 200 });
   } catch (error) {
-    console.error("Failed to update inquiry status:", error);
+    console.error("Failed to update inquiry:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
+
+/**
+ * DELETE /api/admin/inquiries/[id]
+ * Permanent deletion. Strictly protected.
+ */
+export async function DELETE(req: NextRequest, { params }: RouteContext) {
+  const session = await verifyAdminSession();
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });
+  }
+
+  const { id } = await params;
+
+  try {
+    const [deleted] = await db
+      .delete(projectInquiries)
+      .where(eq(projectInquiries.id, id))
+      .returning();
+
+    if (!deleted) {
+      return NextResponse.json({ error: "Inquiry not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Inquiry permanently deleted" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Failed to delete inquiry:", error);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
+}
+

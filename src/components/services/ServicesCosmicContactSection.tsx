@@ -27,15 +27,41 @@ export const ServicesCosmicContactSection: React.FC<ServicesCosmicContactSection
   const [message, setMessage] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email) return;
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          service: selectedService || undefined,
+          message: message || undefined,
+          inquiry_type: "service",
+          source: "services-page",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.details?.[0] || data.error || "Failed to submit inquiry.");
+      }
+
       setIsSubmitted(true);
-    }, 800);
+    } catch (err: unknown) {
+      console.error("Cosmic contact submission error:", err);
+      const msg = err instanceof Error ? err.message : "Failed to submit inquiry.";
+      setErrorMessage(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleScrollToServices = () => {

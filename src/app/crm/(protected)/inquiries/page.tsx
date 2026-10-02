@@ -1,7 +1,7 @@
 import React from "react";
 import { db } from "@/lib/db";
 import { projectInquiries } from "@/lib/db/schema";
-import { desc } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { CrmInquiriesTable } from "@/components/crm/CrmInquiriesTable";
 
 export const dynamic = "force-dynamic";
@@ -14,6 +14,7 @@ export default async function CrmInquiriesPage() {
   const inquiries = await db
     .select()
     .from(projectInquiries)
+    .where(eq(projectInquiries.inquiryType, "project"))
     .orderBy(desc(projectInquiries.createdAt));
 
   return (
@@ -24,12 +25,12 @@ export default async function CrmInquiriesPage() {
           Project Inquiries
         </h1>
         <p className="text-sm text-slate-500 mt-1">
-          Review, filter, and manage client inquiries submitted from the website.
+          Review, filter, and manage client project inquiries submitted from the website.
         </p>
       </div>
 
       {/* Interactive Inquiries Table */}
-      <CrmInquiriesTable initialInquiries={inquiries} />
+      <CrmInquiriesTable initialInquiries={inquiries} inquiryType="project" />
     </div>
   );
 }

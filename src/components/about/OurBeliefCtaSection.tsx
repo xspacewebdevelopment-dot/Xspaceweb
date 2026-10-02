@@ -92,8 +92,13 @@ export const OurBeliefCtaSection: React.FC = () => {
         </Container>
       </section>
 
-      {/* Project Consultation Inquiry Modal */}
-      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      {/* Service Request / Project Consultation Inquiry Modal */}
+      <ProjectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType="service"
+        source="about-page"
+      />
     </>
   );
 };

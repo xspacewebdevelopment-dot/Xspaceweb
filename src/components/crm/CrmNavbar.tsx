@@ -15,6 +15,10 @@ import {
   Tv,
   Mail,
   Send,
+  Briefcase,
+  FileText,
+  Users,
+  Layers,
 } from "lucide-react";
 
 interface CrmNavbarProps {
@@ -31,6 +35,10 @@ export const CrmNavbar: React.FC<CrmNavbarProps> = ({ adminEmail }) => {
   const navLinks = [
     { href: "/crm", label: "Dashboard", icon: LayoutDashboard },
     { href: "/crm/inquiries", label: "Inquiries", icon: Inbox },
+    { href: "/crm/inquiries/services", label: "Services", icon: Layers },
+    { href: "/crm/careers/openings", label: "Openings", icon: Briefcase },
+    { href: "/crm/careers/applications", label: "Applications", icon: FileText },
+    { href: "/crm/careers/talent-pool", label: "Talent Pool", icon: Users },
     { href: "/crm/news", label: "News", icon: Newspaper },
     { href: "/crm/events", label: "Events", icon: Calendar },
     { href: "/crm/events/gallery", label: "Gallery", icon: Images },
@@ -46,22 +54,7 @@ export const CrmNavbar: React.FC<CrmNavbarProps> = ({ adminEmail }) => {
         {/* Main Nav Links */}
         <nav className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-2">
             {navLinks.map((link) => {
-              let isActive = false;
-              if (link.href === "/crm") {
-                isActive = pathname === "/crm";
-              } else if (link.href === "/crm/events") {
-                isActive =
-                  pathname === "/crm/events" ||
-                  (pathname.startsWith("/crm/events/") && !pathname.startsWith("/crm/events/gallery"));
-              } else if (link.href === "/crm/events/gallery") {
-                isActive = pathname.startsWith("/crm/events/gallery");
-              } else if (link.href === "/crm/newsletter") {
-                isActive = pathname === "/crm/newsletter";
-              } else if (link.href === "/crm/newsletter/send") {
-                isActive = pathname.startsWith("/crm/newsletter/send");
-              } else {
-                isActive = pathname.startsWith(link.href);
-              }
+              const isActive = pathname === link.href || (link.href !== "/crm" && pathname.startsWith(link.href));
               const Icon = link.icon;
               return (
                 <Link

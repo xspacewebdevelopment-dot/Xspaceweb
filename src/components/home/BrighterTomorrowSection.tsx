@@ -4,26 +4,21 @@ import React, { useState } from "react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 import BlurText from "@/components/ui/BlurText";
+import { ProjectModal } from "@/components/shared/ProjectModal";
 
 export const BrighterTomorrowSection: React.FC = () => {
   const [email, setEmail] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleGetStarted = (e: React.FormEvent) => {
     e.preventDefault();
-    if (typeof window !== "undefined") {
-      if (email.trim()) {
-        window.dispatchEvent(new CustomEvent("prefill-inquiry-email", { detail: { email: email.trim() } }));
-      }
-      const el = document.getElementById("project-inquiry");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    setIsModalOpen(true);
   };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
 
   return (
     <>
@@ -173,6 +168,16 @@ export const BrighterTomorrowSection: React.FC = () => {
           </div>
         </Container>
       </section>
+
+      {/* Service Request Inquiry Modal */}
+      <ProjectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType="service"
+        source="homepage-digital-solutions"
+        initialEmail={email}
+      />
     </>
   );
 };
+

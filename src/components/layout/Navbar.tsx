@@ -31,6 +31,11 @@ export const Navbar: React.FC = () => {
   const [projectModalOpen, setProjectModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
 
+  // Do not render public consumer navbar on CRM routes
+  if (pathname?.startsWith("/crm")) {
+    return null;
+  }
+
   useEffect(() => {
     if (pathname !== "/") return;
 
@@ -227,6 +232,8 @@ export const Navbar: React.FC = () => {
     <ProjectModal
       isOpen={projectModalOpen}
       onClose={() => setProjectModalOpen(false)}
+      inquiryType="project"
+      source="navbar"
     />
   </>
 );

@@ -31,20 +31,25 @@ const inquirySchema = z.object({
   service: z
     .string()
     .trim()
-    .max(100, "Service cannot exceed 100 characters")
+    .max(200, "Service cannot exceed 200 characters")
     .optional()
     .nullable(),
   message: z
     .string()
     .trim()
-    .max(3000, "Message cannot exceed 3000 characters")
+    .max(5000, "Message cannot exceed 5000 characters")
     .optional()
     .nullable(),
+  inquiry_type: z
+    .enum(["project", "service"])
+    .default("project")
+    .optional(),
   source: z
     .string()
     .trim()
-    .max(50)
-    .default("homepage"),
+    .max(100)
+    .default("homepage-project")
+    .optional(),
 });
 
 /**
@@ -66,7 +71,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { name, email, phone, company, service, message, source } = result.data;
+    const { name, email, phone, company, service, message, inquiry_type, source } = result.data;
 
     const [inserted] = await db
       .insert(projectInquiries)
@@ -77,7 +82,8 @@ export async function POST(req: NextRequest) {
         company: company || null,
         service: service || null,
         message: message || null,
-        source: source || "homepage",
+        inquiryType: inquiry_type || "project",
+        source: source || "homepage-project",
         status: "new",
       })
       .returning();
@@ -109,3 +115,4 @@ export async function GET() {
     { status: 405 }
   );
 }
+

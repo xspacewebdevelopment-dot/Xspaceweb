@@ -148,7 +148,13 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
       </section>
 
       {/* Proposal Popup Modal */}
-      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <ProjectModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        inquiryType="service"
+        source="services-page"
+        initialEmail={email}
+      />
     </>
   );
 };

@@ -252,7 +252,8 @@ export const TestimonialsSection: React.FC = () => {
           company: formData.company || undefined,
           service: formData.service || undefined,
           message: formData.message || undefined,
-          source: "homepage",
+          inquiry_type: "project",
+          source: "homepage-project",
         }),
       });
 

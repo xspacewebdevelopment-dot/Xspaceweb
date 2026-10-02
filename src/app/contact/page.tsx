@@ -136,6 +136,7 @@ export default function ContactPage() {
           company: formData.company || undefined,
           service: serviceName,
           message: formData.message || undefined,
+          inquiry_type: "project",
           source: "contact-page",
         }),
       });

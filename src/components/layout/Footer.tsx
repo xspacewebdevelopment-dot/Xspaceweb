@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
@@ -67,6 +68,13 @@ const legalLinks: FooterLink[] = [
 ];
 
 export const Footer: React.FC = () => {
+  const pathname = usePathname();
+
+  // Do not render public consumer footer on CRM routes
+  if (pathname?.startsWith("/crm")) {
+    return null;
+  }
+
   return (
     <footer className="w-full bg-[#07152B] text-white pt-16 sm:pt-20 pb-12 overflow-hidden relative">
       {/* Background ambient decorative curve */}
