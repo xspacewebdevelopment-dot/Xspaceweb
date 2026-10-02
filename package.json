@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
+    "cloudinary": "^2.11.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.3",
     "embla-carousel-autoplay": "^8.6.0",
@@ -23,6 +24,7 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-icons": "^5.7.0",
+    "resend": "^6.32.0",
     "tailwind-merge": "^3.7.0",
     "zod": "^4.6.5"
   },

@@ -1,21 +1,49 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Mail, ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 
 export const NewsNewsletterSection: React.FC = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [responseMsg, setResponseMsg] = useState("");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    setIsSubmitted(true);
-    setTimeout(() => {
+    if (!email.trim()) return;
+
+    try {
+      setLoading(true);
+      setErrorMsg(null);
+
+      const res = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to subscribe. Please try again.");
+      }
+
+      setIsSubmitted(true);
+      setResponseMsg(data.message || "Thank you! You're subscribed to XSPACEWEB updates.");
       setEmail("");
-      setIsSubmitted(false);
-    }, 4000);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setResponseMsg("");
+      }, 6000);
+    } catch (err: any) {
+      console.error("Newsletter subscribe error:", err);
+      setErrorMsg(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -46,12 +74,12 @@ export const NewsNewsletterSection: React.FC = () => {
             </div>
 
             {/* Right Form */}
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 space-y-2">
               {isSubmitted ? (
                 <div className="bg-emerald-500/20 border border-emerald-500/40 rounded-full px-5 py-3.5 flex items-center gap-3 text-emerald-300 animate-in fade-in duration-300">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
                   <span className="text-xs sm:text-sm font-semibold">
-                    Thank you! You have subscribed to XSPACEWEB updates.
+                    {responseMsg}
                   </span>
                 </div>
               ) : (
@@ -64,19 +92,34 @@ export const NewsNewsletterSection: React.FC = () => {
                       type="email"
                       required
                       value={email}
+                      disabled={loading}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email address..."
-                      className="w-full bg-transparent text-white text-xs sm:text-sm placeholder:text-slate-400 focus:outline-none"
+                      className="w-full bg-transparent text-white text-xs sm:text-sm placeholder:text-slate-400 focus:outline-none disabled:opacity-50"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#1668E8] hover:bg-[#1255c2] active:scale-95 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer flex-shrink-0"
+                    disabled={loading || !email}
+                    className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#1668E8] hover:bg-[#1255c2] active:scale-95 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer flex-shrink-0 disabled:opacity-60"
                   >
-                    <span>Subscribe</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {loading ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <>
+                        <span>Subscribe</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </form>
+              )}
+
+              {errorMsg && (
+                <div className="flex items-center gap-1.5 px-3 text-xs text-red-400 font-medium">
+                  <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                  <span>{errorMsg}</span>
+                </div>
               )}
             </div>
           </div>

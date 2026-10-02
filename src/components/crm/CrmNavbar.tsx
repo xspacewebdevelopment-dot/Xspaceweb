@@ -4,7 +4,18 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
-import { LayoutDashboard, Inbox, LogOut, ShieldCheck, User } from "lucide-react";
+import {
+  LayoutDashboard,
+  Inbox,
+  LogOut,
+  ShieldCheck,
+  Newspaper,
+  Calendar,
+  Images,
+  Tv,
+  Mail,
+  Send,
+} from "lucide-react";
 
 interface CrmNavbarProps {
   adminEmail: string;
@@ -20,6 +31,12 @@ export const CrmNavbar: React.FC<CrmNavbarProps> = ({ adminEmail }) => {
   const navLinks = [
     { href: "/crm", label: "Dashboard", icon: LayoutDashboard },
     { href: "/crm/inquiries", label: "Inquiries", icon: Inbox },
+    { href: "/crm/news", label: "News", icon: Newspaper },
+    { href: "/crm/events", label: "Events", icon: Calendar },
+    { href: "/crm/events/gallery", label: "Gallery", icon: Images },
+    { href: "/crm/media", label: "Media", icon: Tv },
+    { href: "/crm/newsletter", label: "Audience", icon: Mail },
+    { href: "/crm/newsletter/send", label: "Broadcast", icon: Send },
   ];
 
   return (
@@ -27,21 +44,36 @@ export const CrmNavbar: React.FC<CrmNavbarProps> = ({ adminEmail }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Main Nav Links */}
-        <nav className="flex items-center gap-1 sm:gap-2">
+        <nav className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              let isActive = false;
+              if (link.href === "/crm") {
+                isActive = pathname === "/crm";
+              } else if (link.href === "/crm/events") {
+                isActive =
+                  pathname === "/crm/events" ||
+                  (pathname.startsWith("/crm/events/") && !pathname.startsWith("/crm/events/gallery"));
+              } else if (link.href === "/crm/events/gallery") {
+                isActive = pathname.startsWith("/crm/events/gallery");
+              } else if (link.href === "/crm/newsletter") {
+                isActive = pathname === "/crm/newsletter";
+              } else if (link.href === "/crm/newsletter/send") {
+                isActive = pathname.startsWith("/crm/newsletter/send");
+              } else {
+                isActive = pathname.startsWith(link.href);
+              }
               const Icon = link.icon;
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all ${
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap ${
                     isActive
-                      ? "bg-blue-50 text-[#1668E8] font-bold"
+                      ? "bg-blue-50 text-[#1668E8] font-bold shadow-2xs"
                       : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                   <span>{link.label}</span>
                 </Link>
               );

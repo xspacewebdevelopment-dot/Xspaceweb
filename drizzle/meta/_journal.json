@@ -8,6 +8,27 @@
       "when": 1790855345586,
       "tag": "0000_wealthy_may_parker",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790922101052,
+      "tag": "0001_cool_toxin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790924017017,
+      "tag": "0002_freezing_morg",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1790935839314,
+      "tag": "0003_ancient_typhoid_mary",
+      "breakpoints": true
     }
   ]
 }
