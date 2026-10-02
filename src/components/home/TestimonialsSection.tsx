@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
@@ -191,6 +191,8 @@ export const TestimonialsSection: React.FC = () => {
   const [carouselPage, setCarouselPage] = useState(0);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -201,6 +203,18 @@ export const TestimonialsSection: React.FC = () => {
   });
 
   const activeTestimonial = SPOTLIGHT_TESTIMONIALS[activeIndex];
+
+  // Listen for prefill events from other homepage CTAs
+  useEffect(() => {
+    const handlePrefill = (e: Event) => {
+      const customEvent = e as CustomEvent<{ email: string }>;
+      if (customEvent.detail?.email) {
+        setFormData((prev) => ({ ...prev, email: customEvent.detail.email }));
+      }
+    };
+    window.addEventListener("prefill-inquiry-email", handlePrefill);
+    return () => window.removeEventListener("prefill-inquiry-email", handlePrefill);
+  }, []);
 
   const handlePrev = () => {
     setActiveIndex((prev) => (prev - 1 + SPOTLIGHT_TESTIMONIALS.length) % SPOTLIGHT_TESTIMONIALS.length);
@@ -220,9 +234,50 @@ export const TestimonialsSection: React.FC = () => {
     setCarouselPage((prev) => (prev + 1) % TOTAL_PAGES);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          company: formData.company || undefined,
+          service: formData.service || undefined,
+          message: formData.message || undefined,
+          source: "homepage",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.details?.[0] || data.error || "Failed to submit inquiry. Please try again.");
+      }
+
+      setSubmitted(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: "",
+      });
+    } catch (err: unknown) {
+      console.error("Submission failed:", err);
+      const msg = err instanceof Error ? err.message : "Something went wrong. Please check your information and try again.";
+      setErrorMessage(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const visibleCards = CAROUSEL_TESTIMONIALS.slice(
@@ -390,7 +445,7 @@ export const TestimonialsSection: React.FC = () => {
           </div>
 
           {/* RIGHT COLUMN: Interactive Project Form Card */}
-          <div className="lg:col-span-6">
+          <div id="project-inquiry" className="lg:col-span-6 scroll-mt-24">
             <div className="relative bg-white rounded-3xl sm:rounded-[32px] p-6 sm:p-8 lg:p-10 shadow-2xl shadow-blue-900/10 border border-slate-100/90 overflow-hidden">
               
               {/* Decorative Hand-drawn Loopy Arrow SVG */}
@@ -467,13 +522,20 @@ export const TestimonialsSection: React.FC = () => {
                       setSubmitted(false);
                       setFormData({ name: "", email: "", phone: "", company: "", service: "", message: "" });
                     }}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all"
+                    className="mt-4 px-6 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all cursor-pointer"
                   >
                     Send Another Message
                   </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Error Alert Box */}
+                  {errorMessage && (
+                    <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium animate-in fade-in">
+                      {errorMessage}
+                    </div>
+                  )}
+
                   {/* Grid Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {/* Your Name */}
@@ -484,10 +546,11 @@ export const TestimonialsSection: React.FC = () => {
                       <input
                         type="text"
                         required
+                        disabled={isSubmitting}
                         placeholder="Your Name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all disabled:opacity-60"
                       />
                     </div>
 
@@ -499,10 +562,11 @@ export const TestimonialsSection: React.FC = () => {
                       <input
                         type="email"
                         required
+                        disabled={isSubmitting}
                         placeholder="Your Email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all disabled:opacity-60"
                       />
                     </div>
 
@@ -513,10 +577,11 @@ export const TestimonialsSection: React.FC = () => {
                       </div>
                       <input
                         type="tel"
+                        disabled={isSubmitting}
                         placeholder="Phone Number"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all disabled:opacity-60"
                       />
                     </div>
 
@@ -527,10 +592,11 @@ export const TestimonialsSection: React.FC = () => {
                       </div>
                       <input
                         type="text"
+                        disabled={isSubmitting}
                         placeholder="Company (Optional)"
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all"
+                        className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all disabled:opacity-60"
                       />
                     </div>
                   </div>
@@ -558,21 +624,29 @@ export const TestimonialsSection: React.FC = () => {
                     </div>
                     <textarea
                       rows={3}
+                      disabled={isSubmitting}
                       placeholder="Tell us about your project..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all resize-none"
+                      className="w-full pl-10 pr-4 py-3 bg-slate-50/80 hover:bg-slate-50 focus:bg-white border border-slate-200/80 focus:border-[#1668E8] rounded-xl text-slate-900 text-sm placeholder:text-slate-400 outline-none focus:ring-2 focus:ring-[#1668E8]/20 transition-all resize-none disabled:opacity-60"
                     />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full mt-2 bg-[#1668E8] hover:bg-blue-700 text-white font-semibold py-3.5 px-6 rounded-full flex items-center justify-between transition-all duration-300 shadow-lg shadow-blue-500/25 group active:scale-[0.99]"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 bg-[#1668E8] hover:bg-blue-700 text-white font-semibold py-3.5 px-6 rounded-full flex items-center justify-between transition-all duration-300 shadow-lg shadow-blue-500/25 group active:scale-[0.99] disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                   >
-                    <span className="text-sm sm:text-base font-bold pl-2">Send Message</span>
+                    <span className="text-sm sm:text-base font-bold pl-2">
+                      {isSubmitting ? "Sending Message..." : "Send Message"}
+                    </span>
                     <div className="w-9 h-9 rounded-full bg-white text-[#1668E8] flex items-center justify-center shadow-sm group-hover:translate-x-1 transition-transform">
-                      <ArrowRight className="w-5 h-5" />
+                      {isSubmitting ? (
+                        <div className="w-4 h-4 border-2 border-[#1668E8] border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-5 h-5" />
+                      )}
                     </div>
                   </button>
                 </form>

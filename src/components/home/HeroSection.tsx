@@ -131,10 +131,10 @@ export const HeroSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3.5xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.08] max-w-[600px]"
+              className="text-3.5xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] max-w-[600px]"
             >
               <span className="block">A Popular Choice</span>
-              <span className="bg-gradient-to-r from-[#2957E8] via-[#1E6BFF] to-[#1693FF] bg-clip-text text-transparent inline-block mt-1 sm:mt-1.5">
+              <span className="bg-gradient-to-r from-[#2957E8] via-[#1E6BFF] to-[#1693FF] bg-clip-text text-transparent inline-block mt-1 sm:mt-1.5 pb-2 -mb-2 pr-1">
                 Among Businesses
               </span>
             </motion.h1>

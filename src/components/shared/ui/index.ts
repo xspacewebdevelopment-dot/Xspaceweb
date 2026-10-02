@@ -6,3 +6,4 @@ export * from "./SecondaryButton";
 export * from "./IconButton";
 export * from "./Card";
 export * from "./CustomSelect";
+export * from "./GoogleMapEmbed";

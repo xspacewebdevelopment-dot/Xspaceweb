@@ -25,9 +25,13 @@ import {
   MoreHorizontal,
   Headphones,
   ArrowRight,
+  ExternalLink,
+  Loader2,
+  AlertCircle,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 import { CustomSelect } from "@/components/shared/ui/CustomSelect";
+import { GoogleMapEmbed } from "@/components/shared/ui/GoogleMapEmbed";
 import { OtherWaysToReachSection } from "@/components/contact/OtherWaysToReachSection";
 
 const projectTypes = [
@@ -71,6 +75,8 @@ export default function ContactPage() {
   const [selectedProjectType, setSelectedProjectType] = useState<string>("web-dev");
   const [openFaq, setOpenFaq] = useState<string | null>("faq-1");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -97,10 +103,54 @@ export default function ContactPage() {
     return () => clearInterval(timer);
   }, []);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    try {
+      const subjectOptionsMap: Record<string, string> = {
+        "web-dev": "Website Development",
+        "app-dev": "Application Development",
+        "saas": "SaaS Product Solutions",
+        "ui-ux": "UI/UX Design & Branding",
+        "marketing": "Digital Marketing & SEO",
+        "general": "General Inquiry & Discussion",
+      };
+
+      const serviceName =
+        subjectOptionsMap[formData.subject] ||
+        formData.subject ||
+        selectedProjectType ||
+        undefined;
+
+      const res = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          company: formData.company || undefined,
+          service: serviceName,
+          message: formData.message || undefined,
+          source: "contact-page",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(
+          data.details?.[0] ||
+            data.error ||
+            "Failed to submit inquiry. Please try again."
+        );
+      }
+
+      setFormSubmitted(true);
       setFormData({
         name: "",
         email: "",
@@ -110,8 +160,20 @@ export default function ContactPage() {
         message: "",
       });
       setSelectedProjectType("web-dev");
-      setFormSubmitted(false);
-    }, 4000);
+
+      setTimeout(() => {
+        setFormSubmitted(false);
+      }, 5000);
+    } catch (err: unknown) {
+      console.error("Contact inquiry submission error:", err);
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please check your information and try again.";
+      setErrorMessage(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -479,6 +541,13 @@ export default function ContactPage() {
                 </div>
               )}
 
+              {errorMessage && (
+                <div className="mb-3 p-2.5 rounded-xl bg-red-50 border border-red-200 text-red-800 flex items-center gap-2 text-xs font-medium animate-in fade-in">
+                  <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
               {/* Compact Form Fields */}
               <form onSubmit={handleFormSubmit} className="space-y-3">
                 {/* Row 1: Your Name & Work Email */}
@@ -625,10 +694,20 @@ export default function ContactPage() {
                 <div className="pt-1.5">
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl bg-[#1668E8] text-white text-xs sm:text-[13px] font-bold hover:bg-[#1255C0] shadow-[0_4px_16px_rgba(22,104,232,0.25)] hover:shadow-[0_6px_20px_rgba(22,104,232,0.35)] transition-all duration-200 active:scale-[0.99] cursor-pointer"
+                    disabled={isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 py-2.5 px-6 rounded-xl bg-[#1668E8] text-white text-xs sm:text-[13px] font-bold hover:bg-[#1255C0] shadow-[0_4px_16px_rgba(22,104,232,0.25)] hover:shadow-[0_6px_20px_rgba(22,104,232,0.35)] transition-all duration-200 active:scale-[0.99] cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <span>Send Message</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        <span>Sending Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
@@ -711,8 +790,8 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Card 2: Our Office Locations with Realistic Mini Maps */}
-              <div className="bg-white rounded-[22px] border border-slate-200/90 p-4 sm:p-4.5 shadow-[0_4px_20px_-2px_rgba(7,21,43,0.04)] space-y-3">
+              {/* Card 2: Our Office Locations with Real Interactive Google Maps */}
+              <div className="bg-white rounded-[22px] border border-slate-200/90 p-4 sm:p-5 shadow-[0_4px_20px_-2px_rgba(7,21,43,0.04)] space-y-4">
                 {/* Header */}
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-full bg-blue-50 text-[#1668E8] flex items-center justify-center flex-shrink-0">
@@ -729,107 +808,81 @@ export default function ContactPage() {
                 </div>
 
                 {/* Subcard 1: Registered Office (Dhanbad) */}
-                <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-200/70 space-y-1.5">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50/70 border border-slate-200/70 space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1.5 text-[11.5px] font-bold text-[#07152B]">
-                      <Building2 className="w-3 h-3 text-[#1668E8]" />
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#07152B]">
+                      <Building2 className="w-3.5 h-3.5 text-[#1668E8]" />
                       <span>Registered Office</span>
                     </div>
-                    <a
-                      href="https://maps.google.com/?q=Dhanbad+Muraidih+Jharkhand"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[10.5px] font-bold text-[#1668E8] hover:underline inline-flex items-center gap-0.5"
-                    >
-                      <span>View on Google Maps</span>
-                      <ArrowRight className="w-2.5 h-2.5" />
-                    </a>
+                    <span className="text-[10px] font-semibold text-slate-400">
+                      CIN: U62012JH2024PTC022737
+                    </span>
                   </div>
 
-                  <div className="flex items-start justify-between gap-2.5">
-                    <div className="space-y-0.5 text-xs text-[#556987]">
-                      <div className="font-bold text-[#07152B] text-[11.5px]">
-                        XSPACEWEB PRIVATE LIMITED
-                      </div>
-                      <p className="text-[11px] leading-snug text-[#556987]">
-                        Muraidih, Dhanbad,<br />
-                        Jharkhand, India 828306
-                      </p>
-                      <div className="text-[10px] font-semibold text-slate-400 pt-0.5">
-                        CIN: U62012JH2024PTC022737
-                      </div>
+                  <div className="space-y-0.5 text-xs text-[#556987]">
+                    <div className="font-bold text-[#07152B] text-[11.5px]">
+                      XSPACEWEB PRIVATE LIMITED
                     </div>
+                    <p className="text-[11px] leading-snug text-[#556987]">
+                      Floor No.: 0, Plot no. 766 &amp; 767, C/O- Khepa Kumar, Post Pochari, Near Petrol Pump, New Colony, Muraidih, Dhanbad, Jharkhand – 828306
+                    </p>
+                  </div>
 
-                    {/* Styled Realistic Mini Map Graphic */}
-                    <div className="w-32 h-16 rounded-lg border border-slate-200 bg-[#E8EDF2] relative overflow-hidden flex-shrink-0 shadow-2xs">
-                      <svg className="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="100%" height="100%" fill="#F1EFEA" />
-                        <path d="M0,0 L25,0 L15,30 L0,20 Z" fill="#D8E8D5" />
-                        <path d="M80,40 L128,30 L128,64 L70,64 Z" fill="#D8E8D5" />
-                        <path d="M0,35 L128,28" stroke="#FFFFFF" strokeWidth="5" />
-                        <path d="M0,35 L128,28" stroke="#FBD38D" strokeWidth="2.5" />
-                        <path d="M50,0 L60,64" stroke="#FFFFFF" strokeWidth="4" />
-                        <path d="M50,0 L60,64" stroke="#E2E8F0" strokeWidth="2" />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center gap-1">
-                        <MapPin className="w-4 h-4 text-red-500 fill-red-500 drop-shadow-2xs" />
-                        <div className="bg-white/95 px-1 py-0.5 rounded shadow-2xs border border-slate-200/80 text-[8px] font-black text-[#07152B] leading-none">
-                          <div>Muraidih</div>
-                          <div className="text-slate-500 text-[7px]">Dhanbad</div>
-                        </div>
-                      </div>
-                    </div>
+                  <GoogleMapEmbed
+                    query="Floor No.: 0, Plot no. 766 & 767, C/O- Khepa Kumar, Post Pochari, Near Petrol Pump, New Colony, Muraidih, Dhanbad, Jharkhand 828306"
+                    zoom={16}
+                    title="Registered Office - Dhanbad"
+                    className="h-[200px] sm:h-[230px] md:h-[240px] shadow-2xs border border-slate-200/80"
+                  />
+
+                  <div className="flex items-center justify-end pt-0.5">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Floor No.: 0, Plot no. 766 & 767, C/O- Khepa Kumar, Post Pochari, Near Petrol Pump, New Colony, Muraidih, Dhanbad, Jharkhand 828306")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[10.5px] font-bold text-[#1668E8] hover:text-[#1255C0] hover:underline transition-colors"
+                    >
+                      <span>Open in Google Maps</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
                   </div>
                 </div>
 
                 {/* Subcard 2: Corporate Office (Kolkata) */}
-                <div className="p-3 rounded-xl bg-slate-50/70 border border-slate-200/70 space-y-1.5">
+                <div className="p-3.5 sm:p-4 rounded-xl bg-slate-50/70 border border-slate-200/70 space-y-2.5">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1.5 text-[11.5px] font-bold text-[#07152B]">
-                      <User className="w-3 h-3 text-[#1668E8]" />
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#07152B]">
+                      <Building2 className="w-3.5 h-3.5 text-[#1668E8]" />
                       <span>Corporate Office</span>
                     </div>
-                    <a
-                      href="https://maps.google.com/?q=Kolkata+Airport+Jangalpur+Road"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-[10.5px] font-bold text-[#1668E8] hover:underline inline-flex items-center gap-0.5"
-                    >
-                      <span>View on Google Maps</span>
-                      <ArrowRight className="w-2.5 h-2.5" />
-                    </a>
                   </div>
 
-                  <div className="flex items-start justify-between gap-2.5">
-                    <div className="space-y-0.5 text-xs text-[#556987]">
-                      <div className="font-bold text-[#07152B] text-[11.5px]">
-                        XSPACEWEB PRIVATE LIMITED
-                      </div>
-                      <p className="text-[11px] leading-snug text-[#556987]">
-                        Airport Gate, Holding number 131 (95), 131,<br />
-                        03, Jangalpur Rd, International Airport,<br />
-                        Kolkata, West Bengal 700081
-                      </p>
+                  <div className="space-y-0.5 text-xs text-[#556987]">
+                    <div className="font-bold text-[#07152B] text-[11.5px]">
+                      XSPACEWEB PRIVATE LIMITED
                     </div>
+                    <p className="text-[11px] leading-snug text-[#556987]">
+                      Floor No.: 0, Holding number 131 (95), 131, Jangalpur Road, Airport Gate No. 03, International Airport, Kolkata, North Twenty Four Parganas, West Bengal – 700081
+                    </p>
+                  </div>
 
-                    {/* Styled Realistic Mini Map Graphic */}
-                    <div className="w-32 h-16 rounded-lg border border-slate-200 bg-[#E8EDF2] relative overflow-hidden flex-shrink-0 shadow-2xs">
-                      <svg className="absolute inset-0 w-full h-full opacity-60" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="100%" height="100%" fill="#F1EFEA" />
-                        <path d="M0,0 Q25,30 8,64 L0,64 Z" fill="#C6E2FF" />
-                        <path d="M85,0 L128,0 L128,28 L75,15 Z" fill="#D8E8D5" />
-                        <path d="M8,20 L128,45" stroke="#FFFFFF" strokeWidth="5" />
-                        <path d="M8,20 L128,45" stroke="#FBD38D" strokeWidth="2.5" />
-                        <path d="M75,0 L65,64" stroke="#FFFFFF" strokeWidth="4" />
-                      </svg>
-                      <div className="absolute inset-0 flex items-center justify-center gap-1">
-                        <MapPin className="w-4 h-4 text-red-500 fill-red-500 drop-shadow-2xs" />
-                        <div className="bg-white/95 px-1 py-0.5 rounded shadow-2xs border border-slate-200/80 text-[7.5px] font-black text-[#07152B] leading-none">
-                          <div>Kolkata</div>
-                          <div className="text-slate-500 text-[6.5px]">Intl Airport</div>
-                        </div>
-                      </div>
-                    </div>
+                  <GoogleMapEmbed
+                    query="Floor No.: 0, Holding number 131 (95), 131, Jangalpur Road, Airport Gate No. 03, International Airport, Kolkata, North Twenty Four Parganas, West Bengal 700081"
+                    zoom={16}
+                    title="Corporate Office - Kolkata"
+                    className="h-[200px] sm:h-[230px] md:h-[240px] shadow-2xs border border-slate-200/80"
+                  />
+
+                  <div className="flex items-center justify-end pt-0.5">
+                    <a
+                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Floor No.: 0, Holding number 131 (95), 131, Jangalpur Road, Airport Gate No. 03, International Airport, Kolkata, North Twenty Four Parganas, West Bengal 700081")}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-[10.5px] font-bold text-[#1668E8] hover:text-[#1255C0] hover:underline transition-colors"
+                    >
+                      <span>Open in Google Maps</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
                   </div>
                 </div>
 

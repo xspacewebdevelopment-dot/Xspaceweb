@@ -1,15 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import { ProjectModal } from "@/components/shared/ProjectModal";
 import BlurText from "@/components/ui/BlurText";
 
 export const StartProjectBannerSection: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
     <>
       <section className="w-full bg-gradient-to-b from-white via-slate-50 to-[#EBF3FE] py-10 sm:py-14 relative select-none">
@@ -60,23 +57,19 @@ export const StartProjectBannerSection: React.FC = () => {
 
               {/* Right Column: Start a Project Button */}
               <div className="flex-shrink-0 pt-2 md:pt-0">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
+                <a
+                  href="#project-inquiry"
                   className="inline-flex items-center gap-2.5 px-7 py-3.5 sm:px-8 sm:py-4 rounded-full bg-[#1668E8] text-white font-bold text-sm sm:text-base hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 group cursor-pointer"
                 >
                   <span>Start a Project</span>
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </a>
               </div>
             </div>
 
           </div>
         </Container>
       </section>
-
-      {/* Project Request Popup Modal */}
-      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };

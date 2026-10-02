@@ -3,16 +3,22 @@
 import React, { useState } from "react";
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import { ProjectModal } from "@/components/shared/ProjectModal";
 import BlurText from "@/components/ui/BlurText";
 
 export const BrighterTomorrowSection: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleGetStarted = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsModalOpen(true);
+    if (typeof window !== "undefined") {
+      if (email.trim()) {
+        window.dispatchEvent(new CustomEvent("prefill-inquiry-email", { detail: { email: email.trim() } }));
+      }
+      const el = document.getElementById("project-inquiry");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   const scrollToTop = () => {
@@ -167,9 +173,6 @@ export const BrighterTomorrowSection: React.FC = () => {
           </div>
         </Container>
       </section>
-
-      {/* Project Proposal Form Popup Modal */}
-      <ProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
   );
 };
