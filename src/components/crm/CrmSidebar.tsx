@@ -138,28 +138,34 @@ export const CrmSidebar: React.FC<CrmSidebarProps> = ({ adminEmail }) => {
     if (exact) {
       return pathname === href;
     }
+    if (href === "/crm/news") {
+      return pathname === "/crm/news" || pathname.startsWith("/crm/news/");
+    }
     if (href === "/crm/events") {
       return (
-        pathname === "/crm/events" ||
-        (pathname.startsWith("/crm/events/") && !pathname.startsWith("/crm/events/gallery"))
+        (pathname === "/crm/events" || pathname.startsWith("/crm/events/")) &&
+        !pathname.startsWith("/crm/events/gallery")
       );
     }
     if (href === "/crm/events/gallery") {
-      return pathname.startsWith("/crm/events/gallery");
+      return pathname === "/crm/events/gallery" || pathname.startsWith("/crm/events/gallery/");
     }
     if (href === "/crm/careers/openings") {
-      return pathname.startsWith("/crm/careers/openings");
+      return pathname === "/crm/careers/openings" || pathname.startsWith("/crm/careers/openings/");
     }
     if (href === "/crm/careers/applications") {
-      return pathname.startsWith("/crm/careers/applications");
+      return pathname === "/crm/careers/applications" || pathname.startsWith("/crm/careers/applications/");
     }
     if (href === "/crm/careers/talent-pool") {
-      return pathname.startsWith("/crm/careers/talent-pool");
+      return pathname === "/crm/careers/talent-pool" || pathname.startsWith("/crm/careers/talent-pool/");
+    }
+    if (href === "/crm/newsletter") {
+      return pathname === "/crm/newsletter";
     }
     if (href === "/crm/newsletter/send") {
-      return pathname.startsWith("/crm/newsletter/send");
+      return pathname === "/crm/newsletter/send" || pathname.startsWith("/crm/newsletter/send/");
     }
-    return pathname.startsWith(href);
+    return pathname === href || pathname.startsWith(`${href}/`);
   };
 
   const sidebarContent = (

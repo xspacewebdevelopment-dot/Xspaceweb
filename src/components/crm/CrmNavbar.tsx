@@ -54,7 +54,9 @@ export const CrmNavbar: React.FC<CrmNavbarProps> = ({ adminEmail }) => {
         {/* Main Nav Links */}
         <nav className="flex items-center gap-1 sm:gap-1.5 overflow-x-auto py-2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (link.href !== "/crm" && pathname.startsWith(link.href));
+              const isActive =
+                pathname === link.href ||
+                (link.href !== "/crm" && (pathname === link.href || pathname.startsWith(`${link.href}/`)));
               const Icon = link.icon;
               return (
                 <Link
