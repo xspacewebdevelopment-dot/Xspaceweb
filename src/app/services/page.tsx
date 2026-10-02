@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { ServicesHeroSection } from "@/components/services/ServicesHeroSection";
-import { ServicesSolutionsGrid } from "@/components/services/ServicesSolutionsGrid";
-import { ServicesApproachSection } from "@/components/services/ServicesApproachSection";
-import { ServicesCosmicContactSection } from "@/components/services/ServicesCosmicContactSection";
+import {
+  ServicesHeroSection,
+  ServicesSolutionsSection,
+  ServicesCosmicContactSection,
+} from "@/components/services";
 import { ProjectModal } from "@/components/shared/ProjectModal";
 
 export default function ServicesPage() {
@@ -17,26 +18,32 @@ export default function ServicesPage() {
     setIsModalOpen(true);
   };
 
-  const handleSelectService = (serviceTitle: string) => {
-    setInitialService(serviceTitle);
+  const handleSelectServiceQuote = (serviceName: string) => {
+    setInitialService(serviceName);
     setIsModalOpen(true);
   };
 
+  const handleScrollToSolutions = () => {
+    const el = document.getElementById("services-solutions");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="bg-[#07152B] min-h-screen text-white">
-      {/* 1. Hero Section */}
-      <ServicesHeroSection onOpenModal={handleOpenGeneralQuote} />
+    <div className="w-full min-h-screen bg-white">
+      {/* 1. Exact Replica Hero Section Matching Reference Image 1 */}
+      <ServicesHeroSection onGetStarted={handleOpenGeneralQuote} />
 
-      {/* 2. Eight Core Solutions Grid */}
-      <ServicesSolutionsGrid onSelectService={handleSelectService} />
+      {/* 2. Solutions for Every Business Need (8 Services Grid Matching Reference Image 2) */}
+      <div id="services-solutions">
+        <ServicesSolutionsSection onExploreService={handleSelectServiceQuote} />
+      </div>
 
-      {/* 3. Methodology & Approach */}
-      <ServicesApproachSection />
+      {/* 3. Cosmic Creation of Adam AI Section + Contact Form Matching Reference Image 3 */}
+      <ServicesCosmicContactSection onExploreServicesClick={handleScrollToSolutions} />
 
-      {/* 4. Cosmic Creative CTA (Bottom) */}
-      <ServicesCosmicContactSection onOpenModal={handleOpenGeneralQuote} />
-
-      {/* Reusable Inquiry Modal */}
+      {/* Global Interactive Proposal Form Modal */}
       <ProjectModal
         isOpen={isModalOpen}
         onClose={() => {

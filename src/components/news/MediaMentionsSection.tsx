@@ -22,7 +22,9 @@ export const MediaMentionsSection: React.FC<MediaMentionsSectionProps> = ({
         if (a.displayOrder !== b.displayOrder) {
           return a.displayOrder - b.displayOrder;
         }
-        return new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime();
+        const timeB = b.publishedAt ? new Date(b.publishedAt).getTime() : 0;
+        const timeA = a.publishedAt ? new Date(a.publishedAt).getTime() : 0;
+        return timeB - timeA;
       })
       .slice(0, 4);
   }, [initialMentions]);
@@ -151,11 +153,13 @@ export const MediaMentionsSection: React.FC<MediaMentionsSectionProps> = ({
 
                 {/* Date */}
                 <div className="text-[11px] font-medium text-slate-400 mb-2">
-                  {new Date(item.publishedAt).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  })}
+                  {item.publishedAt
+                    ? new Date(item.publishedAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "numeric",
+                      })
+                    : ""}
                 </div>
 
                 {/* Headline */}

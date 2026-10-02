@@ -101,6 +101,7 @@ export const events = pgTable("events", {
 
 export type Event = typeof events.$inferSelect;
 export type NewEvent = typeof events.$inferInsert;
+export type EventItem = Event;
 
 // ==========================================
 // EVENT GALLERY SCHEMA
@@ -109,9 +110,12 @@ export type NewEvent = typeof events.$inferInsert;
 export const eventGalleryImages = pgTable("event_gallery_images", {
   id: uuid("id").defaultRandom().primaryKey(),
   eventId: uuid("event_id").references(() => events.id, { onDelete: "set null" }),
-  imageUrl: text("image_url").notNull(),
-  publicId: text("public_id").notNull(),
+  title: text("title"),
   caption: text("caption"),
+  imageUrl: text("image_url").notNull(),
+  imagePublicId: text("image_public_id"),
+  publicId: text("public_id"),
+  isFeatured: boolean("is_featured").notNull().default(false),
   displayOrder: integer("display_order").notNull().default(0),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
 });
@@ -125,6 +129,8 @@ export type NewEventGalleryImage = typeof eventGalleryImages.$inferInsert;
 
 export const mediaStatusEnum = ["draft", "published", "unpublished"] as const;
 export type MediaStatus = (typeof mediaStatusEnum)[number];
+export const mediaMentionStatusEnum = mediaStatusEnum;
+export type MediaMentionStatus = MediaStatus;
 
 export const mediaMentions = pgTable("media_mentions", {
   id: uuid("id").defaultRandom().primaryKey(),
@@ -143,6 +149,7 @@ export const mediaMentions = pgTable("media_mentions", {
 
 export type MediaMention = typeof mediaMentions.$inferSelect;
 export type NewMediaMention = typeof mediaMentions.$inferInsert;
+export type MediaMentionItem = MediaMention;
 
 // ==========================================
 // NEWSLETTER SUBSCRIBERS & BROADCASTS SCHEMA
@@ -210,20 +217,25 @@ export const careerOpeningStatusEnum = [
   "archived",
 ] as const;
 export type CareerOpeningStatus = (typeof careerOpeningStatusEnum)[number];
+export const openingStatusEnum = careerOpeningStatusEnum;
+export type OpeningStatus = CareerOpeningStatus;
 
 export interface SalaryStructure {
-  min?: number;
-  max?: number;
-  currency: string;
-  period: "month" | "year";
-  isPublic: boolean;
+  min?: number | null;
+  max?: number | null;
+  currency?: string;
+  period?: "monthly" | "annual";
+  text?: string;
+  isPublic?: boolean;
 }
 
 export interface InternshipStructure {
-  durationMonths: number;
+  duration?: string;
+  stipend?: string;
+  durationMonths?: number;
   stipendAmount?: number;
-  stipendType: "paid" | "unpaid";
-  ppoOpportunity: boolean;
+  stipendType?: "paid" | "unpaid";
+  ppoOpportunity?: boolean;
 }
 
 export const careerOpenings = pgTable("career_openings", {

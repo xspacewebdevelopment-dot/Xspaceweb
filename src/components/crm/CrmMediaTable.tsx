@@ -266,11 +266,13 @@ export const CrmMediaTable: React.FC = () => {
 
                     {/* Date */}
                     <td className="py-3.5 px-4 text-slate-500 whitespace-nowrap">
-                      {new Date(item.publishedAt).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                      })}
+                      {item.publishedAt
+                        ? new Date(item.publishedAt).toLocaleDateString("en-GB", {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                          })
+                        : "—"}
                     </td>
 
                     {/* Display Order */}

@@ -161,11 +161,13 @@ export const MediaCoverageList: React.FC<MediaCoverageListProps> = ({
                   </div>
 
                   <div className="text-[11px] font-medium text-slate-400 mb-2">
-                    {new Date(item.publishedAt).toLocaleDateString("en-GB", {
-                      day: "2-digit",
-                      month: "short",
-                      year: "numeric",
-                    })}
+                    {item.publishedAt
+                      ? new Date(item.publishedAt).toLocaleDateString("en-GB", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                        })
+                      : ""}
                   </div>
 
                   <h3 className="text-base font-bold text-[#07152B] group-hover:text-[#1668E8] transition-colors leading-snug line-clamp-3 mb-4">
