@@ -114,7 +114,6 @@ export const eventGalleryImages = pgTable("event_gallery_images", {
   caption: text("caption"),
   imageUrl: text("image_url").notNull(),
   imagePublicId: text("image_public_id"),
-  publicId: text("public_id"),
   isFeatured: boolean("is_featured").notNull().default(false),
   displayOrder: integer("display_order").notNull().default(0),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
