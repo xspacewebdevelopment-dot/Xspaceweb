@@ -1,0 +1,61 @@
+/* Scoped 3D and interaction styles for Product Showcase section */
+
+.product-showcase-perspective {
+  perspective: 1400px;
+  -webkit-perspective: 1400px;
+}
+
+.product-card-3d-root {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Embla Carousel viewport custom setup */
+.product-embla-viewport {
+  overflow: visible !important;
+  width: 100%;
+}
+
+.product-embla-container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Glass & light reflection utilities */
+.product-card-gloss {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.88) 100%
+  );
+}
+
+.product-card-glass-border {
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+/* Subtle breathing ambient animation */
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1deg);
+  }
+}
+
+.animate-ambient-float {
+  animation: ambientFloat 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-ambient-float {
+    animation: none !important;
+  }
+  .product-showcase-perspective {
+    perspective: none !important;
+  }
+}
