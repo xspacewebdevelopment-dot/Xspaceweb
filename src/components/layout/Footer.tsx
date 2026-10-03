@@ -22,6 +22,7 @@ const companyLinks: FooterColumn = {
   links: [
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
+    { label: "Certification", href: "/certification" },
     { label: "Our Process", href: "/#process" },
     { label: "Contact", href: "/contact" },
   ],
@@ -54,7 +55,6 @@ const resourceLinks: FooterColumn = {
   title: "RESOURCES",
   links: [
     { label: "Blog", href: "/insights" },
-    { label: "Certification", href: "/certification" },
     { label: "Case Studies", href: "/case-studies" },
     { label: "Help Center", href: "/contact" },
   ],
