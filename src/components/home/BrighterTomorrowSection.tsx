@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 import BlurText from "@/components/ui/BlurText";
 import { ProjectModal } from "@/components/shared/ProjectModal";
@@ -13,10 +13,6 @@ export const BrighterTomorrowSection: React.FC = () => {
   const handleGetStarted = (e: React.FormEvent) => {
     e.preventDefault();
     setIsModalOpen(true);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
 
@@ -120,51 +116,35 @@ export const BrighterTomorrowSection: React.FC = () => {
           </div>
         </div>
 
-        {/* BOTTOM STATS & SCROLL INDICATOR BAR */}
-        <Container size="wide" className="relative z-10 pb-4 sm:pb-8 pt-8">
-          <div className="w-full flex justify-center md:grid md:grid-cols-5 gap-6 sm:gap-8 items-end border-t border-slate-300/60 pt-6">
+        {/* BOTTOM STATS BAR */}
+        <Container size="wide" className="relative z-10 pb-4 sm:pb-8 pt-8 hidden md:block">
+          <div className="w-full grid grid-cols-4 gap-6 sm:gap-8 items-end border-t border-slate-300/60 pt-6">
             {/* Stat 1 */}
-            <div className="hidden md:block space-y-1">
+            <div className="space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">50+</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Projects Delivered</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Stat 2 */}
-            <div className="hidden md:block space-y-1">
+            <div className="space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">10+</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Industries Served</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Stat 3 */}
-            <div className="hidden md:block space-y-1">
+            <div className="space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">3+</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Years of Experience</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Stat 4 */}
-            <div className="hidden md:block space-y-1">
+            <div className="space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">100%</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Client Satisfaction</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
-            </div>
-
-            {/* Scroll to Explore Action Button */}
-            <div className="flex flex-col items-center md:items-end justify-center select-none pt-2 md:pt-0">
-              <button
-                type="button"
-                onClick={scrollToTop}
-                className="group flex flex-col items-center gap-1.5 cursor-pointer"
-              >
-                <div className="w-11 h-11 rounded-full border border-slate-400/80 bg-white/70 backdrop-blur-sm text-slate-700 flex items-center justify-center group-hover:border-[#1668E8] group-hover:bg-[#1668E8] group-hover:text-white transition-all shadow-md group-hover:scale-110">
-                  <ArrowDown className="w-5 h-5 transition-transform group-hover:translate-y-0.5" />
-                </div>
-                <span className="text-[11px] font-bold text-slate-700 group-hover:text-[#1668E8] transition-colors">
-                  Scroll to Explore
-                </span>
-              </button>
             </div>
           </div>
         </Container>
