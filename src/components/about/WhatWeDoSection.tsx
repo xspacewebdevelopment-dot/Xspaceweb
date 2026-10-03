@@ -84,38 +84,38 @@ export const WhatWeDoSection: React.FC = () => {
             </div>
           </div>
 
-          {/* 5 Service Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-5">
+          {/* 5 Service Cards Grid (2 columns on mobile, responsive up to 5 on desktop) */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
             {services.map((item, index) => (
               <Link
                 key={index}
                 href="/services"
-                className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-100/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-lg hover:border-[#1668E8]/30 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                className="bg-white rounded-2xl p-3.5 sm:p-6 border border-slate-100/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:shadow-lg hover:border-[#1668E8]/30 transition-all duration-300 flex flex-col justify-between group cursor-pointer"
               >
                 <div>
                   {/* Circular Icon Container */}
                   <div
-                    className={`w-12 h-12 rounded-full ${item.iconBg} ${item.iconColor} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${item.iconBg} ${item.iconColor} flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 transition-transform duration-300 [&_svg]:w-5 [&_svg]:h-5 sm:[&_svg]:w-6 sm:[&_svg]:h-6`}
                   >
                     {item.icon}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-[17px] font-bold text-[#07152B] leading-snug mb-2 group-hover:text-[#1668E8] transition-colors">
+                  <h3 className="text-sm sm:text-[17px] font-bold text-[#07152B] leading-snug mb-1.5 sm:mb-2 group-hover:text-[#1668E8] transition-colors">
                     {item.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                  <p className="text-[11px] sm:text-sm text-slate-500 leading-relaxed mb-2.5 sm:mb-0">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Learn More link */}
-                <div className="pt-4 mt-auto">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1668E8] group-hover:text-[#1255c4] transition-colors">
+                <div className="pt-2 sm:pt-4 mt-auto">
+                  <span className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-bold text-[#1668E8] group-hover:text-[#1255c4] transition-colors">
                     Learn More{" "}
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
               </Link>

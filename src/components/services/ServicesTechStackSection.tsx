@@ -104,20 +104,20 @@ export const ServicesTechStackSection: React.FC = () => {
           })}
         </div>
 
-        {/* Technologies Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Technologies Grid (2 columns on mobile, responsive for desktop) */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {currentCategory.technologies.map((tech, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 hover:border-blue-300 hover:shadow-lg transition-all duration-200"
+              className="p-3.5 sm:p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 hover:border-blue-300 hover:shadow-lg transition-all duration-200"
             >
-              <div className="flex items-center justify-between mb-3">
-                <h4 className="text-lg font-extrabold text-[#07152B]">{tech.name}</h4>
-                <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-[#1668E8]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-0 mb-2 sm:mb-3">
+                <h4 className="text-sm sm:text-lg font-extrabold text-[#07152B]">{tech.name}</h4>
+                <span className="self-start text-[9.5px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-[#1668E8]">
                   {tech.tag}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-[11px] sm:text-sm text-slate-600 leading-relaxed">
                 {tech.description}
               </p>
             </div>

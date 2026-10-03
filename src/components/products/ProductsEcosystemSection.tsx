@@ -212,27 +212,27 @@ export const ProductsEcosystemSection: React.FC<ProductsEcosystemSectionProps> =
             </div>
           </div>
 
-          {/* 4 Audience Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+          {/* 4 Audience Cards Grid (2 columns on mobile, responsive up to 4 on desktop) */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
             {audienceCards.map((card, idx) => {
               const Icon = card.icon;
               return (
                 <div
                   key={idx}
-                  className="rounded-[24px] bg-white border border-slate-200/80 p-6 shadow-[0_4px_20px_rgba(7,21,43,0.04)] hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col items-center text-center space-y-3 group"
+                  className="rounded-2xl sm:rounded-[24px] bg-white border border-slate-200/80 p-3.5 sm:p-6 shadow-[0_4px_20px_rgba(7,21,43,0.04)] hover:shadow-xl hover:border-blue-200 transition-all duration-300 flex flex-col items-center text-center space-y-2 sm:space-y-3 group"
                 >
                   {/* Icon Circle */}
-                  <div className="w-14 h-14 rounded-2xl bg-[#EBF3FE] text-[#1668E8] flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:bg-[#1668E8] group-hover:text-white transition-all duration-300">
-                    <Icon className="w-7 h-7" />
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-[#EBF3FE] text-[#1668E8] flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:bg-[#1668E8] group-hover:text-white transition-all duration-300">
+                    <Icon className="w-5 h-5 sm:w-7 sm:h-7" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-black text-[#07152B] tracking-tight">
+                  <h3 className="text-xs sm:text-lg font-black text-[#07152B] tracking-tight">
                     {card.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-xs sm:text-[13px] text-slate-500 font-normal leading-relaxed">
+                  <p className="text-[10.5px] sm:text-[13px] text-slate-500 font-normal leading-relaxed">
                     {card.description}
                   </p>
                 </div>

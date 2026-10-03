@@ -228,22 +228,22 @@ export const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 6 Services Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-4.5 items-stretch">
+        {/* 6 Services Cards Grid (2-column side-by-side on mobile, responsive up to 6 on desktop) */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-4.5 items-stretch">
           {services.map((service) => (
             <Link
               key={service.id}
               href={service.href}
-              className="group relative rounded-[20px] bg-white border border-slate-200/80 p-5 sm:p-5.5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:bg-[#1668E8] hover:border-[#1668E8] hover:shadow-[0_20px_40px_-8px_rgba(22,104,232,0.38)] cursor-pointer select-none"
+              className="group relative rounded-[18px] sm:rounded-[20px] bg-white border border-slate-200/80 p-3.5 sm:p-5.5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:bg-[#1668E8] hover:border-[#1668E8] hover:shadow-[0_20px_40px_-8px_rgba(22,104,232,0.38)] cursor-pointer select-none"
               style={{
                 boxShadow: "0 4px 20px -2px rgba(7, 21, 43, 0.04)",
               }}
             >
               <div>
                 {/* Top Icon Badge with Glow */}
-                <div className="relative mb-5 inline-block">
+                <div className="relative mb-3 sm:mb-5 inline-block">
                   <div
-                    className={`w-13 h-13 rounded-2xl ${service.iconBgColor} flex items-center justify-center border transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:border-white group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.15)]`}
+                    className={`w-10 h-10 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl ${service.iconBgColor} flex items-center justify-center border transition-all duration-300 group-hover:scale-105 group-hover:bg-white group-hover:border-white group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.15)] [&_svg]:w-5 [&_svg]:h-5 sm:[&_svg]:w-7 sm:[&_svg]:h-7`}
                     style={{
                       borderColor: service.iconBorderColor,
                       boxShadow: `0 8px 20px -4px ${service.iconGlowColor}`,
@@ -254,26 +254,26 @@ export const ServicesSection: React.FC = () => {
                 </div>
 
                 {/* Step Number */}
-                <div className="text-[12px] font-bold text-slate-400 group-hover:text-blue-100 tracking-wide mb-1 select-none transition-colors duration-200">
+                <div className="text-[11px] sm:text-[12px] font-bold text-slate-400 group-hover:text-blue-100 tracking-wide mb-1 select-none transition-colors duration-200">
                   {service.number}
                 </div>
 
                 {/* Card Title */}
-                <h3 className="text-[17px] font-extrabold text-[#07152B] group-hover:text-white leading-[1.25] mb-2 transition-colors duration-200">
+                <h3 className="text-sm sm:text-[17px] font-extrabold text-[#07152B] group-hover:text-white leading-[1.25] mb-1.5 sm:mb-2 transition-colors duration-200">
                   {service.title.map((line, i) => (
                     <span key={i} className="block">
                       {line}
                     </span>
                   ))}
                   {service.subTitle && (
-                    <span className="text-[11px] font-normal text-slate-400 group-hover:text-blue-100 block mt-0.5 tracking-tight font-sans transition-colors duration-200">
+                    <span className="text-[10px] sm:text-[11px] font-normal text-slate-400 group-hover:text-blue-100 block mt-0.5 tracking-tight font-sans transition-colors duration-200">
                       {service.subTitle}
                     </span>
                   )}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[13px] text-[#556987] group-hover:text-blue-50/95 leading-relaxed mb-5 transition-colors duration-200">
+                <p className="text-[11px] sm:text-[13px] text-[#556987] group-hover:text-blue-50/95 leading-relaxed mb-3 sm:mb-5 transition-colors duration-200">
                   {service.description}
                 </p>
               </div>
@@ -281,10 +281,10 @@ export const ServicesSection: React.FC = () => {
               {/* Bottom Action Link */}
               <div className="pt-2">
                 <div
-                  className="inline-flex items-center gap-1.5 text-[13px] font-bold text-[#1668E8] group-hover:text-white transition-colors duration-200"
+                  className="inline-flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-[13px] font-bold text-[#1668E8] group-hover:text-white transition-colors duration-200"
                 >
                   <span>Learn More</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
               </div>
             </Link>

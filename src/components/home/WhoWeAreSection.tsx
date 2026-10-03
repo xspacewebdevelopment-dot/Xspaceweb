@@ -178,25 +178,25 @@ export const WhoWeAreSection: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: 2x2 Pillars Grid */}
-          <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-7 sm:gap-8 content-center h-full py-2 lg:py-6 pl-0 lg:pl-2">
+          {/* RIGHT COLUMN: 2x2 Pillars Grid (2 columns side-by-side on mobile, 2x2 on desktop) */}
+          <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-2 gap-4 sm:gap-8 content-center h-full py-2 lg:py-6 pl-0 lg:pl-2">
             {pillars.map((pillar) => (
               <div
                 key={pillar.title}
                 className="flex flex-col items-start group"
               >
                 {/* Circular Icon Badge */}
-                <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#EBF3FE] flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110 shadow-[0_4px_16px_rgba(22,104,232,0.1)]">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#EBF3FE] flex items-center justify-center mb-2.5 sm:mb-4 transition-transform duration-300 group-hover:scale-110 shadow-[0_4px_16px_rgba(22,104,232,0.1)] [&_svg]:w-5 [&_svg]:h-5 sm:[&_svg]:w-7 sm:[&_svg]:h-7">
                   {pillar.renderIcon()}
                 </div>
 
                 {/* Title */}
-                <h3 className="text-lg sm:text-[19px] font-extrabold text-[#07152B] tracking-tight mb-1.5 group-hover:text-[#1668E8] transition-colors">
+                <h3 className="text-[15px] sm:text-[19px] font-extrabold text-[#07152B] tracking-tight mb-1 sm:mb-1.5 group-hover:text-[#1668E8] transition-colors">
                   {pillar.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm text-[#556987] leading-relaxed max-w-[240px]">
+                <p className="text-xs sm:text-sm text-[#556987] leading-relaxed max-w-full sm:max-w-[240px]">
                   {pillar.description}
                 </p>
               </div>

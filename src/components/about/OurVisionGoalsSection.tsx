@@ -105,26 +105,26 @@ export const OurVisionGoalsSection: React.FC = () => {
           </div>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 4 Cards Grid (2 columns on mobile, responsive up to 4 on desktop) */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {goals.map((goal, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-100/90 shadow-[0_2px_14px_rgba(0,0,0,0.03)] hover:shadow-lg hover:border-[#1668E8]/30 transition-all duration-300 flex flex-col justify-between group"
+              className="bg-white rounded-2xl p-3.5 sm:p-7 border border-slate-100/90 shadow-[0_2px_14px_rgba(0,0,0,0.03)] hover:shadow-lg hover:border-[#1668E8]/30 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div
-                  className={`w-12 h-12 rounded-full ${goal.iconBg} ${goal.iconColor} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${goal.iconBg} ${goal.iconColor} flex items-center justify-center mb-3 sm:mb-5 group-hover:scale-110 transition-transform duration-300 [&_svg]:w-5 [&_svg]:h-5 sm:[&_svg]:w-6 sm:[&_svg]:h-6`}
                 >
                   {goal.icon}
                 </div>
-                <h3 className="text-lg sm:text-[19px] font-extrabold text-[#07152B] tracking-tight mb-1">
+                <h3 className="text-sm sm:text-[19px] font-extrabold text-[#07152B] tracking-tight mb-1">
                   {goal.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#1668E8] mb-3">
+                <p className="text-[11px] sm:text-sm font-semibold text-[#1668E8] mb-1.5 sm:mb-3">
                   {goal.highlight}
                 </p>
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                <p className="text-[11px] sm:text-sm text-slate-500 leading-relaxed">
                   {goal.description}
                 </p>
               </div>
