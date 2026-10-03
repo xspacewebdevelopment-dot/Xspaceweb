@@ -49,7 +49,7 @@ export const NewsNewsletterSection: React.FC = () => {
   return (
     <section className="w-full bg-[#F8FAFC] pb-16 sm:pb-20">
       <Container size="wide">
-        <div className="relative rounded-3xl bg-[#07152B] text-white p-8 sm:p-10 md:p-12 overflow-hidden shadow-2xl">
+          <div className="relative rounded-3xl bg-[#07152B] text-white p-6 sm:p-10 md:p-12 overflow-hidden shadow-2xl">
           {/* Glowing blue gradient accent on the right */}
           <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-[#1668E8]/40 via-[#1668E8]/10 to-transparent pointer-events-none rounded-r-3xl" />
           <div className="absolute -bottom-16 -right-16 w-64 h-64 bg-[#1668E8]/30 rounded-full blur-3xl pointer-events-none" />
@@ -85,9 +85,9 @@ export const NewsNewsletterSection: React.FC = () => {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col sm:flex-row items-center gap-3 bg-white/10 backdrop-blur-md p-1.5 sm:p-2 rounded-full border border-white/20 shadow-inner"
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-2 sm:bg-white/10 sm:backdrop-blur-md sm:p-1.5 sm:rounded-full sm:border sm:border-white/20 sm:shadow-inner"
                 >
-                  <div className="flex-grow w-full px-3">
+                  <div className="flex-grow w-full bg-white/10 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none border border-white/20 sm:border-none rounded-2xl sm:rounded-full px-4 py-3 sm:py-1">
                     <input
                       type="email"
                       required
@@ -101,7 +101,7 @@ export const NewsNewsletterSection: React.FC = () => {
                   <button
                     type="submit"
                     disabled={loading || !email}
-                    className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#1668E8] hover:bg-[#1255c2] active:scale-95 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer flex-shrink-0 disabled:opacity-60"
+                    className="w-full sm:w-auto px-6 py-3 rounded-2xl sm:rounded-full bg-[#1668E8] hover:bg-[#1255c2] active:scale-95 text-white text-xs sm:text-sm font-semibold inline-flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer flex-shrink-0 disabled:opacity-60"
                   >
                     {loading ? (
                       <Loader2 className="w-4 h-4 animate-spin" />

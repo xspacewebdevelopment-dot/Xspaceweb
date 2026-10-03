@@ -26,12 +26,12 @@ export const SITE_CONFIG = {
     { label: "Services", href: "/services" },
     { label: "Studio", href: "/#studio" },
     { label: "Industries", href: "/#industries" },
-    { label: "About", href: "/#about" },
+    { label: "About", href: "/about" },
     { label: "News & Updates", href: "/news-and-updates" },
   ],
   footerLinks: {
     company: [
-      { label: "About Us", href: "/#about" },
+      { label: "About Us", href: "/about" },
       { label: "Careers", href: "/careers" },
       { label: "Our Process", href: "/#process" },
       { label: "Contact", href: "/contact" },

@@ -17,9 +17,9 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/", id: "home" },
-  { label: "Services", href: "/#services", id: "services" },
-  { label: "About", href: "/#about", id: "about" },
-  { label: "Product", href: "/#products", id: "products" },
+  { label: "Services", href: "/services", id: "services" },
+  { label: "About", href: "/about", id: "about" },
+  { label: "Product", href: "/products", id: "products" },
   { label: "News & Event", href: "/news-and-updates", id: "news-and-events" },
   { label: "Careers", href: "/careers", id: "careers" },
   { label: "Contact", href: "/contact", id: "contact" },
@@ -29,85 +29,43 @@ export const Navbar: React.FC = () => {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [projectModalOpen, setProjectModalOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("home");
 
   // Do not render public consumer navbar on CRM routes
   if (pathname?.startsWith("/crm")) {
     return null;
   }
 
-  useEffect(() => {
-    if (pathname !== "/") return;
-
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      if (scrollY < 250) {
-        setActiveSection("home");
-        return;
-      }
-
-      // Check sections bottom-to-top so the deepest visible section wins
-      const sectionIds = ["products", "about", "services"];
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 320) {
-            setActiveSection(id);
-            return;
-          }
-        }
-      }
-
-      setActiveSection("home");
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
-
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
-    if (item.href.startsWith("/#")) {
+    if (item.href === "/") {
+      if (pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (mobileMenuOpen) setMobileMenuOpen(false);
+      }
+    } else if (item.href.startsWith("/#")) {
       const targetId = item.href.replace("/#", "");
       if (pathname === "/") {
         const el = document.getElementById(targetId);
         if (el) {
           e.preventDefault();
-          setActiveSection(item.id);
           el.scrollIntoView({ behavior: "smooth" });
           if (mobileMenuOpen) setMobileMenuOpen(false);
         }
-      }
-    } else if (item.href === "/") {
-      if (pathname === "/") {
-        e.preventDefault();
-        setActiveSection("home");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        if (mobileMenuOpen) setMobileMenuOpen(false);
       }
     }
   };
 
   const checkIsActive = (item: NavItem) => {
-    // Exact page matching for dedicated route pages
-    if (pathname === "/careers") return item.id === "careers";
-    if (pathname === "/contact") return item.id === "contact";
-    if (pathname === "/news-and-updates" || pathname === "/news-and-events" || pathname === "/insights") return item.id === "news-and-events";
-    if (pathname === "/about") return item.id === "about";
-    if (pathname === "/services") return item.id === "services";
-    if (pathname === "/products") return item.id === "products";
-
-    if (pathname === "/") {
-      if (item.id === "products") return activeSection === "products";
-      if (item.id === "about") return activeSection === "about";
-      if (item.id === "services") return activeSection === "services";
-      if (item.id === "home") return activeSection === "home";
-      return false;
+    if (item.href === "/") {
+      return pathname === "/";
     }
-
+    if (item.href === "/news-and-updates") {
+      return (
+        pathname.startsWith("/news-and-updates") ||
+        pathname.startsWith("/news-and-events") ||
+        pathname.startsWith("/insights")
+      );
+    }
     return pathname.startsWith(item.href);
   };
 

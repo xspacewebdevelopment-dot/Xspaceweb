@@ -175,14 +175,14 @@ export const HeroSection: React.FC = () => {
                 whileInView={{ opacity: 1, filter: "blur(0px)", y: 0, rotate: -6 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -left-2 sm:left-1 md:left-2 top-0 sm:top-2 z-30 select-none pointer-events-none transition-transform"
+                className="absolute left-1 sm:left-2 md:left-2 top-0 sm:top-2 z-30 select-none pointer-events-none transition-transform"
               >
                 <Image
                   src="/images/hero/note_searching_transparent.png"
                   alt="Searching for better ways to build"
                   width={150}
                   height={130}
-                  className="w-24 sm:w-32 md:w-36 h-auto drop-shadow-sm"
+                  className="w-20 sm:w-28 md:w-36 h-auto drop-shadow-sm"
                   priority
                 />
               </motion.div>
@@ -193,25 +193,25 @@ export const HeroSection: React.FC = () => {
                 whileInView={{ opacity: 1, filter: "blur(0px)", y: 0, rotate: 6 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute right-4 sm:right-10 md:right-14 top-10 sm:top-14 z-30 select-none pointer-events-none transition-transform"
+                className="absolute right-2 sm:right-6 md:right-14 top-1 sm:top-6 md:top-14 z-30 select-none pointer-events-none transition-transform"
               >
                 <Image
                   src="/images/hero/note_reviews_transparent.png"
                   alt="Real People Real Reviews"
                   width={120}
                   height={170}
-                  className="w-20 sm:w-24 md:w-28 h-auto drop-shadow-sm"
+                  className="w-16 sm:w-22 md:w-28 h-auto drop-shadow-sm"
                   priority
                 />
               </motion.div>
 
-              {/* Floating Signal 1: Verified Badge (Lifted upward to the left of woman's arm/waist) */}
+              {/* Floating Signal 1: Verified Badge (Desktop only) */}
               <motion.div
                 initial={{ opacity: 0, y: 14, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -left-1 sm:left-1 md:left-3 top-[38%] sm:top-[42%] z-30 select-none pointer-events-auto"
+                className="hidden md:block absolute -left-1 sm:left-1 md:left-3 top-[38%] sm:top-[42%] z-30 select-none pointer-events-auto"
               >
                 <motion.div
                   animate={
@@ -250,13 +250,13 @@ export const HeroSection: React.FC = () => {
                 </motion.div>
               </motion.div>
 
-              {/* Floating Signal 2: Rating Pill Badge (Upper Right with breathing room) */}
+              {/* Floating Signal 2: Rating Pill Badge (Desktop only) */}
               <motion.div
                 initial={{ opacity: 0, y: -12, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute right-12 sm:right-24 md:right-32 top-2 sm:top-5 z-30 select-none pointer-events-auto"
+                className="hidden md:block absolute right-12 sm:right-24 md:right-32 top-2 sm:top-5 z-30 select-none pointer-events-auto"
               >
                 <motion.div
                   animate={
@@ -289,13 +289,13 @@ export const HeroSection: React.FC = () => {
                 </motion.div>
               </motion.div>
 
-              {/* Floating Signal 3: Happy Clients Badge (Lifted upward to the right of laptop/sari) */}
+              {/* Floating Signal 3: Happy Clients Badge (Desktop only) */}
               <motion.div
                 initial={{ opacity: 0, y: 14, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -right-1 sm:right-1 md:right-3 top-[46%] sm:top-[50%] z-30 select-none pointer-events-auto"
+                className="hidden md:block absolute -right-1 sm:right-1 md:right-3 top-[46%] sm:top-[50%] z-30 select-none pointer-events-auto"
               >
                 <motion.div
                   animate={

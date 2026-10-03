@@ -103,8 +103,8 @@ export const AboutHeroSection: React.FC = () => {
                   />
                 </g>
 
-                {/* ANNOTATION 2: "One Computer (Windows XP)" */}
-                <g>
+                {/* ANNOTATION 2: "One Computer (Windows XP)" (Desktop only - avoids cut-off text on mobile) */}
+                <g className="hidden md:inline">
                   <text x="668" y="260" textAnchor="middle" transform="rotate(4 668 260)">
                     One
                   </text>
@@ -125,8 +125,8 @@ export const AboutHeroSection: React.FC = () => {
                   />
                 </g>
 
-                {/* ANNOTATION 3: "No Big Office" */}
-                <g>
+                {/* ANNOTATION 3: "No Big Office" (Desktop only) */}
+                <g className="hidden md:inline">
                   <text x="252" y="360" textAnchor="middle" transform="rotate(2 252 360)">
                     No Big Office
                   </text>
@@ -141,8 +141,8 @@ export const AboutHeroSection: React.FC = () => {
                   />
                 </g>
 
-                {/* ANNOTATION 4: "No Team" */}
-                <g>
+                {/* ANNOTATION 4: "No Team" (Desktop only) */}
+                <g className="hidden md:inline">
                   <text x="190" y="475" textAnchor="middle" transform="rotate(3 190 475)">
                     No Team
                   </text>
@@ -157,8 +157,8 @@ export const AboutHeroSection: React.FC = () => {
                   />
                 </g>
 
-                {/* ANNOTATION 5: "No Investment" */}
-                <g>
+                {/* ANNOTATION 5: "No Investment" (Desktop only) */}
+                <g className="hidden md:inline">
                   <text x="810" y="394" textAnchor="middle" transform="rotate(2 810 394)">
                     No Investment
                   </text>
@@ -173,8 +173,8 @@ export const AboutHeroSection: React.FC = () => {
                   />
                 </g>
 
-                {/* ANNOTATION 6: "Only a Vision" */}
-                <g>
+                {/* ANNOTATION 6: "Only a Vision" (Desktop only) */}
+                <g className="hidden md:inline">
                   <text x="862" y="468" textAnchor="middle" transform="rotate(3 862 468)">
                     Only a Vision
                   </text>

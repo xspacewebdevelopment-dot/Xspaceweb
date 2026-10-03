@@ -11,7 +11,6 @@ import {
   ChevronRight,
   Copy,
   Check,
-  Clock,
 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 
@@ -221,72 +220,6 @@ export function OtherWaysToReachSection() {
                 </div>
               );
             })}
-          </div>
-
-          {/* Bottom Banner Bar */}
-          <div className="bg-[#EAF3FF] rounded-2xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
-            {/* Left Box: Prefer Email & Drop us an email anytime! */}
-            <div className="flex items-center gap-4 z-10">
-              <div className="w-14 h-14 rounded-2xl bg-[#D6E7FE] text-[#1668E8] flex items-center justify-center flex-shrink-0 shadow-2xs">
-                <Mail className="w-7 h-7" />
-              </div>
-              <div>
-                <div className="inline-block px-2.5 py-0.5 rounded-full bg-[#D6E7FE] text-[#1668E8] text-[9.5px] font-extrabold tracking-wider uppercase mb-1">
-                  PREFER EMAIL?
-                </div>
-                <h3 className="text-lg sm:text-xl font-black text-[#07152B] tracking-tight">
-                  Drop us an email <span className="text-[#1668E8]">anytime!</span>
-                </h3>
-              </div>
-            </div>
-
-            {/* Middle: Response Time */}
-            <div className="flex items-center gap-4 z-10 md:border-l md:border-blue-200/80 md:pl-8">
-              <div className="w-8 h-8 rounded-full bg-[#D6E7FE] text-[#1668E8] flex items-center justify-center flex-shrink-0">
-                <Clock className="w-4 h-4" />
-              </div>
-              <p className="text-xs sm:text-sm text-slate-600 leading-snug">
-                We usually respond within <br />
-                <strong className="font-extrabold text-[#1668E8]">24 working hours.</strong>
-              </p>
-            </div>
-
-            {/* Right: Paper Airplane Graphic with Dotted Trail */}
-            <div className="relative w-28 h-16 flex items-center justify-end z-10 flex-shrink-0">
-              <svg
-                className="w-full h-full text-blue-400"
-                viewBox="0 0 120 70"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                {/* Dotted motion trail */}
-                <path
-                  d="M 10 55 C 40 60, 65 50, 85 25"
-                  stroke="#93C5FD"
-                  strokeWidth="2"
-                  strokeDasharray="4 4"
-                  strokeLinecap="round"
-                />
-                {/* Paper Airplane */}
-                <g transform="translate(75, 5) rotate(15)">
-                  <path
-                    d="M 0 18 L 36 0 L 22 28 L 14 19 L 0 18 Z"
-                    fill="#3B82F6"
-                  />
-                  <path
-                    d="M 36 0 L 14 19 L 20 12 L 36 0 Z"
-                    fill="#60A5FA"
-                  />
-                  <path
-                    d="M 14 19 L 17 26 L 19 20 L 14 19 Z"
-                    fill="#1D4ED8"
-                  />
-                </g>
-              </svg>
-            </div>
-
-            {/* Subtle background glow */}
-            <div className="absolute right-0 bottom-0 w-48 h-48 bg-blue-300/20 rounded-full blur-3xl pointer-events-none" />
           </div>
         </div>
       </Container>
