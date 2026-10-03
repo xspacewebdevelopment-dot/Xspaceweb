@@ -442,3 +442,100 @@ export const talentProfiles = pgTable(
 
 export type TalentProfile = typeof talentProfiles.$inferSelect;
 export type NewTalentProfile = typeof talentProfiles.$inferInsert;
+
+// ==========================================
+// TESTIMONIALS SCHEMA
+// ==========================================
+
+export const testimonialTypeEnum = ["client", "intern"] as const;
+export type TestimonialType = (typeof testimonialTypeEnum)[number];
+
+export const testimonialStatusEnum = ["draft", "published", "unpublished"] as const;
+export type TestimonialStatus = (typeof testimonialStatusEnum)[number];
+
+export const cardVariantEnum = ["standard", "centered", "portrait", "compact"] as const;
+export type CardVariant = (typeof cardVariantEnum)[number];
+
+export const testimonials = pgTable(
+  "testimonials",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    testimonialType: text("testimonial_type").notNull().default("client"), // "client" | "intern"
+    name: text("name").notNull(),
+    designation: text("designation"), // Client role (e.g. "Founder & CEO") or Intern role (e.g. "Frontend Development Intern")
+    company: text("company"), // e.g. "PixelTech Technologies"
+    location: text("location"), // e.g. "Ranchi, Jharkhand"
+    rating: integer("rating").default(5), // 1 - 5, optional for interns
+    headline: text("headline"), // optional headline, e.g. "I really appreciate!" or "Good Job!"
+    testimonialText: text("testimonial_text").notNull(),
+    profileImageUrl: text("profile_image_url"),
+    profileImagePublicId: text("profile_image_public_id"),
+    cardVariant: text("card_variant").default("standard"), // "standard" | "centered" | "portrait" | "compact"
+    isFeatured: boolean("is_featured").notNull().default(false),
+    displayOrder: integer("display_order").notNull().default(0),
+    status: text("status").notNull().default("published"), // "draft" | "published" | "unpublished"
+    archivedAt: timestamp("archived_at", { withTimezone: true }),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    index("testimonials_type_idx").on(table.testimonialType),
+    index("testimonials_status_idx").on(table.status),
+    index("testimonials_display_order_idx").on(table.displayOrder),
+    index("testimonials_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export type Testimonial = typeof testimonials.$inferSelect;
+export type NewTestimonial = typeof testimonials.$inferInsert;
+
+// ==========================================
+// INTERNS & CERTIFICATIONS SCHEMA
+// ==========================================
+
+export const internStatusEnum = ["ACTIVE", "COMPLETED", "TERMINATED", "ON_HOLD"] as const;
+export type InternStatus = (typeof internStatusEnum)[number];
+
+export const internshipTypeEnum = ["Remote", "Hybrid", "On-site"] as const;
+export type InternshipType = (typeof internshipTypeEnum)[number];
+
+export const interns = pgTable(
+  "interns",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    internshipId: text("internship_id").notNull().unique(), // e.g. "XSW-INTERN-001"
+    fullName: text("full_name").notNull(),
+    email: text("email").notNull(),
+    phone: text("phone"),
+    profileImage: text("profile_image"),
+    profileImagePublicId: text("profile_image_public_id"),
+    role: text("role").notNull(), // e.g. "Frontend Developer Intern"
+    department: text("department").notNull(), // e.g. "Engineering", "Design", "Marketing"
+    internshipType: text("internship_type").notNull().default("Remote"), // "Remote" | "Hybrid" | "On-site"
+    startDate: timestamp("start_date", { withTimezone: true }).notNull(),
+    endDate: timestamp("end_date", { withTimezone: true }).notNull(),
+    duration: text("duration"), // e.g. "3 Months"
+    status: text("status").notNull().default("ACTIVE"), // "ACTIVE" | "COMPLETED" | "TERMINATED" | "ON_HOLD"
+    skills: jsonb("skills").$type<string[]>().default([]),
+    description: text("description"), // Summary of internship tasks / scope
+    performanceSummary: text("performance_summary"), // Official evaluation summary
+    certificateFile: text("certificate_file"), // Uploaded certificate PDF / image URL
+    certificatePublicId: text("certificate_public_id"), // Cloudinary asset ID
+    certificateNumber: text("certificate_number").unique(), // e.g. "CERT-XSW-2026-001"
+    certificateIssuedAt: timestamp("certificate_issued_at", { withTimezone: true }),
+    isPublished: boolean("is_published").notNull().default(true),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (table) => [
+    index("interns_internship_id_idx").on(table.internshipId),
+    index("interns_status_idx").on(table.status),
+    index("interns_is_published_idx").on(table.isPublished),
+    index("interns_email_idx").on(table.email),
+    index("interns_created_at_idx").on(table.createdAt),
+  ]
+);
+
+export type Intern = typeof interns.$inferSelect;
+export type NewIntern = typeof interns.$inferInsert;
+

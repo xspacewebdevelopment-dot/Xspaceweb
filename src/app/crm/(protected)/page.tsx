@@ -10,6 +10,8 @@ import {
   newsletterSubscribers,
   careerOpenings,
   careerApplications,
+  testimonials,
+  interns,
 } from "@/lib/db/schema";
 import { desc, count, eq, and, isNull, gte, asc } from "drizzle-orm";
 import { formatSource } from "@/lib/constants";
@@ -31,6 +33,9 @@ import {
   Briefcase,
   FileText,
   Layers,
+  MessageSquareQuote,
+  GraduationCap,
+  Award,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -113,6 +118,37 @@ export default async function CrmDashboardPage() {
     .from(newsletterSubscribers)
     .where(eq(newsletterSubscribers.status, "subscribed"));
   const subscribersCount = subscribersRes?.value ?? 0;
+
+  // Testimonials counts
+  const [clientTestimonialsRes] = await db
+    .select({ value: count() })
+    .from(testimonials)
+    .where(
+      and(
+        eq(testimonials.testimonialType, "client"),
+        eq(testimonials.status, "published"),
+        isNull(testimonials.archivedAt)
+      )
+    );
+  const clientTestimonialsCount = clientTestimonialsRes?.value ?? 0;
+
+  const [internTestimonialsRes] = await db
+    .select({ value: count() })
+    .from(testimonials)
+    .where(
+      and(
+        eq(testimonials.testimonialType, "intern"),
+        eq(testimonials.status, "published"),
+        isNull(testimonials.archivedAt)
+      )
+    );
+  const internTestimonialsCount = internTestimonialsRes?.value ?? 0;
+
+  // Interns count
+  const [internsCountRes] = await db
+    .select({ value: count() })
+    .from(interns);
+  const internsCount = internsCountRes?.value ?? 0;
 
   // Spotlight upcoming event
   const [nextUpcomingEvent] = await db
@@ -216,6 +252,13 @@ export default async function CrmDashboardPage() {
             <span>New Opening</span>
           </Link>
           <Link
+            href="/crm/interns/new"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors shadow-2xs"
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span>Add Intern</span>
+          </Link>
+          <Link
             href="/crm/media/new"
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs font-bold transition-colors shadow-2xs"
           >
@@ -226,7 +269,7 @@ export default async function CrmDashboardPage() {
       </div>
 
       {/* Summary KPI Metric Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-9 gap-3.5 sm:gap-4">
         {/* Project Inquiries */}
         <Link
           href="/crm/inquiries"
@@ -314,7 +357,7 @@ export default async function CrmDashboardPage() {
           <p className="text-[10px] text-slate-400 mt-0.5 truncate">Upcoming</p>
         </Link>
 
-        {/* Media & Subscribers */}
+        {/* Media & Press */}
         <Link
           href="/crm/media"
           className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-teal-300 transition-all group"
@@ -329,6 +372,57 @@ export default async function CrmDashboardPage() {
             {mediaMentionsCount}
           </div>
           <p className="text-[10px] text-slate-400 mt-0.5 truncate">{subscribersCount} subscribers</p>
+        </Link>
+
+        {/* Client Testimonials */}
+        <Link
+          href="/crm/testimonials"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-sky-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-sky-600 uppercase tracking-wider block truncate">
+              Reviews
+            </span>
+            <MessageSquareQuote className="w-3.5 h-3.5 text-sky-600" />
+          </div>
+          <div className="text-2xl font-black text-sky-600 mt-1">
+            {clientTestimonialsCount}
+          </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">Client reviews</p>
+        </Link>
+
+        {/* Intern Testimonials */}
+        <Link
+          href="/crm/testimonials/interns"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-violet-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-violet-600 uppercase tracking-wider block truncate">
+              Interns
+            </span>
+            <GraduationCap className="w-3.5 h-3.5 text-violet-600" />
+          </div>
+          <div className="text-2xl font-black text-violet-600 mt-1">
+            {internTestimonialsCount}
+          </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">Intern stories</p>
+        </Link>
+
+        {/* Verified Interns */}
+        <Link
+          href="/crm/interns"
+          className="bg-white p-4 rounded-2xl border border-slate-200 shadow-2xs hover:border-blue-300 transition-all group"
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-wider block truncate">
+              Interns
+            </span>
+            <Award className="w-3.5 h-3.5 text-blue-600" />
+          </div>
+          <div className="text-2xl font-black text-blue-600 mt-1">
+            {internsCount}
+          </div>
+          <p className="text-[10px] text-slate-400 mt-0.5 truncate">Active cohorts</p>
         </Link>
       </div>
 

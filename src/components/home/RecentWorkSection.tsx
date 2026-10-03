@@ -223,8 +223,8 @@ export const RecentWorkSection: React.FC = () => {
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
               whileHover={shouldReduceMotion ? undefined : { y: -3 }}
-              className={`lg:col-span-7 group flex flex-col transition-all duration-300 ${
-                !isProjectActive(featured) ? "opacity-25 grayscale-[60%] pointer-events-none" : "opacity-100"
+              className={`lg:col-span-7 group flex flex-col transition-all duration-500 ${
+                !isProjectActive(featured) ? "grayscale contrast-[105%] pointer-events-none" : "grayscale-0 opacity-100"
               }`}
             >
               <Link
@@ -293,8 +293,8 @@ export const RecentWorkSection: React.FC = () => {
                     ease: [0.21, 0.47, 0.32, 0.98],
                   }}
                   whileHover={shouldReduceMotion ? undefined : { y: -3 }}
-                  className={`group flex flex-col transition-all duration-300 ${
-                    !isProjectActive(work) ? "opacity-25 grayscale-[60%] pointer-events-none" : "opacity-100"
+                  className={`group flex flex-col transition-all duration-500 ${
+                    !isProjectActive(work) ? "grayscale contrast-[105%] pointer-events-none" : "grayscale-0 opacity-100"
                   }`}
                 >
                   <Link
@@ -363,8 +363,8 @@ export const RecentWorkSection: React.FC = () => {
                   ease: [0.21, 0.47, 0.32, 0.98],
                 }}
                 whileHover={shouldReduceMotion ? undefined : { y: -3 }}
-                className={`group flex flex-col transition-all duration-300 ${
-                  !isProjectActive(work) ? "opacity-25 grayscale-[60%] pointer-events-none" : "opacity-100"
+                className={`group flex flex-col transition-all duration-500 ${
+                  !isProjectActive(work) ? "grayscale contrast-[105%] pointer-events-none" : "grayscale-0 opacity-100"
                 }`}
               >
                 <Link

@@ -792,7 +792,7 @@ export default function ContactPage() {
               </div>
 
               {/* Card 2: Our Office Locations with Real Interactive Google Maps */}
-              <div className="bg-white rounded-[22px] border border-slate-200/90 p-4 sm:p-5 shadow-[0_4px_20px_-2px_rgba(7,21,43,0.04)] space-y-4">
+              <div id="map" className="bg-white rounded-[22px] border border-slate-200/90 p-4 sm:p-5 shadow-[0_4px_20px_-2px_rgba(7,21,43,0.04)] space-y-4 scroll-mt-24">
                 {/* Header */}
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-full bg-blue-50 text-[#1668E8] flex items-center justify-center flex-shrink-0">

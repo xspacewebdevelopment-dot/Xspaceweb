@@ -54,9 +54,9 @@ const resourceLinks: FooterColumn = {
   title: "RESOURCES",
   links: [
     { label: "Blog", href: "/insights" },
+    { label: "Certification", href: "/certification" },
     { label: "Case Studies", href: "/case-studies" },
     { label: "Help Center", href: "/contact" },
-    { label: "Privacy Policy", href: "/privacy-policy" },
   ],
 };
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight, Search } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
 import { ProjectModal } from "@/components/shared/ProjectModal";
@@ -147,19 +147,12 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Actions: Search & Dark Navy Pill CTA */}
+          {/* Right Actions: Brand Blue Pill CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <button
               type="button"
-              aria-label="Search"
-              className="p-2 text-slate-700 hover:text-[#1668E8] hover:bg-slate-100/70 rounded-full transition-colors cursor-pointer"
-            >
-              <Search className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
               onClick={() => setProjectModalOpen(true)}
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-[13px] font-semibold hover:bg-[#0D2344] transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98] cursor-pointer"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1668E8] text-white text-[13px] font-semibold hover:bg-[#1255C0] transition-all duration-200 shadow-sm hover:shadow-[0_4px_16px_rgba(22,104,232,0.35)] active:scale-[0.98] cursor-pointer"
             >
               <span>Let&apos;s Talk</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -218,7 +211,7 @@ export const Navbar: React.FC = () => {
                 setMobileMenuOpen(false);
                 setProjectModalOpen(true);
               }}
-              className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#07152B] text-white text-sm font-semibold hover:bg-[#0D2344] transition-all cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#1668E8] text-white text-sm font-semibold hover:bg-[#1255C0] transition-all shadow-sm cursor-pointer"
             >
               <span>Let&apos;s Talk</span>
               <ArrowRight className="w-4 h-4" />

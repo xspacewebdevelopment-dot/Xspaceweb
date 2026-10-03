@@ -78,7 +78,7 @@ export const NewsFilterAndGrid: React.FC<NewsFilterAndGridProps> = ({
   }, [initialArticles, selectedCategory, searchQuery, limitToFour]);
 
   return (
-    <section id="latest-news" className="w-full bg-white py-12 sm:py-16">
+    <section id="latest-news" className="w-full bg-white py-12 sm:py-16 scroll-mt-20">
       <Container size="wide">
         {/* Filter Tabs & Search Bar Row */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-8 border-b border-slate-100">

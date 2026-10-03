@@ -1,10 +1,11 @@
 import React from "react";
 import { Metadata } from "next";
 import { db } from "@/lib/db";
-import { careerOpenings } from "@/lib/db/schema";
-import { eq, desc } from "drizzle-orm";
+import { careerOpenings, testimonials } from "@/lib/db/schema";
+import { eq, desc, asc, and, isNull } from "drizzle-orm";
 import { CareerHero } from "@/components/careers/CareerHero";
 import { OpenPositionsSection } from "@/components/careers/OpenPositionsSection";
+import { CareerCertificationsBanner } from "@/components/careers/CareerCertificationsBanner";
 import { InternTestimonialsSection } from "@/components/careers/InternTestimonialsSection";
 import { CareerCtaSection } from "@/components/careers/CareerCtaSection";
 
@@ -28,11 +29,29 @@ export default async function CareersPage() {
     .where(eq(careerOpenings.status, "published"))
     .orderBy(desc(careerOpenings.publishedAt), desc(careerOpenings.createdAt));
 
+  let internTestimonials: any[] = [];
+  try {
+    internTestimonials = await db
+      .select()
+      .from(testimonials)
+      .where(
+        and(
+          eq(testimonials.testimonialType, "intern"),
+          eq(testimonials.status, "published"),
+          isNull(testimonials.archivedAt)
+        )
+      )
+      .orderBy(desc(testimonials.isFeatured), asc(testimonials.displayOrder), desc(testimonials.createdAt));
+  } catch (err) {
+    console.error("Failed to fetch intern testimonials from DB:", err);
+  }
+
   return (
     <main className="min-h-screen bg-white">
       <CareerHero />
       <OpenPositionsSection initialOpenings={publishedOpenings} />
-      <InternTestimonialsSection />
+      <CareerCertificationsBanner />
+      <InternTestimonialsSection initialTestimonials={internTestimonials} />
       <CareerCtaSection />
     </main>
   );

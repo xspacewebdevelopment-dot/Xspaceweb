@@ -22,9 +22,10 @@ import {
   MapPin,
   Quote,
 } from "lucide-react";
+import { Testimonial } from "@/lib/db/schema";
 
 interface TestimonialSpotlight {
-  id: number;
+  id: number | string;
   name: string;
   role: string;
   avatar: string;
@@ -82,7 +83,7 @@ const SPOTLIGHT_TESTIMONIALS: TestimonialSpotlight[] = [
 
 /* ── Carousel testimonials (for the bottom simple grid carousel) ── */
 interface CarouselTestimonial {
-  id: number;
+  id: number | string;
   name: string;
   role: string;
   company: string;
@@ -184,9 +185,47 @@ const CAROUSEL_TESTIMONIALS: CarouselTestimonial[] = [
 ];
 
 const CARDS_PER_PAGE = 4;
-const TOTAL_PAGES = Math.ceil(CAROUSEL_TESTIMONIALS.length / CARDS_PER_PAGE);
 
-export const TestimonialsSection: React.FC = () => {
+interface TestimonialsSectionProps {
+  initialReviews?: Testimonial[];
+}
+
+export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ initialReviews }) => {
+  const reviews: CarouselTestimonial[] = React.useMemo(() => {
+    if (initialReviews && initialReviews.length > 0) {
+      return initialReviews.map((t) => ({
+        id: t.id,
+        name: t.name,
+        role: t.designation || "",
+        company: t.company || "",
+        location: t.location || "",
+        avatar:
+          t.profileImageUrl ||
+          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80",
+        quote: t.testimonialText,
+        rating: t.rating ?? 5,
+      }));
+    }
+    return CAROUSEL_TESTIMONIALS;
+  }, [initialReviews]);
+
+  const spotlightList: TestimonialSpotlight[] = React.useMemo(() => {
+    if (initialReviews && initialReviews.length > 0) {
+      return initialReviews.slice(0, 5).map((t) => ({
+        id: t.id,
+        name: t.name,
+        role: [t.designation, t.company].filter(Boolean).join(", "),
+        avatar:
+          t.profileImageUrl ||
+          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+        quote: t.testimonialText,
+        rating: t.rating ?? 5,
+      }));
+    }
+    return SPOTLIGHT_TESTIMONIALS;
+  }, [initialReviews]);
+
+  const totalPages = Math.max(1, Math.ceil(reviews.length / CARDS_PER_PAGE));
   const [activeIndex, setActiveIndex] = useState(0);
   const [carouselPage, setCarouselPage] = useState(0);
   const [slideDirection, setSlideDirection] = useState<1 | -1>(1);
@@ -202,7 +241,7 @@ export const TestimonialsSection: React.FC = () => {
     message: "",
   });
 
-  const activeTestimonial = SPOTLIGHT_TESTIMONIALS[activeIndex];
+  const activeTestimonial = spotlightList[activeIndex % spotlightList.length] || spotlightList[0];
 
   // Listen for prefill events from other homepage CTAs
   useEffect(() => {
@@ -217,21 +256,21 @@ export const TestimonialsSection: React.FC = () => {
   }, []);
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + SPOTLIGHT_TESTIMONIALS.length) % SPOTLIGHT_TESTIMONIALS.length);
+    setActiveIndex((prev) => (prev - 1 + spotlightList.length) % spotlightList.length);
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % SPOTLIGHT_TESTIMONIALS.length);
+    setActiveIndex((prev) => (prev + 1) % spotlightList.length);
   };
 
   const handleCarouselPrev = () => {
     setSlideDirection(-1);
-    setCarouselPage((prev) => (prev - 1 + TOTAL_PAGES) % TOTAL_PAGES);
+    setCarouselPage((prev) => (prev - 1 + totalPages) % totalPages);
   };
 
   const handleCarouselNext = () => {
     setSlideDirection(1);
-    setCarouselPage((prev) => (prev + 1) % TOTAL_PAGES);
+    setCarouselPage((prev) => (prev + 1) % totalPages);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -281,7 +320,7 @@ export const TestimonialsSection: React.FC = () => {
     }
   };
 
-  const visibleCards = CAROUSEL_TESTIMONIALS.slice(
+  const visibleCards = reviews.slice(
     carouselPage * CARDS_PER_PAGE,
     carouselPage * CARDS_PER_PAGE + CARDS_PER_PAGE
   );
@@ -340,7 +379,7 @@ export const TestimonialsSection: React.FC = () => {
                 {/* Overlapping Avatars + Badge */}
                 <div className="flex items-center">
                   <div className="flex -space-x-3 overflow-hidden p-1">
-                    {SPOTLIGHT_TESTIMONIALS.map((t, idx) => (
+                    {spotlightList.map((t, idx) => (
                       <button
                         key={t.id}
                         type="button"
@@ -757,7 +796,7 @@ export const TestimonialsSection: React.FC = () => {
 
           {/* Dot Pagination */}
           <div className="flex items-center justify-center gap-2 mt-8">
-            {Array.from({ length: TOTAL_PAGES }).map((_, idx) => (
+            {Array.from({ length: totalPages }).map((_, idx) => (
               <button
                 key={idx}
                 type="button"

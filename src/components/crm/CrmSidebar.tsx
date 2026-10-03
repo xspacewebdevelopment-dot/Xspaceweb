@@ -25,6 +25,11 @@ import {
   ExternalLink,
   Globe,
   Bell,
+  MessageSquareQuote,
+  GraduationCap,
+  Award,
+  UserPlus,
+  UserCheck,
 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 
@@ -275,11 +280,69 @@ export const CrmSidebar: React.FC<CrmSidebarProps> = ({
         },
       ],
     },
+    {
+      groupTitle: "TESTIMONIALS",
+      links: [
+        {
+          href: "/crm/testimonials",
+          label: "Client Reviews",
+          icon: MessageSquareQuote,
+          exact: true,
+        },
+        {
+          href: "/crm/testimonials/interns",
+          label: "Intern Testimonials",
+          icon: GraduationCap,
+          exact: true,
+        },
+      ],
+    },
+    {
+      groupTitle: "INTERNSHIPS",
+      links: [
+        {
+          href: "/crm/interns",
+          label: "All Interns",
+          icon: UserCheck,
+          exact: true,
+        },
+        {
+          href: "/crm/interns/new",
+          label: "Add Intern",
+          icon: UserPlus,
+          exact: true,
+        },
+        {
+          href: "/crm/interns/certificates",
+          label: "Internship Certificates",
+          icon: Award,
+          exact: false,
+        },
+      ],
+    },
   ];
 
   const checkIsActive = (href: string, exact?: boolean) => {
     if (exact) {
       return pathname === href;
+    }
+    if (href === "/crm/interns") {
+      return pathname === "/crm/interns";
+    }
+    if (href === "/crm/interns/new") {
+      return pathname === "/crm/interns/new";
+    }
+    if (href === "/crm/interns/certificates") {
+      return (
+        pathname === "/crm/interns/certificates" ||
+        pathname.startsWith("/crm/interns/certificates/")
+      );
+    }
+    if (href === "/crm/testimonials") {
+      return pathname === "/crm/testimonials";
+    }
+    if (href === "/crm/testimonials/interns") {
+      return pathname === "/crm/testimonials/interns" || pathname.startsWith("/crm/testimonials/interns/");
     }
     if (href === "/crm/news") {
       return pathname === "/crm/news" || pathname.startsWith("/crm/news/");
@@ -400,6 +463,18 @@ export const CrmSidebar: React.FC<CrmSidebarProps> = ({
           <div className="px-3 text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
             QUICK ACCESS
           </div>
+          <Link
+            href="/certification"
+            target="_blank"
+            className="flex items-center justify-between px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-white/5 transition-all group"
+          >
+            <div className="flex items-center gap-2.5">
+              <Globe className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#38BDF8]" />
+              <span>Public Certification</span>
+            </div>
+            <ExternalLink className="w-3 h-3 text-slate-500 group-hover:text-slate-300" />
+          </Link>
+
           <Link
             href="/careers"
             target="_blank"

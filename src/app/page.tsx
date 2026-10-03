@@ -1,4 +1,7 @@
 import React from "react";
+import { db } from "@/lib/db";
+import { testimonials } from "@/lib/db/schema";
+import { eq, and, isNull, asc, desc } from "drizzle-orm";
 import { HeroSection } from "@/components/home/HeroSection";
 import { RatingsStrip } from "@/components/home/RatingsStrip";
 import { PartnerLogos } from "@/components/home/PartnerLogos";
@@ -17,7 +20,26 @@ import { RecentWorkSection } from "@/components/home/RecentWorkSection";
 import { StartProjectBannerSection } from "@/components/home/StartProjectBannerSection";
 import { BrighterTomorrowSection } from "@/components/home/BrighterTomorrowSection";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  let clientReviews: any[] = [];
+  try {
+    clientReviews = await db
+      .select()
+      .from(testimonials)
+      .where(
+        and(
+          eq(testimonials.testimonialType, "client"),
+          eq(testimonials.status, "published"),
+          isNull(testimonials.archivedAt)
+        )
+      )
+      .orderBy(desc(testimonials.isFeatured), asc(testimonials.displayOrder), desc(testimonials.createdAt));
+  } catch (err) {
+    console.error("Failed to fetch client testimonials from DB:", err);
+  }
+
   return (
     <>
       <HeroSection />
@@ -35,7 +57,7 @@ export default function Home() {
       <TechnologiesSection />
       <SpidermanBannerSection />
       <TrustedBusinessesSection />
-      <TestimonialsSection />
+      <TestimonialsSection initialReviews={clientReviews} />
       <SelectedWorkSection />
       <StartProjectBannerSection />
       <BrighterTomorrowSection />
