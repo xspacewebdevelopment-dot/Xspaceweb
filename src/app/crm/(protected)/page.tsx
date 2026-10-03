@@ -37,6 +37,7 @@ import {
   GraduationCap,
   Award,
 } from "lucide-react";
+import { CrmQuickActionsDropdown } from "@/components/crm/CrmQuickActionsDropdown";
 
 export const dynamic = "force-dynamic";
 
@@ -229,43 +230,8 @@ export default async function CrmDashboardPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 flex-wrap">
-          <Link
-            href="/crm/news/new"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#1668E8] text-white text-xs font-bold hover:bg-blue-700 transition-colors shadow-2xs"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Post News</span>
-          </Link>
-          <Link
-            href="/crm/events/new"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 transition-colors shadow-2xs"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Add Event</span>
-          </Link>
-          <Link
-            href="/crm/careers/openings/new"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 transition-colors shadow-2xs"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>New Opening</span>
-          </Link>
-          <Link
-            href="/crm/interns/new"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-blue-600 text-white text-xs font-bold hover:bg-blue-700 transition-colors shadow-2xs"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Add Intern</span>
-          </Link>
-          <Link
-            href="/crm/media/new"
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 text-xs font-bold transition-colors shadow-2xs"
-          >
-            <Plus className="w-3.5 h-3.5" />
-            <span>Add Media</span>
-          </Link>
-        </div>
+        {/* Quick Action Dropdown */}
+        <CrmQuickActionsDropdown />
       </div>
 
       {/* Summary KPI Metric Cards */}
