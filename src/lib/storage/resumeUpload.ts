@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
+import os from "os";
 import crypto from "crypto";
 import { ResumeInfo } from "@/lib/db/schema";
+import { uploadResumeFile } from "@/lib/cloudinary";
 
-const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
 const ALLOWED_EXTENSIONS = [".pdf", ".doc", ".docx"];
 const ALLOWED_MIME_TYPES = [
   "application/pdf",
@@ -19,7 +21,7 @@ export interface ProcessedResumeResult {
 }
 
 /**
- * Validates and saves an uploaded resume file to public/uploads/resumes/
+ * Validates and saves an uploaded resume file to Cloudinary in production (or public/uploads/resumes in local dev).
  */
 export async function saveUploadedResume(
   file: File | Blob | Buffer,
@@ -65,7 +67,7 @@ export async function saveUploadedResume(
     if (size > MAX_FILE_SIZE_BYTES) {
       return {
         success: false,
-        error: `File size exceeds the 5MB limit (${(size / (1024 * 1024)).toFixed(1)}MB).`,
+        error: `File size exceeds the 10MB limit (${(size / (1024 * 1024)).toFixed(1)}MB).`,
       };
     }
 
@@ -103,13 +105,41 @@ export async function saveUploadedResume(
       };
     }
 
-    // 6. Ensure target directory exists
-    const uploadsDir = path.join(process.cwd(), "public", "uploads", "resumes");
-    if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
+    // 6. Primary Storage: Cloudinary (Serverless persistent cloud storage for Vercel/Production)
+    const isCloudinaryConfigured = Boolean(
+      (process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME) &&
+      process.env.CLOUDINARY_API_KEY &&
+      process.env.CLOUDINARY_API_SECRET
+    );
+
+    if (isCloudinaryConfigured) {
+      const cloudinaryResult = await uploadResumeFile(buffer, originalFilename);
+      return {
+        success: true,
+        resumeInfo: {
+          url: cloudinaryResult.url,
+          fileName: originalFilename,
+          mimeType: mimeType,
+          size: size,
+        },
+      };
     }
 
-    // 7. Generate safe unique filename
+    // 7. Fallback Storage: Local disk (For offline/local dev when Cloudinary is not configured)
+    let uploadsDir = path.join(process.cwd(), "public", "uploads", "resumes");
+    try {
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+    } catch (fsErr) {
+      // If running on a read-only filesystem (e.g. AWS Lambda /var/task), fall back to /tmp
+      console.warn("Could not write to public/uploads/resumes, falling back to temp dir:", fsErr);
+      uploadsDir = path.join(os.tmpdir(), "xspaceweb-resumes");
+      if (!fs.existsSync(uploadsDir)) {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      }
+    }
+
     const cleanName = path
       .basename(originalFilename, ext)
       .replace(/[^a-zA-Z0-9_-]/g, "_")
@@ -118,10 +148,11 @@ export async function saveUploadedResume(
     const storedFileName = `${Date.now()}-${uniqueId}-${cleanName}${ext}`;
     const destinationPath = path.join(uploadsDir, storedFileName);
 
-    // 8. Write file to disk
     fs.writeFileSync(destinationPath, buffer);
 
-    const publicUrl = `/uploads/resumes/${storedFileName}`;
+    const publicUrl = uploadsDir.includes("public")
+      ? `/uploads/resumes/${storedFileName}`
+      : `/uploads/resumes/${storedFileName}`;
 
     return {
       success: true,

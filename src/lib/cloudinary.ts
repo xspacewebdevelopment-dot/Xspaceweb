@@ -1,8 +1,9 @@
+import crypto from "crypto";
 import { v2 as cloudinary, UploadApiResponse } from "cloudinary";
 
 // Configure Cloudinary on the server side
 cloudinary.config({
-  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME || process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
@@ -264,6 +265,50 @@ export async function uploadInternCertificateFile(
           url: result.secure_url,
           publicId: result.public_id,
           format: result.format,
+        });
+      }
+    );
+
+    uploadStream.end(buffer);
+  });
+}
+
+/**
+ * Uploads an applicant's resume file (PDF, DOC, DOCX) to Cloudinary in the "xspaceweb/resumes" folder.
+ */
+export async function uploadResumeFile(
+  buffer: Buffer,
+  originalFilename: string
+): Promise<{ url: string; publicId: string; format?: string }> {
+  const ext = originalFilename
+    ? originalFilename.substring(originalFilename.lastIndexOf(".")).toLowerCase()
+    : "";
+  const baseName = originalFilename
+    ? originalFilename
+        .substring(0, originalFilename.lastIndexOf("."))
+        .replace(/[^a-zA-Z0-9_-]/g, "_")
+        .slice(0, 40)
+    : "resume";
+  const uniqueId = crypto.randomBytes(4).toString("hex");
+  const filenameWithExt = `${baseName}_${Date.now()}_${uniqueId}${ext}`;
+
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        folder: "xspaceweb/resumes",
+        resource_type: "auto",
+        public_id: filenameWithExt,
+        use_filename: true,
+      },
+      (error, result: UploadApiResponse | undefined) => {
+        if (error || !result) {
+          console.error("Cloudinary resume upload error:", error);
+          return reject(error || new Error("Failed to upload resume to Cloudinary"));
+        }
+        resolve({
+          url: result.secure_url,
+          publicId: result.public_id,
+          format: result.format || ext.replace(".", ""),
         });
       }
     );
