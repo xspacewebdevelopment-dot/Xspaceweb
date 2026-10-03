@@ -245,25 +245,27 @@ export const ProductsEcosystemSection: React.FC<ProductsEcosystemSectionProps> =
         {/* ========================================================= */}
         {/* BOTTOM METRICS / TRUST BAR (DARK NAVY CONTAINER) */}
         {/* ========================================================= */}
-        <div className="w-full rounded-[24px] bg-[#071E3D] text-white p-6 sm:p-7 shadow-2xl border border-blue-900/40">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-4 divide-y sm:divide-y-0 sm:divide-x divide-blue-900/60 items-center justify-items-center">
+        <div className="w-full rounded-2xl sm:rounded-[24px] bg-[#071E3D] text-white p-3.5 sm:p-7 shadow-2xl border border-blue-900/40">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-4 lg:divide-x lg:divide-blue-900/60 items-center">
             {metrics.map((metric, idx) => {
               const Icon = metric.icon;
               return (
                 <div
                   key={idx}
-                  className={`w-full flex items-center justify-center gap-3.5 px-2 ${
-                    idx > 0 ? "pt-4 sm:pt-0" : ""
+                  className={`flex items-center gap-2.5 sm:gap-3.5 p-2.5 sm:p-0 sm:px-2 rounded-xl sm:rounded-none bg-white/[0.04] sm:bg-transparent border border-white/[0.08] sm:border-0 ${
+                    idx === 4
+                      ? "col-span-2 lg:col-span-1 justify-center max-w-[210px] mx-auto w-full lg:max-w-none"
+                      : "justify-start sm:justify-center"
                   }`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-blue-500/15 border border-blue-400/30 text-cyan-300 flex items-center justify-center flex-shrink-0 shadow-inner">
-                    <Icon className="w-5 h-5 text-cyan-300" />
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-blue-500/15 border border-blue-400/30 text-cyan-300 flex items-center justify-center flex-shrink-0 shadow-inner">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-300" />
                   </div>
                   <div className="text-left">
-                    <div className="text-lg sm:text-xl font-black text-white tracking-tight leading-none">
+                    <div className="text-base sm:text-xl font-black text-white tracking-tight leading-none">
                       {metric.value}
                     </div>
-                    <div className="text-[11px] sm:text-xs text-slate-300 font-medium mt-1">
+                    <div className="text-[10.5px] sm:text-xs text-slate-300 font-medium mt-1 leading-tight">
                       {metric.label}
                     </div>
                   </div>
