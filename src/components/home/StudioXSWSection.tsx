@@ -83,7 +83,7 @@ export const StudioXSWSection: React.FC = () => {
         </div>
 
         {/* ROW 3: Studio ———————— XSW Banner Card with Staggered 3D Letter Swap Animation */}
-        <div className="relative group overflow-hidden rounded-[24px] sm:rounded-[28px] h-[160px] sm:h-[200px] md:h-[230px] bg-slate-950 border border-slate-200/80 shadow-xl flex items-center justify-between px-6 sm:px-12 lg:px-16">
+        <div className="relative group overflow-hidden rounded-[24px] sm:rounded-[28px] h-[150px] sm:h-[200px] md:h-[230px] bg-slate-950 border border-slate-200/80 shadow-xl flex items-center justify-between px-4 sm:px-12 lg:px-16">
           {/* Real Fabric Background Image */}
           <Image
             src="/images/studio/banner_bg.jpg"
@@ -96,22 +96,26 @@ export const StudioXSWSection: React.FC = () => {
           <div className="absolute inset-0 bg-slate-950/40 z-0 pointer-events-none" />
 
           {/* Giant Typography Banner with 3D Letter Swap Hover Animation */}
-          <div className="relative z-10 w-full flex items-center justify-between gap-4 sm:gap-8">
-            <LetterSwap3D
-              label="Studio"
-              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter drop-shadow-2xl"
-              staggerDelay={0.04}
-            />
+          <div className="relative z-10 w-full flex items-center justify-between gap-2.5 sm:gap-8">
+            <div className="shrink-0 flex items-center">
+              <LetterSwap3D
+                label="Studio"
+                className="text-3xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter drop-shadow-2xl"
+                staggerDelay={0.04}
+              />
+            </div>
 
             {/* Connecting Horizontal Line */}
-            <div className="flex-1 h-[2px] sm:h-[3px] bg-white/80 mx-2 sm:mx-6 rounded-full shadow-lg" />
+            <div className="flex-1 min-w-[24px] h-[2px] sm:h-[3px] bg-white/80 mx-1.5 sm:mx-6 rounded-full shadow-lg" />
 
-            <LetterSwap3D
-              label="XSW"
-              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter drop-shadow-2xl"
-              staggerDelay={0.04}
-              reverse
-            />
+            <div className="shrink-0 flex items-center">
+              <LetterSwap3D
+                label="XSW"
+                className="text-3xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter drop-shadow-2xl"
+                staggerDelay={0.04}
+                reverse
+              />
+            </div>
           </div>
         </div>
 
