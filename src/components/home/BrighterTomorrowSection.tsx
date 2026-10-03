@@ -122,37 +122,37 @@ export const BrighterTomorrowSection: React.FC = () => {
 
         {/* BOTTOM STATS & SCROLL INDICATOR BAR */}
         <Container size="wide" className="relative z-10 pb-4 sm:pb-8 pt-8">
-          <div className="w-full grid grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8 items-end border-t border-slate-300/60 pt-6">
+          <div className="w-full flex justify-center md:grid md:grid-cols-5 gap-6 sm:gap-8 items-end border-t border-slate-300/60 pt-6">
             {/* Stat 1 */}
-            <div className="space-y-1">
+            <div className="hidden md:block space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">50+</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Projects Delivered</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Stat 2 */}
-            <div className="space-y-1">
+            <div className="hidden md:block space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">10+</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Industries Served</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Stat 3 */}
-            <div className="space-y-1">
+            <div className="hidden md:block space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">3+</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Years of Experience</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Stat 4 */}
-            <div className="space-y-1">
+            <div className="hidden md:block space-y-1">
               <div className="text-2xl sm:text-3xl font-extrabold text-[#07152B] tracking-tight">100%</div>
               <div className="text-xs sm:text-sm font-medium text-slate-600">Client Satisfaction</div>
               <div className="w-8 h-[2px] bg-slate-400 mt-2" />
             </div>
 
             {/* Scroll to Explore Action Button */}
-            <div className="col-span-2 md:col-span-1 flex flex-col items-center md:items-end justify-center select-none pt-2 md:pt-0">
+            <div className="flex flex-col items-center md:items-end justify-center select-none pt-2 md:pt-0">
               <button
                 type="button"
                 onClick={scrollToTop}
