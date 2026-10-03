@@ -84,7 +84,7 @@ export const ProductOrbit: React.FC = () => {
   return (
     <div
       aria-hidden="true"
-      className="absolute inset-0 pointer-events-none overflow-hidden select-none z-10"
+      className="hidden sm:block absolute inset-0 pointer-events-none overflow-hidden select-none z-10"
     >
       {icons.map((item) => (
         <motion.div
