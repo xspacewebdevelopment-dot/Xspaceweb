@@ -30,6 +30,7 @@ export const BrighterTomorrowSection: React.FC = () => {
             loop
             muted
             playsInline
+            preload="auto"
             className="w-full h-full object-cover object-center"
           >
             <source src="/videos/brighter_tomorrow.mp4" type="video/mp4" />

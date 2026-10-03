@@ -53,6 +53,6 @@ scratch/
 
 # unreferenced raw asset dumps & heavy recordings
 /public/Assest Folder XSW/
-/public/images/extracted/
 *.mp4
-!public/service.mp4
+!public/videos/
+!public/videos/*.mp4
