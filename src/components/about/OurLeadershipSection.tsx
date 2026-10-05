@@ -13,6 +13,7 @@ interface Leader {
   quote: string;
   bio: string;
   photo: string;
+  photoPosition?: string;
   socials: {
     linkedin?: string;
     instagram?: string;
@@ -28,13 +29,14 @@ const leaders: Leader[] = [
     roleTitle: "Founder & Director",
     companyTag: "@ XSPACEWEB",
     photo: "/images/about/leaders/dhrub_karmkar.png",
+    photoPosition: "object-top",
     quote: "“Legacy isn't created overnight, it's engineered with precision.”",
     bio: "Our journey is driven by vision, calculated decisions, and long-term thinking. We build scalable systems and create impact beyond growth.",
     socials: {
-      linkedin: "https://in.linkedin.com/company/xspaceweb",
+      linkedin: "https://www.linkedin.com/in/dhrub-kr-karmkar-36945b235",
       instagram: "https://www.instagram.com/xspaceweb/",
       twitter: "https://twitter.com/xspaceweb",
-      email: "contact@xspaceweb.com",
+      email: "info@xspaceweb.com",
     },
   },
   {
@@ -43,6 +45,7 @@ const leaders: Leader[] = [
     roleTitle: "Chief Technology Officer (CTO)",
     companyTag: "@ XSPACEWEB",
     photo: "/images/about/leaders/shivendra_kumar.png",
+    photoPosition: "object-top",
     quote: "“While others see code, we see the future being written.”",
     bio: "Our technology is driven by innovation, precision, and scalability. We build systems that adapt, perform, and lead in a fast-changing digital world.",
     socials: {
@@ -58,6 +61,7 @@ const leaders: Leader[] = [
     roleTitle: "Marketing Manager",
     companyTag: "@ XSPACEWEB",
     photo: "/images/about/leaders/debasmita_sahoo.png",
+    photoPosition: "object-top",
     quote: "“Behind every bold vision is a balanced strategy.”",
     bio: "Our growth is guided by research-led marketing, fresh ideas, and disciplined financial planning. We turn innovation into sustainable success.",
     socials: {
@@ -73,10 +77,11 @@ const leaders: Leader[] = [
     roleTitle: "Managing Director",
     companyTag: "@ XSPACEWEB",
     photo: "/images/about/leaders/rahul_kumar.png",
+    photoPosition: "object-top",
     quote: "“Turning ideas into systems, and systems into opportunities.”",
     bio: "We believe sustainable growth comes from the right balance of operations, strategy, technology, and execution. We create meaningful opportunities and turn ambitious ideas into scalable businesses.",
     socials: {
-      linkedin: "https://in.linkedin.com/company/xspaceweb",
+      linkedin: "https://www.linkedin.com/in/rahul-kumar-017a162a6",
       instagram: "https://www.instagram.com/xspaceweb/",
       twitter: "https://twitter.com/xspaceweb",
       email: "md@xspaceweb.com",
@@ -115,7 +120,7 @@ export const OurLeadershipSection: React.FC = () => {
                     src={leader.photo}
                     alt={leader.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className={`object-cover ${leader.photoPosition || "object-top"} group-hover:scale-105 transition-transform duration-500`}
                     unoptimized
                   />
                   {/* Subtle Number overlay */}

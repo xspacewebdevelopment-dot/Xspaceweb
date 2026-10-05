@@ -32,6 +32,7 @@ export const SITE_CONFIG = {
   footerLinks: {
     company: [
       { label: "About Us", href: "/about" },
+      { label: "Company Info", href: "/company" },
       { label: "Careers", href: "/careers" },
       { label: "Our Process", href: "/#process" },
       { label: "Contact", href: "/contact" },
