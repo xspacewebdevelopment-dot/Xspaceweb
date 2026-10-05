@@ -20,6 +20,7 @@ const navItems: NavItem[] = [
   { label: "Services", href: "/services", id: "services" },
   { label: "About", href: "/about", id: "about" },
   { label: "Product", href: "/products", id: "products" },
+  { label: "Company", href: "/company", id: "company" },
   { label: "News & Event", href: "/news-and-updates", id: "news-and-events" },
   { label: "Careers", href: "/careers", id: "careers" },
   { label: "Contact", href: "/contact", id: "contact" },
@@ -80,7 +81,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Centered Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-7" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6" aria-label="Main Navigation">
             {navItems.map((item) => {
               const isActive = checkIsActive(item);
 
