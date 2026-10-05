@@ -36,47 +36,56 @@ interface TestimonialSpotlight {
 const SPOTLIGHT_TESTIMONIALS: TestimonialSpotlight[] = [
   {
     id: 1,
-    name: "Rohan Mehta",
-    role: "Founder & CEO, GameDay Health",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+    name: "Ritik Sharma",
+    role: "Founder, Eclique",
+    avatar: "/images/clientImages/Ritikeclique.jpeg",
     quote:
-      "Working with their team was a game-changer for our business. They understood our requirements perfectly and delivered beyond our expectations. The entire process was smooth, transparent and highly professional.",
+      "We worked with XSPACEWEB for our website development and graphic design requirements, and the overall experience was really smooth. They understood what we wanted for Eclique and turned our ideas into a clean, professional website. The design work also helped us maintain a much more consistent brand identity across our digital presence. The team was responsive, creative, and easy to work with.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Amit Shah",
-    role: "CTO, SecureNet India",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+    name: "Prabhat Bhardwaj",
+    role: "Founder, Prahar Filing & Advisory · Company Secretary",
+    avatar: "/images/clientImages/PRABHAT_BHARDWAJ.jpeg",
     quote:
-      "The attention to detail in UI/UX and motion design is unmatched. Our conversion rates jumped 180% after launch! Highly recommended for any web application project.",
+      "As a professional working in GST compliance and corporate advisory, I wanted a website that looked professional and also clearly explained our services to potential clients. XSPACEWEB handled the website development and UI/UX with a very practical approach. They took the time to understand our work before designing the website, and the final result feels much more aligned with our professional image.",
     rating: 5,
   },
   {
     id: 3,
-    name: "Priya Sharma",
-    role: "COO, Innovate Labs",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80",
+    name: "Rohit Pandey",
+    role: "Director, School Infra Solutions",
+    avatar: "/images/clientImages/SIS.png",
     quote:
-      "XspaceWeb turned our complex SaaS platform requirements into a sleek, lightning-fast digital product. The team went above and beyond at every phase.",
+      "We approached XSPACEWEB for our website as well as a CRM solution for managing our business operations. What I liked most was that they didn't treat the website and CRM as two completely separate things. They understood how our team actually works and built the digital experience around that. Communication throughout the project was clear, and the final product has made our day-to-day work much more organized.",
     rating: 5,
   },
   {
     id: 4,
-    name: "Ananya Roy",
-    role: "VP of Engineering, CloudMasters",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80",
+    name: "Akash Jaiswal",
+    role: "Shiv Shambhu Group",
+    avatar: "/images/clientImages/SSG.png",
     quote:
-      "XspaceWeb's products made scaling our web infrastructure seamless. Can't recommend their engineering and design team enough!",
+      "We needed creative designs and regular social media content that could represent Shiv Shambhu Group professionally. XSPACEWEB brought a fresh approach to our graphic design and social media creatives. The designs feel much more consistent now, and they have helped us present our brand better online. The team was open to feedback and understood the kind of visual style we were looking for.",
     rating: 5,
   },
   {
     id: 5,
-    name: "Alex Vance",
-    role: "VP of Growth, TechCorp",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
+    name: "Rajesh",
+    role: "Founder, AV CART",
+    avatar: "/images/clientImages/Rakesh_AVCART.jpeg",
     quote:
-      "The scalability of XspaceWeb's backend and API integrations is remarkable. It handles high concurrent user volume without any latency.",
+      "XSPACEWEB helped us with our website development along with marketing and branding. They understood that the website needed to do more than just look good—it had to communicate our brand properly and support our business goals. From the overall design to the branding direction, the team brought good ideas to the table and was genuinely involved in improving the final experience.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Anand Kumar Mehta",
+    role: "Founder, AproTrader",
+    avatar: "/images/clientImages/Apro.png",
+    quote:
+      "We came to XSPACEWEB for our website development and an LMS platform for AproTrader. The team understood that our platform needed to be simple for learners while still giving us the flexibility to manage our content and courses. They worked patiently through the requirements and delivered a much more structured digital learning experience for our users. Overall, it was a positive experience working with the team.",
     rating: 5,
   },
 ];
@@ -96,90 +105,68 @@ interface CarouselTestimonial {
 const CAROUSEL_TESTIMONIALS: CarouselTestimonial[] = [
   {
     id: 1,
-    name: "Anil Sharma",
-    role: "Founder & CEO",
-    company: "PixelTech Technologies",
-    location: "Ranchi, Jharkhand",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80",
+    name: "Ritik Sharma",
+    role: "Founder, Eclique",
+    company: "Eclique",
+    location: "Dhanbad, Jharkhand",
+    avatar: "/images/clientImages/Ritikeclique.jpeg",
     quote:
-      "XSPACEWEB built our website and mobile app with great professionalism. The team understood our requirements perfectly and delivered a smooth, user-friendly experience. Their digital marketing support has also helped us reach more customers and grow faster.",
+      "We worked with XSPACEWEB for our website development and graphic design requirements, and the overall experience was really smooth. They understood what we wanted for Eclique and turned our ideas into a clean, professional website. The design work also helped us maintain a much more consistent brand identity across our digital presence. The team was responsive, creative, and easy to work with.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Priya Nair",
-    role: "Marketing Manager",
-    company: "WebSky Solutions",
-    location: "Bengaluru, Karnataka",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80",
+    name: "Prabhat Bhardwaj",
+    role: "Founder, Prahar Filing & Advisory · Company Secretary",
+    company: "Prahar Filing & Advisory",
+    location: "Jarmundi, Dumka, Jharkhand",
+    avatar: "/images/clientImages/PRABHAT_BHARDWAJ.jpeg",
     quote:
-      "We partnered with XSPACEWEB for our website development and SEO services. The communication was clear, execution was on time, and the results have been impressive. Our organic traffic has grown significantly in just 3 months!",
+      "As a professional working in GST compliance and corporate advisory, I wanted a website that looked professional and also clearly explained our services to potential clients. XSPACEWEB handled the website development and UI/UX with a very practical approach. They took the time to understand our work before designing the website, and the final result feels much more aligned with our professional image.",
     rating: 5,
   },
   {
     id: 3,
-    name: "Rohit Verma",
-    role: "Director",
-    company: "NextGen Solutions",
-    location: "Noida, Uttar Pradesh",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80",
+    name: "Rohit Pandey",
+    role: "Director, School Infra Solutions",
+    company: "School Infra Solutions",
+    location: "Delhi, India",
+    avatar: "/images/clientImages/SIS.png",
     quote:
-      "The XSPACEWEB team developed our custom mobile app and also handled the UI/UX design. The app is functional, clean and exactly what we envisioned. Their creative team also delivered excellent graphic designs for our brand.",
+      "We approached XSPACEWEB for our website as well as a CRM solution for managing our business operations. What I liked most was that they didn't treat the website and CRM as two completely separate things. They understood how our team actually works and built the digital experience around that. Communication throughout the project was clear, and the final product has made our day-to-day work much more organized.",
     rating: 5,
   },
   {
     id: 4,
-    name: "Neha Kapoor",
-    role: "Business Head",
-    company: "BrightPath Media",
-    location: "Mumbai, Maharashtra",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80",
+    name: "Akash Jaiswal",
+    role: "Shiv Shambhu Group",
+    company: "Shiv Shambhu Group",
+    location: "Jamshedpur, Jharkhand",
+    avatar: "/images/clientImages/SSG.png",
     quote:
-      "Their digital marketing and content strategy brought real visibility to our brand. We saw a noticeable increase in engagement and leads within a few weeks. Highly recommend them for anyone looking for reliable digital solutions.",
+      "We needed creative designs and regular social media content that could represent Shiv Shambhu Group professionally. XSPACEWEB brought a fresh approach to our graphic design and social media creatives. The designs feel much more consistent now, and they have helped us present our brand better online. The team was open to feedback and understood the kind of visual style we were looking for.",
     rating: 5,
   },
   {
     id: 5,
-    name: "Vikram Desai",
-    role: "Co-Founder",
-    company: "InnoTech Labs",
-    location: "Pune, Maharashtra",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80",
+    name: "Rajesh",
+    role: "Founder, AV CART",
+    company: "AV CART",
+    location: "Haryana, India",
+    avatar: "/images/clientImages/Rakesh_AVCART.jpeg",
     quote:
-      "XSPACEWEB delivered an outstanding SaaS product for our startup. Their technical expertise and dedication to quality are truly commendable. The platform runs flawlessly and our users love the interface.",
+      "XSPACEWEB helped us with our website development along with marketing and branding. They understood that the website needed to do more than just look good—it had to communicate our brand properly and support our business goals. From the overall design to the branding direction, the team brought good ideas to the table and was genuinely involved in improving the final experience.",
     rating: 5,
   },
   {
     id: 6,
-    name: "Sanya Gupta",
-    role: "Product Manager",
-    company: "CloudNine Digital",
-    location: "Hyderabad, Telangana",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
+    name: "Anand Kumar Mehta",
+    role: "Founder, AproTrader",
+    company: "AproTrader",
+    location: "Hazaribagh, Jharkhand",
+    avatar: "/images/clientImages/Apro.png",
     quote:
-      "From concept to deployment, the XSPACEWEB team delivered a polished product that exceeded our expectations. Their attention to detail in both design and functionality is remarkable. A truly professional team.",
-    rating: 5,
-  },
-  {
-    id: 7,
-    name: "Arjun Patel",
-    role: "CTO",
-    company: "DataFlow Systems",
-    location: "Ahmedabad, Gujarat",
-    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=256&q=80",
-    quote:
-      "The backend architecture XSPACEWEB built for us handles thousands of concurrent users without breaking a sweat. Scalable, secure, and brilliantly engineered. Their DevOps support has been invaluable.",
-    rating: 5,
-  },
-  {
-    id: 8,
-    name: "Meera Joshi",
-    role: "Creative Director",
-    company: "DesignSpark Studio",
-    location: "Jaipur, Rajasthan",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80",
-    quote:
-      "As a design-focused agency ourselves, we have high standards. XSPACEWEB impressed us with their pixel-perfect UI implementation and smooth animations. They truly understand modern web aesthetics.",
+      "We came to XSPACEWEB for our website development and an LMS platform for AproTrader. The team understood that our platform needed to be simple for learners while still giving us the flexibility to manage our content and courses. They worked patiently through the requirements and delivered a much more structured digital learning experience for our users. Overall, it was a positive experience working with the team.",
     rating: 5,
   },
 ];
@@ -201,7 +188,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ initia
         location: t.location || "",
         avatar:
           t.profileImageUrl ||
-          "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80",
+          "/images/clientImages/Ritikeclique.jpeg",
         quote: t.testimonialText,
         rating: t.rating ?? 5,
       }));
@@ -211,16 +198,24 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ initia
 
   const spotlightList: TestimonialSpotlight[] = React.useMemo(() => {
     if (initialReviews && initialReviews.length > 0) {
-      return initialReviews.slice(0, 5).map((t) => ({
-        id: t.id,
-        name: t.name,
-        role: [t.designation, t.company].filter(Boolean).join(", "),
-        avatar:
-          t.profileImageUrl ||
-          "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80",
-        quote: t.testimonialText,
-        rating: t.rating ?? 5,
-      }));
+      return initialReviews.map((t) => {
+        let role = t.designation || "";
+        if (t.company && role && !role.toLowerCase().includes(t.company.toLowerCase())) {
+          role = `${role}, ${t.company}`;
+        } else if (!role && t.company) {
+          role = t.company;
+        }
+        return {
+          id: t.id,
+          name: t.name,
+          role,
+          avatar:
+            t.profileImageUrl ||
+            "/images/clientImages/Ritikeclique.jpeg",
+          quote: t.testimonialText,
+          rating: t.rating ?? 5,
+        };
+      });
     }
     return SPOTLIGHT_TESTIMONIALS;
   }, [initialReviews]);

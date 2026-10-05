@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { Metadata } from "next";
 import { db } from "@/lib/db";
 import { interns } from "@/lib/db/schema";
-import { eq, and } from "drizzle-orm";
+import { eq, and, asc } from "drizzle-orm";
 import {
   normalizeInternshipId,
   isValidInternshipId,
@@ -13,6 +13,17 @@ import { CertificationPageContent } from "@/components/certification/Certificati
 import { VerifiedInternData } from "@/components/certification/CertificationResultCard";
 
 export const dynamic = "force-dynamic";
+
+const defaultQuoteMap: Record<string, string> = {
+  "Amarendra Kumar Saxena":
+    "Working on modern web architectures and responsive interfaces at XSPACEWEB gave me hands-on mastery of full-stack web development. The mentorship and real-world project delivery transformed my engineering confidence.",
+  "Arijit Banerjee":
+    "Building scalable backend systems, architecting high-performance APIs, and collaborating with cross-functional teams at XSPACEWEB gave me invaluable exposure to production-grade software engineering.",
+  "Nancy Verma":
+    "At XSPACEWEB, transforming UI designs into accessible, pixel-perfect web applications taught me best practices in modern web development and state-of-the-art frontend workflows.",
+  "Priya Kumari":
+    "My internship at XSPACEWEB offered an exceptional environment to engineer robust software solutions, write clean code, and tackle complex technical challenges alongside experienced developers.",
+};
 
 export async function generateMetadata({
   params,
@@ -38,6 +49,29 @@ export default async function CertificationIdPage({
 
   let initialIntern: VerifiedInternData | null = null;
   let initialError: string | null = null;
+
+  let showcaseInterns;
+  try {
+    const dbInterns = await db
+      .select()
+      .from(interns)
+      .where(eq(interns.isPublished, true))
+      .orderBy(asc(interns.internshipId));
+
+    if (dbInterns && dbInterns.length > 0) {
+      showcaseInterns = dbInterns.map((i) => ({
+        id: i.id,
+        internshipId: i.internshipId,
+        fullName: i.fullName,
+        role: i.role,
+        department: i.department,
+        image: i.profileImage || "/images/InternImages/Amrendra_Kumar_Saxena.jpeg",
+        quote: defaultQuoteMap[i.fullName] || i.description || undefined,
+      }));
+    }
+  } catch (err) {
+    console.error("Failed to query showcase interns from DB:", err);
+  }
 
   if (!isValidInternshipId(normalizedId)) {
     initialError = "Please enter a valid Internship ID, for example XSW-INTERN-001.";
@@ -108,6 +142,7 @@ export default async function CertificationIdPage({
         initialIntern={initialIntern}
         initialId={normalizedId}
         initialError={initialError}
+        showcaseInterns={showcaseInterns}
       />
     </Suspense>
   );

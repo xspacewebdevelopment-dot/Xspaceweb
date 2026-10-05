@@ -17,8 +17,7 @@ export const Logo: React.FC<LogoProps> = ({
   priority = true,
 }) => {
   const isDark = variant === "dark";
-
-
+  const logoSrc = isDark ? "/images/FinalLogo.png" : "/images/FinalLogo-light.png";
 
   return (
     <Link
@@ -29,24 +28,25 @@ export const Logo: React.FC<LogoProps> = ({
       )}
       aria-label="XSPACEWEB Home"
     >
-      <div className="flex items-center gap-2 sm:gap-2.5">
-        <Image
-          src="/logos/logo-icon.png"
-          alt="XSPACEWEB Icon"
-          width={40}
-          height={40}
-          priority={priority}
-          className="h-7 sm:h-8 md:h-[32px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-        />
-        {showText && (
-          <span
-            className={cn(
-              "text-[18px] sm:text-[20px] md:text-[21px] font-black tracking-tight select-none leading-none",
-              isDark ? "text-[#07152B]" : "text-white"
-            )}
-          >
-            SPACEWEB
-          </span>
+      <div className="flex items-center">
+        {showText ? (
+          <Image
+            src={logoSrc}
+            alt="XSPACEWEB"
+            width={240}
+            height={38}
+            priority={priority}
+            className="h-7 sm:h-8 md:h-[34px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+          />
+        ) : (
+          <Image
+            src="/logos/logo-icon.png"
+            alt="XSPACEWEB Icon"
+            width={40}
+            height={40}
+            priority={priority}
+            className="h-7 sm:h-8 md:h-[32px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
         )}
       </div>
     </Link>

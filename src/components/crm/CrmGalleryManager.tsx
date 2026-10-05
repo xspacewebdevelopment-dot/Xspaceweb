@@ -286,7 +286,7 @@ export const CrmGalleryManager: React.FC<CrmGalleryManagerProps> = ({
             Event Gallery
           </h1>
           <p className="text-sm text-slate-500 mt-1">
-            Manage photos from past conferences, workshops, and milestones. The top 5 featured images appear on the public site.
+            Manage photos from past conferences, workshops, and milestones. All featured images appear dynamically on the public site.
           </p>
         </div>
 

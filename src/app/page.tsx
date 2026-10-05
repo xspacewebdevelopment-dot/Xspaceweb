@@ -44,7 +44,8 @@ export default async function Home() {
     <>
       <HeroSection />
       <RatingsStrip />
-      <PartnerLogos />
+      {/* Temporarily hidden - will be added back later */}
+      {/* <PartnerLogos /> */}
       <ServicesSection />
       <WebProcessSection />
       <WhoWeAreSection />
