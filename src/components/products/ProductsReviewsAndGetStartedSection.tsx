@@ -22,61 +22,105 @@ interface TestimonialItem {
   avatar: string;
 }
 
-const TESTIMONIALS: TestimonialItem[] = [
+const DEFAULT_TESTIMONIALS: TestimonialItem[] = [
   {
     id: "review-1",
     quote:
-      "MakeGSTBill has simplified our invoicing and GST compliance. It's exactly what Indian businesses need.",
-    author: "Rahul Mehta",
-    role: "Founder, Mehta Solutions",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80",
+      "MakeGSTBill has made our day-to-day billing much easier. Creating GST invoices is simple, and managing our billing from one place saves us a lot of time. It’s been really useful for our business.",
+    author: "Jayant Kumar",
+    role: "Business Owner, MakeGSTBill Customer",
+    avatar: "/images/clientImages/jayant_kumar.jpeg",
   },
   {
     id: "review-2",
     quote:
-      "Gurukul Coaching App made online classes so easy for our institution. Students and parents love it.",
-    author: "Priya Sharma",
-    role: "Director, BrightFuture Academy",
-    avatar:
-      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80",
+      "GoldenGST has made our billing and GST work much more organised. The software is easy to use, and having everything in one place makes our daily work much easier. Overall, it has been a really good experience.",
+    author: "Sachin",
+    role: "Business Owner, GoldenGST Customer",
+    avatar: "/images/clientImages/sachin.jpeg",
   },
   {
     id: "review-3",
     quote:
-      "FreeDeskPro is incredibly fast and secure. Our IT support has never been this efficient.",
-    author: "Arjun Nair",
-    role: "IT Head, CloudStack",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=80",
+      "We started using GoldenGST to make our billing process easier, and it has worked really well for us. The interface is simple, the billing process is quick, and it saves us a lot of unnecessary paperwork and effort.",
+    author: "Ritik Saw",
+    role: "Business Owner, GoldenGST Customer",
+    avatar: "/images/clientImages/Ritik.jpeg",
   },
   {
     id: "review-4",
     quote:
-      "GoldenGST's multi-branch reporting and automated e-way bill generation saved us over 20 hours every week.",
-    author: "Vikram Malhotra",
-    role: "CFO, Apex LogiTech",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=160&q=80",
+      "MakeGSTBill has made our regular billing work much easier. Creating GST invoices is quick and straightforward, and I don’t have to spend much time managing everything manually. It’s a simple and useful solution for day-to-day business billing.",
+    author: "Abhishek Chandra",
+    role: "MakeGSTBill Customer",
+    avatar: "/images/clientImages/Abhishek_chandra.jpeg",
   },
 ];
 
 export const ProductsReviewsAndGetStartedSection: React.FC = () => {
+  const [testimonialsList, setTestimonialsList] = useState<TestimonialItem[]>(DEFAULT_TESTIMONIALS);
   const [startIndex, setStartIndex] = useState(0);
 
+  React.useEffect(() => {
+    let isMounted = true;
+    fetch("/api/testimonials?type=client")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!isMounted || !data?.testimonials) return;
+        const productReviews = data.testimonials.filter(
+          (t: { company?: string | null; designation?: string | null }) =>
+            t.company?.toLowerCase().includes("makegstbill") ||
+            t.company?.toLowerCase().includes("goldengst") ||
+            t.designation?.toLowerCase().includes("makegstbill") ||
+            t.designation?.toLowerCase().includes("goldengst")
+        );
+        if (productReviews.length >= 3) {
+          setTestimonialsList(
+            productReviews.map(
+              (
+                t: {
+                  id: string;
+                  testimonialText: string;
+                  name: string;
+                  designation?: string | null;
+                  company?: string | null;
+                  profileImageUrl?: string | null;
+                },
+                idx: number
+              ) => ({
+                id: t.id || `review-${idx + 1}`,
+                quote: t.testimonialText,
+                author: t.name,
+                role:
+                  t.designation ||
+                  (t.company ? `Business Owner, ${t.company} Customer` : "Business Owner"),
+                avatar:
+                  t.profileImageUrl ||
+                  DEFAULT_TESTIMONIALS[idx % DEFAULT_TESTIMONIALS.length].avatar,
+              })
+            )
+          );
+        }
+      })
+      .catch(() => {});
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handlePrev = () => {
-    setStartIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+    setStartIndex((prev) => (prev - 1 + testimonialsList.length) % testimonialsList.length);
   };
 
   const handleNext = () => {
-    setStartIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+    setStartIndex((prev) => (prev + 1) % testimonialsList.length);
   };
 
   // Get 3 visible reviews
   const visibleReviews = [
-    TESTIMONIALS[startIndex % TESTIMONIALS.length],
-    TESTIMONIALS[(startIndex + 1) % TESTIMONIALS.length],
-    TESTIMONIALS[(startIndex + 2) % TESTIMONIALS.length],
+    testimonialsList[startIndex % testimonialsList.length],
+    testimonialsList[(startIndex + 1) % testimonialsList.length],
+    testimonialsList[(startIndex + 2) % testimonialsList.length],
   ];
 
   return (
