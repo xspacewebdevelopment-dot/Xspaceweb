@@ -85,7 +85,7 @@ const leaders: Leader[] = [
       linkedin: "https://www.linkedin.com/in/rahul-kumar-017a162a6",
       instagram: "https://www.instagram.com/xspaceweb/",
       twitter: "https://twitter.com/xspaceweb",
-      email: "md@xspaceweb.com",
+      email: "director@xspaceweb.com",
     },
   },
 ];

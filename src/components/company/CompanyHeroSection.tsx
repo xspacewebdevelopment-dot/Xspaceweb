@@ -67,11 +67,11 @@ export const CompanyHeroSection: React.FC = () => {
                 </span>
               </div>
 
-              {/* Building Image Card */}
+              {/* Hero Image Card */}
               <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] rounded-2xl overflow-hidden shadow-[0_12px_40px_rgba(7,21,43,0.08)] border border-slate-100 group">
                 <Image
-                  src="/images/company/hero_building.jpg"
-                  alt="XSPACEWEB Headquarters Architecture"
+                  src="/images/company/company_hero_x.png"
+                  alt="XSPACEWEB 3D Emblem"
                   fill
                   priority
                   className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"

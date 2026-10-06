@@ -19,9 +19,51 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://xspaceweb.com"),
   title: "XSPACEWEB — Building Digital Experiences Beyond Boundaries",
   description:
     "XSPACEWEB is an Indian technology company focused on building innovative SaaS products and delivering end-to-end digital solutions.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/logos/logo-icon.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  openGraph: {
+    title: "XSPACEWEB — Building Digital Experiences Beyond Boundaries",
+    description:
+      "XSPACEWEB is an Indian technology company focused on building innovative SaaS products and delivering end-to-end digital solutions.",
+    url: "https://xspaceweb.com",
+    siteName: "XSPACEWEB",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "XSPACEWEB — Building Digital Experiences Beyond Boundaries",
+      },
+      {
+        url: "/logos/logo-icon.png",
+        width: 332,
+        height: 332,
+        alt: "XSPACEWEB Blue X Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "XSPACEWEB — Building Digital Experiences Beyond Boundaries",
+    description:
+      "XSPACEWEB is an Indian technology company focused on building innovative SaaS products and delivering end-to-end digital solutions.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({
