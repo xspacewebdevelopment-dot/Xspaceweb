@@ -65,6 +65,7 @@ export const CompanyPresenceSection: React.FC = () => {
                   src="/images/about/india_presence_map_clean.jpg"
                   alt="XSPACEWEB India Presence Map"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 480px"
                   className="object-contain p-4"
                 />
 

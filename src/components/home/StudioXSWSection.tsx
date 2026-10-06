@@ -18,8 +18,8 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/cinematic_man.jpg"
               alt="Studio XSW Creative Portraiture"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-slate-950/30" />
 
@@ -39,8 +39,8 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/abstract_sphere.jpg"
               alt="Studio XSW 3D Sculpture Art"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
           </div>
@@ -54,6 +54,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/portrait_woman.jpg"
               alt="Studio XSW Editorial Fashion Portrait"
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
@@ -65,6 +66,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/pilates_reformer.jpg"
               alt="Studio XSW Architectural Motion Shoot"
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
@@ -76,6 +78,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/camera_lens.jpg"
               alt="Studio XSW Cinema Lens Photography"
               fill
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/30 via-transparent to-transparent" />
@@ -89,6 +92,7 @@ export const StudioXSWSection: React.FC = () => {
             src="/images/studio/banner_bg.jpg"
             alt="Studio XSW Texture Background"
             fill
+            sizes="100vw"
             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           />
 

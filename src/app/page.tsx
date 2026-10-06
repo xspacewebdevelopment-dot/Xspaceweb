@@ -20,7 +20,9 @@ import { RecentWorkSection } from "@/components/home/RecentWorkSection";
 import { StartProjectBannerSection } from "@/components/home/StartProjectBannerSection";
 import { BrighterTomorrowSection } from "@/components/home/BrighterTomorrowSection";
 
-export const dynamic = "force-dynamic";
+// Use Incremental Static Regeneration (ISR) so homepage responds instantly (<50ms) from edge CDN
+// Reviews refresh in background every 2 minutes
+export const revalidate = 120;
 
 export default async function Home() {
   let clientReviews: any[] = [];

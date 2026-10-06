@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import React from "react";
+import Image from "next/image";
 
 export interface ImageGalleryProps {
   eyebrow?: string;
@@ -88,10 +89,12 @@ export default function ImageGallery({
               HEIGHT_VARIANTS[idx % HEIGHT_VARIANTS.length]
             )}
           >
-            <img
-              className="h-full w-full object-cover object-center"
+            <Image
+              className="object-cover object-center"
               src={src}
               alt={`selected-work-${idx + 1}`}
+              fill
+              sizes="(max-width: 640px) 33vw, (max-width: 1024px) 20vw, 160px"
               loading="lazy"
             />
           </div>

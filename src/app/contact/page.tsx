@@ -317,8 +317,8 @@ export default function ContactPage() {
                     src="/images/contact/kolkata.jpg"
                     alt="Kolkata skyline with Howrah Bridge and Victoria Memorial"
                     fill
+                    sizes="(max-width: 640px) 100vw, 500px"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    priority
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
                 </div>

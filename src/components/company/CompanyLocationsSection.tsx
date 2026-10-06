@@ -72,6 +72,7 @@ export const CompanyLocationsSection: React.FC = () => {
                 src="/images/contact/kolkata.jpg"
                 alt="Kolkata Office"
                 fill
+                sizes="(max-width: 640px) 100vw, 190px"
                 className="object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -117,6 +118,7 @@ export const CompanyLocationsSection: React.FC = () => {
               src="/images/company/hazaribagh.jpg"
               alt="Hazaribagh Operating Base"
               fill
+              sizes="(max-width: 640px) 100vw, 260px"
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>

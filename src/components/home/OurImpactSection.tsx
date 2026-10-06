@@ -26,8 +26,8 @@ export const OurImpactSection: React.FC = () => {
           src="/images/home/world_map.png"
           alt="XSPACEWEB Global Reach World Map Background"
           fill
+          sizes="100vw"
           className="object-cover object-center opacity-90"
-          priority
         />
         {/* Soft atmospheric gradient dark overlay for maximum legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#020A18]/50 via-transparent to-[#020A18]/70" />

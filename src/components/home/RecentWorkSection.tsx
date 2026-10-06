@@ -238,8 +238,6 @@ export const RecentWorkSection: React.FC = () => {
                     src={featured.imageSrc}
                     alt={featured.title}
                     fill
-                    unoptimized
-                    priority
                     sizes="(max-width: 1024px) 100vw, 58vw"
                     style={{ objectPosition: featured.objectPosition }}
                     className="object-cover transition-transform duration-500 ease-out group-hover/featured:scale-[1.025]"
@@ -309,7 +307,6 @@ export const RecentWorkSection: React.FC = () => {
                         src={work.imageSrc}
                         alt={work.title}
                         fill
-                        unoptimized
                         sizes="(max-width: 1024px) 100vw, 42vw"
                         style={{ objectPosition: work.objectPosition }}
                         className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.025]"
@@ -379,7 +376,6 @@ export const RecentWorkSection: React.FC = () => {
                       src={work.imageSrc}
                       alt={work.title}
                       fill
-                      unoptimized
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       style={{ objectPosition: work.objectPosition }}
                       className="object-cover transition-transform duration-500 ease-out group-hover/card:scale-[1.025]"
