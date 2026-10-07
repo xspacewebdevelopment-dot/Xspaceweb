@@ -42,7 +42,7 @@ const productLinks: FooterColumn = {
 const serviceLinks: FooterColumn = {
   title: "SERVICES",
   links: [
-    { label: "Digital Marketing", href: "/services" },
+    { label: "Digital Marketing", href: "/services/digital-marketing" },
     { label: "Web Development", href: "/services" },
     { label: "App Development", href: "/services" },
     { label: "Studio XSW", href: "/services" },
