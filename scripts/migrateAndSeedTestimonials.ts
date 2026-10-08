@@ -91,6 +91,54 @@ async function main() {
     // 1. Client Reviews
     const clientReviews = [
       {
+        name: "Jayant Kumar",
+        designation: "Business Owner, MakeGSTBill Customer",
+        company: "MakeGSTBill",
+        location: "India",
+        rating: 5,
+        testimonial_text:
+          "MakeGSTBill has made our day-to-day billing much easier. Creating GST invoices is simple, and managing our billing from one place saves us a lot of time. It’s been really useful for our business.",
+        profile_image_url: "/images/clientImages/jayant_kumar.jpeg",
+        display_order: 1,
+        is_featured: true,
+      },
+      {
+        name: "Sachin",
+        designation: "Business Owner, GoldenGST Customer",
+        company: "GoldenGST",
+        location: "India",
+        rating: 5,
+        testimonial_text:
+          "GoldenGST has made our billing and GST work much more organised. The software is easy to use, and having everything in one place makes our daily work much easier. Overall, it has been a really good experience.",
+        profile_image_url: "/images/clientImages/sachin.jpeg",
+        display_order: 2,
+        is_featured: true,
+      },
+      {
+        name: "Ritik Saw",
+        designation: "Business Owner, GoldenGST Customer",
+        company: "GoldenGST",
+        location: "India",
+        rating: 5,
+        testimonial_text:
+          "We started using GoldenGST to make our billing process easier, and it has worked really well for us. The interface is simple, the billing process is quick, and it saves us a lot of unnecessary paperwork and effort.",
+        profile_image_url: "/images/clientImages/Ritik.jpeg",
+        display_order: 3,
+        is_featured: true,
+      },
+      {
+        name: "Abhishek Chandra",
+        designation: "MakeGSTBill Customer",
+        company: "MakeGSTBill",
+        location: "India",
+        rating: 5,
+        testimonial_text:
+          "MakeGSTBill has made our regular billing work much easier. Creating GST invoices is quick and straightforward, and I don’t have to spend much time managing everything manually. It’s a simple and useful solution for day-to-day business billing.",
+        profile_image_url: "/images/clientImages/Abhishek_chandra.jpeg",
+        display_order: 4,
+        is_featured: true,
+      },
+      {
         name: "Anil Sharma",
         designation: "Founder & CEO",
         company: "PixelTech Technologies",
@@ -100,7 +148,7 @@ async function main() {
           "XSPACEWEB built our website and mobile app with great professionalism. The team understood our requirements perfectly and delivered a smooth, user-friendly experience. Their digital marketing support has also helped us reach more customers and grow faster.",
         profile_image_url:
           "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=256&q=80",
-        display_order: 1,
+        display_order: 5,
         is_featured: true,
       },
       {

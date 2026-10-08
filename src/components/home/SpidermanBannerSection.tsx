@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export const SpidermanBannerSection: React.FC = () => {
@@ -13,9 +14,13 @@ export const SpidermanBannerSection: React.FC = () => {
         transition={{ duration: 0.4, ease: "easeOut" }}
         className="w-full cursor-pointer relative"
       >
-        <img
+        <Image
           src="/images/technologies/spiderman_web_banner.png"
           alt="Spider-Man Web Action Banner"
+          width={1920}
+          height={400}
+          sizes="100vw"
+          loading="lazy"
           className="w-full h-auto block object-fill"
         />
 

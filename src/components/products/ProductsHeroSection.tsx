@@ -549,7 +549,7 @@ export const ProductsHeroSection: React.FC<ProductsHeroSectionProps> = ({ onOpen
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           className="w-full h-full object-cover object-top"
         >
           <source src="/videos/product.mp4" type="video/mp4" />

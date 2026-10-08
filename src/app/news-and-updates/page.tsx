@@ -78,9 +78,11 @@ export default async function NewsAndUpdatesPage() {
       <MastheadHeader />
       <NewsHero />
       <NewsFilterAndGrid initialArticles={publishedArticles} />
-      <EventsWebinarsSection initialEvents={publishedEvents} />
+      {/* Temporarily hidden - will be added back later */}
+      {/* <EventsWebinarsSection initialEvents={publishedEvents} /> */}
       <EventGallerySection initialImages={galleryImages} />
-      <MediaMentionsSection initialMentions={publishedMediaMentions} />
+      {/* Temporarily hidden - will be added back later */}
+      {/* <MediaMentionsSection initialMentions={publishedMediaMentions} /> */}
       <NewsNewsletterSection />
     </main>
   );

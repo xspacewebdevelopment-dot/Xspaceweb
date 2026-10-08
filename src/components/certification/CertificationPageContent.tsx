@@ -11,12 +11,22 @@ interface CertificationPageContentProps {
   initialIntern?: VerifiedInternData | null;
   initialId?: string;
   initialError?: string | null;
+  showcaseInterns?: Array<{
+    id: string;
+    internshipId: string;
+    fullName: string;
+    role: string;
+    department: string;
+    image: string;
+    quote?: string;
+  }>;
 }
 
 export const CertificationPageContent: React.FC<CertificationPageContentProps> = ({
   initialIntern = null,
   initialId = "",
   initialError = null,
+  showcaseInterns,
 }) => {
   const resultRef = useRef<HTMLDivElement>(null);
 
@@ -123,12 +133,8 @@ export const CertificationPageContent: React.FC<CertificationPageContentProps> =
         )}
       </div>
 
-      {/* 3. "Meet Our Amazing Interns" cards row + Quote Carousel */}
-      <CertificationInternsShowcase
-        onSelectIntern={(id) => {
-          performSearch(id, true);
-        }}
-      />
+      {/* 3. "Meet Our Amazing Interns" static cards showcase */}
+      <CertificationInternsShowcase initialInterns={showcaseInterns} />
 
       {/* 4. Bottom CTA Banner: "Start Your 30-Day Free Trial" */}
       <CertificationCtaBanner />

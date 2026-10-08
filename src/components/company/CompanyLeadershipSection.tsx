@@ -29,7 +29,7 @@ const companyLeaders: Leader[] = [
     photo: "/images/about/leaders/rahul_kumar.png",
     bio: "Rahul Kumar contributes to the company's growth and long-term direction, supporting XSPACEWEB's evolution as a technology and digital solutions company.",
     linkedin: "https://www.linkedin.com/in/rahul-kumar-017a162a6",
-    email: "md@xspaceweb.com",
+    email: "director@xspaceweb.com",
   },
 ];
 

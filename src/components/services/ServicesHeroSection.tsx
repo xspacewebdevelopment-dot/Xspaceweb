@@ -36,7 +36,7 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className="w-full h-full object-cover object-center"
           >
             <source src="/videos/service.mp4" type="video/mp4" />

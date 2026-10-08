@@ -10,27 +10,50 @@ export const BrighterTomorrowSection: React.FC = () => {
   const [email, setEmail] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+
+  React.useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "350px" }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const handleGetStarted = (e: React.FormEvent) => {
     e.preventDefault();
     setIsModalOpen(true);
   };
 
-
   return (
     <>
-      <section id="brighter-tomorrow" className="relative w-full min-h-[640px] sm:min-h-[700px] md:min-h-[760px] flex flex-col justify-between py-8 sm:py-12 overflow-hidden select-none">
-        {/* Full-width Background Video using Footer upper video.mp4 */}
+      <section
+        ref={sectionRef}
+        id="brighter-tomorrow"
+        className="relative w-full min-h-[640px] sm:min-h-[700px] md:min-h-[760px] flex flex-col justify-between py-8 sm:py-12 overflow-hidden select-none bg-gradient-to-b from-[#EBF3FE] to-[#DCEBFC]"
+      >
+        {/* Full-width Background Video (lazy-mounted on scroll to save 14.5MB bandwidth on initial load) */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="w-full h-full object-cover object-center"
-          >
-            <source src="/videos/brighter_tomorrow.mp4" type="video/mp4" />
-          </video>
+          {shouldLoadVideo && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              className="w-full h-full object-cover object-center"
+            >
+              <source src="/videos/brighter_tomorrow.mp4" type="video/mp4" />
+            </video>
+          )}
           {/* Top light blue gradient blend to flow seamlessly with section above */}
           <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-[#EBF3FE] via-[#EBF3FE]/70 to-transparent z-1" />
           {/* Subtle light vignette for maximum readability */}

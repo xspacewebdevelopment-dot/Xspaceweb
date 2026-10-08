@@ -45,7 +45,7 @@ export const SITE_CONFIG = {
       { label: "All Products", href: "/products" },
     ],
     services: [
-      { label: "Digital Marketing", href: "/services#digital-marketing" },
+      { label: "Digital Marketing", href: "/services/digital-marketing" },
       { label: "Website Development", href: "/services#website-development" },
       { label: "App Development", href: "/services#app-development" },
       { label: "Studio XSW", href: "/#studio-xsw" },

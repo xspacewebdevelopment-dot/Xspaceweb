@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 export interface MechanicalKeycapProps {
   label: string;
   sublabel?: string;
+  title?: string;
   theme?: "light" | "dark";
   icon?: React.ReactNode;
   brandColor?: string;
@@ -72,6 +73,7 @@ function playMechanicalClick(frequency = 1800) {
 export const MechanicalKeycap: React.FC<MechanicalKeycapProps> = ({
   label,
   sublabel,
+  title,
   theme = "light",
   icon,
   brandColor = "#1668E8",
@@ -142,7 +144,8 @@ export const MechanicalKeycap: React.FC<MechanicalKeycapProps> = ({
         {/* The 3D Keycap Body */}
         <motion.button
           type="button"
-          aria-label={`Keycap for ${label}`}
+          aria-label={title || label ? `Keycap for ${title || label}` : "Keycap"}
+          title={title || label || undefined}
           onPointerDown={handlePress}
           onPointerUp={handleRelease}
           onPointerLeave={() => {

@@ -60,12 +60,13 @@ const leaders: Leader[] = [
     name: "Debasmita Sahoo",
     roleTitle: "Marketing Manager",
     companyTag: "@ XSPACEWEB",
-    photo: "/images/about/leaders/debasmita_sahoo.png",
+    photo: "/images/about/leaders/debasmita_sahoo.jpg",
     photoPosition: "object-top",
     quote: "“Behind every bold vision is a balanced strategy.”",
     bio: "Our growth is guided by research-led marketing, fresh ideas, and disciplined financial planning. We turn innovation into sustainable success.",
     socials: {
-      linkedin: "https://in.linkedin.com/company/xspaceweb",
+      linkedin:
+        "https://www.linkedin.com/in/debasmita-sahoo-4035a3418?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       instagram: "https://www.instagram.com/xspaceweb/",
       twitter: "https://twitter.com/xspaceweb",
       email: "marketing@xspaceweb.com",
@@ -76,7 +77,7 @@ const leaders: Leader[] = [
     name: "Rahul Kumar",
     roleTitle: "Managing Director",
     companyTag: "@ XSPACEWEB",
-    photo: "/images/about/leaders/rahul_kumar.png",
+    photo: "/images/about/leaders/rahul_kumar.jpg",
     photoPosition: "object-top",
     quote: "“Turning ideas into systems, and systems into opportunities.”",
     bio: "We believe sustainable growth comes from the right balance of operations, strategy, technology, and execution. We create meaningful opportunities and turn ambitious ideas into scalable businesses.",
@@ -84,7 +85,7 @@ const leaders: Leader[] = [
       linkedin: "https://www.linkedin.com/in/rahul-kumar-017a162a6",
       instagram: "https://www.instagram.com/xspaceweb/",
       twitter: "https://twitter.com/xspaceweb",
-      email: "md@xspaceweb.com",
+      email: "director@xspaceweb.com",
     },
   },
 ];

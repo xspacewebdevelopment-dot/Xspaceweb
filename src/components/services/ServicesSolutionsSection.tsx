@@ -307,14 +307,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 Data-driven marketing strategies to grow your brand online. From social media, ads and content to email marketing, we help you reach the right audience and drive real results.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Digital Marketing")}
+                <Link
+                  href="/services/digital-marketing"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>

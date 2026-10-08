@@ -183,7 +183,6 @@ export const HeroSection: React.FC = () => {
                   width={150}
                   height={130}
                   className="w-20 sm:w-28 md:w-36 h-auto drop-shadow-sm"
-                  priority
                 />
               </motion.div>
 
@@ -201,7 +200,6 @@ export const HeroSection: React.FC = () => {
                   width={120}
                   height={170}
                   className="w-16 sm:w-22 md:w-28 h-auto drop-shadow-sm"
-                  priority
                 />
               </motion.div>
 
@@ -353,8 +351,9 @@ export const HeroSection: React.FC = () => {
                     alt="Woman with laptop on XSPACEWEB technology partner search podium"
                     width={1651}
                     height={953}
-                    className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
                     priority
+                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 680px"
+                    className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
                   />
                 </motion.div>
               </div>
@@ -461,7 +460,6 @@ export const HeroSection: React.FC = () => {
           alt=""
           width={600}
           height={600}
-          priority
           className="w-full h-full object-contain filter blur-[1px] sm:blur-[1.5px] opacity-70 sm:opacity-75 lg:opacity-80 scale-100 transform-gpu origin-bottom-left"
         />
       </div>
@@ -480,7 +478,6 @@ export const HeroSection: React.FC = () => {
           alt=""
           width={600}
           height={600}
-          priority
           className="w-full h-full object-contain filter blur-[1px] sm:blur-[1.5px] opacity-70 sm:opacity-75 lg:opacity-80 scale-100 transform-gpu origin-bottom-right"
         />
       </div>
