@@ -88,8 +88,8 @@ export const Navbar: React.FC = () => {
     }, 180);
   };
 
-  // Do not render public consumer navbar on CRM routes
-  if (pathname?.startsWith("/crm")) {
+  // Do not render public consumer navbar on CRM or Studio XSW full-bleed routes
+  if (pathname?.startsWith("/crm") || pathname?.startsWith("/services/studio-xsw")) {
     return null;
   }
 

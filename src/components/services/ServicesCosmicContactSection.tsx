@@ -212,7 +212,7 @@ export const ServicesCosmicContactSection: React.FC<ServicesCosmicContactSection
                       "Branding",
                       "UI/UX Design",
                       "Animation VFX",
-                      "Cloud & Enterprise Solutions",
+                      "Studio XSW",
                     ]}
                   />
                 </div>

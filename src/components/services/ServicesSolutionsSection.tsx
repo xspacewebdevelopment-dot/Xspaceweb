@@ -70,14 +70,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 Get discovered locally and grow your business on Google. We help you optimize, manage and scale your Google Business Profile for higher visibility, more calls and real customers.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Google My Business")}
+                <Link
+                  href="/services/google-my-business"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -450,14 +449,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 Bring your ideas to life with stunning animation and visual effects. From 2D/3D animation to motion graphics and VFX, we create captivating visual content for web, apps and ads.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Animation VFX")}
+                <Link
+                  href="/services/animation-vfx"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -522,16 +520,16 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
           </div>
 
           {/* =========================================================
-              ROW 08: Cloud & Enterprise Solutions
+              ROW 08: Studio XSW
               ========================================================= */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center p-4 sm:p-5 rounded-2xl hover:bg-slate-50/60 transition-colors">
-            {/* Left / Center: 3D Server Rack in Cloud + Brand Badges */}
+            {/* Left / Center: Studio Showcase Image + Creative Badges */}
             <div className="lg:col-span-7 flex flex-col items-center justify-center">
               <div className="relative w-full max-w-xs sm:max-w-sm h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.02]">
-                <div className="relative w-full h-full rounded-xl overflow-hidden">
+                <div className="relative w-full h-full rounded-xl overflow-hidden bg-black">
                   <Image
-                    src="/images/services/cloud_server.jpg"
-                    alt="Cloud & Enterprise 3D Server Rack"
+                    src="/images/services/studio_xsw.webp"
+                    alt="Studio XSW Visual & Cinematic Archive"
                     fill
                     className="object-cover"
                     unoptimized
@@ -539,19 +537,19 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 </div>
               </div>
 
-              {/* Cloud Provider Badges */}
+              {/* Studio Creative Badges */}
               <div className="flex items-center justify-center gap-3 mt-3 flex-wrap">
-                <span className="px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-700 font-extrabold text-[11px]">
-                  AWS
+                <span className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 font-extrabold text-[11px]">
+                  Cinematic 8K
                 </span>
-                <span className="px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 font-extrabold text-[11px]">
-                  Google Cloud
+                <span className="px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-700 font-extrabold text-[11px]">
+                  Wildlife Archive
                 </span>
                 <span className="px-3 py-1 rounded-full bg-sky-50 border border-sky-200 text-sky-700 font-extrabold text-[11px]">
-                  Azure
+                  Natural Encounters
                 </span>
-                <span className="px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 font-extrabold text-[11px]">
-                  Salesforce
+                <span className="px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 font-extrabold text-[11px]">
+                  Field Production
                 </span>
               </div>
             </div>
@@ -562,20 +560,19 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 08
               </span>
               <h3 className="text-xl sm:text-2xl font-extrabold text-[#07152B] tracking-tight">
-                Cloud & Enterprise Solutions
+                Studio XSW
               </h3>
               <p className="text-xs sm:text-sm text-[#556987] leading-relaxed">
-                Scalable and secure cloud solutions and enterprise systems to streamline operations. From cloud consulting to Salesforce development, we build reliable infrastructure for long-term growth.
+                Cinematic wildlife archives, natural history documentation, and high-end visual production. Capturing authentic natural encounters through extreme patience, advanced camera trapping, and zero environmental intervention.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Cloud & Enterprise Solutions")}
+                <Link
+                  href="/services/studio-xsw"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>

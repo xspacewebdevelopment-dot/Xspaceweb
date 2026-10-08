@@ -42,10 +42,11 @@ const productLinks: FooterColumn = {
 const serviceLinks: FooterColumn = {
   title: "SERVICES",
   links: [
+    { label: "Google My Business", href: "/services/google-my-business" },
     { label: "Digital Marketing", href: "/services/digital-marketing" },
     { label: "Web Development", href: "/services/web-development" },
     { label: "App Development", href: "/services/app-development" },
-    { label: "Studio XSW", href: "/services" },
+    { label: "Studio XSW", href: "/services/studio-xsw" },
     { label: "UI/UX Design", href: "/services/ui-ux" },
     { label: "Graphic Design", href: "/services" },
   ],
@@ -70,8 +71,8 @@ const legalLinks: FooterLink[] = [
 export const Footer: React.FC = () => {
   const pathname = usePathname();
 
-  // Do not render public consumer footer on CRM routes
-  if (pathname?.startsWith("/crm")) {
+  // Do not render public consumer footer on CRM or Studio XSW full-bleed routes
+  if (pathname?.startsWith("/crm") || pathname?.startsWith("/services/studio-xsw")) {
     return null;
   }
 
