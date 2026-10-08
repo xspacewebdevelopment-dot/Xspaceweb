@@ -335,14 +335,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 Build a strong and memorable brand identity. From logo design to brand strategy, we create visuals and communication that set you apart.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Branding")}
+                <Link
+                  href="/services/branding"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
-                  <span>Explore Service</span>
+                  <span>Explore Branding</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
 

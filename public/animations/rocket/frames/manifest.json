@@ -1,0 +1,17 @@
+{
+  "totalFrames": 8,
+  "frames": [
+    "/animations/rocket/frames/ezgif-frame-001.jpg",
+    "/animations/rocket/frames/ezgif-frame-002.jpg",
+    "/animations/rocket/frames/ezgif-frame-003.jpg",
+    "/animations/rocket/frames/ezgif-frame-004.jpg",
+    "/animations/rocket/frames/ezgif-frame-005.jpg",
+    "/animations/rocket/frames/ezgif-frame-006.jpg",
+    "/animations/rocket/frames/ezgif-frame-007.jpg",
+    "/animations/rocket/frames/ezgif-frame-008.jpg"
+  ],
+  "width": 1920,
+  "height": 1080,
+  "unassembledVideo": "/Branding/unassembled.mp4",
+  "assembledVideo": "/Branding/assembled.mp4"
+}

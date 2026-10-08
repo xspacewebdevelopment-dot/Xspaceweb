@@ -1,0 +1,17 @@
+{
+  "totalFrames": 8,
+  "frames": [
+    "/Branding/frames/ezgif-frame-001.jpg",
+    "/Branding/frames/ezgif-frame-002.jpg",
+    "/Branding/frames/ezgif-frame-003.jpg",
+    "/Branding/frames/ezgif-frame-004.jpg",
+    "/Branding/frames/ezgif-frame-005.jpg",
+    "/Branding/frames/ezgif-frame-006.jpg",
+    "/Branding/frames/ezgif-frame-007.jpg",
+    "/Branding/frames/ezgif-frame-008.jpg"
+  ],
+  "width": 1920,
+  "height": 1080,
+  "unassembledVideo": "/Branding/unassembled.mp4",
+  "assembledVideo": "/Branding/assembled.mp4"
+}
