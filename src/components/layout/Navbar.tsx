@@ -5,10 +5,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ChevronDown, Compass, Building2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import dynamic from "next/dynamic";
 import { Logo } from "@/components/shared/Logo";
 import { Container } from "@/components/shared/ui/Container";
-import { ProjectModal } from "@/components/shared/ProjectModal";
 import { cn } from "@/lib/utils";
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((mod) => mod.ProjectModal),
+  { ssr: false }
+);
 
 interface SubNavItem {
   label: string;
@@ -132,7 +137,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-[72px]">
             {/* Brand Logo on Left */}
             <div className="flex-shrink-0">
-              <Logo variant="dark" />
+              <Logo variant="dark" priority={true} />
             </div>
 
             {/* Centered Desktop Navigation - 7 balanced links with generous spacing */}

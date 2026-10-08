@@ -124,7 +124,7 @@ export const HeroSection: React.FC = () => {
               whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 hero-critical-text"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#2957E8]" />
               <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.20em] text-[#2957E8] uppercase select-none">
@@ -138,7 +138,7 @@ export const HeroSection: React.FC = () => {
               whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3.5xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] max-w-[600px]"
+              className="text-3.5xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] max-w-[600px] hero-critical-text"
             >
               <span className="block">A Popular Choice</span>
               <span className="bg-gradient-to-r from-[#2957E8] via-[#1E6BFF] to-[#1693FF] bg-clip-text text-transparent inline-block mt-1 sm:mt-1.5 pb-2 -mb-2 pr-1">
@@ -152,7 +152,7 @@ export const HeroSection: React.FC = () => {
               whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base sm:text-lg text-[#556987] leading-relaxed max-w-[570px] font-normal pt-0.5"
+              className="text-base sm:text-lg text-[#556987] leading-relaxed max-w-[570px] font-normal pt-0.5 hero-critical-text"
             >
               Trusted by clients, partners, and communities for our quality, reliability, and real impact.
             </motion.p>
@@ -185,7 +185,7 @@ export const HeroSection: React.FC = () => {
                 className="absolute left-1 sm:left-2 md:left-2 top-0 sm:top-2 z-30 select-none pointer-events-none transition-transform -rotate-6"
               >
                 <Image
-                  src="/images/hero/note_searching_transparent.png"
+                  src="/images/hero/note_searching_transparent.webp"
                   alt="Searching for better ways to build"
                   width={150}
                   height={130}
@@ -203,7 +203,7 @@ export const HeroSection: React.FC = () => {
                 className="absolute right-2 sm:right-6 md:right-14 top-1 sm:top-6 md:top-14 z-30 select-none pointer-events-none transition-transform rotate-6"
               >
                 <Image
-                  src="/images/hero/note_reviews_transparent.png"
+                  src="/images/hero/note_reviews_transparent.webp"
                   alt="Real People Real Reviews"
                   width={120}
                   height={170}
@@ -349,16 +349,18 @@ export const HeroSection: React.FC = () => {
               {/* Main Visual: women.webp (Woman sitting on 3D search bar podium) */}
               <div className="relative w-full flex items-center justify-center pt-2 sm:pt-4">
                 <div className="relative z-20 w-full flex items-center justify-center">
-                  <Image
-                    src="/images/hero/women.webp"
-                    alt="Woman with laptop on XSPACEWEB technology partner search podium"
-                    width={1651}
-                    height={953}
-                    priority
-                    fetchPriority="high"
-                    sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 680px"
-                    className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter sm:drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
-                  />
+                  <picture className="w-full max-w-[680px] sm:max-w-[720px] flex items-center justify-center">
+                    <source media="(max-width: 640px)" srcSet="/images/hero/women-mobile.webp" type="image/webp" />
+                    <img
+                      src="/images/hero/women.webp"
+                      alt="Woman with laptop on XSPACEWEB technology partner search podium"
+                      width={1200}
+                      height={693}
+                      fetchPriority="high"
+                      decoding="async"
+                      className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter sm:drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
+                    />
+                  </picture>
                 </div>
               </div>
             </motion.div>
@@ -370,14 +372,13 @@ export const HeroSection: React.FC = () => {
           Slightly overlaps the bottom of the hero atmosphere (negative margin) for seamless integration
         */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={isMobile ? false : { opacity: 0, y: 20 }}
+          whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full -mt-4 sm:-mt-8 md:-mt-10 rounded-[30px] sm:rounded-[34px] p-5 sm:p-7 lg:p-7.5 relative z-20"
+          className="w-full -mt-4 sm:-mt-8 md:-mt-10 rounded-[30px] sm:rounded-[34px] p-5 sm:p-7 lg:p-7.5 relative z-20 hero-critical-text trust-panel"
           style={{
-            background: "rgba(255, 255, 255, 0.62)",
-            backdropFilter: "blur(22px)",
+            background: "rgba(255, 255, 255, 0.94)",
             border: "1px solid rgba(255, 255, 255, 0.80)",
             boxShadow: "0 25px 80px rgba(48, 95, 160, 0.08)",
           }}
