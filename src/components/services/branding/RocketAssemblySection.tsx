@@ -14,108 +14,69 @@ import {
   Cpu,
   Orbit,
   CheckCircle2,
+  Compass,
+  Palette,
+  Rocket,
 } from "lucide-react";
-import {
-  MarketplaceBrandLogo,
-  MarketplaceId,
-} from "@/components/services/ecommerce/MarketplaceBrandLogo";
 
 export interface RocketAssemblySectionProps {
   onLaunchStore?: () => void;
   onMarketplaceConsultation?: () => void;
+  onOpenConsultation?: (service?: string) => void;
 }
 
-const FRAME_PATHS = [
-  "/animations/rocket/frames/ezgif-frame-001.jpg",
-  "/animations/rocket/frames/ezgif-frame-002.jpg",
-  "/animations/rocket/frames/ezgif-frame-003.jpg",
-  "/animations/rocket/frames/ezgif-frame-004.jpg",
-  "/animations/rocket/frames/ezgif-frame-005.jpg",
-  "/animations/rocket/frames/ezgif-frame-006.jpg",
-  "/animations/rocket/frames/ezgif-frame-007.jpg",
-  "/animations/rocket/frames/ezgif-frame-008.jpg",
-];
+// All 70 frames extracted from the user's zip file
+const TOTAL_FRAMES = 70;
+const FRAME_PATHS: string[] = Array.from({ length: TOTAL_FRAMES }, (_, i) =>
+  `/animations/rocket/frames/ezgif-frame-${String(i + 1).padStart(3, "0")}.jpg`
+);
 
-const UNASSEMBLED_VIDEO_SRC = "/Branding/unassembled.mp4";
-const ASSEMBLED_VIDEO_SRC = "/Branding/assembled.mp4";
-
-interface MarketplaceNodeInfo {
-  id: MarketplaceId;
-  name: string;
-  category: string;
-  metric: string;
-  color: string;
-}
-
-const marketplaceNodes: MarketplaceNodeInfo[] = [
-  { id: "amazon", name: "Amazon India & Global", category: "Prime FBA & Multi-Region", metric: "99.9% Buy Box Win", color: "#FF9900" },
-  { id: "flipkart", name: "Flipkart", category: "Pan-India Assured Reach", metric: "Instant Stock Sync", color: "#2874F0" },
-  { id: "meesho", name: "Meesho", category: "High-Velocity Social Commerce", metric: "Zero-Commission", color: "#F43397" },
-  { id: "ajio", name: "AJIO", category: "Curated Fashion & Lifestyle", metric: "Reliance JIT Distribution", color: "#94A3B8" },
-  { id: "myntra", name: "Myntra", category: "Premium Apparel & Trends", metric: "PPMP Unified Portal", color: "#E72757" },
-  { id: "shopify", name: "Shopify Plus", category: "Custom Headless D2C Core", metric: "Sub-second Global Checkout", color: "#95BF47" },
-];
+const ROCKET_VIDEO_SRC = "/videos/rocket.mp4";
 
 const liveTickers = [
-  "Order #8921 routed to Amazon FBA (38ms latency)",
-  "SKU-409 stock updated across 6 channels simultaneously",
-  "Flipkart algorithmic repricing won buy box at ₹1,499",
-  "Meesho bulk batch 420 orders dispatched to logistics hub",
-  "AJIO autumn fashion collection catalog attributes enriched",
-  "Shopify headless checkout processed in 380ms",
+  "Telemetry: Core brand identity tokens synthesized [100% Vector]",
+  "Telemetry: Chromatic system calibrated for multi-spectrum display",
+  "Telemetry: 3D packaging geometry docked with photorealistic materials",
+  "Telemetry: Omnichannel guidelines synchronized across digital touchpoints",
+  "Telemetry: Brand architecture primed for high-velocity market rollout",
+  "Telemetry: Autonomous velocity achieved — category leadership locked",
 ];
 
 export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
   onLaunchStore,
   onMarketplaceConsultation,
+  onOpenConsultation,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const unassembledVideoRef = useRef<HTMLVideoElement>(null);
-  const assembledVideoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  const [imagesLoaded, setImagesLoaded] = useState<boolean>(false);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>(new Array(TOTAL_FRAMES).fill(null));
+  const [firstFrameLoaded, setFirstFrameLoaded] = useState<boolean>(false);
+  const [loadedCount, setLoadedCount] = useState<number>(0);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [activeStage, setActiveStage] = useState<number>(1);
   const [tickerIndex, setTickerIndex] = useState<number>(0);
+
+  const handleCta = (serviceName: string) => {
+    if (onOpenConsultation) {
+      onOpenConsultation(serviceName);
+    } else if (onLaunchStore) {
+      onLaunchStore();
+    } else if (onMarketplaceConsultation) {
+      onMarketplaceConsultation();
+    }
+  };
 
   // Rotate telemetry ticker
   useEffect(() => {
     const interval = setInterval(() => {
       setTickerIndex((prev) => (prev + 1) % liveTickers.length);
-    }, 3500);
+    }, 3800);
     return () => clearInterval(interval);
   }, []);
 
-  // Preload all 8 assembly frames into memory
-  useEffect(() => {
-    let loadedCount = 0;
-    const loadedImages: HTMLImageElement[] = [];
-
-    FRAME_PATHS.forEach((path, index) => {
-      const img = new Image();
-      img.src = path;
-      img.onload = () => {
-        loadedCount += 1;
-        if (loadedCount === FRAME_PATHS.length) {
-          imagesRef.current = loadedImages;
-          setImagesLoaded(true);
-        }
-      };
-      img.onerror = () => {
-        // Even if one fails, continue
-        loadedCount += 1;
-        if (loadedCount === FRAME_PATHS.length) {
-          imagesRef.current = loadedImages;
-          setImagesLoaded(true);
-        }
-      };
-      loadedImages[index] = img;
-    });
-  }, []);
-
-  // Frame rendering with dual-frame cross-fade interpolation
+  // Frame rendering with sub-frame cross-fade interpolation (native 1280x720 canvas)
   const renderFrame = useCallback((progress: number) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -123,42 +84,91 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
     if (!ctx) return;
 
     const images = imagesRef.current;
-    if (!images || images.length === 0) return;
+    if (!images[0]) return;
 
-    const totalFrames = images.length;
-    // Map progress (0 to 1) to frame index range
-    const floatIndex = progress * (totalFrames - 1);
+    const total = TOTAL_FRAMES;
+    const clampedProgress = Math.min(1, Math.max(0, progress));
+    const floatIndex = clampedProgress * (total - 1);
     const indexA = Math.floor(floatIndex);
-    const indexB = Math.min(totalFrames - 1, indexA + 1);
+    const indexB = Math.min(total - 1, indexA + 1);
     const fraction = floatIndex - indexA;
 
-    const imgA = images[indexA];
-    const imgB = images[indexB];
+    // Fall back to nearest loaded image if current frame isn't ready yet
+    let imgA = images[indexA];
+    if (!imgA) {
+      for (let i = indexA; i >= 0; i--) {
+        if (images[i]) {
+          imgA = images[i];
+          break;
+        }
+      }
+      if (!imgA) imgA = images[0];
+    }
 
+    const imgB = images[indexB] || imgA;
     if (!imgA) return;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const cw = 1920;
+    const ch = 1080;
 
-    // Draw first frame
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+
+    // Draw primary frame in Full HD
     ctx.globalAlpha = 1.0;
-    ctx.drawImage(imgA, 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(imgA, 0, 0, cw, ch);
 
-    // Blend in second frame for silky-smooth fluid progression
-    if (imgB && fraction > 0.01 && indexA !== indexB) {
+    // Smooth sub-frame cross-fade
+    if (imgB && imgA !== imgB && fraction > 0.01) {
       ctx.globalAlpha = fraction;
-      ctx.drawImage(imgB, 0, 0, canvas.width, canvas.height);
+      ctx.drawImage(imgB, 0, 0, cw, ch);
       ctx.globalAlpha = 1.0;
     }
   }, []);
 
-  // Initial draw once frames are loaded
+  // Preload frames progressively: Frame 1 immediately, then remainder in background
   useEffect(() => {
-    if (imagesLoaded) {
-      renderFrame(scrollProgress);
-    }
-  }, [imagesLoaded, renderFrame, scrollProgress]);
+    // 1. Priority load Frame 1
+    const frameOne = new Image();
+    frameOne.src = FRAME_PATHS[0];
+    frameOne.onload = () => {
+      imagesRef.current[0] = frameOne;
+      setFirstFrameLoaded(true);
+      setLoadedCount((c) => c + 1);
+    };
 
-  // Scroll listener tracking scroll progress through the 280vh track
+    // 2. Load remaining frames in batches
+    let batchIndex = 1;
+    const loadNextBatch = () => {
+      const end = Math.min(TOTAL_FRAMES, batchIndex + 12);
+      for (let i = batchIndex; i < end; i++) {
+        const img = new Image();
+        img.src = FRAME_PATHS[i];
+        const idx = i;
+        img.onload = () => {
+          imagesRef.current[idx] = img;
+          setLoadedCount((c) => c + 1);
+        };
+      }
+      batchIndex = end;
+      if (batchIndex < TOTAL_FRAMES) {
+        setTimeout(loadNextBatch, 50);
+      }
+    };
+
+    const timer = setTimeout(loadNextBatch, 30);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Draw initial frame as soon as Frame 1 is ready
+  useEffect(() => {
+    if (firstFrameLoaded) {
+      renderFrame(0);
+    }
+  }, [firstFrameLoaded, renderFrame]);
+
+  // Scroll listener tracking scroll progress through the 300vh track
   useEffect(() => {
     let animationFrameId: number;
 
@@ -175,8 +185,8 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
 
       setScrollProgress(progress);
 
-      // Determine active stage
-      if (progress < 0.33) {
+      // 3 Stages: BUILD (0 - 0.33), SCALE (0.34 - 0.66), LAUNCH (0.67 - 1.0)
+      if (progress < 0.34) {
         setActiveStage(1);
       } else if (progress < 0.67) {
         setActiveStage(2);
@@ -184,34 +194,18 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
         setActiveStage(3);
       }
 
-      // Render interpolated canvas frame during the scroll scrub phase
-      if (progress > 0.03 && progress < 0.94) {
-        renderFrame(progress);
-      }
-
-      // Handle video playback synchronization
-      if (progress <= 0.04) {
-        if (unassembledVideoRef.current && unassembledVideoRef.current.paused) {
-          unassembledVideoRef.current.play().catch(() => {});
-        }
-        if (assembledVideoRef.current && !assembledVideoRef.current.paused) {
-          assembledVideoRef.current.pause();
-        }
-      } else if (progress >= 0.94) {
-        if (assembledVideoRef.current && assembledVideoRef.current.paused) {
-          assembledVideoRef.current.play().catch(() => {});
-        }
-        if (unassembledVideoRef.current && !unassembledVideoRef.current.paused) {
-          unassembledVideoRef.current.pause();
+      // Transition between static video and scroll scrubber
+      if (progress < 0.02) {
+        // At the top: Video plays
+        if (videoRef.current && videoRef.current.paused) {
+          videoRef.current.play().catch(() => {});
         }
       } else {
-        // Pausing background videos while scrubbing saves CPU/GPU
-        if (unassembledVideoRef.current && !unassembledVideoRef.current.paused) {
-          unassembledVideoRef.current.pause();
+        // Scrolling: Canvas scrubs, pause video to save resources
+        if (videoRef.current && !videoRef.current.paused) {
+          videoRef.current.pause();
         }
-        if (assembledVideoRef.current && !assembledVideoRef.current.paused) {
-          assembledVideoRef.current.pause();
-        }
+        renderFrame(progress);
       }
     };
 
@@ -236,13 +230,15 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
     let targetScroll = containerTop;
     if (stageNum === 1) targetScroll = containerTop;
     else if (stageNum === 2) targetScroll = containerTop + totalScrollable * 0.48;
-    else if (stageNum === 3) targetScroll = containerTop + totalScrollable * 0.97;
+    else if (stageNum === 3) targetScroll = containerTop + totalScrollable * 0.98;
 
     window.scrollTo({ top: targetScroll, behavior: "smooth" });
   };
 
   const handleScrollDownToNext = () => {
-    const target = document.getElementById("marketplaces-ecosystem");
+    const target =
+      document.getElementById("brand-gravity-journey") ||
+      document.getElementById("brand-pillars-bento");
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
     } else if (containerRef.current) {
@@ -253,150 +249,129 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
     }
   };
 
-  // State determination
-  const isStaticTop = scrollProgress <= 0.04;
-  const isStaticBottom = scrollProgress >= 0.94;
-  const isScrubbing = !isStaticTop && !isStaticBottom;
+  const isStaticTop = scrollProgress < 0.02;
+
+  const currentFrameNumber = Math.min(
+    TOTAL_FRAMES,
+    Math.max(1, Math.round(scrollProgress * (TOTAL_FRAMES - 1)) + 1)
+  );
 
   return (
     <div
       ref={containerRef}
       id="rocket-assembly-hero"
-      className="relative w-full h-[280vh] bg-[#020412] text-white selection:bg-[#38bdf8] selection:text-[#020412]"
+      className="relative w-full h-[300vh] text-white selection:bg-[#38bdf8] selection:text-[#02040c]"
     >
       {/* =========================================================
           STICKY FULL-SCREEN CINEMATIC VIEWPORT
           ========================================================= */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-between">
         {/* =========================================================
-            BACKGROUND COSMIC AMBIENCE & STAR GLOW
+            BACKGROUND COSMIC AMBIENCE & COLOR-MATCHED GLOW
             ========================================================= */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-          {/* Subtle space grid */}
+          {/* Central radial space glow */}
           <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage: `linear-gradient(rgba(56,189,248,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.6) 1px, transparent 1px)`,
-              backgroundSize: "64px 64px",
-            }}
-          />
-
-          {/* Central radial glow behind the rocket */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] sm:w-[1100px] sm:h-[1100px] rounded-full blur-[160px] opacity-25 pointer-events-none"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full blur-[190px] opacity-25 pointer-events-none"
             style={{
               background:
-                "radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(168, 85, 247, 0.25) 45%, transparent 75%)",
+                "radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(99, 102, 241, 0.25) 40%, transparent 75%)",
             }}
           />
-
-          {/* Edge blends for smooth navigation transition */}
-          <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-[#020412]/80 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-[#020412]/90 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* =========================================================
-            DIMENSIONAL HEADLINE LAYER (BEHIND THE ROCKET)
+            ROCKET MEDIA CONTAINER: VIDEO AT TOP, CANVAS ON SCROLL
+            Equipped with Cloud-like Gradient Masks & Vignettes
             ========================================================= */}
-        <div
-          className={`absolute inset-0 z-5 flex flex-col items-center justify-center text-center px-4 pointer-events-none select-none transition-all duration-700 ${
-            activeStage === 1 ? "opacity-35 scale-100" : "opacity-15 scale-95"
-          }`}
-        >
-          <div className="max-w-6xl space-y-2.5 transform -translate-y-6 sm:-translate-y-12">
-            <span className="inline-block text-[11px] sm:text-xs md:text-sm font-mono tracking-[0.38em] text-cyan-400 uppercase font-bold drop-shadow-[0_0_15px_rgba(56,189,248,0.6)]">
-              FROM CONCEPT TO CREATION
-            </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[84px] font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white/95 via-slate-200/75 to-slate-400/30 uppercase leading-[0.94] drop-shadow-[0_15px_40px_rgba(0,0,0,0.95)]">
-              EVERY GREAT IDEA STARTS WITH A VISION.
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto font-light leading-relaxed hidden md:block opacity-90">
-              Every extraordinary journey begins with the right pieces. We bring strategy,
-              creativity, and technology together to build what&apos;s next.
-            </p>
+        <div className="absolute inset-0 z-10 pointer-events-none select-none flex items-center justify-center pt-16 sm:pt-20 pb-16">
+          <div
+            className="relative w-full max-w-[1280px] h-full max-h-[76vh] sm:max-h-[80vh] flex items-center justify-center"
+            style={{
+              // Elliptical radial mask dissolving outer edges completely
+              maskImage:
+                "radial-gradient(ellipse 72% 68% at 50% 50%, black 42%, rgba(0,0,0,0.85) 62%, rgba(0,0,0,0.3) 80%, transparent 100%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 72% 68% at 50% 50%, black 42%, rgba(0,0,0,0.85) 62%, rgba(0,0,0,0.3) 80%, transparent 100%)",
+            }}
+          >
+            {/* 1. Static Top: rocket.mp4 Playing Seamlessly */}
+            <video
+              ref={videoRef}
+              src={ROCKET_VIDEO_SRC}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className={`absolute w-full h-full object-contain transition-opacity duration-500 ${
+                isStaticTop ? "opacity-100 z-12" : "opacity-0 z-0 pointer-events-none"
+              }`}
+              style={{
+                filter: "brightness(1.08) contrast(1.06)",
+              }}
+            />
+
+            {/* 2. Scrolling: Frame-Scrubbed Canvas taking over instantly */}
+            <canvas
+              ref={canvasRef}
+              width={1920}
+              height={1080}
+              className={`absolute w-full h-full object-contain transition-opacity duration-300 ${
+                !isStaticTop ? "opacity-100 z-12" : "opacity-0 z-0 pointer-events-none"
+              }`}
+              style={{
+                filter: "brightness(1.08) contrast(1.06)",
+              }}
+            />
+
+            {/* Cloud-Like Gradient Overlays to Hide Any Video/Canvas Rectangle Lines */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden z-20">
+              {/* Top feathering cloud */}
+              <div className="absolute -top-6 inset-x-0 h-28 bg-gradient-to-b from-[#02040c] via-[#02040c]/80 to-transparent blur-md" />
+              {/* Bottom feathering cloud */}
+              <div className="absolute -bottom-6 inset-x-0 h-32 bg-gradient-to-t from-[#02040c] via-[#02040c]/80 to-transparent blur-md" />
+              {/* Left feathering cloud */}
+              <div className="absolute inset-y-0 -left-6 w-32 bg-gradient-to-r from-[#02040c] via-[#02040c]/80 to-transparent blur-md" />
+              {/* Right feathering cloud */}
+              <div className="absolute inset-y-0 -right-6 w-32 bg-gradient-to-l from-[#02040c] via-[#02040c]/80 to-transparent blur-md" />
+
+              {/* 4 Corner Organic Cloud Blobs */}
+              <div className="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-[#02040c] blur-2xl opacity-90" />
+              <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-[#02040c] blur-2xl opacity-90" />
+              <div className="absolute -bottom-12 -left-12 w-48 h-48 rounded-full bg-[#02040c] blur-2xl opacity-90" />
+              <div className="absolute -bottom-12 -right-12 w-48 h-48 rounded-full bg-[#02040c] blur-2xl opacity-90" />
+            </div>
           </div>
-        </div>
-
-        {/* =========================================================
-            MAIN ROCKET MEDIA CONTAINER (FULL WIDTH - NO BLACK SPACE ON SIDES)
-            ========================================================= */}
-        <div className="absolute inset-0 z-10 pointer-events-none select-none overflow-hidden">
-          {/* 1. STATE A: UNASSEMBLED VIDEO (Plays seamlessly at scroll = 0) */}
-          <video
-            ref={unassembledVideoRef}
-            src={UNASSEMBLED_VIDEO_SRC}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
-              isStaticTop ? "opacity-100 z-12" : "opacity-0 z-0 pointer-events-none"
-            }`}
-            style={{
-              filter: "brightness(1.25) contrast(1.15) saturate(1.1)",
-            }}
-          />
-
-          {/* 2. STATE B: SCROLL-DRIVEN FRAME-BY-FRAME CANVAS (Scrubbed forward & reverse) */}
-          <canvas
-            ref={canvasRef}
-            width={1920}
-            height={1080}
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300 ${
-              isScrubbing || (!isStaticBottom && !isStaticTop)
-                ? "opacity-100 z-12"
-                : "opacity-0 z-0 pointer-events-none"
-            }`}
-            style={{
-              filter: "brightness(1.25) contrast(1.15) saturate(1.1)",
-            }}
-          />
-
-          {/* 3. STATE C: ASSEMBLED VIDEO (Plays seamlessly once scroll completes) */}
-          <video
-            ref={assembledVideoRef}
-            src={ASSEMBLED_VIDEO_SRC}
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
-              isStaticBottom ? "opacity-100 z-12" : "opacity-0 z-0 pointer-events-none"
-            }`}
-            style={{
-              filter: "brightness(1.25) contrast(1.15) saturate(1.1)",
-            }}
-          />
         </div>
 
         {/* =========================================================
             TOP HUD HEADER BAR
             ========================================================= */}
-        <header className="relative z-25 w-full pt-4 sm:pt-6 px-4 sm:px-8 max-w-7xl mx-auto flex items-center justify-between gap-4">
+        <header className="relative z-25 w-full pt-16 sm:pt-20 px-4 sm:px-8 max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Left Eyebrow & Status */}
           <div className="flex items-center gap-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/85 border border-slate-700/60 backdrop-blur-md shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-950/85 border border-slate-800/80 backdrop-blur-xl shadow-lg">
               <span className="w-2 h-2 rounded-full bg-[#38bdf8] animate-pulse" />
-              <span className="text-[11px] font-bold tracking-[0.2em] text-[#38bdf8] uppercase">
-                ECOMMERCE &amp; BRANDING
+              <span className="text-[11px] font-mono font-bold tracking-[0.22em] text-[#38bdf8] uppercase">
+                BRAND ARCHITECTURE
               </span>
             </div>
 
-            <span className="hidden md:inline-block text-xs font-medium text-slate-300 border-l border-slate-800 pl-3">
-              From Store to eCommerce Ecosystem
+            <span className="hidden md:inline-block text-xs font-mono text-slate-400 border-l border-slate-800 pl-3">
+              SCALE • BUILD • LAUNCH PROTOCOL
             </span>
           </div>
 
-          {/* Center / Right Stage Progress Scrubber (Clickable jump tabs) */}
+          {/* Center Stage Progress Scrubber (Clickable jump tabs) */}
           <nav
-            aria-label="Story Stages"
-            className="flex items-center gap-1 sm:gap-2 p-1 rounded-full bg-slate-950/85 border border-slate-800/80 backdrop-blur-xl shadow-lg"
+            aria-label="Brand Rocket Stages"
+            className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-full bg-slate-950/85 border border-slate-800/90 backdrop-blur-xl shadow-2xl"
           >
             {[
-              { num: 1, label: "BUILD" },
-              { num: 2, label: "LAUNCH" },
-              { num: 3, label: "SCALE" },
+              { num: 1, label: "BUILD", sub: "Core" },
+              { num: 2, label: "SCALE", sub: "System" },
+              { num: 3, label: "LAUNCH", sub: "Velocity" },
             ].map((stage) => {
               const isActive = activeStage === stage.num;
               return (
@@ -406,13 +381,13 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
                   onClick={() => handleStageJump(stage.num)}
                   className={`group px-3 sm:px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
                     isActive
-                      ? "bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_15px_rgba(56,189,248,0.4)]"
+                      ? "bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(56,189,248,0.45)]"
                       : "text-slate-400 hover:text-white hover:bg-slate-900/80"
                   }`}
                 >
                   <span
-                    className={`text-[10px] font-mono opacity-80 ${
-                      isActive ? "text-cyan-100" : "text-slate-500"
+                    className={`text-[10px] font-mono ${
+                      isActive ? "text-cyan-200" : "text-slate-500"
                     }`}
                   >
                     0{stage.num}
@@ -427,45 +402,44 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
         {/* =========================================================
             FLANKING HUD STAGE CONTENT (COMFORTABLY FRAMING ROCKET)
             ========================================================= */}
-        <main className="relative z-25 flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-6 pointer-events-none my-auto py-4">
+        <main className="relative z-25 flex-1 w-full max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-6 pointer-events-none my-auto py-2">
           {/* -------------------------------------------------------
               LEFT COLUMN: INTERACTIVE STAGE STORY CARD
               ------------------------------------------------------- */}
-          <div className="w-full max-w-[360px] sm:max-w-[410px] lg:max-w-[440px] pointer-events-auto">
-            {/* STAGE 1: BUILD (Architectural Core) */}
+          <div className="w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] pointer-events-auto">
+            {/* STAGE 1: BUILD (Brand Architecture & Blueprint) */}
             {activeStage === 1 && (
               <section
                 aria-label="Stage 1: Build"
                 className="animate-in fade-in slide-in-from-left-4 duration-500"
               >
-                <div className="p-5 sm:p-6 lg:p-7 rounded-3xl bg-slate-950/65 border border-white/10 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.7)] space-y-3.5">
+                <div className="p-5 sm:p-6 rounded-3xl bg-slate-950/80 border border-cyan-500/25 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-3.5">
                   <div className="space-y-1">
-                    <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.22em] text-cyan-400 uppercase block select-none">
-                      STAGE 01 // ARCHITECTURAL CORE
-                    </span>
-                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold tracking-tight text-white leading-[1.15]">
-                      Build, Launch &amp;{" "}
-                      <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent inline-block">
-                        Scale Your
-                      </span>{" "}
-                      eCommerce Business.
+                    <div className="inline-flex items-center gap-2 text-[10px] font-mono font-bold tracking-[0.25em] text-cyan-400 uppercase select-none">
+                      <Compass className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>STAGE 01 // BUILD ARCHITECTURE</span>
+                    </div>
+                    <h1 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold tracking-tight text-white leading-[1.14]">
+                      Build an Iconic Brand{" "}
+                      <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent inline-block">
+                        From First Principles.
+                      </span>
                     </h1>
                   </div>
 
                   <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
-                    End-to-end eCommerce and brand solutions to help you sell online, expand reach
-                    and grow your brand across multiple channels with enterprise stability.
+                    Every category leader begins with atomic precision. We construct memorable visual identities, mathematical vector typography, and strategic positioning engineered for market authority.
                   </p>
 
                   {/* 3 Technical Trust Badges */}
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
                     <div className="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800/80">
-                      <div className="w-6 h-6 rounded-lg bg-blue-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
-                        <ShieldCheck className="w-3.5 h-3.5" />
+                      <div className="w-6 h-6 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
+                        <Palette className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-[11px] font-bold text-white">Secure</div>
-                        <div className="text-[9px] text-slate-400">SOC2 &amp; 256-bit</div>
+                        <div className="text-[11px] font-bold text-white">Identity</div>
+                        <div className="text-[9px] text-slate-400">Pure Vector Core</div>
                       </div>
                     </div>
 
@@ -474,92 +448,88 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
                         <Zap className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-[11px] font-bold text-white">Scalable</div>
-                        <div className="text-[9px] text-slate-400">100k+ Concurrency</div>
+                        <div className="text-[11px] font-bold text-white">Precision</div>
+                        <div className="text-[9px] text-slate-400">Grid Harmony</div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800/80">
                       <div className="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0">
-                        <Globe2 className="w-3.5 h-3.5" />
+                        <ShieldCheck className="w-3.5 h-3.5" />
                       </div>
                       <div>
-                        <div className="text-[11px] font-bold text-white">Market Ready</div>
-                        <div className="text-[9px] text-slate-400">Unified API Mesh</div>
+                        <div className="text-[11px] font-bold text-white">Ownership</div>
+                        <div className="text-[9px] text-slate-400">100% IP Protected</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
+                  <div className="flex flex-wrap items-center gap-2.5 pt-1">
                     <button
                       type="button"
-                      onClick={onLaunchStore}
+                      onClick={() => handleCta("Brand Architecture & Identity Sprint")}
                       className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
                     >
-                      <span>Launch Your Store</span>
+                      <span>Build Your Brand Core</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                     </button>
 
                     <button
                       type="button"
-                      onClick={onMarketplaceConsultation}
+                      onClick={() => handleCta("Brand Audit & Consultation")}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900/85 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700/80 font-semibold text-xs sm:text-sm backdrop-blur-md transition-all duration-200 cursor-pointer"
                     >
                       <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                      <span>Marketplace Consultation</span>
+                      <span>Executive Consultation</span>
                     </button>
                   </div>
                 </div>
               </section>
             )}
 
-            {/* STAGE 2: LAUNCH (Syndication & Assembly) */}
+            {/* STAGE 2: SCALE (Multi-System Assembly & Omnichannel Design System) */}
             {activeStage === 2 && (
               <section
-                aria-label="Stage 2: Launch"
+                aria-label="Stage 2: Scale"
                 className="animate-in fade-in slide-in-from-left-4 duration-500"
               >
-                <div className="p-5 sm:p-6 lg:p-7 rounded-3xl bg-slate-950/65 border border-indigo-500/20 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.7)] space-y-3.5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/40 text-indigo-300 text-[11px] font-mono font-bold">
+                <div className="p-5 sm:p-6 rounded-3xl bg-slate-950/80 border border-indigo-500/35 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-3.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/40 text-indigo-300 text-[10px] font-mono font-bold">
                     <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping" />
-                    STAGE 02 // MULTI-MARKETPLACE ASSEMBLY
+                    STAGE 02 // MULTI-SYSTEM DOCKING & SCALE
                   </div>
 
-                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold tracking-tight text-white leading-[1.15]">
-                    From Isolated Store to{" "}
-                    <span className="bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent inline-block">
-                      Commerce Mesh.
+                  <h2 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold tracking-tight text-white leading-[1.14]">
+                    Scale with a Unified{" "}
+                    <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent inline-block">
+                      Design System.
                     </span>
                   </h2>
 
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    As components snap together, intelligent connections expand across India&apos;s
-                    premier platforms. Inventory, pricing, and orders synchronize seamlessly.
+                    As components dock in space, your brand scales into a living ecosystem. 3D packaging, headless UI components, motion guidelines, and print dielines lock into cohesive alignment.
                   </p>
 
-                  {/* Marketplace Badges Grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
-                    {marketplaceNodes.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex items-center gap-1.5 p-2 rounded-xl bg-slate-900/80 border border-slate-800/80 shadow-sm"
-                      >
-                        <MarketplaceBrandLogo id={item.id} size={14} />
-                        <span className="text-[10px] font-semibold text-slate-200 truncate">
-                          {item.name}
-                        </span>
-                      </div>
-                    ))}
+                  {/* Highlights Grid */}
+                  <div className="grid grid-cols-2 gap-2 pt-1">
+                    <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                      <div className="text-[10px] text-slate-400">Design Tokens</div>
+                      <div className="text-sm font-extrabold text-white">400+ Figma Assets</div>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
+                      <div className="text-[10px] text-slate-400">3D Packaging</div>
+                      <div className="text-sm font-extrabold text-indigo-400">8K Octane Renders</div>
+                    </div>
                   </div>
 
-                  <div className="pt-1.5 flex flex-wrap gap-2.5">
+                  <div className="pt-1 flex flex-wrap gap-2.5">
                     <button
                       type="button"
-                      onClick={onMarketplaceConsultation}
-                      className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:scale-[1.02] transition-all cursor-pointer"
+                      onClick={() => handleCta("Design System & 3D Packaging Architecture")}
+                      className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 text-white font-bold text-xs sm:text-sm shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:scale-[1.02] transition-all cursor-pointer"
                     >
-                      <span>Explore Marketplace Mesh</span>
+                      <span>Scale Your Design System</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -567,57 +537,56 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
               </section>
             )}
 
-            {/* STAGE 3: SCALE (Assembled & Orbital Ready) */}
+            {/* STAGE 3: LAUNCH (Orbital Velocity & Market Dominance) */}
             {activeStage === 3 && (
               <section
-                aria-label="Stage 3: Scale"
+                aria-label="Stage 3: Launch"
                 className="animate-in fade-in slide-in-from-left-4 duration-500"
               >
-                <div className="p-5 sm:p-6 lg:p-7 rounded-3xl bg-slate-950/65 border border-emerald-500/20 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.7)] space-y-3.5">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[11px] font-mono font-bold">
+                <div className="p-5 sm:p-6 rounded-3xl bg-slate-950/80 border border-emerald-500/35 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-3.5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-[10px] font-mono font-bold">
                     <TrendingUp className="w-3.5 h-3.5" />
-                    STAGE 03 // FULLY ASSEMBLED VELOCITY
+                    STAGE 03 // ORBITAL LAUNCH VELOCITY
                   </div>
 
-                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[34px] font-extrabold tracking-tight text-white leading-[1.15]">
-                    Autonomous Scale.{" "}
+                  <h2 className="text-xl sm:text-2xl lg:text-[30px] font-extrabold tracking-tight text-white leading-[1.14]">
+                    Launch Into Market{" "}
                     <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent inline-block">
-                      Compounding Growth.
+                      With Total Authority.
                     </span>
                   </h2>
 
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                    With all stages assembled and locked in, your eCommerce ecosystem runs with
-                    automated buy-box repricing, high-concurrency routing, and global reach.
+                    With full assembly locked in, your brand vehicle ignites market penetration. High recall, premium pricing tolerance, and omnichannel dominance command the competitive landscape.
                   </p>
 
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                      <div className="text-[10px] text-slate-400">Order Routing</div>
-                      <div className="text-sm font-extrabold text-white">38ms Avg</div>
+                      <div className="text-[10px] text-slate-400">Brand Equity Lift</div>
+                      <div className="text-sm font-extrabold text-emerald-400">+240% Average</div>
                     </div>
                     <div className="p-2.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                      <div className="text-[10px] text-slate-400">Buy Box Retention</div>
-                      <div className="text-sm font-extrabold text-emerald-400">99.8%</div>
+                      <div className="text-[10px] text-slate-400">Conversion Impact</div>
+                      <div className="text-sm font-extrabold text-white">4.8x Visual CTR</div>
                     </div>
                   </div>
 
-                  <div className="pt-1.5 flex flex-wrap gap-2.5">
+                  <div className="pt-1 flex flex-wrap gap-2.5">
                     <button
                       type="button"
-                      onClick={onLaunchStore}
+                      onClick={() => handleCta("Full-Spectrum Brand Launch")}
                       className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-[0_0_20px_rgba(16,185,129,0.35)] cursor-pointer"
                     >
-                      <span>Scale Your Architecture</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>Ignite Brand Launch</span>
+                      <Rocket className="w-3.5 h-3.5" />
                     </button>
 
                     <button
                       type="button"
-                      onClick={onMarketplaceConsultation}
+                      onClick={() => handleCta("Executive Brand Strategy")}
                       className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-slate-900/85 hover:bg-slate-800 text-white border border-slate-700 font-semibold text-xs sm:text-sm cursor-pointer"
                     >
-                      <span>Talk to an Architect</span>
+                      <span>Talk to a Brand Architect</span>
                     </button>
                   </div>
                 </div>
@@ -628,13 +597,13 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
           {/* -------------------------------------------------------
               RIGHT COLUMN: FLIGHT CONTROLLER TELEMETRY HUD
               ------------------------------------------------------- */}
-          <div className="hidden xl:block w-[320px] pointer-events-auto">
-            <div className="p-5 rounded-3xl bg-slate-950/65 border border-white/10 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.7)] space-y-4">
+          <div className="hidden xl:block w-[310px] pointer-events-auto">
+            <div className="p-5 rounded-3xl bg-slate-950/80 border border-white/10 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-3.5">
               <div className="flex items-center justify-between border-b border-slate-800/80 pb-2.5">
                 <div className="flex items-center gap-2">
                   <Activity className="w-3.5 h-3.5 text-cyan-400 animate-pulse" />
-                  <span className="text-[11px] font-bold text-white uppercase tracking-wider">
-                    Flight Telemetry
+                  <span className="text-[11px] font-bold text-white uppercase tracking-wider font-mono">
+                    VEHICLE TELEMETRY
                   </span>
                 </div>
                 <span className="text-[10px] font-mono text-cyan-400 font-bold">
@@ -645,8 +614,8 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
               {/* Progress bar */}
               <div className="space-y-1.5">
                 <div className="flex justify-between text-[10px] font-mono text-slate-400">
-                  <span>ASSEMBLY SEQUENCE</span>
-                  <span>FRAME {Math.min(8, Math.max(1, Math.round(scrollProgress * 7) + 1))}/8</span>
+                  <span>ORBITAL SCRUBBER</span>
+                  <span>FRAME {currentFrameNumber}/{TOTAL_FRAMES}</span>
                 </div>
                 <div className="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden">
                   <div
@@ -661,17 +630,17 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
                 <div className="flex items-center justify-between p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
                   <span className="text-[11px] text-slate-300 flex items-center gap-1.5">
                     <Cpu className="w-3 h-3 text-cyan-400" />
-                    Core Architecture
+                    Stage 01: Core Architecture
                   </span>
                   <span className="text-[10px] font-mono text-cyan-400 font-semibold">
-                    {activeStage >= 1 ? "ONLINE" : "PENDING"}
+                    {activeStage >= 1 ? "ASSEMBLED" : "PENDING"}
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
                   <span className="text-[11px] text-slate-300 flex items-center gap-1.5">
                     <Layers className="w-3 h-3 text-indigo-400" />
-                    Booster Docking
+                    Stage 02: System Docking
                   </span>
                   <span className="text-[10px] font-mono text-indigo-400 font-semibold">
                     {activeStage >= 2 ? "LOCKED" : "FLOATING"}
@@ -681,22 +650,18 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
                 <div className="flex items-center justify-between p-2 rounded-xl bg-slate-900/60 border border-slate-800/60">
                   <span className="text-[11px] text-slate-300 flex items-center gap-1.5">
                     <Orbit className="w-3 h-3 text-emerald-400" />
-                    Multi-Channel Mesh
+                    Stage 03: Orbital Trajectory
                   </span>
                   <span className="text-[10px] font-mono text-emerald-400 font-semibold">
-                    {activeStage >= 3 ? "ORBITAL READY" : "SYNCHRONIZING"}
+                    {activeStage >= 3 ? "IGNITION READY" : "SYNCHRONIZING"}
                   </span>
                 </div>
               </div>
 
-              <div className="text-[10px] text-slate-400 border-t border-slate-800/60 pt-2 flex items-center justify-between">
-                <span>MODE:</span>
-                <span className="font-mono text-slate-200">
-                  {isStaticTop
-                    ? "UNASSEMBLED VIDEO"
-                    : isStaticBottom
-                    ? "ASSEMBLED VIDEO"
-                    : "SCROLL SCRUBBER"}
+              <div className="text-[10px] text-slate-400 border-t border-slate-800/60 pt-2 flex items-center justify-between font-mono">
+                <span>BUFFER STATUS:</span>
+                <span className="text-cyan-400 font-semibold">
+                  {isStaticTop ? "PLAYING ROCKET.MP4" : `${loadedCount}/${TOTAL_FRAMES} FRAMES READY`}
                 </span>
               </div>
             </div>
@@ -704,13 +669,13 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
         </main>
 
         {/* =========================================================
-            BOTTOM HUD FOOTER BAR & TICKER
+            BOTTOM HUD FOOTER BAR & LIVE TICKER
             ========================================================= */}
         <footer className="relative z-25 w-full pb-4 sm:pb-6 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-800/60 pt-3">
-          {/* Live Order Dispatch Ticker */}
+          {/* Live Mission Telemetry Ticker */}
           <div className="flex items-center gap-2 text-[11px] sm:text-xs text-slate-300">
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping flex-shrink-0" />
-            <span className="font-mono text-cyan-400 uppercase font-bold">TELEMETRY:</span>
+            <span className="font-mono text-cyan-400 uppercase font-bold">MISSION TELEMETRY:</span>
             <span className="text-slate-300 font-medium truncate max-w-xs sm:max-w-md transition-opacity duration-300">
               {liveTickers[tickerIndex]}
             </span>
@@ -720,13 +685,13 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
           <div className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-slate-400 select-none">
             {isStaticTop ? (
               <span className="flex items-center gap-1.5 text-cyan-400 animate-bounce">
-                <span>SCROLL TO BUILD THE FUTURE</span>
+                <span>SCROLL TO ASSEMBLE ROCKET</span>
                 <ChevronDown className="w-3.5 h-3.5" />
               </span>
-            ) : isStaticBottom ? (
+            ) : scrollProgress >= 0.95 ? (
               <span className="flex items-center gap-1.5 text-emerald-400">
                 <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>ROCKET FULLY ASSEMBLED</span>
+                <span>ROCKET FULLY ASSEMBLED // READY FOR LAUNCH</span>
               </span>
             ) : (
               <span className="flex items-center gap-1.5 text-indigo-300">
@@ -742,7 +707,7 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
             onClick={handleScrollDownToNext}
             className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-slate-400 hover:text-white transition-colors cursor-pointer group"
           >
-            <span>Explore Marketplaces &amp; Architecture</span>
+            <span>Explore Brand Gravity Journey</span>
             <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-y-0.5" />
           </button>
         </footer>
@@ -750,3 +715,5 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
     </div>
   );
 };
+
+export default RocketAssemblySection;

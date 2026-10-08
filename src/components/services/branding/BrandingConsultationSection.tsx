@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
 import {
   Sparkles,
@@ -14,6 +15,7 @@ import {
   MessageSquare,
   ShieldCheck,
   Zap,
+  Rocket,
 } from "lucide-react";
 
 export const BrandingConsultationSection: React.FC = () => {
@@ -22,8 +24,9 @@ export const BrandingConsultationSection: React.FC = () => {
     email: "",
     phone: "",
     company: "",
-    service: "Brand Identity & Omnichannel Launch",
-    monthlyGmv: "₹10L – ₹50L",
+    service: "Brand Identity & Visual Architecture",
+    budget: "₹5L – ₹15L",
+    timeline: "2 – 4 Weeks",
     message: "",
   });
 
@@ -50,10 +53,10 @@ export const BrandingConsultationSection: React.FC = () => {
           email: formData.email,
           phone: formData.phone || undefined,
           company: formData.company || undefined,
-          service: `${formData.service} (Est GMV: ${formData.monthlyGmv})`,
-          message: formData.message || "Consultation request from Branding & eCommerce Architecture page",
+          service: `${formData.service} (Budget: ${formData.budget}, Timeline: ${formData.timeline})`,
+          message: formData.message || "Executive consultation request from Branding Architecture service page",
           inquiry_type: "service",
-          source: "branding-ecommerce-page",
+          source: "branding-services-page",
         }),
       });
 
@@ -74,234 +77,236 @@ export const BrandingConsultationSection: React.FC = () => {
   return (
     <section
       id="brand-consultation"
-      className="relative w-full bg-[#020412] text-white py-20 sm:py-28 overflow-hidden border-t border-slate-900/90"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80"
     >
-      {/* Background Cosmic Atmosphere */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-gradient-to-b from-purple-600/15 via-blue-600/10 to-transparent blur-[160px]" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-cyan-600/10 blur-[170px]" />
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(56,189,248,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.7) 1px, transparent 1px)`,
-            backgroundSize: "64px 64px",
-          }}
-        />
-        <div className="absolute inset-0 bg-radial-vignette opacity-80" />
+      {/* Background Cosmic Atmosphere with Moving Subtle Nebula */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full bg-cyan-700/10 blur-[190px] animate-pulse" style={{ animationDuration: "8s" }} />
+        <div className="absolute bottom-0 right-10 w-[600px] h-[600px] rounded-full bg-purple-700/10 blur-[180px]" />
       </div>
 
-      <Container size="wide" className="relative z-10 max-w-6xl space-y-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left Column: Pitch & Trust */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-              <span>LAUNCH YOUR BRAND ARCHITECTURE</span>
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12]">
-              Ready to Scale <br className="hidden sm:inline" />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Beyond Boundaries?
-              </span>
-            </h2>
-
-            <p className="text-slate-400 text-sm leading-relaxed">
-              Schedule a strategic architecture session with our commerce specialists. We’ll audit your brand, evaluate marketplace opportunities, and build an actionable roadmap for profitable scale.
-            </p>
-
-            <div className="space-y-3 pt-2">
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>NDA Protected &amp; Full IP Copyright Ownership</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-                <span>Sub-Second Sync Architecture Blueprint Provided</span>
-              </div>
-              <div className="flex items-center gap-3 text-xs sm:text-sm text-slate-300">
-                <CheckCircle2 className="w-4 h-4 text-purple-400 flex-shrink-0" />
-                <span>Direct Consultation with Senior Solutions Architects</span>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-slate-950/70 border border-slate-800/80 backdrop-blur-xl space-y-1">
-              <div className="text-xs font-bold text-white">Rapid Response Guarantee</div>
-              <div className="text-[11px] text-slate-400">Our architecture squad reviews requests and responds within 4 business hours.</div>
-            </div>
+      <Container size="wide" className="relative z-10 max-w-6xl space-y-16">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+            <Rocket className="w-3.5 h-3.5 text-cyan-400" />
+            <span>MISSION COMMISSIONING PROTOCOL</span>
           </div>
 
-          {/* Right Column: Interactive Cosmic Form */}
-          <div className="lg:col-span-7">
-            <div className="relative rounded-3xl bg-slate-950/80 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 shadow-2xl">
-              {isSubmitted ? (
-                <div className="py-12 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500/50 flex items-center justify-center mx-auto text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-white">Consultation Request Received!</h3>
-                  <p className="text-sm text-slate-300 max-w-md mx-auto">
-                    Thank you, <span className="font-semibold text-white">{formData.name}</span>. Our lead commerce architect is reviewing your details and will get in touch shortly at <span className="text-cyan-400 font-medium">{formData.email}</span>.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData({
-                        name: "",
-                        email: "",
-                        phone: "",
-                        company: "",
-                        service: "Brand Identity & Omnichannel Launch",
-                        monthlyGmv: "₹10L – ₹50L",
-                        message: "",
-                      });
-                    }}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-slate-900 border border-slate-700 text-xs text-slate-300 hover:text-white transition-colors cursor-pointer"
-                  >
-                    Submit Another Inquiry
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                        Full Name *
-                      </label>
-                      <div className="relative">
-                        <User className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
-                        <input
-                          type="text"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="Rohit Sharma"
-                          className="w-full bg-slate-900/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
-                        />
-                      </div>
-                    </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
+            Ready for Launch? <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Build the System Before You Accelerate It.
+            </span>
+          </h2>
 
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                        Work Email *
-                      </label>
-                      <div className="relative">
-                        <Mail className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
-                        <input
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="rohit@yourbrand.com"
-                          className="w-full bg-slate-900/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                        Phone / WhatsApp
-                      </label>
-                      <div className="relative">
-                        <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
-                        <input
-                          type="tel"
-                          value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+91 98765 43210"
-                          className="w-full bg-slate-900/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                        Brand / Company Name
-                      </label>
-                      <div className="relative">
-                        <Building className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
-                        <input
-                          type="text"
-                          value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          placeholder="Acme Retail Ltd"
-                          className="w-full bg-slate-900/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                        Primary Scope
-                      </label>
-                      <select
-                        value={formData.service}
-                        onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                        className="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
-                      >
-                        <option value="Brand Identity & Omnichannel Launch">Brand Identity &amp; Omnichannel Launch</option>
-                        <option value="Headless Storefront & 1-Click Checkout">Headless Storefront &amp; 1-Click Checkout</option>
-                        <option value="Marketplace API Syndication (Amazon/Flipkart)">Marketplace API Syndication (Amazon/Flipkart)</option>
-                        <option value="3D Product Packaging & CGI Visuals">3D Product Packaging &amp; CGI Visuals</option>
-                        <option value="Algorithmic Repricing & DSP Advertising">Algorithmic Repricing &amp; DSP Advertising</option>
-                      </select>
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                        Current Monthly GMV
-                      </label>
-                      <select
-                        value={formData.monthlyGmv}
-                        onChange={(e) => setFormData({ ...formData, monthlyGmv: e.target.value })}
-                        className="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
-                      >
-                        <option value="Pre-launch / New Venture">Pre-launch / New Venture</option>
-                        <option value="₹5L – ₹20L">₹5L – ₹20L</option>
-                        <option value="₹20L – ₹1Cr">₹20L – ₹1Cr</option>
-                        <option value="₹1Cr – ₹5Cr+">₹1Cr – ₹5Cr+ (Enterprise Scale)</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="space-y-1.5">
-                    <label className="text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider block">
-                      Project Goals &amp; Channels
-                    </label>
-                    <textarea
-                      rows={3}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Tell us about your brand vision, target marketplaces, and current bottlenecks..."
-                      className="w-full bg-slate-900/80 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all resize-none"
-                    />
-                  </div>
-
-                  {errorMsg && (
-                    <div className="p-3 rounded-xl bg-rose-950/60 border border-rose-800 text-rose-300 text-xs">
-                      {errorMsg}
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold text-xs sm:text-sm shadow-[0_0_25px_rgba(59,130,246,0.5)] hover:shadow-[0_0_35px_rgba(168,85,247,0.7)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-200 cursor-pointer disabled:opacity-50"
-                  >
-                    <span>{isSubmitting ? "Transmitting Architecture Blueprint..." : "Request Strategic Architecture Blueprint"}</span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
+          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+            Schedule an executive architecture consultation with our senior brand directors. We&apos;ll review your current category positioning and prepare a bespoke sprint roadmap.
+          </p>
         </div>
+
+        {/* Form Container with Materialize Entry Animation */}
+        <motion.div
+          initial={{ scale: 0.96, opacity: 0, y: 30 }}
+          whileInView={{ scale: 1, opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative rounded-3xl bg-slate-950/80 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] group will-change-transform"
+        >
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-purple-500/20 rounded-3xl opacity-50 pointer-events-none -z-1" />
+
+          {isSubmitted ? (
+            <div className="py-16 text-center space-y-6 animate-in fade-in zoom-in-95 duration-500">
+              <div className="w-20 h-20 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 mx-auto flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                  Consultation Request Received
+                </h3>
+                <p className="text-sm text-slate-300 max-w-md mx-auto">
+                  Our Senior Brand Architect will review your positioning and reach out within 24 business hours with initial audit insights and roadmap options.
+                </p>
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Name */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Your Full Name *</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="e.g. Aryan Mehra"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-slate-500 text-sm outline-none transition-all"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Work Email Address *</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="e.g. aryan@company.com"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-slate-500 text-sm outline-none transition-all"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                    <Phone className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Contact Number</span>
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="e.g. +91 98765 43210"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-slate-500 text-sm outline-none transition-all"
+                  />
+                </div>
+
+                {/* Company */}
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                    <Building className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Company / Project Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.company}
+                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                    placeholder="e.g. Aura Atelier Ltd"
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-slate-500 text-sm outline-none transition-all"
+                  />
+                </div>
+              </div>
+
+              {/* Service Selection */}
+              <div className="space-y-3">
+                <label className="text-xs font-mono uppercase tracking-wider text-slate-300">
+                  Primary Brand Focus
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                  {[
+                    "Brand Identity & Visual Architecture",
+                    "3D Packaging & Industrial CGI",
+                    "Living Design System (Tokens)",
+                    "Full Omnichannel Transformation",
+                  ].map((srv) => (
+                    <button
+                      key={srv}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, service: srv })}
+                      className={`p-3 rounded-xl text-xs font-medium text-left border transition-all cursor-pointer ${
+                        formData.service === srv
+                          ? "bg-cyan-950/60 border-cyan-400 text-white shadow-[0_0_15px_rgba(56,189,248,0.2)]"
+                          : "bg-slate-900/60 border-slate-800 text-slate-400 hover:text-white hover:border-slate-700"
+                      }`}
+                    >
+                      {srv}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Budget & Timeline */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase tracking-wider text-slate-300">
+                    Target Budget Tier
+                  </label>
+                  <select
+                    value={formData.budget}
+                    onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 text-white text-sm outline-none cursor-pointer"
+                  >
+                    <option value="₹2.5L – ₹5L">₹2.5L – ₹5L (Focused Identity Sprint)</option>
+                    <option value="₹5L – ₹15L">₹5L – ₹15L (Identity + 3D Packaging)</option>
+                    <option value="₹15L – ₹35L">₹15L – ₹35L (Full Living System + Web)</option>
+                    <option value="₹35L+">₹35L+ (Enterprise Category Dominance)</option>
+                  </select>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-xs font-mono uppercase tracking-wider text-slate-300">
+                    Deployment Window
+                  </label>
+                  <select
+                    value={formData.timeline}
+                    onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 text-white text-sm outline-none cursor-pointer"
+                  >
+                    <option value="Immediate (Next 1-2 Weeks)">Immediate (Next 1 – 2 Weeks)</option>
+                    <option value="2 – 4 Weeks">2 – 4 Weeks</option>
+                    <option value="1 – 2 Months">1 – 2 Months</option>
+                    <option value="Flexible / Strategic Planning">Flexible / Strategic Planning</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Message */}
+              <div className="space-y-2">
+                <label className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-1.5">
+                  <MessageSquare className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Project Context &amp; Objectives</span>
+                </label>
+                <textarea
+                  rows={4}
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell us about your brand's current positioning, competitors, or target category..."
+                  className="w-full px-4 py-3 rounded-xl bg-slate-900/80 border border-slate-800 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-white placeholder-slate-500 text-sm outline-none transition-all resize-none"
+                />
+              </div>
+
+              {errorMsg && (
+                <div className="p-3 rounded-xl bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300">
+                  {errorMsg}
+                </div>
+              )}
+
+              {/* Submit CTA */}
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <span>100% NON-DISCLOSURE AGREEMENT PROTECTED</span>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-400 hover:from-blue-500 hover:to-teal-300 text-slate-950 font-extrabold text-sm shadow-[0_0_25px_rgba(56,189,248,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <span>Submitting Protocol...</span>
+                  ) : (
+                    <>
+                      <span>Transmit Consultation Request</span>
+                      <Send className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          )}
+        </motion.div>
       </Container>
     </section>
   );
 };
+
+export default BrandingConsultationSection;

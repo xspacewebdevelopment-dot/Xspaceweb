@@ -2,11 +2,15 @@
 
 import React, { useState } from "react";
 import {
-  EcommerceMarketplacesSection,
-} from "@/components/services/ecommerce";
-import {
-  BrandingRocketHero,
-  BrandingCreativeSection,
+  CosmicParticleBackground,
+  BrandScrollProgress,
+  BrandEnvironmentalWord,
+  RocketAssemblySection,
+  BrandGravityJourney,
+  BrandingPillarsBento,
+  BrandSystemEvolution,
+  BrandTrajectoryCarousel,
+  BrandCraftsmanshipShowcase,
   BrandingCaseStudiesSection,
   BrandingProcessSection,
   BrandingTechStackSection,
@@ -15,68 +19,95 @@ import {
 } from "@/components/services/branding";
 import { ProjectModal } from "@/components/shared/ProjectModal";
 
-export default function BrandingAndEcommercePage() {
+export default function BrandingServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [initialService, setInitialService] = useState<string>("Brand Identity & Omnichannel Launch");
-
-  const handleLaunchStore = () => {
-    setInitialService("Brand Identity & Omnichannel Launch");
-    setIsModalOpen(true);
-  };
+  const [initialService, setInitialService] = useState<string>("Brand Identity & Visual Architecture");
 
   const handleOpenConsultation = (serviceName?: string) => {
-    setInitialService(serviceName || "Marketplace Architecture & Syndication");
+    setInitialService(serviceName || "Brand Identity & Visual Architecture");
     setIsModalOpen(true);
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#020412] text-white selection:bg-[#38bdf8] selection:text-[#020412]">
-      {/* 1. Cinematic Rocket Video Background Hero (No scrolling animation lock) */}
-      <BrandingRocketHero
-        onLaunchStore={handleLaunchStore}
-        onMarketplaceConsultation={() => handleOpenConsultation("Marketplace Architecture & Syndication")}
-      />
+    <div className="w-full min-h-screen bg-[#02040c] text-white selection:bg-[#38bdf8] selection:text-[#02040c] relative">
+      {/* Page-Wide Mission Telemetry Scroll Progress Line (Directly Below Global Navbar) */}
+      <BrandScrollProgress />
 
-      {/* 2. Omnichannel Marketplace Ecosystem Architecture */}
-      <EcommerceMarketplacesSection
-        onOpenConsultation={() => handleOpenConsultation("Omnichannel Marketplace Architecture")}
-      />
+      {/* Global Persistent Cosmic Starfield & Floating Space Particles */}
+      <CosmicParticleBackground />
 
-      {/* 3. Brand Identity & Creative Systems: 3D Packaging, Headless UI, Visual Assets */}
-      <BrandingCreativeSection
-        onOpenConsultation={() => handleOpenConsultation("Brand Identity & Design System")}
-      />
+      <div className="relative z-10 w-full">
+        {/* 1. Cinematic Rocket Frame-by-Frame Scroll Assembly Hero (70 Frames, Zero Black-Gap, Fully Visible Tip) */}
+        <RocketAssemblySection
+          onLaunchStore={() => handleOpenConsultation("Brand Identity & Visual Architecture")}
+          onMarketplaceConsultation={() => handleOpenConsultation("Enterprise Brand Audit")}
+          onOpenConsultation={handleOpenConsultation}
+        />
 
-      {/* 4. Proven Enterprise Case Studies & Metrics */}
-      <BrandingCaseStudiesSection
-        onOpenConsultation={() => handleOpenConsultation("Enterprise Commerce Case Studies")}
-      />
+        {/* Continuous Atmospheric Transition Word: IDENTITY */}
+        <BrandEnvironmentalWord word="IDENTITY" />
 
-      {/* 5. 4-Stage Architectural Roadmap */}
-      <BrandingProcessSection
-        onOpenConsultation={() => handleOpenConsultation("Architectural Roadmap Consultation")}
-      />
+        {/* 2. Brand Gravity Sticky Scroll Journey (Signal → Identity → System → Gravity → Velocity) */}
+        <BrandGravityJourney />
 
-      {/* 6. Enterprise Commerce & Marketplace Technology Stack */}
-      <BrandingTechStackSection />
+        {/* Atmospheric Transition Word: SYSTEM */}
+        <BrandEnvironmentalWord word="SYSTEM" />
 
-      {/* 7. Frequently Asked Questions */}
-      <BrandingFaqSection
-        onOpenConsultation={() => handleOpenConsultation("Brand & Marketplace FAQ")}
-      />
+        {/* 3. Four Pillars of Brand Gravity (3D Perspective Bento Grid with Micro-Animations) */}
+        <BrandingPillarsBento
+          onOpenConsultation={handleOpenConsultation}
+        />
 
-      {/* 8. Dedicated Cosmic Proposal & Architecture Consultation Form */}
-      <BrandingConsultationSection />
+        {/* 4. Brand System Evolution: Pinned Horizontal Scroll Journey (Foundation → Identity → System → Market) */}
+        <BrandSystemEvolution />
 
-      {/* Global Interactive Project / Consultation Modal */}
+        {/* Atmospheric Transition Word: SCALE */}
+        <BrandEnvironmentalWord word="SCALE" />
+
+        {/* 5. The 3 Stages of Brand Gravity: Scale, Build & Launch Carousel (with Stage Rail & Nebula Transitions) */}
+        <BrandTrajectoryCarousel
+          onOpenConsultation={handleOpenConsultation}
+        />
+
+        {/* 6. Human Architectural Precision vs. Generic AI Templates (Scroll Reveal Comparison Divider) */}
+        <BrandCraftsmanshipShowcase
+          onOpenConsultation={() => handleOpenConsultation("Brand Defensibility & Trademark Audit")}
+        />
+
+        {/* 7. Proven Enterprise Case Studies (3D Container Scroll Entrance + Thematic Identity Layers) */}
+        <BrandingCaseStudiesSection
+          onOpenConsultation={() => handleOpenConsultation("Enterprise Brand Transformation")}
+        />
+
+        {/* 8. 4-Stage Architectural Mission Trajectory (Tracing Beam Launch Path) */}
+        <BrandingProcessSection
+          onOpenConsultation={() => handleOpenConsultation("Brand Roadmap Consultation")}
+        />
+
+        {/* Atmospheric Transition Word: LAUNCH */}
+        <BrandEnvironmentalWord word="LAUNCH" />
+
+        {/* 9. Studio Arsenal & Technology Stack (Production Core Depth System) */}
+        <BrandingTechStackSection />
+
+        {/* 10. Frequently Asked Executive Questions (Calm Breathing Room Section) */}
+        <BrandingFaqSection
+          onOpenConsultation={() => handleOpenConsultation("Brand Strategy Q&A")}
+        />
+
+        {/* 11. Final Cosmic Brand Proposal & Architecture Consultation Terminal */}
+        <BrandingConsultationSection />
+      </div>
+
+      {/* Global Interactive Consultation Modal */}
       <ProjectModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         inquiryType="service"
         source="branding-services-page"
         initialService={initialService}
-        title="Launch Your Brand & eCommerce Architecture"
-        subtitle="Connect directly with our senior commerce specialists and design architects to build a custom scaling roadmap."
+        title="Commission Your Brand Architecture"
+        subtitle="Connect directly with our senior brand architects and 3D visual directors to forge a category-defining identity."
       />
     </div>
   );

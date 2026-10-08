@@ -1,117 +1,178 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "@/components/shared/ui/Container";
-import { Cpu, Globe, Database, Shield, Zap, RefreshCw } from "lucide-react";
+import { Cpu, Orbit, Sparkles, Layers, Box, Terminal } from "lucide-react";
 
 interface TechCategory {
+  id: string;
   category: string;
+  shortLabel: string;
   description: string;
   tools: { name: string; role: string; highlight: string }[];
+  accent: string;
 }
 
 const techCategories: TechCategory[] = [
   {
-    category: "HEADLESS COMMERCE & D2C",
-    description: "Sub-second storefront architecture engineered for maximum checkout conversion.",
+    id: "identity",
+    category: "BRAND IDENTITY & VECTOR GEOMETRY",
+    shortLabel: "DESIGN // VECTOR",
+    description: "Mathematical precision tools for enduring identity systems and vector design.",
     tools: [
-      { name: "Next.js 15 & React", role: "SSR & Edge Storefront Core", highlight: "Sub-second FCP" },
-      { name: "Shopify Plus / Headless", role: "Enterprise Merchant Backend", highlight: "99.99% Uptime" },
-      { name: "Three.js & WebGL", role: "Interactive 3D Product Viewers", highlight: "Zero Lag Renders" },
-      { name: "Tailwind CSS & Framer", role: "Custom Fluid Design System", highlight: "Pixel Perfection" },
+      { name: "Figma Enterprise", role: "Design Systems & Token Architecture", highlight: "Living Tokens" },
+      { name: "Adobe Illustrator CC", role: "Precision Bézier & Vector Logomarks", highlight: "100% Vector" },
+      { name: "Glyphs 3 & FontLab", role: "Custom Display Typography & Kerning", highlight: "Proprietary Fonts" },
+      { name: "Pantone Connect", role: "Multi-Spectrum Chromatic Calibration", highlight: "CMYK / Spot" },
     ],
+    accent: "#38bdf8",
   },
   {
-    category: "MARKETPLACE APIS & SYNDICATION",
-    description: "Deep direct webhooks and low-latency API bridges into top marketplaces.",
+    id: "packaging",
+    category: "3D PACKAGING & INDUSTRIAL CGI",
+    shortLabel: "3D // PACKAGING",
+    description: "Studio-grade photorealistic rendering and packaging production engineering.",
     tools: [
-      { name: "Amazon Selling Partner (SP-API)", role: "Direct Order & Inventory Sync", highlight: "< 450ms Latency" },
-      { name: "Flipkart Marketplace v3 REST", role: "Real-Time Catalog & Pricing Push", highlight: "Assured Ready" },
-      { name: "Meesho Supplier Hub Bridge", role: "High-Velocity Bulk Dispatch", highlight: "Zero-Commission" },
-      { name: "AJIO & Myntra Enterprise Gateways", role: "Fashion SLA & Catalog Enricher", highlight: "PPMP Integrated" },
+      { name: "Cinema 4D & Octane", role: "8K Photorealistic Lighting & Materials", highlight: "GPU Raytracing" },
+      { name: "Blender 4.x Spatial", role: "Interactive 3D Meshes & Asset Exports", highlight: "GLTF / USDZ" },
+      { name: "Esko ArtiosCAD", role: "Structural Dieline Engineering & Testing", highlight: "Zero Production Flaw" },
+      { name: "Substance 3D Painter", role: "Tactile Foil, Glass & Texture Shaders", highlight: "Physical Materials" },
     ],
+    accent: "#818cf8",
   },
   {
-    category: "CLOUD INFRASTRUCTURE & SECURITY",
-    description: "Enterprise scalability with automated failovers and multi-godown locking.",
+    id: "tokens",
+    category: "DIGITAL DESIGN TOKENS & WEBGL",
+    shortLabel: "WEB // TOKENS",
+    description: "Bridging the gap between brand design and sub-second digital storefronts.",
     tools: [
-      { name: "AWS & Vercel Edge Network", role: "Global Multi-Region CDN Hosting", highlight: "100k+ Concurrency" },
-      { name: "PostgreSQL & Drizzle ORM", role: "Type-Safe Enterprise Telemetry", highlight: "Zero Data Loss" },
-      { name: "Upstash Redis Caching", role: "Sub-millisecond Inventory Lock", highlight: "Anti-Oversell" },
-      { name: "SOC-2 & 256-Bit SSL", role: "Financial & PII Data Encryption", highlight: "Bank-Grade Safety" },
+      { name: "Tokens Studio & Tailwind", role: "Automated CSS Variable Export", highlight: "Instant Dev Sync" },
+      { name: "Three.js & WebGL", role: "Interactive 3D In-Browser Product Canvases", highlight: "60 FPS Smooth" },
+      { name: "Next.js 15 App Core", role: "Sub-Second Omnichannel Digital UX", highlight: "99+ Performance" },
+      { name: "Storybook 8 Enterprise", role: "Isolated Living Component Catalog", highlight: "Zero Regressions" },
     ],
+    accent: "#a855f7",
   },
 ];
 
 export const BrandingTechStackSection: React.FC = () => {
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
   return (
     <section
       id="brand-tech-stack"
-      className="relative w-full bg-[#020412] text-white py-20 sm:py-28 overflow-hidden border-t border-slate-900/90"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80 [perspective:1200px]"
     >
       {/* Background Cosmic Atmosphere */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-blue-700/10 blur-[170px]" />
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full bg-blue-700/10 blur-[180px]" />
       </div>
 
       <Container size="wide" className="relative z-10 space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
             <Cpu className="w-3.5 h-3.5 text-cyan-400" />
-            <span>ENTERPRISE ARCHITECTURE</span>
+            <span>STUDIO ARSENAL &amp; PRODUCTION STACK</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12]">
-            Powered by Modern <br className="hidden sm:inline" />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
+            Powered by World-Class <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Commerce Technologies.
+              Brand &amp; 3D Technologies.
             </span>
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            We don’t rely on fragile plugins. We architect high-performance, resilient technology stacks that handle flash sales, Big Billion Days, and millions in transactions without breaking a sweat.
+            We don’t rely on shallow web templates. We deploy industry-standard industrial CAD, GPU raytracing, and living design token pipelines to create flawless brand assets that scale across factories and screens.
           </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {techCategories.map((cat, idx) => (
-            <div
-              key={idx}
-              className="relative rounded-3xl bg-slate-950/70 border border-slate-800/90 backdrop-blur-xl p-6 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between"
-            >
-              <div className="space-y-2">
-                <span className="text-[11px] font-mono font-bold tracking-widest text-cyan-400 uppercase block">
-                  {cat.category}
-                </span>
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {cat.description}
-                </p>
-              </div>
+        {/* Central Production Core Hub Indicator */}
+        <div className="hidden lg:flex items-center justify-center">
+          <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-slate-950/90 border border-cyan-500/40 text-xs font-mono shadow-[0_0_25px_rgba(56,189,248,0.25)] backdrop-blur-2xl">
+            <Orbit className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: "14s" }} />
+            <span className="text-slate-300 font-bold">XSPACEWEB PRODUCTION CORE</span>
+            <span className="text-slate-600">//</span>
+            <span className="text-cyan-400">DEPTH ARSENAL ARCHITECTURE</span>
+          </div>
+        </div>
 
-              <div className="space-y-3 pt-2">
-                {cat.tools.map((tool, tIdx) => (
-                  <div
-                    key={tIdx}
-                    className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between gap-3 hover:border-slate-700 transition-colors"
-                  >
-                    <div className="space-y-0.5">
-                      <div className="text-sm font-bold text-white tracking-tight">
-                        {tool.name}
-                      </div>
-                      <div className="text-[11px] text-slate-400">{tool.role}</div>
-                    </div>
-                    <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/40 text-cyan-300 flex-shrink-0">
-                      {tool.highlight}
+        {/* Studio Arsenal Categories Grid with Subtle Depth Physics */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {techCategories.map((cat) => {
+            const isHovered = hoveredCategory === cat.id;
+            const isAnyHovered = hoveredCategory !== null;
+            const isOther = isAnyHovered && !isHovered;
+
+            return (
+              <div
+                key={cat.id}
+                onMouseEnter={() => setHoveredCategory(cat.id)}
+                onMouseLeave={() => setHoveredCategory(null)}
+                className={`relative rounded-3xl bg-slate-950/75 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between transition-all duration-300 cursor-default ${
+                  isHovered
+                    ? "border-cyan-500/60 shadow-[0_20px_45px_rgba(56,189,248,0.2)] -translate-y-1.5 scale-[1.01]"
+                    : isOther
+                    ? "opacity-60"
+                    : "hover:border-slate-700"
+                }`}
+                style={{
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                {/* Subtle Inner Glow */}
+                <div
+                  className="absolute -inset-0.5 rounded-3xl opacity-0 transition-opacity duration-300 pointer-events-none -z-1"
+                  style={{
+                    opacity: isHovered ? 0.3 : 0,
+                    background: `radial-gradient(circle at top left, ${cat.accent} 0%, transparent 70%)`,
+                  }}
+                />
+
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="text-[11px] font-mono font-bold tracking-widest uppercase block"
+                      style={{ color: cat.accent }}
+                    >
+                      {cat.shortLabel}
                     </span>
+                    <span className="w-2 h-2 rounded-full" style={{ backgroundColor: cat.accent }} />
                   </div>
-                ))}
+                  <h3 className="text-base font-bold text-white tracking-tight">
+                    {cat.category}
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {cat.description}
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {cat.tools.map((tool, tIdx) => (
+                    <div
+                      key={tIdx}
+                      className="p-3.5 rounded-2xl bg-slate-900/60 border border-slate-800/80 flex items-center justify-between gap-3 hover:border-slate-700 transition-colors"
+                    >
+                      <div className="space-y-0.5">
+                        <div className="text-sm font-bold text-white tracking-tight">
+                          {tool.name}
+                        </div>
+                        <div className="text-[11px] text-slate-400">{tool.role}</div>
+                      </div>
+                      <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-slate-950 border border-slate-800 text-cyan-300 flex-shrink-0">
+                        {tool.highlight}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>
   );
 };
+
+export default BrandingTechStackSection;

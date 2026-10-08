@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Compass, Lightbulb, Code2, Rocket, ArrowRight, CheckCircle2 } from "lucide-react";
+import React, { useRef, useState, useEffect } from "react";
+import { Compass, Lightbulb, Code2, Rocket, ArrowRight, CheckCircle2, Sparkles, Orbit, Check } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 
 interface ProcessPhase {
@@ -12,7 +12,6 @@ interface ProcessPhase {
   deliverables: string[];
   duration: string;
   icon: React.ReactNode;
-  gradient: string;
   accent: string;
 }
 
@@ -20,66 +19,62 @@ const phases: ProcessPhase[] = [
   {
     number: "01",
     stageName: "STAGE 01 // AUDIT & POSITIONING",
-    title: "Brand Architecture & Category Positioning",
+    title: "Category Archetype & Brand Architecture",
     description:
-      "Deep-dive competitive audit, SKU margin breakdown, target customer psychographics, and category white-space mapping to establish an untouchable value proposition.",
+      "Deep-dive competitive audit, target customer psychographics, pricing elasticity mapping, and category white-space positioning to engineer an untouchable value proposition.",
     deliverables: [
-      "Competitive Landscape & SKU Profitability Matrix",
-      "Customer Persona Demographics & Purchase Triggers",
-      "Multi-Channel Pricing Strategy & Channel Rules",
+      "Competitive Landscape & Brand Moat Matrix",
+      "Customer Psychographics & Emotional Triggers",
+      "Brand Archetype & Verbal Communication Bible",
     ],
     duration: "Week 1",
-    icon: <Compass className="w-6 h-6 text-cyan-400" />,
-    gradient: "from-cyan-500/20 to-transparent",
+    icon: <Compass className="w-5 h-5 text-cyan-400" />,
     accent: "#38bdf8",
   },
   {
     number: "02",
-    stageName: "STAGE 02 // VISUAL IDENTITY & UX",
-    title: "Brand Identity, 3D Assets & Headless UI",
+    stageName: "STAGE 02 // VISUAL IDENTITY & 3D CGI",
+    title: "Vector Logomarks & 3D Packaging Systems",
     description:
-      "Crafting the visual identity, logomarks, color science, photorealistic 3D product packaging, and high-converting Figma component systems for sub-second checkouts.",
+      "Forging mathematical vector typography, custom insigne geometry, chromatic systems, and factory-ready 3D product packaging dielines with photorealistic 8K Octane renders.",
     deliverables: [
-      "60+ Page Brand Book & Vector Design Tokens",
-      "3D Product Packaging Dielines & Unboxing Renders",
-      "Figma Prototype for Next.js Headless Storefront",
+      "70+ Page Master Brand Identity Guidelines",
+      "Industrial CAD Dielines for Physical Cartons & Bottles",
+      "Photorealistic 8K 3D Product Packaging Renders",
     ],
     duration: "Weeks 2 – 3",
-    icon: <Lightbulb className="w-6 h-6 text-purple-400" />,
-    gradient: "from-purple-500/20 to-transparent",
-    accent: "#c084fc",
+    icon: <Lightbulb className="w-5 h-5 text-indigo-400" />,
+    accent: "#818cf8",
   },
   {
     number: "03",
-    stageName: "STAGE 03 // SYNDICATION & INTEGRATION",
-    title: "Omnichannel API Mesh & Marketplace Launch",
+    stageName: "STAGE 03 // LIVING TOKENS & DIGITAL UX",
+    title: "Design Tokens & Headless Digital Storefronts",
     description:
-      "Hooking up live inventory synchronization across Amazon SP-API, Flipkart v3, Meesho, AJIO, and Shopify Plus with automated inventory locking and 3PL logistics routing.",
+      "Connecting Figma components to Tailwind variables and Next.js frontend code. Ensuring instant developer velocity and sub-second performance across mobile and desktop.",
     deliverables: [
-      "Unified Multi-Channel Inventory Lock Webhooks",
-      "Amazon Brand Registry & A+ Content Live Publishing",
-      "Regional 3PL Warehouse Routing & RTO Automation",
+      "Figma Tokens Synced to Production Tailwind Theme",
+      "Mobile-First Component System & Micro-Interactions",
+      "Amazon Brand Registry & A+ Content Asset Matrix",
     ],
     duration: "Weeks 4 – 5",
-    icon: <Code2 className="w-6 h-6 text-blue-400" />,
-    gradient: "from-blue-500/20 to-transparent",
-    accent: "#60a5fa",
+    icon: <Code2 className="w-5 h-5 text-purple-400" />,
+    accent: "#c084fc",
   },
   {
     number: "04",
-    stageName: "STAGE 04 // AUTOMATION & VELOCITY",
-    title: "Algorithmic Growth Engine & Scale",
+    stageName: "STAGE 04 // LAUNCH & IP GOVERNANCE",
+    title: "Market Velocity & Global Trademark Shield",
     description:
-      "Deploying 24/7 Buy Box repricing algorithms, programmatic sponsored ad campaigns, and real-time sales telemetry to compound GMV across every marketplace.",
+      "Full IP assignment, raw vector source files handover, and launch-day creative rollout across public relations, digital storefronts, and performance advertising.",
     deliverables: [
-      "Algorithmic Dynamic Repricing Engine",
-      "Full-Funnel Sponsored Ads & DSP Campaign Architecture",
-      "Executive Real-Time GMV & Margin Telemetry Dashboard",
+      "100% Trademark IP & Copyright Ownership Handover",
+      "Complete Production Vector Repositories (SVG, EPS, AI)",
+      "Ongoing Brand Governance & Creative Refresh Support",
     ],
     duration: "Ongoing Scale",
-    icon: <Rocket className="w-6 h-6 text-emerald-400" />,
-    gradient: "from-emerald-500/20 to-transparent",
-    accent: "#34d399",
+    icon: <Rocket className="w-5 h-5 text-emerald-400" />,
+    accent: "#10b981",
   },
 ];
 
@@ -90,94 +85,262 @@ interface BrandingProcessSectionProps {
 export const BrandingProcessSection: React.FC<BrandingProcessSectionProps> = ({
   onOpenConsultation,
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        const total = rect.height + viewportHeight;
+        const current = viewportHeight - rect.top;
+        const progress = Math.min(1, Math.max(0, current / total));
+        setScrollProgress(progress);
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section
+      ref={containerRef}
       id="brand-process"
-      className="relative w-full bg-[#020412] text-white py-20 sm:py-28 overflow-hidden border-t border-slate-900/90"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80"
     >
-      {/* Background Cosmic Atmosphere */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] rounded-full bg-purple-900/10 blur-[160px]" />
-        <div className="absolute bottom-10 left-10 w-[600px] h-[600px] rounded-full bg-blue-900/10 blur-[150px]" />
+      {/* Background Ambience */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <div className="absolute top-1/2 left-1/3 w-[800px] h-[800px] rounded-full bg-purple-900/10 blur-[180px]" />
       </div>
 
       <Container size="wide" className="relative z-10 space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-purple-400 text-xs font-mono font-bold shadow-sm">
-            <span>THE 4-STAGE ARCHITECTURAL ROADMAP</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-purple-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+            <span>MISSION TRAJECTORY PROTOCOL</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.12]">
-            From Strategic Blueprint to <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Omnichannel Market Domination.
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
+            The Proven Launch Path to <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-cyan-400 via-indigo-300 to-purple-400 bg-clip-text text-transparent">
+              Category Dominance.
             </span>
           </h2>
 
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Our structured, sprint-based deployment framework ensures zero operational downtime, seamless marketplace compliance, and accelerated speed-to-market.
+            From strategic discovery to production-ready design tokens and legal trademark clearance. Our sprint-based methodology delivers with predictable velocity.
           </p>
         </div>
 
-        {/* Process Roadmap Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {phases.map((phase) => (
-            <div
-              key={phase.number}
-              className="relative rounded-3xl bg-slate-950/70 border border-slate-800/90 backdrop-blur-xl p-6 sm:p-7 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 hover:-translate-y-1.5 shadow-xl group overflow-hidden"
-            >
-              {/* Subtle Ambient Back-Glow */}
-              <div
-                className={`absolute -top-16 -right-16 w-32 h-32 rounded-full blur-2xl opacity-30 bg-gradient-to-br ${phase.gradient} pointer-events-none`}
+        {/* =========================================================
+            DESKTOP TRACING BEAM LAUNCH TRAJECTORY (Hidden on mobile)
+            ========================================================= */}
+        <div className="hidden lg:block relative max-w-5xl mx-auto py-8">
+          {/* Central Vertical SVG Tracing Beam Track */}
+          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-8 pointer-events-none">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+              {/* Background inactive trajectory guide */}
+              <line
+                x1="50%"
+                y1="0%"
+                x2="50%"
+                y2="100%"
+                stroke="rgba(51, 65, 85, 0.4)"
+                strokeWidth="2"
+                strokeDasharray="6 6"
               />
+              {/* Active illuminated tracing beam */}
+              <line
+                x1="50%"
+                y1="0%"
+                x2="50%"
+                y2={`${Math.min(100, scrollProgress * 120)}%`}
+                stroke="url(#beamGradient)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                className="transition-all duration-75"
+              />
+              <defs>
+                <linearGradient id="beamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#38bdf8" />
+                  <stop offset="40%" stopColor="#818cf8" />
+                  <stop offset="80%" stopColor="#c084fc" />
+                  <stop offset="100%" stopColor="#ffffff" />
+                </linearGradient>
+              </defs>
+            </svg>
 
-              <div className="space-y-4 relative z-10">
-                <div className="flex items-center justify-between">
-                  <div className="p-3 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-sm">
-                    {phase.icon}
-                  </div>
-                  <span className="text-xs font-mono font-bold text-slate-400">
-                    {phase.duration}
-                  </span>
-                </div>
+            {/* Glowing rocket head tracking beam progress */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-slate-950 border-2 border-white shadow-[0_0_15px_rgba(255,255,255,0.9)] transition-all duration-75 flex items-center justify-center -z-0"
+              style={{ top: `${Math.min(98, scrollProgress * 120)}%` }}
+            >
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+            </div>
+          </div>
 
-                <div className="space-y-1.5">
-                  <span
-                    className="text-[10px] font-mono font-bold tracking-widest uppercase block"
-                    style={{ color: phase.accent }}
-                  >
-                    {phase.stageName}
-                  </span>
-                  <h3 className="text-lg font-extrabold text-white tracking-tight leading-snug">
-                    {phase.title}
-                  </h3>
-                </div>
+          {/* 4 Phases along alternating trajectory */}
+          <div className="space-y-20 relative z-10">
+            {phases.map((phase, idx) => {
+              const threshold = (idx + 1) * 0.22;
+              const isReached = scrollProgress >= threshold;
+              const isLeft = idx % 2 === 0;
 
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  {phase.description}
-                </p>
+              return (
+                <div
+                  key={phase.number}
+                  className={`flex items-center gap-10 ${
+                    isLeft ? "flex-row" : "flex-row-reverse"
+                  }`}
+                >
+                  {/* Content Card (Half Width) */}
+                  <div className="w-1/2">
+                    <div
+                      className={`rounded-3xl bg-slate-950/80 border p-7 backdrop-blur-2xl transition-all duration-500 shadow-xl ${
+                        isReached
+                          ? "border-slate-700 shadow-[0_15px_35px_rgba(0,0,0,0.8)] opacity-100 translate-y-0"
+                          : "border-slate-800/60 opacity-60 translate-y-2"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
+                        <span
+                          className="text-xs font-mono font-bold tracking-wider"
+                          style={{ color: phase.accent }}
+                        >
+                          {phase.stageName}
+                        </span>
+                        <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-300">
+                          {phase.duration}
+                        </span>
+                      </div>
 
-                {/* Deliverables */}
-                <div className="space-y-2 pt-3 border-t border-slate-900">
-                  <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest block">
-                    KEY DELIVERABLES:
-                  </span>
-                  {phase.deliverables.map((d, idx) => (
-                    <div key={idx} className="flex items-start gap-2 text-[11px] text-slate-300">
-                      <CheckCircle2
-                        className="w-3.5 h-3.5 flex-shrink-0 mt-0.5"
-                        style={{ color: phase.accent }}
-                      />
-                      <span>{d}</span>
+                      <div className="space-y-3 pt-3">
+                        <h3 className="text-xl font-bold text-white tracking-tight">
+                          {phase.title}
+                        </h3>
+                        <p className="text-xs text-slate-300 leading-relaxed">
+                          {phase.description}
+                        </p>
+                      </div>
+
+                      {/* Deliverables */}
+                      <div className="space-y-2 pt-4 border-t border-slate-800/60 mt-4">
+                        {phase.deliverables.map((item, dIdx) => (
+                          <div
+                            key={dIdx}
+                            className="flex items-center gap-2 text-xs text-slate-300"
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: phase.accent }}
+                            />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Center Node Indicator */}
+                  <div className="w-12 flex items-center justify-center">
+                    <div
+                      className={`w-12 h-12 rounded-2xl flex items-center justify-center border font-mono text-sm font-bold transition-all duration-500 backdrop-blur-xl ${
+                        isReached
+                          ? "bg-slate-900 text-white shadow-[0_0_20px_rgba(56,189,248,0.4)] scale-110"
+                          : "bg-slate-950 text-slate-500 border-slate-800"
+                      }`}
+                      style={
+                        isReached
+                          ? { borderColor: phase.accent, color: phase.accent }
+                          : undefined
+                      }
+                    >
+                      {phase.number}
+                    </div>
+                  </div>
+
+                  {/* Empty Spacer Half */}
+                  <div className="w-1/2" />
                 </div>
+              );
+            })}
+          </div>
+
+          {/* =========================================================
+              FINAL STATE: BEAM ASCENDS INTO STARFIELD
+              ========================================================= */}
+          <div className="text-center pt-16 relative z-10">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950/90 border border-emerald-500/50 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-mono font-bold tracking-widest text-emerald-300 uppercase">
+                SYSTEM CLEARED FOR LAUNCH.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* =========================================================
+            MOBILE VIEWPORT: STRAIGHT VERTICAL PATH
+            ========================================================= */}
+        <div className="block lg:hidden space-y-6 max-w-lg mx-auto">
+          {phases.map((p) => (
+            <div
+              key={p.number}
+              className="rounded-3xl bg-slate-950/80 border border-slate-800/80 p-6 space-y-4 backdrop-blur-xl"
+            >
+              <div className="flex items-center justify-between">
+                <span
+                  className="text-xs font-mono font-bold"
+                  style={{ color: p.accent }}
+                >
+                  {p.stageName}
+                </span>
+                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-slate-400">
+                  {p.duration}
+                </span>
+              </div>
+
+              <h3 className="text-lg font-bold text-white">{p.title}</h3>
+              <p className="text-xs text-slate-300 leading-relaxed">{p.description}</p>
+
+              <div className="space-y-1.5 pt-2 border-t border-slate-800">
+                {p.deliverables.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-xs text-slate-400">
+                    <span className="w-1 h-1 rounded-full bg-cyan-400" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
+
+          <div className="text-center pt-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950 border border-emerald-500/40 text-[11px] font-mono font-bold text-emerald-300">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>SYSTEM CLEARED FOR LAUNCH.</span>
+            </div>
+          </div>
         </div>
       </Container>
     </section>
   );
 };
+
+export default BrandingProcessSection;
