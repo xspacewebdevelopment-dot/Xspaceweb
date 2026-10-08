@@ -14,11 +14,12 @@ export const ProductBackground: React.FC<ProductBackgroundProps> = ({ activeProd
     <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
       {/* 1. Scenic Mountain Background Image */}
       <Image
-        src="/images/products/background.png"
+        src="/images/products/background.webp"
         alt="XSPACEWEB SaaS Ecosystem Sunset Mountain Background"
         fill
         className="object-cover object-center"
-        priority
+        loading="lazy"
+        sizes="100vw"
       />
 
       {/* 2. Soft White Top Atmospheric Gradient Overlay */}

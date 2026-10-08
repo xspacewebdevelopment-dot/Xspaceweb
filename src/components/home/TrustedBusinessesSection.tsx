@@ -34,6 +34,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/Eclique-norm.png"
             alt="Eclique"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -46,6 +50,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/Prahar-norm.png"
             alt="Prahar Filing & Advisory"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -58,6 +66,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/SIS-norm.png"
             alt="School Infra Solutions"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-cover rounded-[8px]"
           />
         ),
@@ -70,6 +82,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/SSG-norm.png"
             alt="Shiv Shambhu Group"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -82,6 +98,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/AV-cart-norm.png"
             alt="AV CART"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -94,6 +114,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/Apro-norm.png"
             alt="AproTrader"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -106,6 +130,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/B2T-norm.png"
             alt="B2T"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -118,6 +146,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/Dravanat-Nexus-norm.png"
             alt="Dravanta Nexus"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-contain p-0.5"
           />
         ),
@@ -130,6 +162,10 @@ const BRAND_SLIDES: BrandSlide[] = [
           <img
             src="/images/clientImages/B2T-1-norm.png"
             alt="B2T Global"
+            loading="lazy"
+            decoding="async"
+            width={48}
+            height={48}
             className="w-full h-full object-cover rounded-[8px]"
           />
         ),

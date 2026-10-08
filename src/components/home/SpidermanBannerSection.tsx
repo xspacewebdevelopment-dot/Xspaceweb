@@ -15,7 +15,7 @@ export const SpidermanBannerSection: React.FC = () => {
         className="w-full cursor-pointer relative"
       >
         <Image
-          src="/images/technologies/spiderman_web_banner.png"
+          src="/images/technologies/spiderman_web_banner_clean.jpg"
           alt="Spider-Man Web Action Banner"
           width={1920}
           height={400}

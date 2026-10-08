@@ -101,7 +101,7 @@ export const HeroSection: React.FC = () => {
               }),
         }}
         transition={{ type: "spring", stiffness: 120, damping: 20 }}
-        className="absolute top-10 right-8 sm:right-16 lg:right-28 w-[580px] sm:w-[680px] h-[480px] sm:h-[560px] rounded-full pointer-events-none z-0"
+        className="hidden sm:block absolute top-10 right-8 sm:right-16 lg:right-28 w-[580px] sm:w-[680px] h-[480px] sm:h-[560px] rounded-full pointer-events-none z-0"
         aria-hidden="true"
       />
 
@@ -182,6 +182,7 @@ export const HeroSection: React.FC = () => {
                   alt="Searching for better ways to build"
                   width={150}
                   height={130}
+                  loading="lazy"
                   className="w-20 sm:w-28 md:w-36 h-auto drop-shadow-sm"
                 />
               </motion.div>
@@ -199,6 +200,7 @@ export const HeroSection: React.FC = () => {
                   alt="Real People Real Reviews"
                   width={120}
                   height={170}
+                  loading="lazy"
                   className="w-16 sm:w-22 md:w-28 h-auto drop-shadow-sm"
                 />
               </motion.div>
@@ -339,23 +341,18 @@ export const HeroSection: React.FC = () => {
 
               {/* Main Visual: women.png (Woman sitting on 3D search bar podium) */}
               <div className="relative w-full flex items-center justify-center pt-2 sm:pt-4">
-                <motion.div
-                  initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-                  whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative z-20 w-full flex items-center justify-center"
-                >
+                <div className="relative z-20 w-full flex items-center justify-center">
                   <Image
                     src="/images/hero/women.png"
                     alt="Woman with laptop on XSPACEWEB technology partner search podium"
                     width={1651}
                     height={953}
                     priority
+                    fetchPriority="high"
                     sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 680px"
                     className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
                   />
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -448,7 +445,7 @@ export const HeroSection: React.FC = () => {
       */}
       {/* Bottom-Left Plant 1 */}
       <div
-        className="pointer-events-none select-none absolute bottom-0 sm:bottom-2 md:bottom-3 lg:bottom-4 -left-4 sm:-left-6 md:-left-8 lg:-left-10 z-10 w-[200px] sm:w-[270px] md:w-[330px] lg:w-[400px] xl:w-[440px] aspect-square"
+        className="hidden sm:block pointer-events-none select-none absolute bottom-0 sm:bottom-2 md:bottom-3 lg:bottom-4 -left-4 sm:-left-6 md:-left-8 lg:-left-10 z-10 w-[200px] sm:w-[270px] md:w-[330px] lg:w-[400px] xl:w-[440px] aspect-square"
         style={{
           WebkitMaskImage: "radial-gradient(ellipse at bottom left, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
           maskImage: "radial-gradient(ellipse at bottom left, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
@@ -460,13 +457,14 @@ export const HeroSection: React.FC = () => {
           alt=""
           width={600}
           height={600}
+          loading="lazy"
           className="w-full h-full object-contain filter blur-[1px] sm:blur-[1.5px] opacity-70 sm:opacity-75 lg:opacity-80 scale-100 transform-gpu origin-bottom-left"
         />
       </div>
 
       {/* Bottom-Right Plant 2 */}
       <div
-        className="pointer-events-none select-none absolute bottom-0 sm:bottom-2 md:bottom-3 lg:bottom-4 -right-4 sm:-right-6 md:-right-8 lg:-right-10 z-10 w-[200px] sm:w-[270px] md:w-[330px] lg:w-[400px] xl:w-[440px] aspect-square"
+        className="hidden sm:block pointer-events-none select-none absolute bottom-0 sm:bottom-2 md:bottom-3 lg:bottom-4 -right-4 sm:-right-6 md:-right-8 lg:-right-10 z-10 w-[200px] sm:w-[270px] md:w-[330px] lg:w-[400px] xl:w-[440px] aspect-square"
         style={{
           WebkitMaskImage: "radial-gradient(ellipse at bottom right, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
           maskImage: "radial-gradient(ellipse at bottom right, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%)",
@@ -478,6 +476,7 @@ export const HeroSection: React.FC = () => {
           alt=""
           width={600}
           height={600}
+          loading="lazy"
           className="w-full h-full object-contain filter blur-[1px] sm:blur-[1.5px] opacity-70 sm:opacity-75 lg:opacity-80 scale-100 transform-gpu origin-bottom-right"
         />
       </div>

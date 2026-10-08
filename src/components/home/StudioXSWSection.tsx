@@ -18,6 +18,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/cinematic_man.jpg"
               alt="Studio XSW Creative Portraiture"
               fill
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
@@ -39,6 +40,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/abstract_sphere.jpg"
               alt="Studio XSW 3D Sculpture Art"
               fill
+              loading="lazy"
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
@@ -54,6 +56,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/portrait_woman.jpg"
               alt="Studio XSW Editorial Fashion Portrait"
               fill
+              loading="lazy"
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
@@ -66,6 +69,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/pilates_reformer.jpg"
               alt="Studio XSW Architectural Motion Shoot"
               fill
+              loading="lazy"
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
@@ -78,6 +82,7 @@ export const StudioXSWSection: React.FC = () => {
               src="/images/studio/camera_lens.jpg"
               alt="Studio XSW Cinema Lens Photography"
               fill
+              loading="lazy"
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
             />
@@ -92,6 +97,7 @@ export const StudioXSWSection: React.FC = () => {
             src="/images/studio/banner_bg.jpg"
             alt="Studio XSW Texture Background"
             fill
+            loading="lazy"
             sizes="100vw"
             className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
           />

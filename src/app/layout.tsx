@@ -7,15 +7,17 @@ import "./globals.css";
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700", "800"],
   display: "swap",
+  preload: true,
 });
 
 const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["700"],
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {

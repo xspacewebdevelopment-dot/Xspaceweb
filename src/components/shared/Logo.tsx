@@ -14,7 +14,7 @@ export const Logo: React.FC<LogoProps> = ({
   className,
   variant = "dark",
   showText = true,
-  priority = true,
+  priority = false,
 }) => {
   const isDark = variant === "dark";
   const logoSrc = isDark ? "/images/FinalLogo.png" : "/images/FinalLogo-light.png";

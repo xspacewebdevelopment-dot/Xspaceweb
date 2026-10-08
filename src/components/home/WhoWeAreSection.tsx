@@ -113,6 +113,7 @@ export const WhoWeAreSection: React.FC = () => {
                 src="/images/about/team_impact.jpg"
                 alt="XSPACEWEB team collaboration in modern studio"
                 fill
+                loading="lazy"
                 sizes="(max-width: 1024px) 100vw, 55vw"
                 className="object-cover object-center opacity-30 md:opacity-35 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
               />
