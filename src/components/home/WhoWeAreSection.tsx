@@ -110,7 +110,7 @@ export const WhoWeAreSection: React.FC = () => {
             {/* Background Office Image with smooth fade gradient */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
               <Image
-                src="/images/about/team_impact.jpg"
+                src="/images/about/team_impact.webp"
                 alt="XSPACEWEB team collaboration in modern studio"
                 fill
                 loading="lazy"

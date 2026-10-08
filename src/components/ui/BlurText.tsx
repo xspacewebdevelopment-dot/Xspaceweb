@@ -67,23 +67,42 @@ const BlurText: React.FC<BlurTextProps> = ({
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
-  const defaultFrom = useMemo(
-    () =>
-      direction === 'top' ? { filter: 'blur(10px)', opacity: 0, y: -50 } : { filter: 'blur(10px)', opacity: 0, y: 50 },
-    [direction]
-  );
+  const [isMobile, setIsMobile] = useState(false);
 
-  const defaultTo = useMemo(
-    () => [
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  const defaultFrom = useMemo<AnimationValue>(() => {
+    if (isMobile) {
+      const val: AnimationValue = { opacity: 0, y: direction === 'top' ? -15 : 15 };
+      return val;
+    }
+    const val: AnimationValue = {
+      filter: 'blur(10px)',
+      opacity: 0,
+      y: direction === 'top' ? -50 : 50,
+    };
+    return val;
+  }, [direction, isMobile]);
+
+  const defaultTo = useMemo<AnimationValue[]>(() => {
+    if (isMobile) {
+      const list: AnimationValue[] = [{ opacity: 1, y: 0 }];
+      return list;
+    }
+    const list: AnimationValue[] = [
       {
         filter: 'blur(5px)',
         opacity: 0.5,
-        y: direction === 'top' ? 5 : -5
+        y: direction === 'top' ? 5 : -5,
       },
-      { filter: 'blur(0px)', opacity: 1, y: 0 }
-    ],
-    [direction]
-  );
+      { filter: 'blur(0px)', opacity: 1, y: 0 },
+    ];
+    return list;
+  }, [direction, isMobile]);
 
   const fromSnapshot = animationFrom ?? defaultFrom;
   const toSnapshots = animationTo ?? defaultTo;

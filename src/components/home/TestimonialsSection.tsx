@@ -388,6 +388,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ initia
                         <img
                           src={t.avatar}
                           alt={t.name}
+                          loading="lazy"
+                          decoding="async"
                           className="h-full w-full rounded-full object-cover"
                         />
                       </button>
@@ -452,6 +454,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ initia
                       <img
                         src={activeTestimonial.avatar}
                         alt={activeTestimonial.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
                       />
                       <div>
@@ -758,6 +762,8 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ initia
                       <img
                         src={testimonial.avatar}
                         alt={testimonial.name}
+                        loading="lazy"
+                        decoding="async"
                         className="w-11 h-11 rounded-full object-cover ring-2 ring-white shadow-sm flex-shrink-0"
                       />
                       <div className="min-w-0">

@@ -1,15 +1,31 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import { Plus_Jakarta_Sans, Caveat, Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  preload: false,
+});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
   weight: ["400", "600", "700", "800"],
   display: "swap",
-  preload: true,
+  preload: false,
 });
 
 const caveat = Caveat({
@@ -74,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakartaSans.variable} ${caveat.variable} scroll-smooth`}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${plusJakartaSans.variable} ${caveat.variable} scroll-smooth`}>
       <body className="min-h-screen flex flex-col bg-white text-[#0A1128] font-sans antialiased selection:bg-[#1668E8] selection:text-white">
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>

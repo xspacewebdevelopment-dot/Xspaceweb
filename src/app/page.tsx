@@ -5,12 +5,18 @@ import { testimonials } from "@/lib/db/schema";
 import { eq, and, isNull, asc, desc } from "drizzle-orm";
 import { HeroSection } from "@/components/home/HeroSection";
 import { RatingsStrip } from "@/components/home/RatingsStrip";
-import { ServicesSection } from "@/components/home/ServicesSection";
-import { WebProcessSection } from "@/components/home/WebProcessSection";
-import { WhoWeAreSection } from "@/components/home/WhoWeAreSection";
 
 // Dynamically import below-the-fold sections so the initial mobile bundle stays ultra-lightweight (<100KB)
 // Full HTML is still pre-rendered on the server (SSR enabled), protecting SEO and fast first paint
+const ServicesSection = dynamic(() =>
+  import("@/components/home/ServicesSection").then((mod) => mod.ServicesSection)
+);
+const WebProcessSection = dynamic(() =>
+  import("@/components/home/WebProcessSection").then((mod) => mod.WebProcessSection)
+);
+const WhoWeAreSection = dynamic(() =>
+  import("@/components/home/WhoWeAreSection").then((mod) => mod.WhoWeAreSection)
+);
 const ProductShowcaseSection = dynamic(() =>
   import("@/components/home/ProductShowcaseSection").then((mod) => mod.ProductShowcaseSection)
 );

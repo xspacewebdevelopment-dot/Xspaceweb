@@ -132,7 +132,7 @@ export const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-[72px]">
             {/* Brand Logo on Left */}
             <div className="flex-shrink-0">
-              <Logo variant="dark" priority={true} />
+              <Logo variant="dark" />
             </div>
 
             {/* Centered Desktop Navigation - 7 balanced links with generous spacing */}

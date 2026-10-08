@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { Star, ShieldCheck, Search } from "lucide-react";
@@ -10,6 +10,13 @@ import { reviewPlatforms } from "@/components/home/RatingsStrip";
 export const HeroSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion) return;
@@ -113,8 +120,8 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col items-start space-y-4 sm:space-y-5 z-20 text-left pt-1 lg:pt-0">
             {/* 1. Eyebrow */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={isMobile ? false : { opacity: 0, y: 10 }}
+              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-2"
@@ -127,8 +134,8 @@ export const HeroSection: React.FC = () => {
 
             {/* 2. Display Heading */}
             <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={isMobile ? false : { opacity: 0, y: 16 }}
+              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
               className="text-3.5xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] max-w-[600px]"
@@ -141,8 +148,8 @@ export const HeroSection: React.FC = () => {
 
             {/* 3. Supporting Copy */}
             <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={isMobile ? false : { opacity: 0, y: 14 }}
+              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
               className="text-base sm:text-lg text-[#556987] leading-relaxed max-w-[570px] font-normal pt-0.5"
@@ -159,7 +166,7 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-7 relative flex flex-col items-center justify-center lg:pl-0">
             <motion.div
               style={
-                shouldReduceMotion
+                shouldReduceMotion || isMobile
                   ? undefined
                   : {
                       x: mousePos.x,
@@ -171,11 +178,11 @@ export const HeroSection: React.FC = () => {
             >
               {/* Handwritten Annotation 1: Left ("Searching for better ways to build") */}
               <motion.div
-                initial={{ opacity: 0, filter: "blur(6px)", y: 10, rotate: -4 }}
-                whileInView={{ opacity: 1, filter: "blur(0px)", y: 0, rotate: -6 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute left-1 sm:left-2 md:left-2 top-0 sm:top-2 z-30 select-none pointer-events-none transition-transform"
+                transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute left-1 sm:left-2 md:left-2 top-0 sm:top-2 z-30 select-none pointer-events-none transition-transform -rotate-6"
               >
                 <Image
                   src="/images/hero/note_searching_transparent.png"
@@ -189,11 +196,11 @@ export const HeroSection: React.FC = () => {
 
               {/* Handwritten Annotation 2: Right ("Real People Real Reviews") */}
               <motion.div
-                initial={{ opacity: 0, filter: "blur(6px)", y: 10, rotate: 4 }}
-                whileInView={{ opacity: 1, filter: "blur(0px)", y: 0, rotate: 6 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute right-2 sm:right-6 md:right-14 top-1 sm:top-6 md:top-14 z-30 select-none pointer-events-none transition-transform"
+                transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute right-2 sm:right-6 md:right-14 top-1 sm:top-6 md:top-14 z-30 select-none pointer-events-none transition-transform rotate-6"
               >
                 <Image
                   src="/images/hero/note_reviews_transparent.png"
@@ -339,18 +346,18 @@ export const HeroSection: React.FC = () => {
                 </motion.div>
               </motion.div>
 
-              {/* Main Visual: women.png (Woman sitting on 3D search bar podium) */}
+              {/* Main Visual: women.webp (Woman sitting on 3D search bar podium) */}
               <div className="relative w-full flex items-center justify-center pt-2 sm:pt-4">
                 <div className="relative z-20 w-full flex items-center justify-center">
                   <Image
-                    src="/images/hero/women.png"
+                    src="/images/hero/women.webp"
                     alt="Woman with laptop on XSPACEWEB technology partner search podium"
                     width={1651}
                     height={953}
                     priority
                     fetchPriority="high"
                     sizes="(max-width: 640px) 92vw, (max-width: 1024px) 70vw, 680px"
-                    className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
+                    className="w-full max-w-[680px] sm:max-w-[720px] h-auto object-contain filter sm:drop-shadow-[0_24px_50px_rgba(20,60,130,0.12)]"
                   />
                 </div>
               </div>
@@ -453,7 +460,7 @@ export const HeroSection: React.FC = () => {
         aria-hidden="true"
       >
         <Image
-          src="/images/hero/plant1.png"
+          src="/images/hero/plant1.webp"
           alt=""
           width={600}
           height={600}
@@ -472,7 +479,7 @@ export const HeroSection: React.FC = () => {
         aria-hidden="true"
       >
         <Image
-          src="/images/hero/plant2.png"
+          src="/images/hero/plant2.webp"
           alt=""
           width={600}
           height={600}
