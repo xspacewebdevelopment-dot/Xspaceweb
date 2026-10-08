@@ -190,14 +190,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 High-performance websites and web applications tailored to your business needs. From corporate sites to complex web apps, we build fast, secure and scalable solutions.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Web Development")}
+                <Link
+                  href="/services/web-development"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -218,14 +217,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 Engaging mobile apps for iOS, Android and cross-platform environments. We create intuitive and scalable apps that deliver exceptional user experiences.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("Mobile App Development")}
+                <Link
+                  href="/services/app-development"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -397,17 +395,20 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center p-4 sm:p-5 rounded-2xl hover:bg-slate-50/60 transition-colors">
             {/* Left / Center: UI/UX Wireframe App Mockup */}
             <div className="lg:col-span-7 flex justify-center">
-              <div className="relative w-full max-w-xs sm:max-w-sm h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.02]">
+              <Link
+                href="/services/ui-ux"
+                className="block relative w-full max-w-xs sm:max-w-sm h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.02] cursor-pointer group"
+              >
                 <div className="relative w-full h-full rounded-xl overflow-hidden">
                   <Image
                     src="/images/services/uiux_mockup.jpg"
                     alt="UI/UX Design for People App Mockup"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                     unoptimized
                   />
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* Right: Info */}
@@ -422,14 +423,13 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                 User-centered designs that combine aesthetics with functionality. We create intuitive and engaging experiences that attract, retain and convert users.
               </p>
               <div className="pt-1">
-                <button
-                  type="button"
-                  onClick={() => handleServiceClick("UI/UX Design")}
+                <Link
+                  href="/services/ui-ux"
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
-                  <span>Explore Service</span>
+                  <span>Explore UI/UX</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                </Link>
               </div>
             </div>
           </div>

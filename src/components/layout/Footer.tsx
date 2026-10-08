@@ -43,10 +43,10 @@ const serviceLinks: FooterColumn = {
   title: "SERVICES",
   links: [
     { label: "Digital Marketing", href: "/services/digital-marketing" },
-    { label: "Web Development", href: "/services" },
-    { label: "App Development", href: "/services" },
+    { label: "Web Development", href: "/services/web-development" },
+    { label: "App Development", href: "/services/app-development" },
     { label: "Studio XSW", href: "/services" },
-    { label: "UI/UX Design", href: "/services" },
+    { label: "UI/UX Design", href: "/services/ui-ux" },
     { label: "Graphic Design", href: "/services" },
   ],
 };

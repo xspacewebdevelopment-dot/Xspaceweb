@@ -1,0 +1,938 @@
+/* Scoped styles for AppDevHeroSection */
+
+.adh-stage {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 72px);
+  min-height: 720px;
+  max-height: 1020px;
+  overflow: hidden;
+  background: #020204;
+}
+
+.adh-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(25,127,255,0) 38%, rgba(25,127,255,.042) 54%,
+      rgba(25,127,255,.052) 68%, rgba(25,127,255,0) 100%),
+    #020204;
+}
+
+.adh-stars {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #fff;
+  pointer-events: none;
+}
+
+.adh-canvas {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1172px;
+  height: 890px;
+  transform: translateX(-50%) scale(var(--k, 1));
+  transform-origin: 50% 0;
+}
+
+.adh-canvas > * {
+  position: absolute;
+}
+
+.adh-stack {
+  position: absolute;
+  inset: 0;
+  z-index: 300;
+  pointer-events: none;
+}
+
+.adh-stack > * {
+  position: absolute;
+  pointer-events: auto;
+}
+
+/* PIXEL CONTRACT A — THE BADGE */
+.adh-badge {
+  position: absolute;
+  left: 462px;
+  top: 95px;
+  width: 250px;
+  height: 39px;
+  border-radius: 12px;
+  z-index: 300;
+  border: 1px solid rgba(255,255,255,.115);
+  background: linear-gradient(to top,
+    rgba(190,225,255,.175) 0px, rgba(190,225,255,.128) 2px, rgba(190,225,255,.075) 4px,
+    rgba(190,225,255,.026) 6px, rgba(255,255,255,.012) 9px, rgba(255,255,255,.012) 100%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.adh-badge i {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 29px;
+  height: 29px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to top,
+    #46afc8 0px, #35abc7 2px, #0b859d 4px, #026c84 6px, #004e66 8px,
+    #053f58 10px, #012c3d 12px, #031a2a 14px, #061125 16px, #090f25 19px,
+    #090c1c 23px, #060d16 29px);
+  box-shadow: inset 1px 0 0 rgba(150,220,250,.40),
+    inset -1px 0 0 rgba(150,220,250,.52),
+    0 0 6px rgba(60,190,230,.20), 0 3px 8px -5px rgba(90,220,255,.6);
+}
+
+.adh-badge i svg {
+  width: 14px;
+  height: 16px;
+  position: relative;
+  top: -1px;
+  left: 0px;
+}
+
+.adh-badge b {
+  position: absolute;
+  left: 45px;
+  transform-origin: 0 50%;
+  top: 0;
+  height: 39px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,.94);
+  white-space: nowrap;
+  padding-top: 1.5px;
+}
+
+/* PIXEL CONTRACT B — THE GLOW BUTTON (.adh-btn) */
+.adh-btn {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to top,
+    #9ad9ec 1px, #89dff0 2px, #79e0f1 3px, #61daef 4px, #3ec8e4 5px,
+    #14a8c6 6px, #0596b3 7px, #038aa8 8px, #047796 9px, #006180 10px,
+    #025066 12px, #0a4f5e 13px, #04465a 14px, #073746 16px,
+    #0a2a37 18px, #0d212e 20px, #0f1824 24px, #0a121e 30px,
+    #0a111d 34px, #0a111d 100%);
+  box-shadow:
+    inset 0 3px 3px -2px rgba(180,228,255,.10),
+    inset 1px 0 0 rgba(255,255,255,.09),
+    inset -1px 0 0 rgba(255,255,255,.09),
+    0 0 8px rgba(60,190,235,.10),
+    0 2px 5px -3px rgba(90,220,255,.45);
+  transition: transform .25s, box-shadow .25s, filter .25s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.adh-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(200,245,255,.70), rgba(200,245,255,0) 13px),
+             linear-gradient(270deg, rgba(200,245,255,.70), rgba(200,245,255,0) 13px);
+  -webkit-mask: linear-gradient(to top,#000 0,#000 6px,rgba(0,0,0,.40) 12px,
+    rgba(0,0,0,.15) 18px,rgba(0,0,0,.09) 24px,rgba(0,0,0,.02) 30px,rgba(0,0,0,.02) 100%);
+          mask: linear-gradient(to top,#000 0,#000 6px,rgba(0,0,0,.40) 12px,
+    rgba(0,0,0,.15) 18px,rgba(0,0,0,.09) 24px,rgba(0,0,0,.02) 30px,rgba(0,0,0,.02) 100%);
+}
+
+.adh-btn span {
+  position: relative;
+  z-index: 2;
+  display: block;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0,20,30,.5);
+}
+
+.adh-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.12);
+  box-shadow: inset 0 1px 0 rgba(200,245,255,.6), inset 1px 0 0 rgba(170,225,255,.35),
+             inset -1px 0 0 rgba(170,225,255,.35), 0 6px 22px rgba(20,180,225,.55);
+}
+
+.adh-cta2 {
+  position: absolute;
+  left: 526px;
+  top: 349px;
+  width: 121px;
+  height: 54.5px;
+  border-radius: 13px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  z-index: 300;
+}
+
+.adh-h1 {
+  position: absolute;
+  left: 586px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  line-height: 1;
+  font-family: Poppins, Inter, system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 54px;
+  letter-spacing: -.004em;
+  word-spacing: .175em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 34px rgba(130,180,255,.22);
+  z-index: 300;
+}
+
+.adh-sub {
+  position: absolute;
+  left: 586px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  line-height: 1;
+  font-size: 13.2px;
+  color: #a9aeb5;
+  z-index: 300;
+}
+
+.adh-sub b {
+  font-weight: 600;
+  color: #fff;
+}
+
+.adh-nb {
+  white-space: nowrap;
+}
+
+/* 3D CAROUSEL */
+.adh-showcase {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1172px;
+  height: 0;
+}
+
+.adh-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1172px;
+  height: 657px;
+  z-index: 5;
+  perspective: 891px;
+  perspective-origin: 586px 918px;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.adh-card {
+  position: absolute;
+  left: 586px;
+  top: 616px;
+  width: 130px;
+  height: 300px;
+  margin: -150px 0 0 -65px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0d1117;
+  box-shadow: 0 24px 46px rgba(0,0,0,.6), 0 3px 8px rgba(0,0,0,.5);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.adh-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.adh-card .adh-edge {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.15),
+             inset 0 16px 30px rgba(255,255,255,.05);
+}
+
+.adh-card.broken img {
+  display: none;
+}
+
+.adh-cv {
+  position: absolute;
+  left: 0;
+  right: 0;
+  padding: 0 10px;
+}
+
+.adh-fill {
+  position: absolute;
+  inset: 0;
+}
+
+.adh-ph {
+  position: absolute;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background: linear-gradient(155deg,#2b3b50,#131c28 60%,#1d1526);
+}
+
+.adh-phf {
+  top: 0;
+  bottom: 0;
+}
+
+.adh-ph img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.adh-dot {
+  display: inline-block;
+  width: 4.5px;
+  height: 4.5px;
+  background: #e5202f;
+  margin-right: 4px;
+  transform: rotate(45deg) translateY(-1px);
+}
+
+.adh-dot.adh-sq {
+  transform: none;
+  width: 6.5px;
+  height: 4.5px;
+  border-radius: 1px;
+}
+
+.adh-t-big {
+  font-family: Poppins, Inter, system-ui, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: .96;
+  letter-spacing: -.015em;
+  white-space: nowrap;
+  transform: scaleX(.875);
+  transform-origin: left center;
+}
+
+.adh-t-serif {
+  font-family: "Playfair Display", serif;
+  line-height: 1.02;
+  letter-spacing: .01em;
+  white-space: nowrap;
+}
+
+/* BROWSER MOCKUP (Full Floating Window Card Overlapping Carousel in Center) */
+.adh-browser {
+  position: absolute;
+  left: 165px;
+  top: 440px;
+  width: 842px;
+  height: 422px;
+  border-radius: 24px;
+  overflow: hidden;
+  z-index: 100;
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.75),
+    0 0 35px rgba(25,127,255,0.18);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.adh-browser::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 42px;
+  bottom: 0;
+  background: rgba(15,20,32,.95);
+  z-index: 0;
+}
+
+.adh-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 42px;
+  background: linear-gradient(180deg, rgba(20,24,48,.85), rgba(15,19,38,.92));
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.adh-dots {
+  position: absolute;
+  left: 27px;
+  top: 16px;
+  display: flex;
+  gap: 3.5px;
+}
+
+.adh-dots i {
+  width: 7.6px;
+  height: 7.6px;
+  border-radius: 50%;
+}
+
+.adh-omni {
+  position: absolute;
+  left: 246px;
+  top: 7px;
+  width: 336px;
+  height: 26px;
+  border-radius: 5px;
+  background: rgba(9,13,26,.93);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.045);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.adh-omni svg {
+  width: 9px;
+  height: 9px;
+  opacity: .72;
+}
+
+.adh-omni span {
+  font-size: 9.5px;
+  color: rgba(255,255,255,.72);
+  letter-spacing: .005em;
+}
+
+.adh-tools {
+  position: absolute;
+  right: 27px;
+  top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: .9;
+}
+
+.adh-tools svg {
+  width: 11px;
+  height: 12px;
+}
+
+.adh-page {
+  position: absolute;
+  left: 7px;
+  right: 6px;
+  top: 42px;
+  bottom: 7px;
+  background: #fff;
+  color: #111;
+  overflow: hidden;
+  border-radius: 4px 4px 18px 18px;
+}
+
+.adh-ann {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 16px;
+  background: #0f172a;
+  display: grid;
+  place-items: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.adh-ann span {
+  font-size: 5.5px;
+  letter-spacing: .08em;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.adh-ann u {
+  position: absolute;
+  font-size: 7px;
+  color: #94a3b8;
+  text-decoration: none;
+}
+
+.adh-shoplogo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 21px;
+  text-align: center;
+}
+
+.adh-shoplogo em {
+  font-family: "Playfair Display", serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .14em;
+  line-height: 1;
+  display: block;
+  color: #0f172a;
+}
+
+.adh-shoplogo i {
+  font-style: normal;
+  font-size: 5px;
+  letter-spacing: .3em;
+  color: #64748b;
+  margin-top: 2px;
+  display: block;
+  font-weight: 600;
+}
+
+.adh-shopicons {
+  position: absolute;
+  right: 36px;
+  top: 28px;
+  display: flex;
+  gap: 6px;
+  opacity: .8;
+}
+
+.adh-shopicons svg {
+  width: 8px;
+  height: 8px;
+}
+
+.adh-pagebody {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56px;
+  bottom: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.adh-pghero {
+  position: relative;
+  margin: 0 24px;
+  height: 136px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.adh-pghero img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.adh-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15,23,42,.85) 0%, rgba(15,23,42,.55) 46%, rgba(15,23,42,0.1) 75%);
+}
+
+.adh-copy {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.adh-copy u {
+  font-size: 5px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  opacity: .95;
+  display: block;
+  text-decoration: none;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.adh-copy em {
+  font-family: "Playfair Display", serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.15;
+  margin-top: 5px;
+  display: block;
+  color: #fff;
+}
+
+.adh-copy i {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  background: #fff;
+  color: #0f172a;
+  font-size: 5.5px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  font-style: normal;
+}
+
+.adh-pgsec {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 10px 24px 6px;
+}
+
+.adh-pgsec b {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  font-size: 9.5px;
+  color: #0f172a;
+}
+
+.adh-pgsec u {
+  font-size: 5px;
+  letter-spacing: .12em;
+  color: #64748b;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.adh-pggrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 0 24px;
+}
+
+.adh-pgcard {
+  position: relative;
+}
+
+.adh-pgcard .adh-ph {
+  position: relative;
+  height: 0;
+  padding-bottom: 96%;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f1f5f9;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.adh-pgcard .adh-ph img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.adh-pgcard .adh-tag {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 4px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  z-index: 2;
+}
+
+.adh-pgcard b {
+  display: block;
+  margin-top: 5px;
+  font-size: 5.8px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: .01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adh-pgcard i {
+  display: block;
+  font-style: normal;
+  margin-top: 1.5px;
+  font-size: 4.8px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adh-pgcard s {
+  display: block;
+  margin-top: 2.5px;
+  font-size: 5.6px;
+  font-weight: 700;
+  color: #0284c7;
+  text-decoration: none;
+}
+
+.adh-pgstrip {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 24px 0;
+  padding: 7px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #eee6e0;
+}
+
+.adh-pgstrip span {
+  font-size: 4.4px;
+  letter-spacing: .12em;
+  color: #7d7169;
+  text-transform: uppercase;
+}
+
+/* TABLET & MOBILE RESPONSIVE ADAPTATIONS */
+@media (min-width: 701px) and (max-width: 1080px) {
+  .adh-badge {
+    left: 448px;
+    width: 277px;
+  }
+  .adh-stack {
+    transform: translateY(var(--stshift, 0px));
+  }
+  .adh-showcase {
+    transform: translateY(var(--sshift, 0px));
+  }
+  .adh-ring {
+    transform: scale(var(--rs, 1));
+    transform-origin: 586px 595px;
+  }
+}
+
+@media (max-width: 700px) {
+  .adh-canvas {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+  .adh-canvas > * {
+    position: static;
+  }
+  .adh-stack {
+    display: contents;
+  }
+  .adh-badge {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-top: clamp(80px, 12vh, 105px);
+    width: auto;
+    max-width: 100%;
+    height: 36px;
+    flex: 0 0 auto;
+    border-radius: 18px;
+  }
+  .adh-badge b {
+    position: relative;
+    left: auto;
+    top: auto;
+    height: 36px;
+    padding: 0 15px 0 42px;
+    font-size: 12.5px;
+  }
+  .adh-badge i {
+    top: 4px;
+    left: 4px;
+    width: 28px;
+    height: 28px;
+  }
+  .adh-h1 {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    white-space: normal;
+    text-align: center;
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.06;
+    letter-spacing: -.01em;
+    max-width: 7.4em;
+  }
+  .adh-h1.adh-l1 {
+    margin-top: clamp(12px, 2.2vh, 20px);
+  }
+  .adh-sub {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    white-space: normal;
+    text-align: center;
+    font-size: clamp(13px, 3.8vw, 15px);
+    line-height: 1.5;
+    max-width: 340px;
+  }
+  .adh-sub.adh-s1 {
+    margin-top: clamp(10px, 1.8vh, 16px);
+  }
+  .adh-cta2 {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin-top: clamp(16px, 2.6vh, 26px);
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 158px;
+    height: 52px;
+    padding: 0 26px;
+    font-size: 16px;
+  }
+  .adh-showcase {
+    position: relative;
+    left: auto;
+    top: auto;
+    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    min-height: 224px;
+  }
+  .adh-ring {
+    position: absolute;
+    left: 50%;
+    margin-left: -586px;
+    top: -446px;
+    bottom: auto;
+    width: 1172px;
+    height: 657px;
+    transform-origin: 586px 466px;
+    transform: scale(1.02);
+  }
+  .adh-browser {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 212px;
+    bottom: 0;
+    width: calc(100% + 40px);
+    height: auto;
+    border-radius: 22px 22px 0 0;
+  }
+  .adh-browser .adh-bar {
+    height: 36px;
+  }
+  .adh-omni {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 58%;
+    height: 24px;
+    top: 6px;
+  }
+  .adh-omni span {
+    font-size: 9px;
+  }
+  .adh-dots {
+    top: 14px;
+  }
+  .adh-tools {
+    display: none;
+  }
+  .adh-ann {
+    height: 15px;
+  }
+  .adh-ann span {
+    font-size: 6px;
+  }
+  .adh-page {
+    top: 36px;
+  }
+  .adh-pagebody {
+    top: 56px;
+  }
+  .adh-pghero {
+    margin: 0 18px;
+    height: 122px;
+    border-radius: 10px;
+  }
+  .adh-copy {
+    left: 18px;
+  }
+  .adh-copy u {
+    font-size: 7.5px;
+    letter-spacing: .2em;
+  }
+  .adh-copy em {
+    font-size: 20px;
+    margin-top: 5px;
+  }
+  .adh-copy i {
+    font-size: 8.5px;
+    padding: 6px 13px;
+    margin-top: 8px;
+  }
+  .adh-pgsec {
+    margin: 16px 18px 10px;
+  }
+  .adh-pgsec b {
+    font-size: 14px;
+  }
+  .adh-pgsec u {
+    font-size: 8px;
+  }
+  .adh-pggrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin: 0 18px;
+  }
+  .adh-pgcard .adh-ph {
+    border-radius: 9px;
+  }
+  .adh-pgcard .adh-tag {
+    font-size: 7px;
+    padding: 3px 7px;
+    border-radius: 4px;
+  }
+  .adh-pgcard b {
+    font-size: 10.5px;
+    margin-top: 7px;
+  }
+  .adh-pgcard i {
+    font-size: 8.5px;
+  }
+  .adh-pgcard s {
+    font-size: 11.5px;
+    margin-top: 4px;
+  }
+  .adh-pgstrip {
+    margin: 16px 18px 0;
+    flex-wrap: wrap;
+    gap: 5px 16px;
+  }
+  .adh-pgstrip span {
+    font-size: 8px;
+  }
+}
