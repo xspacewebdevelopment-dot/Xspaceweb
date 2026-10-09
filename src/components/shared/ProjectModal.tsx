@@ -181,7 +181,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
           {/* Backdrop Blur */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -197,7 +197,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
             transition={{ type: "spring", stiffness: 350, damping: 25 }}
-            className="relative w-full max-w-2xl rounded-3xl bg-white text-slate-900 shadow-2xl overflow-hidden border border-slate-200/90 z-10 my-auto"
+            className="relative w-full max-w-2xl rounded-2xl sm:rounded-3xl bg-white text-slate-900 shadow-2xl overflow-hidden border border-slate-200/90 z-10 my-auto"
           >
             {/* Top Accent Gradient Bar */}
             <div className="h-2 bg-gradient-to-r from-[#1668E8] via-blue-500 to-indigo-600 w-full" />
@@ -206,13 +206,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             <button
               type="button"
               onClick={resetForm}
-              className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors z-20 cursor-pointer"
+              className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors z-20 cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="p-6 sm:p-8 space-y-6 max-h-[85vh] overflow-y-auto">
+            <div className="p-5 sm:p-8 space-y-5 sm:space-y-6 max-h-[88dvh] overflow-y-auto">
               {isSubmitted ? (
                 /* Success State */
                 <motion.div

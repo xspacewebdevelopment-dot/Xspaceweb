@@ -728,49 +728,80 @@
 }
 
 @media (max-width: 700px) {
+  .adh-stage {
+    height: auto;
+    min-height: calc(100svh - 72px);
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: visible;
+    padding-bottom: 48px;
+  }
+
   .adh-canvas {
     position: relative;
     left: auto;
     top: auto;
     width: 100%;
-    height: 100%;
+    height: auto;
     transform: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
+
   .adh-canvas > * {
     position: static;
   }
+
   .adh-stack {
-    display: contents;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 30;
+    pointer-events: auto;
   }
+
+  .adh-stack > * {
+    position: relative;
+    pointer-events: auto;
+  }
+
+  /* Badge */
   .adh-badge {
     position: relative;
     left: auto;
     top: auto;
-    margin-top: clamp(80px, 12vh, 105px);
+    margin-top: clamp(24px, 4.5vh, 40px);
     width: auto;
-    max-width: 100%;
-    height: 36px;
+    max-width: calc(100vw - 32px);
+    height: 38px;
     flex: 0 0 auto;
-    border-radius: 18px;
+    border-radius: 12px;
   }
+
   .adh-badge b {
     position: relative;
     left: auto;
     top: auto;
-    height: 36px;
-    padding: 0 15px 0 42px;
-    font-size: 12.5px;
+    height: 38px;
+    padding: 0 16px 0 42px;
+    font-size: clamp(11.5px, 3.2vw, 13px);
+    white-space: nowrap;
   }
+
   .adh-badge i {
     top: 4px;
     left: 4px;
     width: 28px;
     height: 28px;
   }
+
+  /* Headings */
   .adh-h1 {
     position: relative;
     left: auto;
@@ -778,14 +809,21 @@
     transform: none;
     white-space: normal;
     text-align: center;
-    font-size: clamp(28px, 8vw, 36px);
-    line-height: 1.06;
+    font-size: clamp(26px, 7.5vw, 42px);
+    line-height: 1.08;
     letter-spacing: -.01em;
-    max-width: 7.4em;
+    max-width: 92vw;
   }
+
   .adh-h1.adh-l1 {
-    margin-top: clamp(12px, 2.2vh, 20px);
+    margin-top: clamp(14px, 2.5vh, 20px);
   }
+
+  .adh-h1.adh-l2 {
+    margin-top: 2px;
+  }
+
+  /* Subtitles */
   .adh-sub {
     position: relative;
     left: auto;
@@ -793,146 +831,278 @@
     transform: none;
     white-space: normal;
     text-align: center;
-    font-size: clamp(13px, 3.8vw, 15px);
-    line-height: 1.5;
-    max-width: 340px;
+    font-size: clamp(12.5px, 3.4vw, 14.5px);
+    line-height: 1.45;
+    max-width: 360px;
+    padding: 0 8px;
   }
+
   .adh-sub.adh-s1 {
-    margin-top: clamp(10px, 1.8vh, 16px);
+    margin-top: clamp(12px, 2vh, 16px);
   }
+
+  .adh-sub.adh-s2 {
+    margin-top: 2px;
+  }
+
+  /* CTA Button */
   .adh-cta2 {
     position: relative;
     left: auto;
     top: auto;
-    margin-top: clamp(16px, 2.6vh, 26px);
+    margin-top: clamp(18px, 3vh, 26px);
     flex: 0 0 auto;
     width: auto;
-    min-width: 158px;
-    height: 52px;
-    padding: 0 26px;
-    font-size: 16px;
+    min-width: 154px;
+    height: 50px;
+    padding: 0 24px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 13px;
+    z-index: 30;
   }
+
+  /* 3D Showcase & Cylindrical Ring */
   .adh-showcase {
     position: relative;
     left: auto;
     top: auto;
-    flex: 1 1 auto;
     width: 100%;
-    height: auto;
-    min-height: 224px;
+    height: 0;
+    pointer-events: none;
+    z-index: 5;
   }
+
   .adh-ring {
     position: absolute;
     left: 50%;
     margin-left: -586px;
-    top: -446px;
+    top: clamp(45px, 7.5vh, 75px);
     bottom: auto;
     width: 1172px;
     height: 657px;
-    transform-origin: 586px 466px;
-    transform: scale(1.02);
+    perspective: 891px;
+    perspective-origin: 586px 616px;
+    transform-origin: 586px 616px;
+    transform: scale(clamp(0.34, calc(0.18 + 0.65 * (100vw / 700px)), 0.68));
+    pointer-events: none;
   }
+
+  /* Browser Mockup Window */
   .adh-browser {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 212px;
-    bottom: 0;
-    width: calc(100% + 40px);
-    height: auto;
-    border-radius: 22px 22px 0 0;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    max-width: 480px;
+    height: 490px;
+    margin-top: clamp(24px, 4vh, 36px);
+    border-radius: 18px;
+    overflow: hidden;
+    z-index: 20;
+    box-shadow:
+      0 20px 50px rgba(0,0,0,.85),
+      0 0 25px rgba(25,127,255,0.15);
   }
+
   .adh-browser .adh-bar {
-    height: 36px;
+    height: 38px;
   }
+
+  .adh-dots {
+    left: 14px;
+    top: 15px;
+    gap: 3.5px;
+  }
+
   .adh-omni {
     left: 50%;
     transform: translateX(-50%);
-    width: 58%;
+    width: 60%;
     height: 24px;
-    top: 6px;
+    top: 7px;
   }
+
   .adh-omni span {
     font-size: 9px;
   }
-  .adh-dots {
-    top: 14px;
-  }
+
   .adh-tools {
     display: none;
   }
-  .adh-ann {
-    height: 15px;
+
+  .adh-page {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 38px;
+    bottom: 6px;
+    border-radius: 4px 4px 14px 14px;
   }
+
+  .adh-ann {
+    height: 16px;
+  }
+
   .adh-ann span {
     font-size: 6px;
   }
-  .adh-page {
-    top: 36px;
+
+  .adh-shoplogo {
+    top: 20px;
   }
+
+  .adh-shoplogo em {
+    font-size: 13px;
+  }
+
+  .adh-shoplogo i {
+    font-size: 5px;
+  }
+
+  .adh-shopicons {
+    right: 14px;
+    top: 22px;
+    gap: 6px;
+  }
+
   .adh-pagebody {
-    top: 56px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 52px;
+    bottom: 0;
+    overflow: hidden;
   }
+
   .adh-pghero {
-    margin: 0 18px;
-    height: 122px;
-    border-radius: 10px;
+    margin: 0 12px;
+    height: 104px;
+    border-radius: 8px;
   }
+
   .adh-copy {
-    left: 18px;
+    left: 14px;
   }
+
   .adh-copy u {
-    font-size: 7.5px;
+    font-size: 6px;
     letter-spacing: .2em;
   }
+
   .adh-copy em {
-    font-size: 20px;
-    margin-top: 5px;
-  }
-  .adh-copy i {
-    font-size: 8.5px;
-    padding: 6px 13px;
-    margin-top: 8px;
-  }
-  .adh-pgsec {
-    margin: 16px 18px 10px;
-  }
-  .adh-pgsec b {
-    font-size: 14px;
-  }
-  .adh-pgsec u {
-    font-size: 8px;
-  }
-  .adh-pggrid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    margin: 0 18px;
-  }
-  .adh-pgcard .adh-ph {
-    border-radius: 9px;
-  }
-  .adh-pgcard .adh-tag {
-    font-size: 7px;
-    padding: 3px 7px;
-    border-radius: 4px;
-  }
-  .adh-pgcard b {
-    font-size: 10.5px;
-    margin-top: 7px;
-  }
-  .adh-pgcard i {
-    font-size: 8.5px;
-  }
-  .adh-pgcard s {
-    font-size: 11.5px;
+    font-size: 15px;
+    line-height: 1.15;
     margin-top: 4px;
   }
-  .adh-pgstrip {
-    margin: 16px 18px 0;
-    flex-wrap: wrap;
-    gap: 5px 16px;
+
+  .adh-copy i {
+    font-size: 7px;
+    padding: 4px 10px;
+    margin-top: 6px;
   }
-  .adh-pgstrip span {
+
+  .adh-pgsec {
+    margin: 8px 12px 6px;
+  }
+
+  .adh-pgsec b {
+    font-size: 11px;
+  }
+
+  .adh-pgsec u {
+    font-size: 6.5px;
+  }
+
+  .adh-pggrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 0 12px;
+  }
+
+  .adh-pgcard .adh-ph {
+    padding-bottom: 80%;
+    border-radius: 6px;
+  }
+
+  .adh-pgcard .adh-tag {
+    font-size: 5.5px;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+
+  .adh-pgcard b {
+    font-size: 8.5px;
+    margin-top: 4px;
+  }
+
+  .adh-pgcard i {
+    font-size: 7px;
+    margin-top: 1px;
+  }
+
+  .adh-pgcard s {
     font-size: 8px;
+    margin-top: 2px;
+  }
+
+  .adh-pgstrip {
+    margin: 8px 12px 6px;
+    padding: 6px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3px 8px;
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #eee6e0;
+  }
+
+  .adh-pgstrip span {
+    font-size: 6.5px;
+    letter-spacing: .08em;
+  }
+}
+
+@media (max-width: 360px) {
+  .adh-canvas {
+    padding: 0 10px;
+  }
+
+  .adh-browser {
+    height: 465px;
+  }
+
+  .adh-pghero {
+    height: 94px;
+  }
+
+  .adh-copy em {
+    font-size: 13px;
+  }
+
+  .adh-pggrid {
+    gap: 6px;
+    margin: 0 8px;
+  }
+
+  .adh-pgcard b {
+    font-size: 8px;
+  }
+
+  .adh-pgcard i {
+    font-size: 6.5px;
+  }
+
+  .adh-pgcard s {
+    font-size: 7.5px;
+  }
+
+  .adh-pgstrip {
+    margin: 6px 8px 4px;
+  }
+
+  .adh-pgstrip span {
+    font-size: 6px;
   }
 }

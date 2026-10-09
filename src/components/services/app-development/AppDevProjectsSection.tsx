@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Sparkles, Smartphone, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, Smartphone } from "lucide-react";
 import { APP_PROJECTS, AppProjectItem } from "./appDevData";
 
 export interface AppDevProjectsSectionProps {
@@ -50,7 +50,7 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
             Engineered for Scale.{" "}
             <span className="block sm:inline bg-gradient-to-r from-[#38BDF8] via-[#818CF8] to-[#EC4899] bg-clip-text text-transparent">
               Deployed for Impact.
@@ -66,10 +66,6 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
           {APP_PROJECTS.map((project: AppProjectItem, idx: number) => {
             const isExt = project.isExternal;
-            const CardLink = isExt ? "a" : Link;
-            const linkProps = isExt
-              ? { href: project.href, target: "_blank", rel: "noopener noreferrer" }
-              : { href: project.href };
 
             return (
               <div
@@ -78,24 +74,24 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
                 className="group relative flex flex-col justify-between rounded-2xl bg-slate-900/80 border border-slate-800/90 overflow-hidden shadow-[0_16px_36px_rgba(0,0,0,0.4)] hover:shadow-[0_24px_50px_rgba(22,104,232,0.18)] hover:border-slate-700 hover:-translate-y-1.5 transition-all duration-300 backdrop-blur-sm"
               >
                 {/* Card Top: Window Header */}
-                <div className="flex items-center justify-between px-4 py-2.5 bg-slate-950/70 border-b border-slate-800/80">
-                  <div className="flex items-center gap-1.5" aria-hidden="true">
+                <div className="flex items-center justify-between px-3.5 sm:px-4 py-2 sm:py-2.5 bg-slate-950/70 border-b border-slate-800/80">
+                  <div className="flex items-center gap-1.5 shrink-0" aria-hidden="true">
                     <span className="w-2 h-2 rounded-full bg-slate-700" />
                     <span className="w-2 h-2 rounded-full bg-slate-800" />
                     <span className="w-2 h-2 rounded-full bg-slate-800" />
                   </div>
 
-                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900 border border-slate-800">
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-900 border border-slate-800 min-w-0 max-w-[70%]">
                     <span
-                      className="w-1.5 h-1.5 rounded-full animate-pulse"
+                      className="w-1.5 h-1.5 rounded-full animate-pulse shrink-0"
                       style={{ backgroundColor: project.accentColor }}
                     />
-                    <span className="text-[9.5px] font-mono font-semibold tracking-wider text-slate-300 uppercase">
-                      {project.number} // {project.badge}
+                    <span className="text-[9.5px] font-mono font-semibold tracking-wider text-slate-300 uppercase truncate">
+                      {`${project.number} // ${project.badge}`}
                     </span>
                   </div>
 
-                  <span className="text-[9px] font-mono text-slate-500">
+                  <span className="text-[9px] font-mono text-slate-500 shrink-0">
                     APP
                   </span>
                 </div>
@@ -113,7 +109,7 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80" />
                   
                   {/* Floating Metric Badge */}
-                  <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/80 border border-white/10 text-[10px] font-mono font-semibold text-white shadow-lg backdrop-blur-md flex items-center gap-1">
+                  <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md bg-black/80 border border-white/10 text-[9.5px] sm:text-[10px] font-mono font-semibold text-white shadow-lg backdrop-blur-md flex items-center gap-1">
                     <span
                       className="w-1.5 h-1.5 rounded-full"
                       style={{ backgroundColor: project.accentColor }}
@@ -123,13 +119,13 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
                 </div>
 
                 {/* Card Content Area */}
-                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between">
                   <div>
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2">
                       <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight group-hover:text-[#38BDF8] transition-colors">
                         {project.title}
                       </h3>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60 whitespace-nowrap">
                         {project.category}
                       </span>
                     </div>
@@ -152,14 +148,26 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
                   </div>
 
                   {/* Card Bottom CTA Link */}
-                  <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between">
-                    <CardLink
-                      {...(linkProps as any)}
-                      className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#38BDF8] hover:text-white transition-colors group/link cursor-pointer"
-                    >
-                      <span>Launch Experience</span>
-                      <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                    </CardLink>
+                  <div className="mt-5 sm:mt-6 pt-3.5 sm:pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                    {isExt ? (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#38BDF8] hover:text-white transition-colors group/link cursor-pointer"
+                      >
+                        <span>Launch Experience</span>
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                      </a>
+                    ) : (
+                      <Link
+                        href={project.href}
+                        className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#38BDF8] hover:text-white transition-colors group/link cursor-pointer"
+                      >
+                        <span>Launch Experience</span>
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                      </Link>
+                    )}
 
                     <span className="text-[10px] font-mono text-slate-500">
                       {isExt ? "Live Domain" : "Internal App"}
@@ -172,12 +180,12 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
         </div>
 
         {/* Bottom Consultation Banner */}
-        <div className="mt-16 sm:mt-20 p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-blue-950/40 via-slate-900/60 to-purple-950/40 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-2xl">
+        <div className="mt-14 sm:mt-20 p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-blue-950/40 via-slate-900/60 to-purple-950/40 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-2xl">
           <div>
             <span className="text-xs font-mono font-semibold text-[#38BDF8] uppercase tracking-wider">
               HAVE A CUSTOM APP CONCEPT?
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-white mt-1">
+            <h3 className="text-lg sm:text-2xl font-bold text-white mt-1">
               Let&apos;s build and scale your next mobile application.
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mt-1 max-w-xl">
@@ -188,7 +196,7 @@ export const AppDevProjectsSection: React.FC<AppDevProjectsSectionProps> = ({
           <button
             type="button"
             onClick={onStartProject}
-            className="px-6 py-3 rounded-full bg-[#1668E8] text-white text-xs sm:text-sm font-semibold hover:bg-[#1255C0] shadow-[0_4px_20px_rgba(22,104,232,0.35)] transition-all cursor-pointer whitespace-nowrap active:scale-[0.98]"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#1668E8] text-white text-xs sm:text-sm font-semibold hover:bg-[#1255C0] shadow-[0_4px_20px_rgba(22,104,232,0.35)] transition-all cursor-pointer whitespace-nowrap active:scale-[0.98]"
           >
             Start Your App Project
           </button>

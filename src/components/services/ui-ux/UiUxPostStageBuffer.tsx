@@ -15,15 +15,15 @@ export interface UiUxPostStageBufferProps {
  */
 export const UiUxPostStageBuffer: React.FC<UiUxPostStageBufferProps> = ({ onStartProject }) => {
   return (
-    <section className="relative w-full bg-white py-20 sm:py-28 md:py-32 border-t border-slate-100 select-none">
-      <Container size="wide" className="flex flex-col items-center text-center max-w-4xl mx-auto">
+    <section className="relative w-full bg-white py-16 xs:py-20 sm:py-28 md:py-32 border-t border-slate-100 select-none">
+      <Container size="wide" className="flex flex-col items-center text-center max-w-4xl mx-auto px-3 sm:px-6">
         {/* Subtle Section Tag */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/80 border border-slate-200/80 text-[11px] sm:text-xs font-semibold tracking-wider text-[#556987] uppercase mb-4 sm:mb-5 font-mono">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/80 border border-slate-200/80 text-[10.5px] sm:text-xs font-semibold tracking-wider text-[#556987] uppercase mb-3.5 sm:mb-5 font-mono">
           <span>COMPREHENSIVE UI/UX CAPABILITIES</span>
         </div>
 
         {/* Heading */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#07152B] tracking-tight leading-[1.18] max-w-2xl">
+        <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#07152B] tracking-tight leading-[1.18] max-w-2xl">
           End-to-End Design Architecture <br className="hidden sm:inline" />
           Across Every Screen & Platform.
         </h2>

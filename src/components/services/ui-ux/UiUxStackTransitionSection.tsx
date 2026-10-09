@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ServiceCard } from "./ServiceCard";
@@ -336,25 +336,25 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
       mm.add("(max-width: 767px)", () => {
         createSection3Animation({
           initialStack: [
-            { x: -4, y: -30, z: 10, rZ: -1.0, scale: 0.80, zIndex: 10 },
-            { x: -2, y: -28, z: 20, rZ: -0.5, scale: 0.82, zIndex: 20 },
-            { x: 0, y: -26, z: 30, rZ: 0, scale: 0.84, zIndex: 30 },
-            { x: 2, y: -24, z: 40, rZ: 0.5, scale: 0.86, zIndex: 40 },
-            { x: 4, y: -22, z: 50, rZ: 1.0, scale: 0.88, zIndex: 50 },
+            { x: -4, y: -20, z: 10, rZ: -1.0, scale: 0.72, zIndex: 10 },
+            { x: -2, y: -18, z: 20, rZ: -0.5, scale: 0.74, zIndex: 20 },
+            { x: 0, y: -16, z: 30, rZ: 0, scale: 0.76, zIndex: 30 },
+            { x: 2, y: -14, z: 40, rZ: 0.5, scale: 0.78, zIndex: 40 },
+            { x: 4, y: -12, z: 50, rZ: 1.0, scale: 0.80, zIndex: 50 },
           ],
           downwardStack: [
-            { x: 6, y: 55, z: 10, rZ: -1.0, scale: 0.80, zIndex: 10 },
-            { x: 8, y: 58, z: 20, rZ: -0.5, scale: 0.82, zIndex: 20 },
-            { x: 10, y: 60, z: 30, rZ: 0, scale: 0.84, zIndex: 30 },
-            { x: 12, y: 62, z: 40, rZ: 0.5, scale: 0.86, zIndex: 40 },
-            { x: 14, y: 65, z: 50, rZ: 1.0, scale: 0.88, zIndex: 50 },
+            { x: 0, y: 75, z: 10, rZ: -1.0, scale: 0.72, zIndex: 10 },
+            { x: 2, y: 77, z: 20, rZ: -0.5, scale: 0.74, zIndex: 20 },
+            { x: 4, y: 79, z: 30, rZ: 0, scale: 0.76, zIndex: 30 },
+            { x: 6, y: 81, z: 40, rZ: 0.5, scale: 0.78, zIndex: 40 },
+            { x: 8, y: 83, z: 50, rZ: 1.0, scale: 0.80, zIndex: 50 },
           ],
           diagonalOpen: [
-            { x: -70, y: 90, z: 10, rZ: -1.0, scale: 0.65, zIndex: 10 },
-            { x: -35, y: 115, z: 20, rZ: 0.5, scale: 0.67, zIndex: 20 },
-            { x: 0, y: 140, z: 30, rZ: 2.0, scale: 0.69, zIndex: 30 },
-            { x: 35, y: 165, z: 40, rZ: 3.5, scale: 0.71, zIndex: 40 },
-            { x: 70, y: 190, z: 50, rZ: 5.0, scale: 0.73, zIndex: 50 },
+            { x: -56, y: 55, z: 10, rZ: -2.5, scale: 0.68, zIndex: 10 },
+            { x: -28, y: 75, z: 20, rZ: -1.0, scale: 0.70, zIndex: 20 },
+            { x: 0, y: 95, z: 30, rZ: 0.5, scale: 0.72, zIndex: 30 },
+            { x: 28, y: 115, z: 40, rZ: 2.0, scale: 0.74, zIndex: 40 },
+            { x: 56, y: 135, z: 50, rZ: 3.5, scale: 0.76, zIndex: 50 },
           ],
         });
       });
@@ -379,7 +379,7 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
       <div
         ref={stageRef}
         id="uiux-section3-pinned-stage"
-        className="relative w-full h-screen min-h-[640px] max-h-[1080px] flex items-center justify-center px-4 sm:px-6 lg:px-12 select-none overflow-hidden"
+        className="relative w-full h-[100dvh] min-h-[580px] max-h-[1080px] flex items-center justify-center px-3 sm:px-6 lg:px-12 select-none overflow-hidden"
       >
         {/* Subtle luminous ambient background lighting */}
         <div
@@ -394,7 +394,7 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
         />
 
         {/* Top subtle stage indicator */}
-        <div className="absolute top-6 sm:top-8 inset-x-0 flex items-center justify-between px-6 sm:px-12 max-w-7xl mx-auto z-20 pointer-events-none">
+        <div className="absolute top-4 sm:top-8 inset-x-0 flex items-center justify-between px-4 sm:px-12 max-w-7xl mx-auto z-20 pointer-events-none">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-slate-200/80 shadow-xs backdrop-blur-xs">
             <span
               className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
@@ -426,16 +426,16 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
         */}
         <div
           ref={textContainerRef}
-          className="absolute left-6 sm:left-10 lg:left-16 xl:left-24 top-1/2 -translate-y-1/2 max-w-sm sm:max-w-md lg:max-w-[440px] xl:max-w-[480px] z-30 pointer-events-none text-left"
+          className="absolute left-4 sm:left-10 lg:left-16 xl:left-24 top-[9%] xs:top-[11%] sm:top-1/2 sm:-translate-y-1/2 max-w-[92%] sm:max-w-md lg:max-w-[440px] xl:max-w-[480px] z-30 pointer-events-none text-center sm:text-left mx-auto sm:mx-0 inset-x-0 sm:inset-x-auto"
           style={{ opacity: 0 }}
         >
           {/* 1. Category Badge */}
           <div
             ref={categoryRef}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.04)] mb-3 sm:mb-4 backdrop-blur-xs"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.04)] mb-2 sm:mb-4 backdrop-blur-xs"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#1668E8]" />
-            <span className="text-[10.5px] sm:text-xs font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
+            <span className="text-[10px] sm:text-xs font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
               UI / UX DESIGN
             </span>
           </div>
@@ -443,7 +443,7 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
           {/* 2. Display Heading */}
           <h2
             ref={headingRef}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#07152B] tracking-tight leading-[1.12] mb-3 sm:mb-4"
+            className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] mb-2 sm:mb-4"
           >
             <span className="block">Design experiences</span>
             <span className="block bg-gradient-to-r from-[#07152B] via-[#1668E8] to-[#DB2777] bg-clip-text text-transparent">
@@ -454,7 +454,7 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
           {/* 3. Short Supporting Description */}
           <p
             ref={descRef}
-            className="text-xs sm:text-sm md:text-base text-[#556987] leading-relaxed mb-5 sm:mb-6 max-w-md"
+            className="text-xs sm:text-sm md:text-base text-[#556987] leading-relaxed mb-3 sm:mb-6 max-w-sm sm:max-w-md mx-auto sm:mx-0 line-clamp-3 sm:line-clamp-none"
           >
             From user research and interaction design to polished interfaces, we create digital experiences that are intuitive, engaging and built for real users.
           </p>
@@ -464,7 +464,7 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
             <button
               type="button"
               onClick={onStartProject}
-              className="px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#07152B] text-white text-xs sm:text-sm font-semibold hover:bg-[#1668E8] shadow-[0_4px_16px_rgba(7,21,43,0.18)] hover:shadow-[0_6px_22px_rgba(22,104,232,0.32)] transition-all flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#07152B] text-white text-xs sm:text-sm font-semibold hover:bg-[#1668E8] shadow-[0_4px_16px_rgba(7,21,43,0.18)] hover:shadow-[0_6px_22px_rgba(22,104,232,0.32)] transition-all inline-flex items-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <span>Start a Project</span>
               <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
@@ -478,7 +478,7 @@ export const UiUxStackTransitionSection: React.FC<UiUxStackTransitionSectionProp
         */}
         <div
           id="uiux-section3-cards-canvas"
-          className="relative z-10 w-full max-w-5xl h-[280px] sm:h-[310px] md:h-[330px] flex items-center justify-center overflow-visible"
+          className="relative z-10 w-full max-w-5xl h-[240px] xs:h-[265px] sm:h-[310px] md:h-[330px] flex items-center justify-center overflow-visible"
           style={{
             perspective: 1400,
           }}

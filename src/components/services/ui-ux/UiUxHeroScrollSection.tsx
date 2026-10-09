@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Compass, Layers } from "lucide-react";
+import { ArrowRight, Compass } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 import { ServiceCard } from "./ServiceCard";
 import { HERO_CONTENT, SERVICE_CARDS, ServiceCardData } from "./data";

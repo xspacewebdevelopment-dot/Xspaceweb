@@ -111,7 +111,7 @@ export const AppDevHeroSection: React.FC<AppDevHeroSectionProps> = ({
   onStartProject,
   className = "",
 }) => {
-  const stageRef = useRef<HTMLDivElement>(null);
+  const stageRef = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const stARef = useRef<HTMLDivElement>(null);
@@ -393,7 +393,10 @@ export const AppDevHeroSection: React.FC<AppDevHeroSectionProps> = ({
   };
 
   return (
-    <section className={`adh-stage relative w-full h-screen overflow-hidden select-none ${className}`}>
+    <section
+      ref={stageRef}
+      className={`adh-stage relative w-full select-none ${className}`}
+    >
       {/* Starfield Background */}
       <div className="adh-bg">
         <div ref={stARef} className="adh-stars"></div>

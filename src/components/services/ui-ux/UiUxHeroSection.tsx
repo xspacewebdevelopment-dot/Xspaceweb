@@ -218,18 +218,18 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
         });
       });
 
-      // 4. Mobile (< 768px) — Stacked deck fan without horizontal overflow
+      // 4. Mobile (< 768px) — Balanced deck fan without horizontal overflow or speech bubble collision
       mm.add("(max-width: 767px)", () => {
         createFanningAnimation({
           spreads: [
-            { x: -50, y: -8, z: -15, rZ: -3.5, rY: 1.2, scale: 0.80 },
-            { x: -25, y: -4, z: -8, rZ: -1.8, rY: 0.6, scale: 0.84 },
-            { x: 0, y: 0, z: 10, rZ: 0, rY: 0, scale: 0.88 },
-            { x: 25, y: 4, z: -8, rZ: 1.8, rY: -0.6, scale: 0.84 },
-            { x: 50, y: 8, z: -15, rZ: 3.5, rY: -1.2, scale: 0.80 },
+            { x: -84, y: 8, z: -15, rZ: -5.0, rY: 1.5, scale: 0.76 },
+            { x: -42, y: 4, z: -8, rZ: -2.5, rY: 0.8, scale: 0.80 },
+            { x: 0, y: 0, z: 12, rZ: 0, rY: 0, scale: 0.85 },
+            { x: 42, y: 4, z: -8, rZ: 2.5, rY: -0.8, scale: 0.80 },
+            { x: 84, y: 8, z: -15, rZ: 5.0, rY: -1.5, scale: 0.76 },
           ],
-          tagLeft: { x: -40, y: -120 },
-          tagRight: { x: 40, y: -120 },
+          tagLeft: { x: -68, y: -110 },
+          tagRight: { x: 68, y: -110 },
         });
       });
     }, trackRef);
@@ -260,14 +260,14 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
       <div
         ref={stageRef}
         id="uiux-hero-pinned-stage"
-        className="relative w-full h-screen min-h-[640px] max-h-[1080px] flex flex-col justify-between items-center pt-20 sm:pt-22 md:pt-24 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-8 select-none overflow-hidden"
+        className="relative w-full h-[100dvh] min-h-[580px] max-h-[1080px] flex flex-col justify-between items-center pt-16 xs:pt-20 sm:pt-22 md:pt-24 pb-4 sm:pb-7 px-3 sm:px-6 lg:px-8 select-none overflow-hidden"
       >
         {/* 
           1. AMBIENT BACKGROUND GRADIENTS:
           Rich, luminous electric cyan/blue on the left and vivid magenta/purple on the right
         */}
         <div
-          className="absolute -top-10 -left-16 w-[520px] sm:w-[650px] md:w-[780px] h-[520px] sm:h-[650px] md:h-[780px] rounded-full pointer-events-none z-0"
+          className="absolute -top-10 -left-16 w-[420px] sm:w-[650px] md:w-[780px] h-[420px] sm:h-[650px] md:h-[780px] rounded-full pointer-events-none z-0"
           style={{
             background:
               "radial-gradient(circle, rgba(2, 132, 199, 0.55) 0%, rgba(14, 165, 233, 0.42) 32%, rgba(56, 189, 248, 0.22) 58%, transparent 75%)",
@@ -277,7 +277,7 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
         />
 
         <div
-          className="absolute -top-10 -right-16 w-[520px] sm:w-[650px] md:w-[780px] h-[520px] sm:h-[650px] md:h-[780px] rounded-full pointer-events-none z-0"
+          className="absolute -top-10 -right-16 w-[420px] sm:w-[650px] md:w-[780px] h-[420px] sm:h-[650px] md:h-[780px] rounded-full pointer-events-none z-0"
           style={{
             background:
               "radial-gradient(circle, rgba(219, 39, 119, 0.52) 0%, rgba(236, 72, 153, 0.40) 32%, rgba(192, 132, 252, 0.22) 58%, transparent 75%)",
@@ -288,7 +288,7 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
 
         {/* Center Card Backlight Bloom */}
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[340px] rounded-full pointer-events-none z-0"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] sm:w-[620px] h-[300px] sm:h-[340px] rounded-full pointer-events-none z-0"
           style={{
             background:
               "radial-gradient(ellipse, rgba(14, 165, 233, 0.22) 0%, rgba(217, 70, 239, 0.18) 45%, transparent 75%)",
@@ -301,17 +301,17 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
           2. TOP HERO HEADER AREA:
           Category pill and display headline with vibrant gradient on 'beautifully.'
         */}
-        <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto shrink-0">
+        <div className="relative z-20 flex flex-col items-center text-center max-w-3xl mx-auto shrink-0 px-2">
           {/* Category Eyebrow Pill */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] mb-2 backdrop-blur-xs">
+          <div className="inline-flex items-center gap-2 px-2.5 xs:px-3 py-1 rounded-full bg-white/95 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] mb-1.5 sm:mb-2 backdrop-blur-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1668E8]" />
-            <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
+            <span className="text-[9.5px] xs:text-[10px] sm:text-[11px] font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
               {HERO_CONTENT.category}
             </span>
           </div>
 
           {/* Main Display Headline with Gradient on 'beautifully.' */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#07152B] tracking-tight leading-[1.14]">
+          <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-extrabold text-[#07152B] tracking-tight leading-[1.18] sm:leading-[1.14]">
             <span className="inline sm:block">Designing digital experiences </span>
             <span className="inline sm:block text-[#07152B]">
               that work{" "}
@@ -331,7 +331,7 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
         */}
         <div
           id="uiux-cards-center-canvas"
-          className="relative z-10 w-full max-w-5xl h-[260px] sm:h-[285px] md:h-[305px] flex items-center justify-center overflow-visible my-auto"
+          className="relative z-10 w-full max-w-5xl h-[230px] xs:h-[250px] sm:h-[285px] md:h-[305px] flex items-center justify-center overflow-visible my-auto"
           style={{
             perspective: 1400,
           }}
@@ -394,18 +394,18 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
           4. BOTTOM SUPPORTING DESCRIPTION & ACTION BUTTONS:
           Positioned neatly below the cards canvas with comfortable breathing room
         */}
-        <div className="relative z-20 flex flex-col items-center text-center max-w-2xl mx-auto space-y-2.5 sm:space-y-3 shrink-0 pb-1">
+        <div className="relative z-20 flex flex-col items-center text-center max-w-2xl mx-auto space-y-2 sm:space-y-3 shrink-0 pb-1 px-3">
           {/* Supporting Description */}
-          <p className="text-xs sm:text-[13px] text-[#556987] leading-relaxed max-w-xl font-normal">
+          <p className="text-[11px] xs:text-xs sm:text-[13px] text-[#556987] leading-relaxed max-w-xl font-normal px-2">
             {HERO_CONTENT.description}
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-3.5 pointer-events-auto">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 pointer-events-auto">
             <button
               type="button"
               onClick={onStartProject}
-              className="px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#07152B] text-white text-xs sm:text-sm font-semibold hover:bg-[#1668E8] shadow-[0_4px_16px_rgba(7,21,43,0.18)] hover:shadow-[0_6px_22px_rgba(22,104,232,0.32)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#07152B] text-white text-xs sm:text-sm font-semibold hover:bg-[#1668E8] shadow-[0_4px_16px_rgba(7,21,43,0.18)] hover:shadow-[0_6px_22px_rgba(22,104,232,0.32)] transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <span>{HERO_CONTENT.primaryCta.label}</span>
               <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
@@ -414,7 +414,7 @@ export const UiUxHeroSection: React.FC<UiUxHeroSectionProps> = ({
             <button
               type="button"
               onClick={handleScrollDown}
-              className="px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-white text-[#07152B] border border-slate-200/90 text-xs sm:text-sm font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+              className="px-5 sm:px-7 py-2.5 sm:py-3 rounded-full bg-white text-[#07152B] border border-slate-200/90 text-xs sm:text-sm font-semibold hover:bg-slate-50 hover:border-slate-300 transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
             >
               <span>{HERO_CONTENT.secondaryCta.label}</span>
               <Compass className="w-3.5 h-3.5 text-[#556987]" />

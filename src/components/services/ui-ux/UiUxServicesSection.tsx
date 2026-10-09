@@ -136,20 +136,20 @@ export const UiUxServicesSection: React.FC<UiUxServicesSectionProps> = ({
     <section
       ref={section5Ref}
       id="section5-services"
-      className={`relative w-full bg-[#FAFBFD] text-[#0A1128] py-24 sm:py-28 md:py-32 px-4 sm:px-6 lg:px-12 border-t border-slate-100 select-none ${className}`}
+      className={`relative w-full bg-[#FAFBFD] text-[#0A1128] py-16 xs:py-20 sm:py-28 md:py-32 px-3.5 sm:px-6 lg:px-12 border-t border-slate-100 select-none ${className}`}
     >
       <div className="max-w-7xl mx-auto">
         {/* ========================================================================= */}
         {/* SECTION 5 HEADER / INTRO */}
         {/* ========================================================================= */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-10 sm:mb-16 md:mb-20">
           {/* Eyebrow Pill */}
           <div
             ref={eyebrowRef}
-            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] mb-4"
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.03)] mb-3 sm:mb-4"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#1668E8]" />
-            <span className="text-[10.5px] sm:text-[11px] font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
+            <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
               UI / UX SERVICES
             </span>
           </div>
@@ -158,7 +158,7 @@ export const UiUxServicesSection: React.FC<UiUxServicesSectionProps> = ({
           <h2
             ref={headingRef}
             id="section5-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-[1.14]"
+            className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-[1.14]"
           >
             Designing experiences{" "}
             <span className="block sm:inline bg-gradient-to-r from-[#1668E8] via-[#6366F1] to-[#DB2777] bg-clip-text text-transparent">
@@ -170,7 +170,7 @@ export const UiUxServicesSection: React.FC<UiUxServicesSectionProps> = ({
           <p
             ref={descriptionRef}
             id="section5-description"
-            className="mt-4 sm:mt-5 text-sm sm:text-base text-[#556987] leading-relaxed max-w-2xl"
+            className="mt-3.5 sm:mt-5 text-xs sm:text-base text-[#556987] leading-relaxed max-w-2xl px-2"
           >
             We create thoughtful digital experiences that connect user needs with
             business goals — from research and strategy to intuitive interfaces,
@@ -183,7 +183,7 @@ export const UiUxServicesSection: React.FC<UiUxServicesSectionProps> = ({
         {/* ========================================================================= */}
         <div
           ref={cardsContainerRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7"
         >
           {SECTION5_SERVICES.map((service: UiUxServiceItem, idx: number) => (
             <div
@@ -192,10 +192,10 @@ export const UiUxServicesSection: React.FC<UiUxServicesSectionProps> = ({
                 cardRefs.current[idx] = el;
               }}
               id={`section5-service-card-${idx}`}
-              className="group relative flex flex-col justify-between bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-7 md:p-8 shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)] hover:border-slate-300 hover:-translate-y-1 transition-all duration-300 ease-out cursor-default"
+              className="group relative flex flex-col justify-between bg-white rounded-2xl border border-slate-200/80 p-5 sm:p-7 md:p-8 shadow-[0_4px_16px_rgba(15,23,42,0.03)] hover:shadow-[0_16px_36px_rgba(15,23,42,0.08)] hover:border-slate-300 hover:-translate-y-1 transition-all duration-300 ease-out cursor-default"
             >
               {/* Card Top: Number & Subtle Action Arrow */}
-              <div className="flex items-center justify-between pb-5 border-b border-slate-100/90">
+              <div className="flex items-center justify-between pb-4 sm:pb-5 border-b border-slate-100/90">
                 <span className="text-xs font-mono font-bold tracking-widest text-[#1668E8] group-hover:text-[#0B4FC0] transition-colors duration-300">
                   {service.number}
                 </span>

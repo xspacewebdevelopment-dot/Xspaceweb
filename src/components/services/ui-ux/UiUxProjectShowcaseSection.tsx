@@ -29,7 +29,6 @@ export interface UiUxProjectShowcaseSectionProps {
  *    DOES NOT modify or depend on Section 1, 2, or 3.
  */
 export const UiUxProjectShowcaseSection: React.FC<UiUxProjectShowcaseSectionProps> = ({
-  onStartProject,
   className = "",
 }) => {
   const section4TrackRef = useRef<HTMLDivElement>(null);
@@ -261,28 +260,28 @@ export const UiUxProjectShowcaseSection: React.FC<UiUxProjectShowcaseSectionProp
       mm.add("(max-width: 767px)", () => {
         createSection4Timeline({
           entryOrigins: [
-            { x: -30, y: -15, scale: 0.30, rotZ: 0 },
-            { x: 0, y: -15, scale: 0.30, rotZ: 0 },
-            { x: 30, y: -15, scale: 0.30, rotZ: 0 },
-            { x: -30, y: 15, scale: 0.30, rotZ: 0 },
-            { x: 0, y: 15, scale: 0.30, rotZ: 0 },
-            { x: 30, y: 15, scale: 0.30, rotZ: 0 },
+            { x: -25, y: -50, scale: 0.35, rotZ: 0 },
+            { x: 25, y: -50, scale: 0.35, rotZ: 0 },
+            { x: -25, y: 0, scale: 0.35, rotZ: 0 },
+            { x: 25, y: 0, scale: 0.35, rotZ: 0 },
+            { x: -25, y: 50, scale: 0.35, rotZ: 0 },
+            { x: 25, y: 50, scale: 0.35, rotZ: 0 },
           ],
           intermediateSpread: [
-            { x: -60, y: -35, scale: 0.42, rotZ: 0 },
-            { x: 0, y: -35, scale: 0.42, rotZ: 0 },
-            { x: 60, y: -35, scale: 0.42, rotZ: 0 },
-            { x: -60, y: 35, scale: 0.42, rotZ: 0 },
-            { x: 0, y: 35, scale: 0.42, rotZ: 0 },
-            { x: 60, y: 35, scale: 0.42, rotZ: 0 },
+            { x: -50, y: -75, scale: 0.52, rotZ: 0 },
+            { x: 50, y: -75, scale: 0.52, rotZ: 0 },
+            { x: -50, y: 0, scale: 0.52, rotZ: 0 },
+            { x: 50, y: 0, scale: 0.52, rotZ: 0 },
+            { x: -50, y: 75, scale: 0.52, rotZ: 0 },
+            { x: 50, y: 75, scale: 0.52, rotZ: 0 },
           ],
           finalTwoLineLayout: [
-            { x: -110, y: -65, scale: 0.50, rotZ: 0, zIndex: 14 },
-            { x: 0, y: -65, scale: 0.50, rotZ: 0, zIndex: 16 },
-            { x: 110, y: -65, scale: 0.50, rotZ: 0, zIndex: 14 },
-            { x: -110, y: 65, scale: 0.50, rotZ: 0, zIndex: 14 },
-            { x: 0, y: 65, scale: 0.50, rotZ: 0, zIndex: 16 },
-            { x: 110, y: 65, scale: 0.50, rotZ: 0, zIndex: 14 },
+            { x: -66, y: -95, scale: 0.65, rotZ: -1.0, zIndex: 14 },
+            { x: 66, y: -95, scale: 0.65, rotZ: 1.0, zIndex: 14 },
+            { x: -66, y: 0, scale: 0.65, rotZ: -0.5, zIndex: 16 },
+            { x: 66, y: 0, scale: 0.65, rotZ: 0.5, zIndex: 16 },
+            { x: -66, y: 95, scale: 0.65, rotZ: 1.0, zIndex: 14 },
+            { x: 66, y: 95, scale: 0.65, rotZ: -1.0, zIndex: 14 },
           ],
         });
       });
@@ -309,7 +308,7 @@ export const UiUxProjectShowcaseSection: React.FC<UiUxProjectShowcaseSectionProp
       <div
         ref={section4StageRef}
         id="uiux-section4-pinned-stage"
-        className="relative w-full h-screen min-h-[640px] max-h-[1080px] flex flex-col justify-between items-center pt-20 sm:pt-22 md:pt-24 pb-5 sm:pb-7 px-4 sm:px-6 lg:px-8 select-none overflow-hidden"
+        className="relative w-full h-[100dvh] min-h-[580px] max-h-[1080px] flex flex-col justify-between items-center pt-16 xs:pt-20 sm:pt-22 md:pt-24 pb-4 sm:pb-7 px-3 sm:px-6 lg:px-8 select-none overflow-hidden"
       >
         {/* Subtle luminous ambient background lighting */}
         <div
@@ -331,18 +330,18 @@ export const UiUxProjectShowcaseSection: React.FC<UiUxProjectShowcaseSectionProp
         */}
         <div
           ref={headerRef}
-          className="relative z-30 flex flex-col items-center text-center max-w-2xl mx-auto pt-1 sm:pt-2 px-4 shrink-0 pointer-events-none"
+          className="relative z-30 flex flex-col items-center text-center max-w-2xl mx-auto pt-1 sm:pt-2 px-3 shrink-0 pointer-events-none"
         >
           {/* Eyebrow Pill */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/95 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.04)] mb-2 backdrop-blur-xs">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/95 border border-slate-200/80 shadow-[0_2px_8px_rgba(15,23,42,0.04)] mb-1.5 sm:mb-2 backdrop-blur-xs">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1668E8]" />
-            <span className="text-[10px] sm:text-[11px] font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
+            <span className="text-[9.5px] xs:text-[10px] sm:text-[11px] font-semibold tracking-[0.20em] text-[#1668E8] uppercase font-mono">
               SELECTED WORK // DIGITAL PRODUCTS
             </span>
           </div>
 
           {/* Main Display Headline */}
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#07152B] tracking-tight leading-tight">
+          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#07152B] tracking-tight leading-tight">
             Built for people.{" "}
             <span className="bg-gradient-to-r from-[#1668E8] via-[#6366F1] to-[#DB2777] bg-clip-text text-transparent">
               Designed for impact.
