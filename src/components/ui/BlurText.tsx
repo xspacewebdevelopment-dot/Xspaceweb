@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, TargetAndTransition } from 'framer-motion';
 import { useEffect, useRef, useState, useMemo } from 'react';
 
 type AnimationValue = Record<string, string | number>;
@@ -67,41 +67,32 @@ const BlurText: React.FC<BlurTextProps> = ({
     return () => observer.disconnect();
   }, [threshold, rootMargin]);
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      setIsMobile(true);
-    }
-  }, []);
+  // Check viewport width without triggering cascading state re-renders on mount
+  const isMobile = typeof window !== "undefined" ? window.innerWidth < 768 : false;
 
   const defaultFrom = useMemo<AnimationValue>(() => {
     if (isMobile) {
-      const val: AnimationValue = { opacity: 0, y: direction === 'top' ? -15 : 15 };
-      return val;
+      return { opacity: 0, y: direction === 'top' ? -15 : 15, filter: 'blur(0px)' };
     }
-    const val: AnimationValue = {
+    return {
       filter: 'blur(10px)',
       opacity: 0,
-      y: direction === 'top' ? -50 : 50,
+      y: direction === 'top' ? -35 : 35,
     };
-    return val;
   }, [direction, isMobile]);
 
   const defaultTo = useMemo<AnimationValue[]>(() => {
     if (isMobile) {
-      const list: AnimationValue[] = [{ opacity: 1, y: 0 }];
-      return list;
+      return [{ opacity: 1, y: 0, filter: 'blur(0px)' }];
     }
-    const list: AnimationValue[] = [
+    return [
       {
-        filter: 'blur(5px)',
-        opacity: 0.5,
-        y: direction === 'top' ? 5 : -5,
+        filter: 'blur(4px)',
+        opacity: 0.6,
+        y: direction === 'top' ? 4 : -4,
       },
       { filter: 'blur(0px)', opacity: 1, y: 0 },
     ];
-    return list;
   }, [direction, isMobile]);
 
   const fromSnapshot = animationFrom ?? defaultFrom;
@@ -132,10 +123,10 @@ const BlurText: React.FC<BlurTextProps> = ({
 
         return (
           <motion.span
-            className="inline-block will-change-[transform,filter,opacity]"
+            className="inline-block will-change-transform"
             key={index}
-            initial={fromSnapshot as any}
-            animate={(inView ? animateKeyframes : fromSnapshot) as any}
+            initial={fromSnapshot as TargetAndTransition}
+            animate={(inView ? animateKeyframes : fromSnapshot) as TargetAndTransition}
             transition={spanTransition}
             onAnimationComplete={index === elements.length - 1 ? onAnimationComplete : undefined}
           >

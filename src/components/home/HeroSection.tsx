@@ -1,25 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { Star, ShieldCheck, Search } from "lucide-react";
+import { Star, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
 import { reviewPlatforms } from "@/components/home/RatingsStrip";
 
 export const HeroSection: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) {
-      setIsMobile(true);
-    }
-  }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (shouldReduceMotion) return;
+    if (shouldReduceMotion || (typeof window !== "undefined" && window.innerWidth < 768)) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8; // -4 to +4 px
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * 6; // -3 to +3 px
@@ -148,7 +141,7 @@ export const HeroSection: React.FC = () => {
           <div className="lg:col-span-7 relative flex flex-col items-center justify-center lg:pl-0">
             <motion.div
               style={
-                shouldReduceMotion || isMobile
+                shouldReduceMotion
                   ? undefined
                   : {
                       x: mousePos.x,
@@ -171,7 +164,6 @@ export const HeroSection: React.FC = () => {
                   alt="Searching for better ways to build"
                   width={150}
                   height={130}
-                  loading="lazy"
                   className="w-20 sm:w-28 md:w-36 h-auto drop-shadow-sm"
                 />
               </motion.div>
@@ -189,7 +181,6 @@ export const HeroSection: React.FC = () => {
                   alt="Real People Real Reviews"
                   width={120}
                   height={170}
-                  loading="lazy"
                   className="w-16 sm:w-22 md:w-28 h-auto drop-shadow-sm"
                 />
               </motion.div>

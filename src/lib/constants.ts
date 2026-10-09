@@ -51,7 +51,7 @@ export const SITE_CONFIG = {
       { label: "App Development", href: "/services/app-development" },
       { label: "Studio XSW", href: "/#studio-xsw" },
       { label: "UI/UX Design", href: "/services/ui-ux" },
-      { label: "Graphic Design", href: "/services#graphic-design" },
+      { label: "Animation & VFX", href: "/services/animation-vfx" },
     ],
     resources: [
       { label: "Blog", href: "/#blog" },

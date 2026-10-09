@@ -48,16 +48,7 @@ const serviceLinks: FooterColumn = {
     { label: "App Development", href: "/services/app-development" },
     { label: "Studio XSW", href: "/services/studio-xsw" },
     { label: "UI/UX Design", href: "/services/ui-ux" },
-    { label: "Graphic Design", href: "/services" },
-  ],
-};
-
-const resourceLinks: FooterColumn = {
-  title: "RESOURCES",
-  links: [
-    { label: "Blog", href: "/insights" },
-    { label: "Case Studies", href: "/case-studies" },
-    { label: "Help Center", href: "/contact" },
+    { label: "Animation & VFX", href: "/services/animation-vfx" },
   ],
 };
 

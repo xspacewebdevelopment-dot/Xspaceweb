@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Caveat, Inter, Outfit } from "next/font/google";
+import { Caveat, Inter, Outfit, Instrument_Serif } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollToTop } from "@/components/shared/ScrollToTop";
@@ -24,6 +24,14 @@ const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
   weight: ["700"],
+  display: "swap",
+  preload: false,
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument",
+  subsets: ["latin"],
+  weight: ["400"],
   display: "swap",
   preload: false,
 });
@@ -82,7 +90,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} ${caveat.variable} scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${outfit.variable} ${caveat.variable} ${instrumentSerif.variable} scroll-smooth`}
+    >
+      <head>
+        {/* Preload critical mobile & desktop hero LCP images */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero/women-mobile.webp"
+          type="image/webp"
+          media="(max-width: 640px)"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero/women.webp"
+          type="image/webp"
+          media="(min-width: 641px)"
+          fetchPriority="high"
+        />
+        {/* DNS prefetch & preconnect for remote image origins */}
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+      </head>
       <body className="min-h-screen flex flex-col bg-white text-[#0A1128] font-sans antialiased selection:bg-[#1668E8] selection:text-white">
         <ScrollToTop />
         <Navbar />
