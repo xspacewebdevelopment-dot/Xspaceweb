@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Caveat, Inter, Outfit } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/shared/ScrollToTop";
 import "./globals.css";
 
 const inter = Inter({
@@ -82,23 +83,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} ${caveat.variable} scroll-smooth`}>
-      <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero/women-mobile.webp"
-          media="(max-width: 640px)"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero/women.webp"
-          media="(min-width: 641px)"
-          fetchPriority="high"
-        />
-      </head>
       <body className="min-h-screen flex flex-col bg-white text-[#0A1128] font-sans antialiased selection:bg-[#1668E8] selection:text-white">
+        <ScrollToTop />
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
         <Footer />

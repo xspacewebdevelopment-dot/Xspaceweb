@@ -119,43 +119,25 @@ export const HeroSection: React.FC = () => {
           {/* LEFT COLUMN: Eyebrow, Display Heading, and Description */}
           <div className="lg:col-span-5 flex flex-col items-start space-y-4 sm:space-y-5 z-20 text-left pt-1 lg:pt-0">
             {/* 1. Eyebrow */}
-            <motion.div
-              initial={isMobile ? false : { opacity: 0, y: 10 }}
-              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 hero-critical-text"
-            >
+            <div className="inline-flex items-center gap-2 hero-critical-text">
               <span className="w-1.5 h-1.5 rounded-full bg-[#2957E8]" />
               <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.20em] text-[#2957E8] uppercase select-none">
                 TRUSTED WORLDWIDE
               </span>
-            </motion.div>
+            </div>
 
             {/* 2. Display Heading */}
-            <motion.h1
-              initial={isMobile ? false : { opacity: 0, y: 16 }}
-              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              className="text-3.5xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] max-w-[600px] hero-critical-text"
-            >
+            <h1 className="text-3xl sm:text-4.5xl md:text-5xl lg:text-[46px] xl:text-[54px] 2xl:text-[56px] font-extrabold text-[#07152B] tracking-tight leading-[1.14] max-w-[600px] hero-critical-text">
               <span className="block">A Popular Choice</span>
               <span className="bg-gradient-to-r from-[#2957E8] via-[#1E6BFF] to-[#1693FF] bg-clip-text text-transparent inline-block mt-1 sm:mt-1.5 pb-2 -mb-2 pr-1">
                 Among Businesses
               </span>
-            </motion.h1>
+            </h1>
 
             {/* 3. Supporting Copy */}
-            <motion.p
-              initial={isMobile ? false : { opacity: 0, y: 14 }}
-              whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-              className="text-base sm:text-lg text-[#556987] leading-relaxed max-w-[570px] font-normal pt-0.5 hero-critical-text"
-            >
+            <p className="text-base sm:text-lg text-[#556987] leading-relaxed max-w-[570px] font-normal pt-0.5 hero-critical-text">
               Trusted by clients, partners, and communities for our quality, reliability, and real impact.
-            </motion.p>
+            </p>
           </div>
 
           {/* 
@@ -372,10 +354,7 @@ export const HeroSection: React.FC = () => {
           Slightly overlaps the bottom of the hero atmosphere (negative margin) for seamless integration
         */}
         <motion.div
-          initial={isMobile ? false : { opacity: 0, y: 20 }}
-          whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          initial={false}
           className="w-full -mt-4 sm:-mt-8 md:-mt-10 rounded-[30px] sm:rounded-[34px] p-5 sm:p-7 lg:p-7.5 relative z-20 hero-critical-text trust-panel"
           style={{
             background: "rgba(255, 255, 255, 0.94)",

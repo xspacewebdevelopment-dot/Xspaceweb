@@ -1,12 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  GmbHeroSection,
-  GmbThreeStagesSection,
-  GmbFaqCtaSection,
-} from "@/components/services/google-my-business";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { GmbHeroSection } from "@/components/services/google-my-business";
+
+const GmbThreeStagesSection = dynamic(
+  () => import("@/components/services/google-my-business/GmbThreeStagesSection").then((m) => m.GmbThreeStagesSection),
+  { ssr: true }
+);
+
+const GmbFaqCtaSection = dynamic(
+  () => import("@/components/services/google-my-business/GmbFaqCtaSection").then((m) => m.GmbFaqCtaSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function GoogleMyBusinessPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,6 +25,10 @@ export default function GoogleMyBusinessPage() {
     "Google My Business"
   );
   const [initialEmail, setInitialEmail] = useState<string>("");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleOpenConsultation = (serviceName?: string) => {
     setInitialService(serviceName || "Google My Business Optimization");

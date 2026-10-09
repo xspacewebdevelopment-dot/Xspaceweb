@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import "./appDevHero.css";
 
 export interface AppDevHeroSectionProps {
@@ -512,9 +513,13 @@ export const AppDevHeroSection: React.FC<AppDevHeroSectionProps> = ({
 
             <div className="adh-pagebody">
               <div className="adh-pghero">
-                <img
+                <Image
                   src="/images/products/ecosystem_devices.jpg"
                   alt="App and SaaS ecosystem preview"
+                  fill
+                  sizes="600px"
+                  priority
+                  className="object-cover"
                 />
                 <div className="adh-scrim"></div>
                 <div className="adh-copy">

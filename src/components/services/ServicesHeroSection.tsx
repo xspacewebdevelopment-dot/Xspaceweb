@@ -2,9 +2,14 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import { ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((mod) => mod.ProjectModal),
+  { ssr: false }
+);
 
 interface ServicesHeroSectionProps {
   onGetStarted?: (email?: string) => void;
@@ -60,8 +65,8 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
                   src="/images/services/avatar1.jpg"
                   alt="Client Avatar 1"
                   fill
+                  sizes="28px"
                   className="object-cover"
-                  unoptimized
                 />
               </div>
               <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border-2 border-white shadow-sm">
@@ -69,8 +74,8 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
                   src="/images/services/avatar2.jpg"
                   alt="Client Avatar 2"
                   fill
+                  sizes="28px"
                   className="object-cover"
-                  unoptimized
                 />
               </div>
               <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border-2 border-white shadow-sm">
@@ -78,8 +83,8 @@ export const ServicesHeroSection: React.FC<ServicesHeroSectionProps> = ({ onGetS
                   src="/images/services/avatar3.jpg"
                   alt="Client Avatar 3"
                   fill
+                  sizes="28px"
                   className="object-cover"
-                  unoptimized
                 />
               </div>
             </div>

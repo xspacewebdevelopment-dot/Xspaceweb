@@ -1,17 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  VfxHeroSpotlightSection,
-  VfxPipelineCapabilitiesSection,
-  VfxBreakdownShowcaseSection,
-} from "@/components/services/animation-vfx";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { VfxHeroSpotlightSection } from "@/components/services/animation-vfx";
+
+const VfxPipelineCapabilitiesSection = dynamic(
+  () => import("@/components/services/animation-vfx/VfxPipelineCapabilitiesSection").then((m) => m.VfxPipelineCapabilitiesSection),
+  { ssr: true }
+);
+
+const VfxBreakdownShowcaseSection = dynamic(
+  () => import("@/components/services/animation-vfx/VfxBreakdownShowcaseSection").then((m) => m.VfxBreakdownShowcaseSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function AnimationVfxPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialService, setInitialService] = useState<string>("Animation & VFX");
   const [initialEmail, setInitialEmail] = useState<string>("");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleOpenConsultation = (serviceName?: string) => {
     setInitialService(serviceName || "Animation & VFX");

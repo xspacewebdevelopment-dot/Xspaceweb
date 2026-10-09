@@ -79,6 +79,7 @@ export const DigitalMarketingHero: React.FC<DigitalMarketingHeroProps> = ({ onOp
             loop
             muted
             playsInline
+            preload="metadata"
             className="w-full h-full object-cover scale-105 transition-transform duration-1000"
           />
         </div>
@@ -125,12 +126,7 @@ export const DigitalMarketingHero: React.FC<DigitalMarketingHeroProps> = ({ onOp
         {/* HERO TEXT CONTENT */}
         <div className="relative z-20 px-8 md:px-16 pt-12 md:pt-16 flex flex-col items-start max-w-3xl">
           {/* Brand Promise Pill Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10, filter: "blur(6px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-xs mb-5"
-          >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-xs mb-5">
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -138,15 +134,10 @@ export const DigitalMarketingHero: React.FC<DigitalMarketingHeroProps> = ({ onOp
             <span className="text-[11px] font-semibold tracking-wider uppercase text-[#0a1b33]">
               XSPACEWEB • ENTERPRISE DIGITAL GROWTH ENGINE
             </span>
-          </motion.div>
+          </div>
 
           {/* Animated Headline with React Bits Blur/Split Effect */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start"
-          >
+          <div className="flex flex-col items-start">
             <h1
               className="font-display text-[38px] sm:text-[46px] md:text-[56px] font-medium tracking-tight text-[#0a1b33] leading-[1.08]"
               style={{ fontFamily: "'Outfit', var(--font-display), sans-serif" }}
@@ -200,17 +191,12 @@ export const DigitalMarketingHero: React.FC<DigitalMarketingHeroProps> = ({ onOp
                 Explore Growth Engines ↓
               </motion.a>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* BOTTOM METRIC STRIP */}
         <div className="relative z-20 px-6 sm:px-10 md:px-16 pb-8 pt-6">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full bg-white/85 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/90 shadow-[0_12px_32px_-6px_rgba(0,0,0,0.06)] p-4 sm:p-6"
-          >
+          <div className="w-full bg-white/85 backdrop-blur-xl rounded-2xl md:rounded-3xl border border-white/90 shadow-[0_12px_32px_-6px_rgba(0,0,0,0.06)] p-4 sm:p-6">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
               {METRICS_BAR.map((item, idx) => (
                 <div key={idx} className={`flex flex-col ${idx > 0 ? "pt-3 sm:pt-0 sm:pl-6" : ""}`}>
@@ -231,7 +217,7 @@ export const DigitalMarketingHero: React.FC<DigitalMarketingHeroProps> = ({ onOp
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

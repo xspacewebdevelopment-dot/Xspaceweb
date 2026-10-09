@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       "lucide-react",
       "framer-motion",
       "react-icons",
+      "three",
+      "gsap",
+      "embla-carousel-react",
     ],
   },
   images: {

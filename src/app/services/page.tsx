@@ -1,17 +1,32 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  ServicesHeroSection,
-  ServicesSolutionsSection,
-  ServicesCosmicContactSection,
-} from "@/components/services";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { ServicesHeroSection } from "@/components/services";
+
+const ServicesSolutionsSection = dynamic(
+  () => import("@/components/services/ServicesSolutionsSection").then((m) => m.ServicesSolutionsSection),
+  { ssr: true }
+);
+
+const ServicesCosmicContactSection = dynamic(
+  () => import("@/components/services/ServicesCosmicContactSection").then((m) => m.ServicesCosmicContactSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function ServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialEmail, setInitialEmail] = useState<string>("");
   const [initialService, setInitialService] = useState<string>("");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleOpenGeneralQuote = (email?: string) => {
     setInitialEmail(email || "");

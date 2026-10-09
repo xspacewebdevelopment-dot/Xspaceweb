@@ -1,11 +1,25 @@
 "use client";
 
-import React, { useState } from "react";
-import { AppDevHeroSection, AppDevProjectsSection } from "@/components/services/app-development";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { AppDevHeroSection } from "@/components/services/app-development";
+
+const AppDevProjectsSection = dynamic(
+  () => import("@/components/services/app-development/AppDevProjectsSection").then((m) => m.AppDevProjectsSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function AppDevelopmentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleStartProject = () => {
     setIsModalOpen(true);

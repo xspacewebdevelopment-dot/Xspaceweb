@@ -1,25 +1,70 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import {
   ScrollProgressBar,
   DigitalMarketingHero,
-  GrowthJourneySection,
-  GrowthShowcaseCarousel,
-  StickyFeaturesShowcase,
-  DataStreamTransition,
-  GrowthRetrievalEngine,
-  MarketingMetricsBento,
-  GrowthProcessSection,
-  MarketingFAQSection,
-  MarketingCTASection,
   BackgroundWord,
 } from "@/components/services/digital-marketing";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+
+const GrowthJourneySection = dynamic(
+  () => import("@/components/services/digital-marketing/GrowthJourneySection").then((m) => m.GrowthJourneySection),
+  { ssr: true }
+);
+
+const GrowthShowcaseCarousel = dynamic(
+  () => import("@/components/services/digital-marketing/GrowthShowcaseCarousel").then((m) => m.GrowthShowcaseCarousel),
+  { ssr: true }
+);
+
+const StickyFeaturesShowcase = dynamic(
+  () => import("@/components/services/digital-marketing/StickyFeaturesShowcase").then((m) => m.StickyFeaturesShowcase),
+  { ssr: true }
+);
+
+const DataStreamTransition = dynamic(
+  () => import("@/components/services/digital-marketing/DataStreamTransition").then((m) => m.DataStreamTransition),
+  { ssr: true }
+);
+
+const GrowthRetrievalEngine = dynamic(
+  () => import("@/components/services/digital-marketing/GrowthRetrievalEngine").then((m) => m.GrowthRetrievalEngine),
+  { ssr: true }
+);
+
+const MarketingMetricsBento = dynamic(
+  () => import("@/components/services/digital-marketing/MarketingMetricsBento").then((m) => m.MarketingMetricsBento),
+  { ssr: true }
+);
+
+const GrowthProcessSection = dynamic(
+  () => import("@/components/services/digital-marketing/GrowthProcessSection").then((m) => m.GrowthProcessSection),
+  { ssr: true }
+);
+
+const MarketingFAQSection = dynamic(
+  () => import("@/components/services/digital-marketing/MarketingFAQSection").then((m) => m.MarketingFAQSection),
+  { ssr: true }
+);
+
+const MarketingCTASection = dynamic(
+  () => import("@/components/services/digital-marketing/MarketingCTASection").then((m) => m.MarketingCTASection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function DigitalMarketingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialEmail, setInitialEmail] = useState<string>("");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleOpenConsultation = (email?: string) => {
     setInitialEmail(email || "");

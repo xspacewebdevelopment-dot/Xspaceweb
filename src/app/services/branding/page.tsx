@@ -1,27 +1,76 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import {
   CosmicParticleBackground,
   BrandScrollProgress,
   BrandEnvironmentalWord,
   RocketAssemblySection,
-  BrandGravityJourney,
-  BrandingPillarsBento,
-  BrandSystemEvolution,
-  BrandTrajectoryCarousel,
-  BrandCraftsmanshipShowcase,
-  BrandingCaseStudiesSection,
-  BrandingProcessSection,
-  BrandingTechStackSection,
-  BrandingFaqSection,
-  BrandingConsultationSection,
 } from "@/components/services/branding";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+
+const BrandGravityJourney = dynamic(
+  () => import("@/components/services/branding/BrandGravityJourney").then((m) => m.BrandGravityJourney),
+  { ssr: true }
+);
+
+const BrandingPillarsBento = dynamic(
+  () => import("@/components/services/branding/BrandingPillarsBento").then((m) => m.BrandingPillarsBento),
+  { ssr: true }
+);
+
+const BrandSystemEvolution = dynamic(
+  () => import("@/components/services/branding/BrandSystemEvolution").then((m) => m.BrandSystemEvolution),
+  { ssr: true }
+);
+
+const BrandTrajectoryCarousel = dynamic(
+  () => import("@/components/services/branding/BrandTrajectoryCarousel").then((m) => m.BrandTrajectoryCarousel),
+  { ssr: true }
+);
+
+const BrandCraftsmanshipShowcase = dynamic(
+  () => import("@/components/services/branding/BrandCraftsmanshipShowcase").then((m) => m.BrandCraftsmanshipShowcase),
+  { ssr: true }
+);
+
+const BrandingCaseStudiesSection = dynamic(
+  () => import("@/components/services/branding/BrandingCaseStudiesSection").then((m) => m.BrandingCaseStudiesSection),
+  { ssr: true }
+);
+
+const BrandingProcessSection = dynamic(
+  () => import("@/components/services/branding/BrandingProcessSection").then((m) => m.BrandingProcessSection),
+  { ssr: true }
+);
+
+const BrandingTechStackSection = dynamic(
+  () => import("@/components/services/branding/BrandingTechStackSection").then((m) => m.BrandingTechStackSection),
+  { ssr: true }
+);
+
+const BrandingFaqSection = dynamic(
+  () => import("@/components/services/branding/BrandingFaqSection").then((m) => m.BrandingFaqSection),
+  { ssr: true }
+);
+
+const BrandingConsultationSection = dynamic(
+  () => import("@/components/services/branding/BrandingConsultationSection").then((m) => m.BrandingConsultationSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function BrandingServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialService, setInitialService] = useState<string>("Brand Identity & Visual Architecture");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleOpenConsultation = (serviceName?: string) => {
     setInitialService(serviceName || "Brand Identity & Visual Architecture");

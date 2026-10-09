@@ -25,7 +25,7 @@ const services: ServiceItem[] = [
     number: "01",
     title: ["Digital", "Marketing"],
     description: "Performance-driven marketing to grow your brand online.",
-    href: "/services",
+    href: "/services/digital-marketing",
     iconGlowColor: "rgba(168, 85, 247, 0.15)",
     iconBorderColor: "rgba(168, 85, 247, 0.2)",
     iconBgColor: "bg-purple-50/70",
@@ -111,7 +111,7 @@ const services: ServiceItem[] = [
     number: "04",
     title: ["Studio XSW"],
     description: "Creative digital experiences, 3D art and visual production.",
-    href: "/services",
+    href: "/services/studio-xsw",
     iconGlowColor: "rgba(16, 185, 129, 0.15)",
     iconBorderColor: "rgba(16, 185, 129, 0.2)",
     iconBgColor: "bg-emerald-50/70",
@@ -158,17 +158,17 @@ const services: ServiceItem[] = [
     ),
   },
   {
-    id: "graphic-design",
+    id: "google-my-business",
     number: "06",
-    title: ["Graphic", "Design"],
-    description: "Creative designs that communicate your brand story.",
-    href: "/services",
-    iconGlowColor: "rgba(139, 92, 246, 0.15)",
-    iconBorderColor: "rgba(139, 92, 246, 0.2)",
-    iconBgColor: "bg-purple-50/70",
+    title: ["Google My", "Business"],
+    description: "Optimize and scale your Google Business Profile for local growth.",
+    href: "/services/google-my-business",
+    iconGlowColor: "rgba(234, 88, 12, 0.15)",
+    iconBorderColor: "rgba(234, 88, 12, 0.2)",
+    iconBgColor: "bg-amber-50/70",
     renderIcon: () => (
       <svg
-        className="w-7 h-7 text-[#8B5CF6]"
+        className="w-7 h-7 text-[#EA580C]"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -176,12 +176,9 @@ const services: ServiceItem[] = [
         strokeLinecap="round"
         strokeLinejoin="round"
       >
-        {/* Artist Palette */}
-        <circle cx="13.5" cy="6.5" r="1.5" fill="currentColor" />
-        <circle cx="17.5" cy="10.5" r="1.5" fill="currentColor" />
-        <circle cx="8.5" cy="7.5" r="1.5" fill="currentColor" />
-        <circle cx="6.5" cy="12.5" r="1.5" fill="currentColor" />
-        <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878.75.118 1.562-.438 1.562-1.2v-1.178c0-.828.672-1.5 1.5-1.5h1.5c4.418 0 8-3.582 8-8 0-5.523-4.477-10-10-10z" />
+        {/* Map Pin / Store Location */}
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0Z" />
+        <circle cx="12" cy="10" r="3" />
       </svg>
     ),
   },
@@ -234,6 +231,7 @@ export const ServicesSection: React.FC = () => {
             <Link
               key={service.id}
               href={service.href}
+              scroll={true}
               className="group relative rounded-[18px] sm:rounded-[20px] bg-white border border-slate-200/80 p-3.5 sm:p-5.5 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:bg-[#1668E8] hover:border-[#1668E8] hover:shadow-[0_20px_40px_-8px_rgba(22,104,232,0.38)] cursor-pointer select-none"
               style={{
                 boxShadow: "0 4px 20px -2px rgba(7, 21, 43, 0.04)",

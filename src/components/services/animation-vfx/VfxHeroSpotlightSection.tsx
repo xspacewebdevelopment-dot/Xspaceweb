@@ -147,10 +147,23 @@ export const VfxHeroSpotlightSection: React.FC<VfxHeroSpotlightSectionProps> = (
       back.style.webkitMaskImage = `url(${url})`;
     };
 
+    let lastRenderedX = -9999;
+    let lastRenderedY = -9999;
+
     const loop = () => {
-      smoothRef.current.x += (mouseRef.current.x - smoothRef.current.x) * 0.12;
-      smoothRef.current.y += (mouseRef.current.y - smoothRef.current.y) * 0.12;
-      render(smoothRef.current.x, smoothRef.current.y);
+      const dx = mouseRef.current.x - smoothRef.current.x;
+      const dy = mouseRef.current.y - smoothRef.current.y;
+      smoothRef.current.x += dx * 0.12;
+      smoothRef.current.y += dy * 0.12;
+
+      if (
+        Math.abs(smoothRef.current.x - lastRenderedX) > 0.4 ||
+        Math.abs(smoothRef.current.y - lastRenderedY) > 0.4
+      ) {
+        lastRenderedX = smoothRef.current.x;
+        lastRenderedY = smoothRef.current.y;
+        render(smoothRef.current.x, smoothRef.current.y);
+      }
       animFrameRef.current = requestAnimationFrame(loop);
     };
 
@@ -353,8 +366,8 @@ export const VfxHeroSpotlightSection: React.FC<VfxHeroSpotlightSectionProps> = (
                   alt=""
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, 640px"
                   className="object-contain select-none"
-                  unoptimized
                 />
               </div>
 

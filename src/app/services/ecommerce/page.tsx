@@ -1,23 +1,56 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  EcommerceScrollHero,
-  EcommerceMarketplacesSection,
-} from "@/components/services/ecommerce";
-import {
-  BrandingCreativeSection,
-  BrandingCaseStudiesSection,
-  BrandingProcessSection,
-  BrandingTechStackSection,
-  BrandingFaqSection,
-  BrandingConsultationSection,
-} from "@/components/services/branding";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { EcommerceScrollHero } from "@/components/services/ecommerce";
+
+const EcommerceMarketplacesSection = dynamic(
+  () => import("@/components/services/ecommerce").then((m) => m.EcommerceMarketplacesSection),
+  { ssr: true }
+);
+
+const BrandingCreativeSection = dynamic(
+  () => import("@/components/services/branding").then((m) => m.BrandingCreativeSection),
+  { ssr: true }
+);
+
+const BrandingCaseStudiesSection = dynamic(
+  () => import("@/components/services/branding").then((m) => m.BrandingCaseStudiesSection),
+  { ssr: true }
+);
+
+const BrandingProcessSection = dynamic(
+  () => import("@/components/services/branding").then((m) => m.BrandingProcessSection),
+  { ssr: true }
+);
+
+const BrandingTechStackSection = dynamic(
+  () => import("@/components/services/branding").then((m) => m.BrandingTechStackSection),
+  { ssr: true }
+);
+
+const BrandingFaqSection = dynamic(
+  () => import("@/components/services/branding").then((m) => m.BrandingFaqSection),
+  { ssr: true }
+);
+
+const BrandingConsultationSection = dynamic(
+  () => import("@/components/services/branding").then((m) => m.BrandingConsultationSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function EcommerceSolutionsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [initialService, setInitialService] = useState<string>("eCommerce Solutions & Omnichannel Launch");
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleLaunchStore = () => {
     setInitialService("eCommerce Solutions & Omnichannel Launch");

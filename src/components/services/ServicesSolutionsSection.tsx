@@ -72,6 +72,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/google-my-business"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
@@ -88,8 +89,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/gmb_mockup.jpg"
                     alt="Google My Business Phone Mockup"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -170,8 +172,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/laptop_mockup.jpg"
                     alt="Web Development Laptop Mockup"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -191,6 +194,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/web-development"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
@@ -218,6 +222,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/app-development"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
@@ -234,8 +239,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/mobile_phones.jpg"
                     alt="Mobile App Development Smartphones"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -285,8 +291,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/marketing_megaphone.jpg"
                     alt="Digital Marketing 3D Megaphone and Analytics"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -306,6 +313,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/digital-marketing"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
@@ -333,6 +341,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/branding"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Branding</span>
@@ -349,8 +358,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/branding_mockup.jpg"
                     alt="Branding Identity Stationery"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -396,6 +406,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
             <div className="lg:col-span-7 flex justify-center">
               <Link
                 href="/services/ui-ux"
+                scroll={true}
                 className="block relative w-full max-w-xs sm:max-w-sm h-48 sm:h-56 rounded-2xl overflow-hidden shadow-lg border border-slate-100 bg-white p-1.5 transition-transform duration-300 hover:scale-[1.02] cursor-pointer group"
               >
                 <div className="relative w-full h-full rounded-xl overflow-hidden">
@@ -403,8 +414,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/uiux_mockup.jpg"
                     alt="UI/UX Design for People App Mockup"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </Link>
@@ -424,6 +436,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/ui-ux"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore UI/UX</span>
@@ -451,6 +464,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/animation-vfx"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>
@@ -467,8 +481,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/vfx_astronaut.jpg"
                     alt="3D VFX Animation Astronaut"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                   {/* Floating Video Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -531,8 +546,9 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
                     src="/images/services/studio_xsw.webp"
                     alt="Studio XSW Visual & Cinematic Archive"
                     fill
+                    sizes="(max-width: 640px) 280px, 384px"
                     className="object-cover"
-                    unoptimized
+                    loading="lazy"
                   />
                 </div>
               </div>
@@ -568,6 +584,7 @@ export const ServicesSolutionsSection: React.FC<ServicesSolutionsSectionProps> =
               <div className="pt-1">
                 <Link
                   href="/services/studio-xsw"
+                  scroll={true}
                   className="inline-flex items-center gap-1.5 text-[#1668E8] font-bold text-xs sm:text-sm hover:text-[#1255C0] transition-colors group cursor-pointer"
                 >
                   <span>Explore Service</span>

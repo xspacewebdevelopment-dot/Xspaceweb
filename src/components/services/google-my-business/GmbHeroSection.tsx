@@ -50,13 +50,14 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
           muted
           loop
           playsInline
+          preload="metadata"
           className="w-full h-full object-cover opacity-100 filter saturate-[1.18] contrast-[1.04]"
         >
-          <source src="/videos/hero-trees.mp4" type="video/mp4" />
           <source
             src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6.mp4"
             type="video/mp4"
           />
+          <source src="/videos/hero-trees.mp4" type="video/mp4" />
         </video>
 
         {/* Soft center backlight only — ensures text readability without diminishing the side trees */}
@@ -73,16 +74,11 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
       </div>
 
       {/* ══════════════════════════════════════════════════════════════
-          2. MAIN CONTENT (Framer Motion Staggered Animations)
+          2. MAIN CONTENT
           ══════════════════════════════════════════════════════════════ */}
       <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-6 flex flex-col items-center text-center">
         {/* Badge 1: Top Pill */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="mb-5 sm:mb-6"
-        >
+        <div className="mb-5 sm:mb-6">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200/90 bg-white/95 px-4 py-1.5 text-xs sm:text-sm text-slate-700 shadow-xs backdrop-blur-md">
             <span className="flex h-2 w-2 rounded-full bg-[#1668E8] animate-pulse" />
             <span className="font-medium text-[#0A1128]">
@@ -90,15 +86,10 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
             </span>
             <span className="text-[#1668E8] font-bold">✨</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Headline with Instrument Serif */}
-        <motion.h1
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[0.98] tracking-[-0.03em] text-[#0A1128] max-w-4xl font-normal"
-        >
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] leading-[0.98] tracking-[-0.03em] text-[#0A1128] max-w-4xl font-normal">
           Turn Google Searches Into{" "}
           <span
             className="italic font-normal text-[#1668E8]"
@@ -107,25 +98,15 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
             Paying
           </span>{" "}
           Customers.
-        </motion.h1>
+        </h1>
 
         {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-slate-600 max-w-[680px] leading-relaxed"
-        >
+        <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-slate-600 max-w-[680px] leading-relaxed">
           We optimize, protect, and scale your Google Business Profile to rank #1 on Google Maps. Capture high-intent nearby customers searching for your services today.
-        </motion.p>
+        </p>
 
         {/* CTA Buttons Row */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-3.5"
-        >
+        <div className="mt-6 sm:mt-7 flex flex-wrap items-center justify-center gap-3.5">
           {/* Primary CTA */}
           <button
             type="button"
@@ -148,15 +129,10 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
             </div>
             <span>See 3-Stage Process</span>
           </button>
-        </motion.div>
+        </div>
 
         {/* Micro-Social Proof */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-500"
-        >
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-500">
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-500" />
             <span>Guaranteed Local 3-Pack Placement</span>
@@ -171,18 +147,13 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
             <TrendingUp className="w-4 h-4 text-emerald-500" />
             <span>Average +340% Call Increase</span>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════════════
           3. DASHBOARD PREVIEW WRAPPER (Frosted Glass Container)
           ══════════════════════════════════════════════════════════════ */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 -mb-16 sm:-mb-24 lg:-mb-32"
-      >
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 -mb-16 sm:-mb-24 lg:-mb-32">
         <div
           className="relative rounded-2xl sm:rounded-3xl overflow-hidden p-2.5 sm:p-4 backdrop-blur-xl transition-all duration-300"
           style={{
@@ -217,8 +188,8 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
               alt="Google Business Profile Analytics Dashboard - XSPACEWEB"
               fill
               priority
+              sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-cover"
-              unoptimized
             />
 
             {/* Interactive Floating Micro-Badges on Top of Mockup */}
@@ -234,7 +205,7 @@ export const GmbHeroSection: React.FC<GmbHeroSectionProps> = ({
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };

@@ -1,14 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  UiUxHeroSection,
-  UiUxStackTransitionSection,
-  UiUxProjectShowcaseSection,
-  UiUxServicesSection,
-  UiUxPostStageBuffer,
-} from "@/components/services/ui-ux";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { UiUxHeroSection } from "@/components/services/ui-ux";
+
+const UiUxStackTransitionSection = dynamic(
+  () => import("@/components/services/ui-ux/UiUxStackTransitionSection").then((m) => m.UiUxStackTransitionSection),
+  { ssr: true }
+);
+
+const UiUxProjectShowcaseSection = dynamic(
+  () => import("@/components/services/ui-ux/UiUxProjectShowcaseSection").then((m) => m.UiUxProjectShowcaseSection),
+  { ssr: true }
+);
+
+const UiUxServicesSection = dynamic(
+  () => import("@/components/services/ui-ux/UiUxServicesSection").then((m) => m.UiUxServicesSection),
+  { ssr: true }
+);
+
+const UiUxPostStageBuffer = dynamic(
+  () => import("@/components/services/ui-ux/UiUxPostStageBuffer").then((m) => m.UiUxPostStageBuffer),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 /**
  * Dedicated UI/UX Service Page
@@ -31,6 +50,10 @@ import { ProjectModal } from "@/components/shared/ProjectModal";
  */
 export default function UiUxServicePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleStartProject = () => {
     setIsModalOpen(true);

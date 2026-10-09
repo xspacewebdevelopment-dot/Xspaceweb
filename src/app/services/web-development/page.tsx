@@ -1,17 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
-import {
-  WebDevHeroSection,
-  WebDevCapabilitiesSection,
-  WebDevProjectsSection,
-  WebDevTechStackSection,
-  WebDevProcessSection,
-} from "@/components/services/web-development";
-import { ProjectModal } from "@/components/shared/ProjectModal";
+import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { WebDevHeroSection } from "@/components/services/web-development";
+
+const WebDevCapabilitiesSection = dynamic(
+  () => import("@/components/services/web-development/WebDevCapabilitiesSection").then((m) => m.WebDevCapabilitiesSection),
+  { ssr: true }
+);
+
+const WebDevProjectsSection = dynamic(
+  () => import("@/components/services/web-development/WebDevProjectsSection").then((m) => m.WebDevProjectsSection),
+  { ssr: true }
+);
+
+const WebDevTechStackSection = dynamic(
+  () => import("@/components/services/web-development/WebDevTechStackSection").then((m) => m.WebDevTechStackSection),
+  { ssr: true }
+);
+
+const WebDevProcessSection = dynamic(
+  () => import("@/components/services/web-development/WebDevProcessSection").then((m) => m.WebDevProcessSection),
+  { ssr: true }
+);
+
+const ProjectModal = dynamic(
+  () => import("@/components/shared/ProjectModal").then((m) => m.ProjectModal),
+  { ssr: false }
+);
 
 export default function WebDevelopmentPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
 
   const handleStartProject = () => {
     setIsModalOpen(true);

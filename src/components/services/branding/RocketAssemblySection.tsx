@@ -303,7 +303,7 @@ export const RocketAssemblySection: React.FC<RocketAssemblySectionProps> = ({
               loop
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               className={`absolute w-full h-full object-contain transition-opacity duration-500 ${
                 isStaticTop ? "opacity-100 z-12" : "opacity-0 z-0 pointer-events-none"
               }`}
