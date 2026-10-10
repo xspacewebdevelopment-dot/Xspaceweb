@@ -32,9 +32,6 @@ const StudioXSWSection = dynamic(() =>
 const TechnologiesSection = dynamic(() =>
   import("@/components/home/TechnologiesSection").then((mod) => mod.TechnologiesSection)
 );
-const SpidermanBannerSection = dynamic(() =>
-  import("@/components/home/SpidermanBannerSection").then((mod) => mod.SpidermanBannerSection)
-);
 const TrustedBusinessesSection = dynamic(() =>
   import("@/components/home/TrustedBusinessesSection").then((mod) => mod.TrustedBusinessesSection)
 );
@@ -87,7 +84,6 @@ export default async function Home() {
         <StudioXSWSection />
       </div>
       <TechnologiesSection />
-      <SpidermanBannerSection />
       <TrustedBusinessesSection />
       <TestimonialsSection initialReviews={clientReviews} />
       <SelectedWorkSection />
