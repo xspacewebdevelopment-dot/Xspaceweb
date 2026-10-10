@@ -131,26 +131,26 @@ export const WebDevProcessSection: React.FC = () => {
   return (
     <section
       id="development-lifecycle"
-      className="relative w-full bg-[#020204] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/5"
+      className="relative w-full bg-white text-slate-900 py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-slate-200/80"
     >
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#38BDF8] mb-4">
-              <Rocket className="w-3.5 h-3.5 text-[#38BDF8]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-xs font-mono text-blue-700 mb-4">
+              <Rocket className="w-3.5 h-3.5 text-blue-600" />
               <span className="tracking-wider uppercase">Engineering Delivery Track</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
               Disciplined 5-Stage Engineering Pipeline.
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-400 leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
               We replace guesswork with repeatable software engineering practices: strict Git branching, automated CI testing, and blue-green rollouts.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
-            <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+          <div className="flex items-center gap-2 font-mono text-xs text-blue-700">
+            <span className="px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 font-semibold">
               Zero-Downtime Guarantee
             </span>
           </div>
@@ -167,33 +167,37 @@ export const WebDevProcessSection: React.FC = () => {
                 onClick={() => setActiveStepIndex(idx)}
                 className={`relative text-left p-4 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? "bg-white/[0.08] border-[#38BDF8] shadow-[0_0_20px_rgba(56,189,248,0.18)]"
-                    : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
+                    ? "bg-blue-50/70 border-blue-600 shadow-[0_4px_20px_rgba(37,99,235,0.12)] ring-1 ring-blue-600"
+                    : "bg-slate-50 border-slate-200/80 hover:border-blue-300 hover:bg-white"
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-xs font-bold text-slate-500">
+                    <span className="font-mono text-xs font-bold text-slate-400">
                       STAGE {step.step}
                     </span>
                     <div
-                      className={`w-7 h-7 rounded-lg flex items-center justify-center ${
-                        isSelected ? "bg-[#38BDF8] text-black" : "bg-white/5 text-slate-400"
+                      className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors ${
+                        isSelected ? "bg-blue-600 text-white shadow-sm" : "bg-white border border-slate-200 text-slate-500"
                       }`}
                     >
                       <Icon className="w-3.5 h-3.5" />
                     </div>
                   </div>
                   <h3
-                    className={`text-xs sm:text-sm font-bold line-clamp-2 ${
-                      isSelected ? "text-white" : "text-slate-300"
+                    className={`text-xs sm:text-sm font-bold line-clamp-2 transition-colors ${
+                      isSelected ? "text-slate-900" : "text-slate-700"
                     }`}
                   >
                     {step.title}
                   </h3>
                 </div>
 
-                <span className="text-[10.5px] font-mono text-[#38BDF8] mt-2 block">
+                <span
+                  className={`text-[10.5px] font-mono mt-2 block transition-colors ${
+                    isSelected ? "text-blue-600 font-semibold" : "text-slate-500"
+                  }`}
+                >
                   {step.badge}
                 </span>
               </button>
@@ -202,40 +206,40 @@ export const WebDevProcessSection: React.FC = () => {
         </div>
 
         {/* Active Stage Deep-Dive Card */}
-        <div className="p-6 sm:p-10 rounded-2xl bg-[#090c12] border border-white/10 shadow-2xl">
+        <div className="p-6 sm:p-10 rounded-2xl bg-gradient-to-b from-white to-slate-50 border border-slate-200/90 shadow-xl shadow-slate-200/50">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Stage Details */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex items-center gap-3">
-                <span className="text-3xl sm:text-4xl font-mono font-black text-[#38BDF8]">
+                <span className="text-3xl sm:text-4xl font-mono font-black text-blue-600">
                   {currentStep.step}
                 </span>
                 <div>
-                  <span className="text-xs font-mono uppercase text-slate-400 tracking-wider">
+                  <span className="text-xs font-mono uppercase text-slate-500 tracking-wider">
                     {currentStep.badge}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
                     {currentStep.title}
                   </h3>
                 </div>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                 {currentStep.deepDive}
               </p>
 
               {/* Tangible Deliverables */}
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-400 block mb-3">
+                <span className="text-xs font-mono uppercase tracking-wider text-slate-500 block mb-3">
                   STAGE DELIVERABLES & ARTIFACTS
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {currentStep.deliverables.map((item, dIdx) => (
                     <div
                       key={dIdx}
-                      className="flex items-center gap-2 p-2.5 rounded-lg bg-white/[0.03] border border-white/5 text-xs text-slate-200"
+                      className="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200/80 text-xs text-slate-700 shadow-xs"
                     >
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -245,8 +249,8 @@ export const WebDevProcessSection: React.FC = () => {
 
             {/* Right Column: Terminal CI/CD Preview */}
             <div className="lg:col-span-5">
-              <div className="rounded-xl bg-[#05070a] border border-white/10 overflow-hidden shadow-lg">
-                <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#0e121a] border-b border-white/10">
+              <div className="rounded-xl bg-[#0a0f1d] border border-slate-800 overflow-hidden shadow-lg">
+                <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#0f172a] border-b border-slate-800">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/80" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/80" />
@@ -266,7 +270,7 @@ export const WebDevProcessSection: React.FC = () => {
                       <div className="text-emerald-400 pl-3">{log.output}</div>
                     </div>
                   ))}
-                  <div className="pt-2 border-t border-white/5 text-slate-500">
+                  <div className="pt-2 border-t border-slate-800 text-slate-500">
                     [Pipeline Status: READY TO ADVANCE]
                   </div>
                 </div>

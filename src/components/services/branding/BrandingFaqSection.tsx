@@ -53,30 +53,30 @@ export const BrandingFaqSection: React.FC<BrandingFaqSectionProps> = ({
   return (
     <section
       id="brand-faqs"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40"
     >
       {/* Background Cosmic Atmosphere */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/3 left-10 w-[600px] h-[600px] rounded-full bg-purple-700/10 blur-[170px]" />
+        <div className="absolute top-1/3 left-10 w-[600px] h-[600px] rounded-full bg-blue-700/10 blur-[170px]" />
         <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] rounded-full bg-cyan-700/10 blur-[170px]" />
       </div>
 
       <Container size="wide" className="relative z-10 max-w-4xl space-y-16">
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-purple-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
-            <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+            <HelpCircle className="w-3.5 h-3.5 text-cyan-400" />
             <span>EXECUTIVE QUESTIONS &amp; ARCHITECTURAL CLARITY</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
             Frequently Addressed <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
               Brand Architecture Inquiries.
             </span>
           </h2>
 
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             Everything you need to know about deliverables, IP legal ownership, file formats, and timelines before launching your brand sprint.
           </p>
         </div>
@@ -91,8 +91,8 @@ export const BrandingFaqSection: React.FC<BrandingFaqSectionProps> = ({
                 key={idx}
                 className={`rounded-2xl border backdrop-blur-2xl transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? "bg-slate-950/85 border-cyan-500/40 shadow-[0_10px_30px_rgba(56,189,248,0.15)]"
-                    : "bg-slate-950/60 border-slate-800/80 hover:border-slate-700"
+                    ? "bg-[#07112b]/90 border-cyan-500/50 shadow-[0_10px_30px_rgba(6,182,212,0.15)]"
+                    : "bg-[#07112b]/60 border-blue-900/60 hover:border-blue-700"
                 }`}
               >
                 <button

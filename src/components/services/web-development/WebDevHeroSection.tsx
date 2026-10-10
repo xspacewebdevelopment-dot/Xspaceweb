@@ -39,7 +39,7 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
       alpha: false,
       powerPreference: "high-performance",
     });
-    renderer.setClearColor(0x020204, 1);
+    renderer.setClearColor(0xffffff, 1);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
@@ -186,12 +186,17 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
         vec3 l1 = normalize(-uLight);
         vec3 l2 = normalize(-vec3(1.0, 1.0, -1.0));
         float spec = specFunc(n, l1, view, uShininess, uDiffuseness) + 0.6 * specFunc(n, l2, view, uShininess * 0.6, uDiffuseness * 0.5);
-        color += spec * (uBackside > 0.5 ? 0.35 : 1.0);
 
+        // Subtle optical crystal transmission tint for elegant silhouette against white
+        color = color * vec3(0.95, 0.97, 1.0);
+
+        // Specular highlight gleam on facets
+        color += spec * (uBackside > 0.5 ? 0.35 : 0.85);
+
+        // Fresnel reflection: subtle sky blue glass rim reflection
         float f = pow(clamp(1.0 + dot(eye, n), 0.0, 1.0), uFresnelPower);
-        color = mix(color, vec3(1.0), f * (uBackside > 0.5 ? 0.25 : 0.55));
+        color = mix(color, vec3(0.82, 0.91, 1.0), f * (uBackside > 0.5 ? 0.2 : 0.45));
 
-        color += vec3(0.004, 0.005, 0.007);
         gl_FragColor = vec4(color, 1.0);
         #include <colorspace_fragment>
       }
@@ -300,7 +305,8 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
       textCtx.save();
       textCtx.scale(dpr, dpr);
 
-      textCtx.fillStyle = "#020204";
+      // Pristine white backdrop for crisp high-contrast refraction
+      textCtx.fillStyle = "#ffffff";
       textCtx.fillRect(0, 0, W, H);
 
       const mobile = W < 768 || W / H < 1;
@@ -325,12 +331,12 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
       const gap = fs * 1.07;
       const cap = fs * 0.7;
 
-      textCtx.fillStyle = "#e9e9e9";
       textCtx.textAlign = "center";
       textCtx.textBaseline = "alphabetic";
 
       for (let i = 0; i < lines.length; i++) {
         const y = cy + cap / 2 + (i - 1) * gap;
+        textCtx.fillStyle = lines[i] === "Build" ? "#0f172a" : "#1e293b";
         textCtx.fillText(lines[i], cx, y);
       }
 
@@ -599,7 +605,7 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
   return (
     <section
       ref={containerRef}
-      className={`relative w-full h-[calc(100vh-72px)] min-h-[640px] max-h-[1050px] overflow-hidden bg-[#020204] text-white select-none ${className}`}
+      className={`relative w-full h-[calc(100vh-72px)] min-h-[640px] max-h-[1050px] overflow-hidden bg-white text-slate-900 select-none ${className}`}
     >
       {/* Three.js Refraction Canvas */}
       <canvas
@@ -609,13 +615,25 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
         aria-label="Interactive 3D glass cuboid. Drag to rotate."
       />
 
+      {/* Subtle Atmospheric Blue Radiance Glow */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[550px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(14, 165, 233, 0.03) 40%, transparent 70%)",
+            filter: "blur(70px)",
+          }}
+        />
+      </div>
+
       {/* UI Overlay Layer */}
       <div className="absolute inset-0 pointer-events-none z-10 flex flex-col justify-between p-[clamp(20px,6.95vw,120px)]">
         {/* Top Header / Kicker Badge */}
         <div className="flex items-center justify-between w-full">
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.5)] backdrop-blur-md pointer-events-auto">
-            <Code2 className="w-4 h-4 text-[#38BDF8]" />
-            <span className="text-[11px] font-semibold tracking-[0.2em] text-[#38BDF8] uppercase font-mono">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-blue-50/90 border border-blue-200/80 shadow-sm backdrop-blur-md pointer-events-auto">
+            <Code2 className="w-4 h-4 text-blue-600" />
+            <span className="text-[11px] font-semibold tracking-[0.2em] text-blue-700 uppercase font-mono">
               XSPACEWEB // WEB ENGINEERING LAB
             </span>
           </div>
@@ -624,14 +642,14 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
           <div className="flex items-center gap-3 sm:gap-6 pointer-events-auto">
             <button
               onClick={handlePrev}
-              className="w-10 h-10 rounded-full border-2 border-white/90 bg-black/30 backdrop-blur-md text-white flex items-center justify-center transition-all duration-200 hover:bg-white hover:text-black cursor-pointer shadow-lg active:scale-95"
+              className="w-10 h-10 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md text-slate-700 flex items-center justify-center transition-all duration-200 hover:bg-blue-600 hover:border-blue-600 hover:text-white cursor-pointer shadow-sm hover:shadow-md hover:shadow-blue-500/20 active:scale-95"
               aria-label="Rotate cube left"
             >
               <ArrowLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
-              className="w-10 h-10 rounded-full border-2 border-white/90 bg-black/30 backdrop-blur-md text-white flex items-center justify-center transition-all duration-200 hover:bg-white hover:text-black cursor-pointer shadow-lg active:scale-95"
+              className="w-10 h-10 rounded-full border border-slate-200 bg-white/90 backdrop-blur-md text-slate-700 flex items-center justify-center transition-all duration-200 hover:bg-blue-600 hover:border-blue-600 hover:text-white cursor-pointer shadow-sm hover:shadow-md hover:shadow-blue-500/20 active:scale-95"
               aria-label="Rotate cube right"
             >
               <ArrowRight className="w-4 h-4" />
@@ -645,8 +663,10 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
             <button
               key={idx}
               onClick={() => setActiveDot(idx)}
-              className={`w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 border-white transition-all duration-200 cursor-pointer ${
-                activeDot === idx ? "bg-transparent scale-110 shadow-[0_0_8px_rgba(255,255,255,0.8)]" : "bg-white"
+              className={`w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full border-2 transition-all duration-200 cursor-pointer ${
+                activeDot === idx
+                  ? "border-blue-600 bg-blue-600 scale-125 shadow-md shadow-blue-500/30"
+                  : "border-slate-300 bg-slate-200 hover:bg-slate-300 hover:border-slate-400"
               }`}
               aria-label={`Select frame ${idx + 1}`}
             />
@@ -656,11 +676,11 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
         {/* Bottom Tagline & CTA Row */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between w-full gap-6">
           {/* Tagline */}
-          <p className="text-[clamp(24px,2.65vw,44px)] font-light leading-[1.2] tracking-[-0.01em] text-white max-w-lg">
+          <p className="text-[clamp(24px,2.65vw,44px)] font-light leading-[1.2] tracking-[-0.01em] text-slate-900 max-w-lg">
             Let&apos;s Build the
             <br />
             Future of{" "}
-            <strong className="font-extrabold text-white block sm:inline bg-gradient-to-r from-white via-slate-100 to-[#38BDF8] bg-clip-text text-transparent">
+            <strong className="font-extrabold text-transparent block sm:inline bg-gradient-to-r from-blue-700 via-blue-600 to-sky-500 bg-clip-text">
               Web Development.
             </strong>
           </p>
@@ -670,15 +690,15 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
             <a
               href="#featured-web-projects"
               onClick={handleScrollToProjects}
-              className="px-5 h-12 inline-flex items-center justify-center rounded-lg border-[1.5px] border-white/90 bg-black/40 backdrop-blur-md text-white font-medium text-sm transition-all duration-200 hover:bg-white hover:text-black shadow-lg cursor-pointer flex-shrink-0"
+              className="px-6 h-12 inline-flex items-center justify-center rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:shadow-blue-600/25 cursor-pointer flex-shrink-0 active:scale-[0.98]"
             >
               Explore Web Projects
             </a>
-            <span className="flex-1 h-[1.5px] bg-white/70 min-w-[30px]" />
+            <span className="flex-1 h-[1.5px] bg-slate-200 min-w-[30px]" />
             <span
               className="text-[clamp(90px,14vw,200px)] font-normal leading-none tracking-[-0.02em] text-transparent select-none translate-y-[6%]"
               style={{
-                WebkitTextStroke: "1.5px rgba(255, 255, 255, 0.85)",
+                WebkitTextStroke: "1.5px rgba(37, 99, 235, 0.35)",
               }}
               aria-hidden="true"
             >
@@ -690,7 +710,7 @@ export const WebDevHeroSection: React.FC<WebDevHeroSectionProps> = ({
 
       {/* Model Loading Indicator */}
       {!isLoaded && (
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs uppercase tracking-[0.2em] text-slate-400 pointer-events-none animate-pulse">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs uppercase tracking-[0.2em] text-blue-600 pointer-events-none animate-pulse font-mono">
           Loading 3D Optics Engine...
         </div>
       )}

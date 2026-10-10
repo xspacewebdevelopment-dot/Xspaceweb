@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import ImageGallery from "@/components/ui/image-gallery";
 import { Container } from "@/components/shared/ui/Container";

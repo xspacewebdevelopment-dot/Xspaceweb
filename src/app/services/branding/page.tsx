@@ -6,7 +6,7 @@ import {
   CosmicParticleBackground,
   BrandScrollProgress,
   BrandEnvironmentalWord,
-  RocketAssemblySection,
+  BrandIdentityHeroSection,
 } from "@/components/services/branding";
 
 const BrandGravityJourney = dynamic(
@@ -78,16 +78,16 @@ export default function BrandingServicesPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#02040c] text-white selection:bg-[#38bdf8] selection:text-[#02040c] relative">
+    <div className="w-full min-h-screen bg-[#020817] text-white selection:bg-cyan-500 selection:text-[#020817] relative">
       {/* Page-Wide Mission Telemetry Scroll Progress Line (Directly Below Global Navbar) */}
       <BrandScrollProgress />
 
-      {/* Global Persistent Cosmic Starfield & Floating Space Particles */}
+      {/* Global Clean Ambient Grid & Radiance Mesh */}
       <CosmicParticleBackground />
 
       <div className="relative z-10 w-full">
-        {/* 1. Cinematic Rocket Frame-by-Frame Scroll Assembly Hero (70 Frames, Zero Black-Gap, Fully Visible Tip) */}
-        <RocketAssemblySection
+        {/* 1. Interactive 4-Stage Vector Geometry & Living Design System Hero */}
+        <BrandIdentityHeroSection
           onLaunchStore={() => handleOpenConsultation("Brand Identity & Visual Architecture")}
           onMarketplaceConsultation={() => handleOpenConsultation("Enterprise Brand Audit")}
           onOpenConsultation={handleOpenConsultation}

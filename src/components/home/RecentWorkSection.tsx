@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/shared/ui/Container";
 
 export interface WorkCardItem {
@@ -108,7 +107,6 @@ const filterOptions = ["All", "SaaS", "Branding", "E-commerce", "UI/UX", "Fintec
 
 export const RecentWorkSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>("All");
-  const shouldReduceMotion = useReducedMotion();
 
   const featured = recentWorks[0]; // MakeGSTBill
   const goldenGst = recentWorks[1];
@@ -217,13 +215,8 @@ export const RecentWorkSection: React.FC = () => {
           {/* TOP GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-stretch">
             {/* 1. MakeGSTBill (Featured - 7 Columns) */}
-            <motion.article
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-              whileHover={shouldReduceMotion ? undefined : { y: -3 }}
-              className={`lg:col-span-7 group flex flex-col transition-all duration-500 ${
+            <article
+              className={`lg:col-span-7 group flex flex-col transition-all duration-300 hover:-translate-y-1 ${
                 !isProjectActive(featured) ? "grayscale contrast-[105%] pointer-events-none" : "grayscale-0 opacity-100"
               }`}
             >
@@ -276,23 +269,14 @@ export const RecentWorkSection: React.FC = () => {
                   </div>
                 </div>
               </Link>
-            </motion.article>
+            </article>
 
             {/* 2. Supporting Column (5 Columns: GoldenGST & Dravanta Nexus) */}
             <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5 lg:gap-6 justify-between">
-              {[goldenGst, dravanta].map((work, idx) => (
-                <motion.article
+              {[goldenGst, dravanta].map((work) => (
+                <article
                   key={work.id}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: (idx + 1) * 0.06,
-                    ease: [0.21, 0.47, 0.32, 0.98],
-                  }}
-                  whileHover={shouldReduceMotion ? undefined : { y: -3 }}
-                  className={`group flex flex-col transition-all duration-500 ${
+                  className={`group flex flex-col transition-all duration-300 hover:-translate-y-1 ${
                     !isProjectActive(work) ? "grayscale contrast-[105%] pointer-events-none" : "grayscale-0 opacity-100"
                   }`}
                 >
@@ -343,26 +327,17 @@ export const RecentWorkSection: React.FC = () => {
                       </div>
                     </div>
                   </Link>
-                </motion.article>
+                </article>
               ))}
             </div>
           </div>
 
           {/* BOTTOM ROW: 3 Compact Cards (FreeDeskPro, Modhuralap, SimpleKaam) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-            {bottomRow.map((work, idx) => (
-              <motion.article
+            {bottomRow.map((work) => (
+              <article
                 key={work.id}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.6,
-                  delay: (idx + 3) * 0.06,
-                  ease: [0.21, 0.47, 0.32, 0.98],
-                }}
-                whileHover={shouldReduceMotion ? undefined : { y: -3 }}
-                className={`group flex flex-col transition-all duration-500 ${
+                className={`group flex flex-col transition-all duration-300 hover:-translate-y-1 ${
                   !isProjectActive(work) ? "grayscale contrast-[105%] pointer-events-none" : "grayscale-0 opacity-100"
                 }`}
               >
@@ -413,7 +388,7 @@ export const RecentWorkSection: React.FC = () => {
                     </div>
                   </div>
                 </Link>
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>

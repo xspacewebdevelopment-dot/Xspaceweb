@@ -52,10 +52,10 @@ export const BrandEnvironmentalWord: React.FC<BrandEnvironmentalWordProps> = ({
       className={`relative w-full overflow-hidden pointer-events-none select-none flex items-center justify-center my-[-40px] sm:my-[-60px] z-0 ${className}`}
     >
       <span
-        className="text-[18vw] sm:text-[16vw] font-black uppercase tracking-tight text-white/5 whitespace-nowrap will-change-transform leading-none"
+        className="text-[18vw] sm:text-[16vw] font-black uppercase tracking-tight text-white/[0.05] whitespace-nowrap will-change-transform leading-none select-none"
         style={{
           transform: `translate3d(0, ${translateY}px, 0)`,
-          opacity: 0.038,
+          opacity: 0.06,
         }}
       >
         {word}

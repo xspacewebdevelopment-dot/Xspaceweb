@@ -186,31 +186,8 @@ export const HeroSection: React.FC = () => {
               </motion.div>
 
               {/* Floating Signal 1: Verified Badge (Desktop only) */}
-              <motion.div
-                initial={{ opacity: 0, y: 14, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block absolute -left-1 sm:left-1 md:left-3 top-[38%] sm:top-[42%] z-30 select-none pointer-events-auto"
-              >
-                <motion.div
-                  animate={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          y: [0, -4, 0],
-                        }
-                  }
-                  transition={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          duration: 6.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }
-                  }
-                >
+              <div className="hidden md:block absolute -left-1 sm:left-1 md:left-3 top-[38%] sm:top-[42%] z-30 select-none pointer-events-auto">
+                <div className="animate-float-slow">
                   <div className="w-[185px] sm:w-[195px] flex items-center gap-2.5 px-3.5 py-2.5 rounded-[20px] bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_18px_45px_rgba(24,70,130,0.10)] transition-transform hover:scale-105">
                     <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#2957E8] flex-shrink-0">
                       <ShieldCheck className="w-4 h-4 stroke-[2.2]" />
@@ -227,35 +204,12 @@ export const HeroSection: React.FC = () => {
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* Floating Signal 2: Rating Pill Badge (Desktop only) */}
-              <motion.div
-                initial={{ opacity: 0, y: -12, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block absolute right-12 sm:right-24 md:right-32 top-2 sm:top-5 z-30 select-none pointer-events-auto"
-              >
-                <motion.div
-                  animate={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          y: [0, 4, 0],
-                        }
-                  }
-                  transition={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          duration: 7.5,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }
-                  }
-                >
+              <div className="hidden md:block absolute right-12 sm:right-24 md:right-32 top-2 sm:top-5 z-30 select-none pointer-events-auto">
+                <div className="animate-float-reverse">
                   <div className="h-[42px] sm:h-[46px] inline-flex items-center gap-2 px-4 sm:px-5 rounded-full bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_14px_35px_rgba(24,70,130,0.10)] transition-transform hover:scale-105">
                     <div className="flex items-center gap-0.5">
                       {[...Array(5)].map((_, i) => (
@@ -266,35 +220,12 @@ export const HeroSection: React.FC = () => {
                       4.9
                     </span>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* Floating Signal 3: Happy Clients Badge (Desktop only) */}
-              <motion.div
-                initial={{ opacity: 0, y: 14, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.56, ease: [0.22, 1, 0.36, 1] }}
-                className="hidden md:block absolute -right-1 sm:right-1 md:right-3 top-[46%] sm:top-[50%] z-30 select-none pointer-events-auto"
-              >
-                <motion.div
-                  animate={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          y: [0, -4, 0],
-                        }
-                  }
-                  transition={
-                    shouldReduceMotion
-                      ? undefined
-                      : {
-                          duration: 6.0,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }
-                  }
-                >
+              <div className="hidden md:block absolute -right-1 sm:right-1 md:right-3 top-[46%] sm:top-[50%] z-30 select-none pointer-events-auto">
+                <div className="animate-float-slow">
                   <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-[20px] bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_18px_45px_rgba(24,70,130,0.10)] transition-transform hover:scale-105">
                     <div className="flex -space-x-1.5 overflow-hidden">
                       <div className="inline-block h-6 w-6 rounded-full ring-2 ring-white bg-gradient-to-tr from-blue-600 to-indigo-500 text-white text-[9px] font-bold flex items-center justify-center">
@@ -316,8 +247,8 @@ export const HeroSection: React.FC = () => {
                       </span>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
 
               {/* Main Visual: women.webp (Woman sitting on 3D search bar podium) */}
               <div className="relative w-full flex items-center justify-center pt-2 sm:pt-4">

@@ -29,25 +29,25 @@ export const CosmicParticleBackground: React.FC = () => {
     let height = (canvas.height = window.innerHeight);
 
     const colors = [
-      "rgba(56, 189, 248, ", // cyan
-      "rgba(168, 85, 247, ", // purple
-      "rgba(99, 102, 241, ", // indigo
-      "rgba(255, 255, 255, ", // starlight white
-      "rgba(147, 197, 253, ", // ice blue
+      "rgba(56, 189, 248, ", // bright cyan
+      "rgba(96, 165, 250, ", // light sky blue
+      "rgba(129, 140, 248, ", // electric indigo
+      "rgba(255, 255, 255, ", // brilliant star white
+      "rgba(37, 99, 235, ", // vibrant royal blue
     ];
 
-    const particleCount = Math.floor(Math.min(140, Math.max(70, width / 14)));
+    const particleCount = Math.floor(Math.min(100, Math.max(50, width / 20)));
     const particles: Particle[] = [];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        size: Math.random() * 1.8 + 0.6,
-        baseAlpha: Math.random() * 0.6 + 0.2,
-        alpha: Math.random() * 0.6 + 0.2,
-        speedX: (Math.random() - 0.5) * 0.25,
-        speedY: (Math.random() - 0.5) * 0.3 - 0.1, // subtle upward cosmic drift
+        size: Math.random() * 1.5 + 0.5,
+        baseAlpha: Math.random() * 0.4 + 0.1,
+        alpha: Math.random() * 0.4 + 0.1,
+        speedX: (Math.random() - 0.5) * 0.2,
+        speedY: (Math.random() - 0.5) * 0.25 - 0.08,
         pulseSpeed: Math.random() * 0.02 + 0.01,
         pulsePhase: Math.random() * Math.PI * 2,
         color: colors[Math.floor(Math.random() * colors.length)],
@@ -67,7 +67,7 @@ export const CosmicParticleBackground: React.FC = () => {
       tick++;
       ctx.clearRect(0, 0, width, height);
 
-      // Render cosmic particles
+      // Render micro design-nodes
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
@@ -81,21 +81,13 @@ export const CosmicParticleBackground: React.FC = () => {
         if (p.y > height) p.y = 0;
 
         // Twinkle oscillation
-        p.alpha = p.baseAlpha + Math.sin(tick * p.pulseSpeed + p.pulsePhase) * 0.25;
-        const clampedAlpha = Math.max(0.08, Math.min(0.9, p.alpha));
+        p.alpha = p.baseAlpha + Math.sin(tick * p.pulseSpeed + p.pulsePhase) * 0.15;
+        const clampedAlpha = Math.max(0.05, Math.min(0.6, p.alpha));
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `${p.color}${clampedAlpha})`;
         ctx.fill();
-
-        // Subtle glow for larger particles
-        if (p.size > 1.6) {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = `${p.color}${clampedAlpha * 0.25})`;
-          ctx.fill();
-        }
       }
 
       animationId = requestAnimationFrame(render);
@@ -111,16 +103,16 @@ export const CosmicParticleBackground: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      {/* Background Deep Cosmic Gradients */}
-      <div className="absolute inset-0 bg-[#02040c]" />
+      {/* Background Deep Dark Blue Space Surface */}
+      <div className="absolute inset-0 bg-[#020817]" />
 
-      {/* Floating Nebula Glow Spheres */}
-      <div className="absolute top-[10%] left-[15%] w-[650px] h-[650px] rounded-full bg-cyan-900/15 blur-[180px] pointer-events-none" />
-      <div className="absolute top-[45%] right-[10%] w-[750px] h-[750px] rounded-full bg-purple-900/15 blur-[190px] pointer-events-none" />
-      <div className="absolute top-[75%] left-[20%] w-[700px] h-[700px] rounded-full bg-blue-900/15 blur-[180px] pointer-events-none" />
+      {/* Floating Luminous Dark Blue & Indigo Glow Spheres */}
+      <div className="absolute top-[10%] left-[15%] w-[650px] h-[650px] rounded-full bg-blue-600/15 blur-[180px] pointer-events-none" />
+      <div className="absolute top-[45%] right-[10%] w-[750px] h-[750px] rounded-full bg-sky-500/12 blur-[190px] pointer-events-none" />
+      <div className="absolute top-[75%] left-[20%] w-[700px] h-[700px] rounded-full bg-indigo-600/15 blur-[180px] pointer-events-none" />
 
-      {/* Interactive 60fps Star Canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
+      {/* Interactive 60fps Micro-nodes Canvas */}
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-70" />
     </div>
   );
 };

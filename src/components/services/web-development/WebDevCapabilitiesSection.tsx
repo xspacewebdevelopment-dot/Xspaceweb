@@ -50,21 +50,21 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
   return (
     <section
       id="engineering-architecture"
-      className={`relative w-full bg-[#020204] text-white py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-white/5 ${className}`}
+      className={`relative w-full bg-gradient-to-b from-white via-slate-50/70 to-white text-slate-900 py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-t border-slate-200/80 ${className}`}
     >
       {/* Background glow effects */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div
           className="absolute top-1/4 -left-32 w-96 h-96 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(37, 99, 235, 0.05) 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
         <div
           className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full"
           style={{
-            background: "radial-gradient(circle, rgba(129, 140, 248, 0.07) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(14, 165, 233, 0.05) 0%, transparent 70%)",
             filter: "blur(60px)",
           }}
         />
@@ -74,21 +74,21 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#38BDF8] mb-4">
-              <Layers className="w-3.5 h-3.5 text-[#38BDF8]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-xs font-mono text-blue-700 mb-4">
+              <Layers className="w-3.5 h-3.5 text-blue-600" />
               <span className="tracking-wider uppercase">System Architecture Lab</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
               Full-Stack Architectures Built for High Throughput.
             </h2>
-            <p className="mt-3 text-sm sm:text-base text-slate-400 leading-relaxed">
+            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
               We design web systems tailored to strict performance SLAs. Switch between our core architectural archetypes to inspect their live request topology and production code blueprints.
             </p>
           </div>
 
           <div className="flex items-center gap-2 self-start md:self-auto">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-mono">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               Production Ready
             </span>
           </div>
@@ -105,8 +105,8 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
                 onClick={() => setSelectedTierId(tier.id)}
                 className={`group relative text-left p-4 sm:p-5 rounded-2xl border transition-all duration-200 cursor-pointer flex flex-col justify-between ${
                   isSelected
-                    ? "bg-white/[0.08] border-[#38BDF8] shadow-[0_0_25px_rgba(56,189,248,0.18)]"
-                    : "bg-white/[0.02] border-white/10 hover:border-white/20 hover:bg-white/[0.04]"
+                    ? "bg-white border-blue-600 shadow-[0_4px_20px_rgba(37,99,235,0.12)] ring-1 ring-blue-600"
+                    : "bg-white/80 border-slate-200/80 hover:border-blue-300 hover:bg-white text-slate-700 shadow-sm"
                 }`}
               >
                 <div>
@@ -114,25 +114,25 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
                     <div
                       className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
                         isSelected
-                          ? "bg-[#38BDF8] text-black"
-                          : "bg-white/5 text-slate-400 group-hover:text-white"
+                          ? "bg-blue-600 text-white shadow-sm"
+                          : "bg-slate-100 text-slate-500 group-hover:text-blue-600"
                       }`}
                     >
                       <Icon className="w-4 h-4" />
                     </div>
                     {isSelected && (
-                      <span className="w-2 h-2 rounded-full bg-[#38BDF8] shadow-[0_0_8px_#38BDF8]" />
+                      <span className="w-2 h-2 rounded-full bg-blue-600 shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
                     )}
                   </div>
                   <h3
                     className={`text-sm sm:text-base font-bold transition-colors ${
-                      isSelected ? "text-white" : "text-slate-300 group-hover:text-white"
+                      isSelected ? "text-slate-900" : "text-slate-700 group-hover:text-slate-900"
                     }`}
                   >
                     {tier.badge}
                   </h3>
                 </div>
-                <span className="text-[11px] font-mono text-slate-400 mt-2 block truncate">
+                <span className="text-[11px] font-mono text-slate-500 mt-2 block truncate">
                   {tier.metrics[0].label}: {tier.metrics[0].value}
                   {tier.metrics[0].unit}
                 </span>
@@ -145,43 +145,43 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Architecture Specifications */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/10 backdrop-blur-md">
-              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#38BDF8]/10 text-[#38BDF8] text-xs font-mono font-medium mb-3">
+            <div className="p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-xl shadow-slate-200/50 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-blue-50 text-blue-700 border border-blue-200/60 text-xs font-mono font-medium mb-3">
                 <span>{activeTier.badge}</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
                 {activeTier.title}
               </h3>
-              <p className="text-xs font-semibold text-[#818CF8] mb-4">
+              <p className="text-xs font-semibold text-blue-600 font-mono mb-4">
                 {activeTier.subtitle}
               </p>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
                 {activeTier.summary}
               </p>
 
               {/* Architectural Highlights */}
-              <div className="space-y-2.5 pt-4 border-t border-white/10">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-1">
+              <div className="space-y-2.5 pt-4 border-t border-slate-200/80">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 block mb-1">
                   Core Engineering Guarantees
                 </span>
                 {activeTier.highlights.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
 
               {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-3 mt-6 pt-5 border-t border-white/10">
+              <div className="grid grid-cols-2 gap-3 mt-6 pt-5 border-t border-slate-200/80">
                 {activeTier.metrics.map((m, idx) => (
-                  <div key={idx} className="p-3 rounded-xl bg-black/40 border border-white/5">
-                    <span className="text-[10px] font-mono uppercase text-slate-400 block">
+                  <div key={idx} className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
+                    <span className="text-[10px] font-mono uppercase text-slate-500 block">
                       {m.label}
                     </span>
-                    <span className="text-lg font-mono font-bold text-[#38BDF8] mt-0.5 block">
+                    <span className="text-lg font-mono font-bold text-blue-600 mt-0.5 block">
                       {m.value}
-                      <span className="text-xs text-slate-400 ml-0.5">{m.unit}</span>
+                      <span className="text-xs text-slate-500 ml-0.5">{m.unit}</span>
                     </span>
                   </div>
                 ))}
@@ -191,7 +191,7 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
                 <button
                   type="button"
                   onClick={onStartProject}
-                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-[#1668E8] to-[#38BDF8] text-white font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-lg shadow-blue-500/10"
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 text-white font-semibold text-xs sm:text-sm transition-all cursor-pointer shadow-lg shadow-blue-500/20 active:scale-[0.98]"
                 >
                   <span>Build with this Architecture</span>
                   <ArrowRight className="w-4 h-4" />
@@ -202,9 +202,9 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
 
           {/* Right: Interactive Dark Console / Flow Terminal */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-[#090b10] border border-white/15 overflow-hidden shadow-2xl">
+            <div className="rounded-2xl bg-[#0a0f1d] border border-slate-800 overflow-hidden shadow-2xl">
               {/* macOS Window Titlebar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-[#0d1017] border-b border-white/10">
+              <div className="flex items-center justify-between px-4 py-3 bg-[#0f172a] border-b border-slate-800">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#ff5f56]" />
                   <span className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
@@ -215,12 +215,12 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
                 </div>
 
                 {/* View Mode Switcher */}
-                <div className="flex items-center gap-1 p-1 rounded-lg bg-black/50 border border-white/10">
+                <div className="flex items-center gap-1 p-1 rounded-lg bg-slate-950 border border-slate-800">
                   <button
                     onClick={() => setConsoleView("flow")}
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono transition-all cursor-pointer ${
                       consoleView === "flow"
-                        ? "bg-[#38BDF8] text-black font-bold"
+                        ? "bg-blue-600 text-white font-bold shadow-sm"
                         : "text-slate-400 hover:text-white"
                     }`}
                   >
@@ -231,7 +231,7 @@ export const WebDevCapabilitiesSection: React.FC<WebDevCapabilitiesSectionProps>
                     onClick={() => setConsoleView("code")}
                     className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono transition-all cursor-pointer ${
                       consoleView === "code"
-                        ? "bg-[#38BDF8] text-black font-bold"
+                        ? "bg-blue-600 text-white font-bold shadow-sm"
                         : "text-slate-400 hover:text-white"
                     }`}
                   >

@@ -1,10 +1,7 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import BlurText from "@/components/ui/BlurText";
 
 interface ServiceItem {
   id: string;
@@ -197,15 +194,9 @@ export const ServicesSection: React.FC = () => {
             </span>
 
             {/* Main Title */}
-            <BlurText
-              text="Your Complete Digital Growth Partner"
-              delay={100}
-              animateBy="words"
-              direction="top"
-              stepDuration={0.4}
-              className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#07152B] tracking-tight leading-[1.15]"
-              as="h2"
-            />
+            <h2 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-[#07152B] tracking-tight leading-[1.15]">
+              Your Complete Digital Growth Partner
+            </h2>
 
             {/* Description Subtitle */}
             <p className="text-sm sm:text-base md:text-[17px] text-[#556987] leading-relaxed pt-1">

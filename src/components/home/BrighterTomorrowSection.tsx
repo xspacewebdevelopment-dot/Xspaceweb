@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import BlurText from "@/components/ui/BlurText";
 import { ProjectModal } from "@/components/shared/ProjectModal";
 
 export const BrighterTomorrowSection: React.FC = () => {
@@ -69,34 +68,10 @@ export const BrighterTomorrowSection: React.FC = () => {
 
           {/* Main Title */}
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-extrabold tracking-tight leading-[1.12] max-w-3xl mx-auto flex flex-col items-center justify-center">
-            <BlurText
-              text="Digital Experiences"
-              delay={100}
-              animateBy="words"
-              direction="top"
-              stepDuration={0.4}
-              className="text-[#07152B] justify-center"
-              as="span"
-            />
+            <span className="text-[#07152B]">Digital Experiences</span>
             <div className="flex flex-wrap items-center justify-center gap-x-[0.3em]">
-              <BlurText
-                text="for a Brighter"
-                delay={120}
-                animateBy="words"
-                direction="top"
-                stepDuration={0.4}
-                className="text-[#07152B] justify-center"
-                as="span"
-              />
-              <BlurText
-                text="Tomorrow."
-                delay={140}
-                animateBy="words"
-                direction="top"
-                stepDuration={0.4}
-                className="text-[#1668E8] justify-center"
-                as="span"
-              />
+              <span className="text-[#07152B]">for a Brighter</span>
+              <span className="text-[#1668E8]">Tomorrow.</span>
             </div>
           </h2>
 

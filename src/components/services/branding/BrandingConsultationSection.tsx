@@ -77,30 +77,30 @@ export const BrandingConsultationSection: React.FC = () => {
   return (
     <section
       id="brand-consultation"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40"
     >
       {/* Background Cosmic Atmosphere with Moving Subtle Nebula */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full bg-cyan-700/10 blur-[190px] animate-pulse" style={{ animationDuration: "8s" }} />
-        <div className="absolute bottom-0 right-10 w-[600px] h-[600px] rounded-full bg-purple-700/10 blur-[180px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] rounded-full bg-blue-700/10 blur-[190px] animate-pulse" style={{ animationDuration: "8s" }} />
+        <div className="absolute bottom-0 right-10 w-[600px] h-[600px] rounded-full bg-indigo-700/10 blur-[180px]" />
       </div>
 
       <Container size="wide" className="relative z-10 max-w-6xl space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
-            <Rocket className="w-3.5 h-3.5 text-cyan-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
             <span>MISSION COMMISSIONING PROTOCOL</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
-            Ready for Launch? <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Ready for Velocity? <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
               Build the System Before You Accelerate It.
             </span>
           </h2>
 
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             Schedule an executive architecture consultation with our senior brand directors. We&apos;ll review your current category positioning and prepare a bespoke sprint roadmap.
           </p>
         </div>
@@ -111,7 +111,7 @@ export const BrandingConsultationSection: React.FC = () => {
           whileInView={{ scale: 1, opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative rounded-3xl bg-slate-950/80 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] group will-change-transform"
+          className="relative rounded-3xl bg-[#07112b]/85 border border-blue-900/60 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(2,8,23,0.85)] group will-change-transform"
         >
           <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-purple-500/20 rounded-3xl opacity-50 pointer-events-none -z-1" />
 

@@ -86,18 +86,18 @@ export const BrandCraftsmanshipShowcase: React.FC<BrandCraftsmanshipShowcaseProp
   return (
     <section
       id="brand-craftsmanship"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40"
     >
       {/* Local Ambient Cosmic Aura */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-cyan-700/10 blur-[190px]" />
-        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-purple-700/10 blur-[180px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-blue-600/10 blur-[190px]" />
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-indigo-600/10 blur-[180px]" />
       </div>
 
       <Container size="wide" className="relative z-10 space-y-14 sm:space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
             <Award className="w-3.5 h-3.5 text-cyan-400" />
             <span>ARCHITECTURAL RIGOR VS. AI TEMPLATES</span>
           </div>
@@ -159,7 +159,7 @@ export const BrandCraftsmanshipShowcase: React.FC<BrandCraftsmanshipShowcaseProp
         </div>
 
         {/* Premium High-Contrast Comparison Matrix Card */}
-        <div className="max-w-5xl mx-auto rounded-3xl bg-slate-950/80 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative group">
+        <div className="max-w-5xl mx-auto rounded-3xl bg-[#07112b]/85 border border-blue-900/60 backdrop-blur-2xl p-6 sm:p-10 overflow-hidden shadow-[0_25px_60px_rgba(2,8,23,0.9)] relative group">
           {/* Subtle Horizon Radar Glow at Top */}
           <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-75" />
 

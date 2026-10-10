@@ -92,7 +92,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${outfit.variable} ${caveat.variable} ${instrumentSerif.variable} scroll-smooth`}
+      className={`${inter.variable} ${outfit.variable} ${caveat.variable} ${instrumentSerif.variable}`}
     >
       <head>
         {/* Preload critical mobile & desktop hero LCP images */}
@@ -102,7 +102,8 @@ export default function RootLayout({
           href="/images/hero/women-mobile.webp"
           type="image/webp"
           media="(max-width: 640px)"
-          fetchPriority="high"
+          // @ts-expect-error fetchpriority attribute
+          fetchpriority="high"
         />
         <link
           rel="preload"
@@ -110,7 +111,8 @@ export default function RootLayout({
           href="/images/hero/women.webp"
           type="image/webp"
           media="(min-width: 641px)"
-          fetchPriority="high"
+          // @ts-expect-error fetchpriority attribute
+          fetchpriority="high"
         />
         {/* DNS prefetch & preconnect for remote image origins */}
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />

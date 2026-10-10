@@ -130,7 +130,7 @@ const StackingCard: React.FC<StackingCardProps> = ({
           opacity,
           transformOrigin: "top center",
         }}
-        className="w-full rounded-3xl bg-slate-950/90 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_30px_70px_rgba(0,0,0,0.9)] relative group"
+        className="w-full rounded-3xl bg-[#07112b]/90 border border-blue-900/60 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_30px_70px_rgba(2,8,23,0.9)] relative group"
       >
         {/* Subtle Outer Neon Aura */}
         <div
@@ -247,7 +247,7 @@ export const BrandSystemEvolution: React.FC = () => {
     <section
       ref={containerRef}
       id="brand-system-evolution"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 border-t border-slate-900/80"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 border-t border-blue-900/40"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none select-none">

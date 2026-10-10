@@ -1,11 +1,8 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import BlurText from "@/components/ui/BlurText";
 
 interface FeaturePillar {
   title: string;
@@ -130,15 +127,9 @@ export const WhoWeAreSection: React.FC = () => {
               </span>
 
               {/* Main Heading */}
-              <BlurText
-                text="A Team That Turns Ideas Into Impact"
-                delay={100}
-                animateBy="words"
-                direction="top"
-                stepDuration={0.4}
-                className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-white tracking-tight leading-[1.16]"
-                as="h2"
-              />
+              <h2 className="text-3xl sm:text-4xl md:text-[40px] font-extrabold text-white tracking-tight leading-[1.16]">
+                A Team That Turns Ideas Into Impact
+              </h2>
 
               {/* Body Text */}
               <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl pt-1">

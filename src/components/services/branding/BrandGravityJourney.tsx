@@ -15,58 +15,58 @@ interface StageData {
 
 const stages: StageData[] = [
   {
-    id: "signal",
+    id: "strategy",
     stageNumber: "01",
-    badge: "STAGE 01 // DISCONNECTED NOISE",
-    headline: "A brand starts as a signal.",
-    copy: "Positioning, language, colour, and visual structure begin as disconnected decisions. Without architectural gravity, every touchpoint drifts apart in the dark.",
+    badge: "PHASE 01 // STRATEGY & POSITIONING",
+    headline: "Every enduring brand begins with strategic clarity.",
+    copy: "We audit category whitespace, competitive moats, and customer psychographics. Before designing a single pixel, we define your core brand positioning, archetype, and narrative tone.",
     metrics: [
-      { label: "Cohesion", value: "14%" },
-      { label: "Market Drift", value: "High" },
+      { label: "Category Moat", value: "Defined" },
+      { label: "Audience Clarity", value: "100%" },
     ],
   },
   {
     id: "identity",
     stageNumber: "02",
-    badge: "STAGE 02 // GEOMETRIC CONVERGENCE",
-    headline: "The signal becomes recognizable.",
-    copy: "Fragments slowly converge. Typography aligns along mathematical baselines. A chromatic hierarchy forms, and geometric construction lines organize around a central insigne.",
+    badge: "PHASE 02 // VISUAL IDENTITY & CRAFT",
+    headline: "Strategic insight crystallizes into distinctive visual identity.",
+    copy: "Bespoke logomarks, proprietary typography pairings, and a multi-spectrum chromatic system come to life. The brand takes shape with razor-sharp distinction that commands authority.",
     metrics: [
-      { label: "Geometry", value: "100% Vector" },
-      { label: "Alignment", value: "Calibrated" },
+      { label: "Vector Logomark", value: "Bespoke" },
+      { label: "Typography Ramps", value: "Editorial" },
     ],
   },
   {
     id: "system",
     stageNumber: "03",
-    badge: "STAGE 03 // LIVING TOKENS",
-    headline: "Identity becomes a living system.",
-    copy: "The central identity connects outwards to Typography, Colour, Motion, 3D Packaging, Web Storefronts, and Social Channels. Living relationship lines keep every channel synchronized.",
+    badge: "PHASE 03 // LIVING DESIGN SYSTEMS",
+    headline: "Identity scales effortlessly through living design systems.",
+    copy: "We engineer 400+ Figma design tokens synced directly to production code. Every color, spacing ramp, card surface, and component remains in perfect synchrony across designers and developers.",
     metrics: [
-      { label: "Figma Tokens", value: "400+" },
-      { label: "Code Mesh", value: "Instant" },
+      { label: "Figma Variables", value: "400+" },
+      { label: "Handoff Speed", value: "Sub-Second" },
     ],
   },
   {
-    id: "gravity",
+    id: "omnichannel",
     stageNumber: "04",
-    badge: "STAGE 04 // MARKET ATTRACTION",
-    headline: "Consistency creates gravity.",
-    copy: "The system now attracts customer touchpoints toward its core. Assets settle into a unified orbital rhythm, commanding higher pricing power and effortless category distinction.",
+    badge: "PHASE 04 // OMNICHANNEL EXECUTION",
+    headline: "Physical packaging and sub-second storefronts align.",
+    copy: "From physical luxury packaging dielines and 8K CGI renders to headless Next.js digital storefronts and social design kits—every customer touchpoint speaks with unified authority.",
     metrics: [
       { label: "Brand Recall", value: "+85%" },
-      { label: "Pricing Moat", value: "3.2x" },
+      { label: "Pricing Power", value: "3.2x" },
     ],
   },
   {
-    id: "velocity",
+    id: "dominance",
     stageNumber: "05",
-    badge: "STAGE 05 // ORBITAL MOMENTUM",
-    headline: "Gravity becomes momentum.",
-    copy: "The entire brand system begins accelerating forward into market dominance. Recognition, consistency, recall, and ruthless conversion compound autonomously.",
+    badge: "PHASE 05 // CATEGORY LEADERSHIP",
+    headline: "Relentless brand consistency drives category leadership.",
+    copy: "When brand identity, product packaging, and digital experiences operate as a unified system, customer trust compounds and enterprise valuation accelerates.",
     metrics: [
-      { label: "Conversion Lift", value: "+48%" },
-      { label: "Valuation Lift", value: "+240%" },
+      { label: "Funnel Lift", value: "+48%" },
+      { label: "Enterprise Value", value: "Compounding" },
     ],
   },
 ];
@@ -102,7 +102,7 @@ export const BrandGravityJourney: React.FC = () => {
     <section
       ref={containerRef}
       id="brand-gravity-journey"
-      className="relative w-full bg-transparent text-white border-t border-slate-900/80"
+      className="relative w-full bg-[#020817] text-white border-t border-blue-900/40"
     >
       {/* Environmental Section Atmosphere */}
       <div className="absolute inset-0 pointer-events-none select-none">
@@ -116,9 +116,9 @@ export const BrandGravityJourney: React.FC = () => {
                   : activeStageIndex === 1
                   ? "radial-gradient(circle, #818cf8 0%, transparent 70%)"
                   : activeStageIndex === 2
-                  ? "radial-gradient(circle, #a855f7 0%, transparent 70%)"
+                  ? "radial-gradient(circle, #2563eb 0%, transparent 70%)"
                   : activeStageIndex === 3
-                  ? "radial-gradient(circle, #ec4899 0%, transparent 70%)"
+                  ? "radial-gradient(circle, #0284c7 0%, transparent 70%)"
                   : "radial-gradient(circle, #10b981 0%, transparent 70%)",
             }}
           />
@@ -133,15 +133,15 @@ export const BrandGravityJourney: React.FC = () => {
           {/* Left Column: Narrative Story Progression */}
           <div className="w-full max-w-[480px] space-y-6 z-20">
             <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
-                <Orbit className="w-3.5 h-3.5 text-cyan-400 animate-spin" style={{ animationDuration: "12s" }} />
-                <span>BRAND GRAVITY ACCRETION</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/70 text-cyan-400 text-xs font-mono font-bold shadow-xs">
+                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <span>STRATEGIC BRAND METHODOLOGY</span>
               </div>
 
               <div className="flex items-center gap-2 text-xs font-mono text-slate-400 tracking-wider">
                 <span className="text-cyan-400 font-bold">{activeStage.stageNumber}</span>
                 <span>/ 05</span>
-                <span className="text-slate-600">—</span>
+                <span className="text-blue-900">—</span>
                 <span className="text-slate-300 font-semibold">{activeStage.badge}</span>
               </div>
 
@@ -160,9 +160,9 @@ export const BrandGravityJourney: React.FC = () => {
                 {activeStage.metrics.map((m, idx) => (
                   <div
                     key={idx}
-                    className="p-3 rounded-2xl bg-slate-950/80 border border-slate-800/80 backdrop-blur-xl"
+                    className="p-3.5 rounded-2xl bg-[#07112b]/85 border border-blue-900/60 shadow-lg"
                   >
-                    <div className="text-xl font-black text-cyan-400">{m.value}</div>
+                    <div className="text-xl font-black text-cyan-400 font-mono">{m.value}</div>
                     <div className="text-[11px] text-slate-400 font-mono">{m.label}</div>
                   </div>
                 ))}
@@ -170,16 +170,16 @@ export const BrandGravityJourney: React.FC = () => {
             )}
 
             {/* Stage Indicator Rail */}
-            <div className="flex items-center gap-2 pt-4 border-t border-slate-800/70">
+            <div className="flex items-center gap-2 pt-4 border-t border-blue-900/40">
               {stages.map((st, i) => (
                 <div
                   key={st.id}
                   className={`h-1.5 rounded-full transition-all duration-500 ${
                     i === activeStageIndex
-                      ? "w-10 bg-gradient-to-r from-cyan-400 to-indigo-500 shadow-[0_0_10px_rgba(56,189,248,0.6)]"
+                      ? "w-10 bg-gradient-to-r from-blue-600 to-cyan-400 shadow-md shadow-cyan-400/30"
                       : i < activeStageIndex
-                      ? "w-4 bg-slate-700"
-                      : "w-2 bg-slate-800"
+                      ? "w-4 bg-blue-800"
+                      : "w-2 bg-blue-950"
                   }`}
                 />
               ))}
@@ -188,14 +188,14 @@ export const BrandGravityJourney: React.FC = () => {
             {activeStageIndex === 4 && (
               <div className="pt-2">
                 <div className="text-xs font-mono font-bold tracking-widest text-emerald-400 uppercase">
-                  BUILD THE SYSTEM. THEN GIVE IT VELOCITY.
+                  FORGE THE IDENTITY. SCALE THE SYSTEM.
                 </div>
               </div>
             )}
           </div>
 
           {/* Right Column: Dynamic SVG/CSS Gravity Visual Scene */}
-          <div className="w-full max-w-[560px] h-[520px] rounded-3xl bg-slate-950/70 border border-slate-800/80 backdrop-blur-2xl p-8 relative flex items-center justify-center overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] z-20">
+          <div className="w-full max-w-[560px] h-[520px] rounded-3xl bg-[#07112b]/90 border border-blue-900/70 shadow-2xl shadow-blue-950/80 p-8 relative flex items-center justify-center overflow-hidden z-20">
             {/* Stage 01: Scattered Primitives */}
             <div
               className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ${
@@ -333,10 +333,10 @@ export const BrandGravityJourney: React.FC = () => {
       <div className="block lg:hidden px-4 py-16 space-y-8 max-w-lg mx-auto">
         <div className="text-center space-y-2">
           <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
-            BRAND GRAVITY ACCRETION
+            STRATEGIC BRAND METHODOLOGY
           </span>
           <h2 className="text-2xl font-black text-white">
-            Why Every Brand Needs a Gravitational System.
+            How We Build Category-Defining Enterprise Brands.
           </h2>
         </div>
 
@@ -344,11 +344,11 @@ export const BrandGravityJourney: React.FC = () => {
           {stages.map((st) => (
             <div
               key={st.id}
-              className="p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 space-y-3"
+              className="p-5 rounded-2xl bg-[#07112b]/85 border border-blue-900/60 shadow-lg space-y-3"
             >
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-bold text-cyan-400">{st.badge}</span>
-                <span className="text-xs font-mono text-slate-500">STAGE {st.stageNumber}</span>
+                <span className="text-xs font-mono text-slate-400">STAGE {st.stageNumber}</span>
               </div>
               <h3 className="text-lg font-bold text-white">{st.headline}</h3>
               <p className="text-xs text-slate-300 leading-relaxed">{st.copy}</p>

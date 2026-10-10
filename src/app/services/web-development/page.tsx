@@ -41,7 +41,7 @@ export default function WebDevelopmentPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#020204] text-white overflow-x-hidden selection:bg-[#38bdf8] selection:text-[#020204]">
+    <div className="w-full min-h-screen bg-white text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
       {/* 1. Rotatable 3D Glass Cuboid Chromatic Refraction Hero */}
       <WebDevHeroSection onStartProject={handleStartProject} />
 

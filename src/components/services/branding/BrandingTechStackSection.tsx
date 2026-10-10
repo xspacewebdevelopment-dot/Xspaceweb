@@ -61,7 +61,7 @@ export const BrandingTechStackSection: React.FC = () => {
   return (
     <section
       id="brand-tech-stack"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80 [perspective:1200px]"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40 [perspective:1200px]"
     >
       {/* Background Cosmic Atmosphere */}
       <div className="absolute inset-0 pointer-events-none select-none">
@@ -71,19 +71,19 @@ export const BrandingTechStackSection: React.FC = () => {
       <Container size="wide" className="relative z-10 space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
             <Cpu className="w-3.5 h-3.5 text-cyan-400" />
             <span>STUDIO ARSENAL &amp; PRODUCTION STACK</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
             Powered by World-Class <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
               Brand &amp; 3D Technologies.
             </span>
           </h2>
 
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             We don’t rely on shallow web templates. We deploy industry-standard industrial CAD, GPU raytracing, and living design token pipelines to create flawless brand assets that scale across factories and screens.
           </p>
         </div>
@@ -110,12 +110,12 @@ export const BrandingTechStackSection: React.FC = () => {
                 key={cat.id}
                 onMouseEnter={() => setHoveredCategory(cat.id)}
                 onMouseLeave={() => setHoveredCategory(null)}
-                className={`relative rounded-3xl bg-slate-950/75 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between transition-all duration-300 cursor-default ${
+                className={`relative rounded-3xl bg-[#07112b]/85 border border-blue-900/60 backdrop-blur-2xl p-6 sm:p-8 space-y-6 shadow-xl flex flex-col justify-between transition-all duration-300 cursor-default ${
                   isHovered
-                    ? "border-cyan-500/60 shadow-[0_20px_45px_rgba(56,189,248,0.2)] -translate-y-1.5 scale-[1.01]"
+                    ? "border-cyan-500/60 shadow-[0_20px_45px_rgba(6,182,212,0.2)] -translate-y-1.5 scale-[1.01]"
                     : isOther
                     ? "opacity-60"
-                    : "hover:border-slate-700"
+                    : "hover:border-blue-700"
                 }`}
                 style={{
                   transformStyle: "preserve-3d",

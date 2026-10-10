@@ -131,7 +131,7 @@ export const BrandingCaseStudiesSection: React.FC<BrandingCaseStudiesSectionProp
     <section
       ref={containerRef}
       id="brand-case-studies"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80 [perspective:1400px]"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40 [perspective:1400px]"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none select-none">
@@ -224,7 +224,7 @@ export const BrandingCaseStudiesSection: React.FC<BrandingCaseStudiesSectionProp
             opacity,
             transformStyle: "preserve-3d",
           }}
-          className="relative rounded-3xl bg-slate-950/75 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] group will-change-transform"
+          className="relative rounded-3xl bg-[#07112b]/85 border border-blue-900/60 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(2,8,23,0.85)] group will-change-transform"
         >
           {/* Subtle Outer Neon Border Glow */}
           <div

@@ -1,10 +1,7 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/shared/ui/Container";
-import BlurText from "@/components/ui/BlurText";
 
 export const StartProjectBannerSection: React.FC = () => {
   return (
@@ -40,15 +37,10 @@ export const StartProjectBannerSection: React.FC = () => {
                   HAVE SOMETHING IN MIND?
                 </span>
 
-                <BlurText
-                  text="Let's make it worth seeing."
-                  delay={100}
-                  animateBy="words"
-                  direction="top"
-                  stepDuration={0.4}
-                  className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight"
-                  as="h2"
-                />
+                {/* Heading */}
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#07152B] tracking-tight leading-tight">
+                  Let&apos;s make it worth seeing.
+                </h2>
 
                 <p className="text-xs sm:text-sm font-semibold text-slate-500 tracking-wide pt-1">
                   Websites &middot; Apps &middot; SaaS &middot; Branding &middot; Creative &middot; Digital Experiences

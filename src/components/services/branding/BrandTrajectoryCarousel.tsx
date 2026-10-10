@@ -201,8 +201,8 @@ export const BrandTrajectoryCarousel: React.FC<BrandTrajectoryCarouselProps> = (
               </span>
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-400 leading-relaxed">
-              Just like an orbital rocket, a lasting enterprise brand is built from atomic blueprints, assembled into a living design system, and launched with market-dominating velocity.
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              An enterprise brand is forged from mathematical blueprints, assembled into a living design system, and launched with market-dominating category velocity.
             </p>
           </div>
 
@@ -313,7 +313,7 @@ export const BrandTrajectoryCarousel: React.FC<BrandTrajectoryCarouselProps> = (
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative rounded-3xl bg-slate-950/75 border border-slate-800/90 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all duration-300"
+          className="relative rounded-3xl bg-[#07112b]/85 border border-blue-900/60 backdrop-blur-2xl p-6 sm:p-10 lg:p-12 overflow-hidden shadow-[0_20px_50px_rgba(2,8,23,0.85)] transition-all duration-300"
           style={{
             transform: `perspective(1000px) rotateX(${mousePos.y * -4}deg) rotateY(${mousePos.x * 4}deg)`,
             transformStyle: "preserve-3d",

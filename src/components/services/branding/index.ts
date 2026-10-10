@@ -1,6 +1,7 @@
 export * from "./CosmicParticleBackground";
 export * from "./BrandingRocketHero";
 export * from "./RocketAssemblySection";
+export * from "./BrandIdentityHeroSection";
 export * from "./BrandScrollProgress";
 export * from "./BrandEnvironmentalWord";
 export * from "./BrandGravityJourney";

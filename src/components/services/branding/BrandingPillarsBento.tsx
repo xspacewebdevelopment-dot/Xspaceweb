@@ -36,12 +36,12 @@ interface BentoCard {
 const bentoCards: BentoCard[] = [
   {
     id: "identity",
-    badge: "01 // ATOMIC BLUEPRINT",
+    badge: "01 // BRAND IDENTITY & TYPOGRAPHY",
     badgeColor: "text-cyan-400 border-cyan-500/30 bg-cyan-950/40",
-    title: "Brand Identity & Mathematical Geometry",
+    title: "Visual Identity & Typographic Systems",
     subtitle: "Custom logomarks, proprietary typography & chromatic psychology.",
     description:
-      "We design brand identities that cut through market noise. Beyond an icon, we forge mathematical grid systems, custom typography ligatures, and responsive lockups tested across every scale from favicon to giant stadium billboards.",
+      "We design brand identities that cut through market noise. Beyond an icon, we forge bespoke logomarks, custom display ligatures, and responsive lockups tested across every scale from mobile favicon to architectural signage.",
     image: "/images/services/branding/visual_identity.jpg",
     features: [
       "Vector Logomark, Monogram & System Lockups",
@@ -133,30 +133,30 @@ export const BrandingPillarsBento: React.FC<BrandingPillarsBentoProps> = ({
     <section
       ref={containerRef}
       id="brand-pillars-bento"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80 [perspective:1400px]"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40 [perspective:1400px]"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] rounded-full bg-cyan-700/10 blur-[160px]" />
-        <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] rounded-full bg-purple-700/10 blur-[160px]" />
+        <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[160px]" />
+        <div className="absolute bottom-1/4 -right-20 w-[600px] h-[600px] rounded-full bg-indigo-600/10 blur-[160px]" />
       </div>
 
       <Container size="wide" className="relative z-10 space-y-16">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-cyan-400 text-xs font-mono font-bold shadow-sm">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-cyan-400 text-xs font-mono font-bold shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span>FOUR PILLARS OF BRAND GRAVITY</span>
+            <span>FOUR CORE PILLARS OF BRAND EXCELLENCE</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-[1.12]">
             Engineered for Memorability. <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">
               Built for Compounding Scale.
             </span>
           </h2>
 
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             We reject templated graphics. Our senior design studio integrates brand psychology, industrial 3D rendering, and modern web architecture into cohesive systems that dominate your category.
           </p>
         </div>
@@ -180,7 +180,7 @@ export const BrandingPillarsBento: React.FC<BrandingPillarsBentoProps> = ({
                 key={card.id}
                 onMouseEnter={() => setHoveredCard(card.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`${card.colSpan} relative rounded-3xl bg-slate-950/75 border border-slate-800/80 hover:border-slate-700/90 backdrop-blur-xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-300 group hover:-translate-y-1`}
+                className={`${card.colSpan} relative rounded-3xl bg-[#07112b]/85 border border-blue-900/60 hover:border-cyan-500/40 backdrop-blur-xl p-6 sm:p-8 flex flex-col justify-between overflow-hidden shadow-2xl transition-all duration-300 group hover:-translate-y-1`}
               >
                 {/* Subtle Glow upon hover */}
                 <div

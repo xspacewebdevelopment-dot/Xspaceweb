@@ -122,18 +122,18 @@ export const BrandingProcessSection: React.FC<BrandingProcessSectionProps> = ({
     <section
       ref={containerRef}
       id="brand-process"
-      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-slate-900/80"
+      className="relative w-full bg-transparent text-white py-24 sm:py-32 overflow-hidden border-t border-blue-900/40"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none select-none">
-        <div className="absolute top-1/2 left-1/3 w-[800px] h-[800px] rounded-full bg-purple-900/10 blur-[180px]" />
+        <div className="absolute top-1/2 left-1/3 w-[800px] h-[800px] rounded-full bg-blue-900/10 blur-[180px]" />
       </div>
 
       <Container size="wide" className="relative z-10 space-y-16">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-purple-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
-            <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/80 border border-blue-800/60 text-cyan-400 text-xs font-mono font-bold shadow-sm backdrop-blur-xl">
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
             <span>MISSION TRAJECTORY PROTOCOL</span>
           </div>
 
@@ -213,10 +213,10 @@ export const BrandingProcessSection: React.FC<BrandingProcessSectionProps> = ({
                   {/* Content Card (Half Width) */}
                   <div className="w-1/2">
                     <div
-                      className={`rounded-3xl bg-slate-950/80 border p-7 backdrop-blur-2xl transition-all duration-500 shadow-xl ${
+                      className={`rounded-3xl bg-[#07112b]/85 border p-7 backdrop-blur-2xl transition-all duration-500 shadow-xl ${
                         isReached
-                          ? "border-slate-700 shadow-[0_15px_35px_rgba(0,0,0,0.8)] opacity-100 translate-y-0"
-                          : "border-slate-800/60 opacity-60 translate-y-2"
+                          ? "border-blue-700 shadow-[0_15px_35px_rgba(2,8,23,0.8)] opacity-100 translate-y-0"
+                          : "border-blue-900/60 opacity-60 translate-y-2"
                       }`}
                     >
                       <div className="flex items-center justify-between pb-3 border-b border-slate-800/80">
